@@ -1,0 +1,25 @@
+{
+	"name": "vscode-gsc",
+	"displayName": "CoD Game Script Code",
+	"description": "Language support for different GSC versions",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.69.0"
+	},
+	"categories": [
+		"Programming Languages"
+	],
+	"contributes": {
+		"languages": [{
+			"id": "gsc-iw4",
+			"aliases": ["Game Script Code (IW4)", "GSC (IW4)"],
+			"extensions": [".gsc", ".csc"],
+			"configuration": "./language-configuration.json"
+		}],
+		"grammars": [{
+			"language": "gsc-iw4",
+			"scopeName": "source.gsc",
+			"path": "./syntaxes/gsc.tmLanguage.json"
+		}]
+	}
+}
