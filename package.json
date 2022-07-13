@@ -1,6 +1,6 @@
 {
 	"name": "vscode-gsc",
-	"displayName": "CoD Game Script Code",
+	"displayName": "CoD: Game Script Code",
 	"description": "Language support for different GSC versions",
 	"version": "0.0.1",
 	"engines": {
@@ -9,17 +9,59 @@
 	"categories": [
 		"Programming Languages"
 	],
+	"scripts": {
+		"vscode:prepublish": "npm run build",
+		"build": "ts-node src/main.ts"
+	},
 	"contributes": {
-		"languages": [{
-			"id": "gsc-iw4",
-			"aliases": ["Game Script Code (IW4)", "GSC (IW4)"],
-			"extensions": [".gsc", ".csc"],
-			"configuration": "./language-configuration.json"
-		}],
-		"grammars": [{
-			"language": "gsc-iw4",
-			"scopeName": "source.gsc",
-			"path": "./syntaxes/gsc.tmLanguage.json"
-		}]
+		"languages": [
+			{
+				"id": "gsc-iw3",
+				"aliases": [
+					"Game Script Code (IW3)",
+					"GSC (IW3)"
+				],
+				"extensions": [
+					".gsc",
+					".csc"
+				],
+				"configuration": "./static/language-configuration.json",
+				"icon": {
+					"light": "./static/icons/gsc-iw3.svg",
+					"dark": "./static/icons/gsc-iw3.svg"
+				}
+			},
+			{
+				"id": "gsc-iw4",
+				"aliases": [
+					"Game Script Code (IW4)",
+					"GSC (IW4)"
+				],
+				"extensions": [
+					".gsc",
+					".csc"
+				],
+				"configuration": "./static/language-configuration.json",
+				"icon": {
+					"light": "./static/icons/gsc-iw4.svg",
+					"dark": "./static/icons/gsc-iw4.svg"
+				}
+			}
+		],
+		"grammars": [
+			{
+				"language": "gsc-iw3",
+				"scopeName": "source.gsc",
+				"path": "./out/grammars/gsc-iw3.tmLanguage.json"
+			},
+			{
+				"language": "gsc-iw4",
+				"scopeName": "source.gsc",
+				"path": "./out/grammars/gsc-iw4.tmLanguage.json"
+			}
+		]
+	},
+	"devDependencies": {
+		"ts-node": "^10.8.2"
 	}
 }

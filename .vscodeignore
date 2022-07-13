@@ -1,4 +1,6 @@
 .vscode/**
 .vscode-test/**
+.gitattributes
 .gitignore
-vsc-extension-quickstart.md
+src
+node_modules
