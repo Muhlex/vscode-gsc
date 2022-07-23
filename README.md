@@ -1,5 +1,6 @@
-# WIP: Game Script Language support for Visual Studio Code
-Currently only has a grammar for IW4.
+# CoD: Game Script Language support for Visual Studio Code
+**Very much WIP.** Currently only has a syntax highlighting grammar for IW4. 
+<img width="80%" src="https://user-images.githubusercontent.com/21311428/178621733-7957dc28-c35e-4fa3-bd19-c9c7ff7b7465.png">
 
 ***
 
