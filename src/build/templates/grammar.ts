@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 const raw = String.raw;
 
 export default (id: string) => ({
@@ -159,12 +160,12 @@ export default (id: string) => ({
 		"expression-evaluation": {
 			begin: raw`\[\[`,
 			end: raw`\]\]`,
-			captures: { "0": { name: "meta.expression-evaluation.gsc" } }
+			name: "meta.expression-evaluation.gsc"
 		},
 		"punctuation": {
 			patterns: [{
 				match: raw`\b(\.)\b`,
-				captures: { "1": { name: "punctuation.accessor.gsc" } }
+				captures: { 1: { name: "punctuation.accessor.gsc" } }
 			}, {
 				match: ",",
 				name: "punctuation.separator.comma.gsc"

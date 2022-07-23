@@ -10,9 +10,17 @@
 		"Programming Languages"
 	],
 	"scripts": {
-		"vscode:prepublish": "npm run build",
-		"build": "ts-node src/main.ts"
+		"vscode:prepublish": "npm run compile && npm run build",
+		"build": "ts-node src/build/index.ts",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"lint": "eslint src --ext ts"
 	},
+	"main": "./out/extension",
+	"activationEvents": [
+		"onLanguage:gsc-iw3",
+		"onLanguage:gsc-iw4"
+	],
 	"contributes": {
 		"languages": [
 			{
@@ -62,6 +70,12 @@
 		]
 	},
 	"devDependencies": {
-		"ts-node": "^10.8.2"
+		"@types/node": "^18.0.6",
+		"@types/vscode": "^1.69.0",
+		"@typescript-eslint/eslint-plugin": "^5.30.7",
+		"@typescript-eslint/parser": "^5.30.7",
+		"eslint": "^8.20.0",
+		"ts-node": "^10.8.2",
+		"typescript": "^4.7.4"
 	}
 }

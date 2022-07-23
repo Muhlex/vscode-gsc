@@ -1,11 +1,13 @@
 import { join as joinPath } from 'path';
-import fs from 'fs/promises';
+import * as fs from 'fs/promises';
 
 import grammar from './templates/grammar';
 import writeFile from './write-file';
+import * as tsconfig from '../../tsconfig.json';
 
 const OUT_DIR = 'out/';
 const VARIANT_IDS = ['iw3', 'iw4'];
+console.log(tsconfig);
 
 (async () => {
 	try {
@@ -19,7 +21,7 @@ const VARIANT_IDS = ['iw3', 'iw4'];
 		// console.log(grammar(id).repository.preprocessor.patterns[0].match);
 		writeFile(
 			joinPath(OUT_DIR, 'grammars', `gsc-${id}.tmLanguage.json`),
-			JSON.stringify(grammar(id), null, "\t")
+			JSON.stringify(grammar(id))
 		);
 	});
 })();

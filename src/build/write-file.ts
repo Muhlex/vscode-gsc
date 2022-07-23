@@ -1,4 +1,4 @@
-import fs from 'fs/promises';
+import * as fs from 'fs/promises';
 import { dirname } from 'path';
 
 export default async (filepath: string, content: string) => {
@@ -8,4 +8,4 @@ export default async (filepath: string, content: string) => {
 	} catch (error) {
 		console.error(error);
 	}
-}
+};
