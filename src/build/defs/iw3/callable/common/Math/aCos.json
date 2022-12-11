@@ -1,0 +1,22 @@
+{
+	"usage": "aCos(<cos value>)",
+	"description": [
+		"Returns an angle corresponding to a particular cosine value."
+	],
+	"params": [
+		{
+			"name": "cos value",
+			"type": "float",
+			"description": [
+				"A cosine value."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"upAngle = aCos(distanceRatio);"
+	]
+}

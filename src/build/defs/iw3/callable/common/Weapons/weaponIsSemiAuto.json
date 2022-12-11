@@ -1,0 +1,22 @@
+{
+	"usage": "weaponIsSemiAuto(<weapon>)",
+	"description": [
+		"Get whether this weapon is semi automatic."
+	],
+	"params": [
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (weaponIsSemiAuto(\"m14_scoped\")) {\n  // Code\n}"
+	]
+}

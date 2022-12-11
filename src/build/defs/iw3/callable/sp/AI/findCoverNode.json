@@ -1,0 +1,9 @@
+{
+	"usage": "<actor> findCoverNode()",
+	"description": [
+		"Finds a valid cover node for the character."
+	],
+	"example": [
+		"self findCoverNode();"
+	]
+}

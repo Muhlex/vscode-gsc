@@ -1,0 +1,19 @@
+{
+	"usage": "exitLevel(<save persistent>)",
+	"description": [
+		"Exits the current level."
+	],
+	"params": [
+		{
+			"name": "save persistent",
+			"type": "bool",
+			"description": [
+				"If true, player info is retained."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"exitLevel(false);"
+	]
+}

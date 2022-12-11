@@ -1,0 +1,27 @@
+{
+	"usage": "clientAnnouncement(<clientnum>, <string>)",
+	"description": [
+		"Sends an announcement to a single client."
+	],
+	"params": [
+		{
+			"name": "clientnum",
+			"type": "int",
+			"description": [
+				"The client number that the announcement is sent to."
+			],
+			"optional": false
+		},
+		{
+			"name": "string",
+			"type": "string",
+			"description": [
+				"The announcement."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"This function has no official examples."
+	]
+}

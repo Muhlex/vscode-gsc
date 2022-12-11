@@ -1,0 +1,19 @@
+{
+	"usage": "setDebugAngles(<angles>)",
+	"description": [
+		"Set the debugging angles for a debug camera."
+	],
+	"params": [
+		{
+			"name": "angles",
+			"type": "Vector3",
+			"description": [
+				"The debug player angles."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"setDebugAngles(camera.angles);"
+	]
+}

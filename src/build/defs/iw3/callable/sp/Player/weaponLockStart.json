@@ -1,0 +1,19 @@
+{
+	"usage": "<player> weaponLockStart(<entity>)",
+	"description": [
+		"Begins player's weapon lockon sequence (hud effects, etc). Will clear any existing hard lock. Use weaponLockFinalize() to complete lock."
+	],
+	"params": [
+		{
+			"name": "entity",
+			"type": "Entity",
+			"description": [
+				"An entity."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"level.player weaponLockStart(enemyGuy);"
+	]
+}

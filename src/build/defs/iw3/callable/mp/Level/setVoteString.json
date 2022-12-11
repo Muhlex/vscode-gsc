@@ -1,0 +1,19 @@
+{
+	"usage": "setVoteString(<string>)",
+	"description": [
+		"Sets the string for a vote."
+	],
+	"params": [
+		{
+			"name": "string",
+			"type": "string",
+			"description": [
+				"The vote string."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"setVoteString(\"Extend map?\");"
+	]
+}

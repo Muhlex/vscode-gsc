@@ -1,0 +1,22 @@
+{
+	"usage": "weaponClass(<weapon>)",
+	"description": [
+		"Returns the class of weapon that this weapon is, such as \"rifle\", \"smg\", \"spread\", \"pistol\", etc."
+	],
+	"params": [
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": [
+		"if (weaponClass(\"m16_basic\") == \"rifle\") {\n  // Code\n}"
+	]
+}

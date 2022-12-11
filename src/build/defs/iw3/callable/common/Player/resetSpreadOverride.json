@@ -1,0 +1,9 @@
+{
+	"usage": "<player> resetSpreadOverride()",
+	"description": [
+		"Resets the player spread value to the ones of the weapon in use."
+	],
+	"example": [
+		"level.player resetSpreadOverride();"
+	]
+}

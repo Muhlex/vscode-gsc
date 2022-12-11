@@ -1,0 +1,22 @@
+{
+	"usage": "isString(<variable>)",
+	"description": [
+		"Checks whether this variable is a string."
+	],
+	"params": [
+		{
+			"name": "variable",
+			"type": "Any",
+			"description": [
+				"Variable that may or may not be a string."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (isString(var)) {\n  // Code\n}"
+	]
+}

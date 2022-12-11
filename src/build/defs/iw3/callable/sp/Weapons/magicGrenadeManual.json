@@ -1,0 +1,35 @@
+{
+	"usage": "<entity> magicGrenadeManual(<origin>, <velocity>, <time to blow>)",
+	"description": [
+		"Creates a \"magic\" grenade from an actor."
+	],
+	"params": [
+		{
+			"name": "origin",
+			"type": "Vector3",
+			"description": [
+				"The starting point of the grenade toss."
+			],
+			"optional": false
+		},
+		{
+			"name": "velocity",
+			"type": "Vector3",
+			"description": [
+				"The initial velocity vector for the grenade movement."
+			],
+			"optional": false
+		},
+		{
+			"name": "time to blow",
+			"type": "float",
+			"description": [
+				"The grenade fuse time in seconds."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"level.price magicGrenadeManual(start, vec, 1.1);"
+	]
+}

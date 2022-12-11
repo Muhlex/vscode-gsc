@@ -1,0 +1,22 @@
+{
+	"usage": "getAssignedTeam(<player>)",
+	"description": [
+		"Returns the player's team as assigned by matchmaking. 0 = No team, 1 = Axis, 2 = Allies, 3 = Spectator."
+	],
+	"params": [
+		{
+			"name": "player",
+			"type": "Entity",
+			"description": [
+				"The player."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"team = getAssignedTeam(player);"
+	]
+}

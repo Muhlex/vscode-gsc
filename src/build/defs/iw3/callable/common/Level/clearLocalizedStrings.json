@@ -1,0 +1,19 @@
+{
+	"usage": "clearLocalizedStrings(<firstString>)",
+	"description": [
+		"Clear all of the localized strings. This is useful if you are frequently changing HUD text for development."
+	],
+	"params": [
+		{
+			"name": "firstString",
+			"type": "HudElem",
+			"description": [
+				"The first HudElem with a string to clan AI event to stop listening to. If none, remove all events for this entity."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"clearLocalizedStrings();"
+	]
+}

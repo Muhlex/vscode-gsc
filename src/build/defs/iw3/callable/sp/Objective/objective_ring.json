@@ -1,0 +1,19 @@
+{
+	"usage": "objective_ring(<objective index>)",
+	"description": [
+		"Triggers a ring on the objective."
+	],
+	"params": [
+		{
+			"name": "objective index",
+			"type": "int",
+			"description": [
+				"The ID of the objective."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"objective_ring(level.moratorObjNumber);"
+	]
+}

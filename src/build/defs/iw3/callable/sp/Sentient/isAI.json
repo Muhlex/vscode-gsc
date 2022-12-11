@@ -1,0 +1,22 @@
+{
+	"usage": "isAI(<entity>)",
+	"description": [
+		"Checks whether this entity is an AI character."
+	],
+	"params": [
+		{
+			"name": "entity",
+			"type": "Entity",
+			"description": [
+				"An entity that may be an AI character."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (isAI(gunOwner)) {\n  // Code\n}"
+	]
+}

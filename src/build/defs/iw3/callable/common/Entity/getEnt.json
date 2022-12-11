@@ -1,0 +1,30 @@
+{
+	"usage": "getEnt(<name>, <key>)",
+	"description": [
+		"Looks up an entity by a given KVP."
+	],
+	"params": [
+		{
+			"name": "name",
+			"type": "string",
+			"description": [
+				"Name to search for."
+			],
+			"optional": false
+		},
+		{
+			"name": "key",
+			"type": "string",
+			"description": [
+				"Key that name goes with."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Entity"
+	},
+	"example": [
+		"spawner = getEnt(\"doorguy1\", \"targetname\");"
+	]
+}

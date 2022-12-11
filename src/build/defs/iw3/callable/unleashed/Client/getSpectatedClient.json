@@ -1,0 +1,8 @@
+{
+	"usage": "<client> getSpectatedClient()",
+	"description": ["Get the client number of the client that is currently being spectated."],
+	"return": {
+		"type": "int"
+	},
+	"example": ["client = self getSpectatedClient();"]
+}

@@ -1,0 +1,43 @@
+{
+	"usage": "<entity> setAnim(<animation>, <weight>, <time>, <rate>)",
+	"description": [
+		"<p>SetAnim and all of its variants set the weight of an animation (or a node in the animtree) to a given value over a given time. They also set the speed at which the animation plays. All of the ancestors of the animation will also have their weight set to 1 over the given time so that the animation is visible. Each variant of this function has different behavior depending on the words in the function name:</p><p>\"Flagged\": These functions take an additional argument <notifyname> (first in the argument list) which is a string that is notified for every notetrack in the animation. For instance, if the string \"runanim\" is used, it would be typical to waittill(\"runanim\", \"end\") to wait for the end of the animation. <animation> must be an actual animation and not a non-leaf node of the animtree.</p><p>\"Knob\": These functions turn the weight of any siblings of the animation to zero as the animation's weight is turned up. The effect is that after the given time, the animation is the only one out of its siblings that is playing. Note that the descendents of the siblings of the animation will not be turned off directly. (For this, use ClearAnim.)</p><p>\"All\": Works only with \"Knob.\" Not available with both \"Limited\" and \"Flagged\" at the same time. These functions take an additional argument <root> (after the animation argument). <root> must be an ancestor of <animation> in the tree. This has the additional effect that \"Knob\" has on all nodes from the animation up to (but not including) <root>, so that this animation is the only one in its area of the tree which is playing.</p><p>\"Limited\": These functions do not change the goal weight of the ancestors of <animation> (If \"KnobAll\" is used, this means the ancestors of <root>). This means that the animation might not be visible if any of its ancestors currently have a weight of 0. However, when its ancestors' weight is changed, it will become visible.</p><p>\"Restart\": These functions cause the animation to restart. If they had been previously playing, without this they would continue from their current time.</p>"
+	],
+	"params": [
+		{
+			"name": "animation",
+			"type": "animation",
+			"description": [
+				"The animation or animtree node to change."
+			],
+			"optional": false
+		},
+		{
+			"name": "weight",
+			"type": "float",
+			"description": [
+				"Goal weight of this animation. Defaults to 1.0."
+			],
+			"optional": true
+		},
+		{
+			"name": "time",
+			"type": "float",
+			"description": [
+				"Time to transition to this weight in seconds. Defaults to 0.2."
+			],
+			"optional": true
+		},
+		{
+			"name": "rate",
+			"type": "float",
+			"description": [
+				"Playback rate of the animation. Defaults to 1.0."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"self setAnim(%precombatrun1, 1, 0.1, 1);"
+	]
+}

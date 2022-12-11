@@ -1,0 +1,19 @@
+{
+	"usage": "assertMsg(<message>)",
+	"description": [
+		"Throws a script error with the given message."
+	],
+	"params": [
+		{
+			"name": "message",
+			"type": "string",
+			"description": [
+				"Error message."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"assertMsg(\"Unhandled enemy type.\");"
+	]
+}

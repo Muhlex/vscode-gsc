@@ -1,0 +1,35 @@
+{
+	"usage": "setSunLight(<red>, <green>, <blue>)",
+	"description": [
+		"Overrides the sun color for a level. Use \"resetSunLight\" to revert to the map's values."
+	],
+	"params": [
+		{
+			"name": "red",
+			"type": "float",
+			"description": [
+				"The red component of sunlight color. 0 is black, 1 is fullbright, more than 1 is overbright."
+			],
+			"optional": false
+		},
+		{
+			"name": "green",
+			"type": "float",
+			"description": [
+				"The green component of sunlight color. 0 is black, 1 is fullbright, more than 1 is overbright."
+			],
+			"optional": false
+		},
+		{
+			"name": "blue",
+			"type": "float",
+			"description": [
+				"The blue component of sunlight color. 0 is black, 1 is fullbright, more than 1 is overbright."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"setSunLight(1.2; 1.2; 0.4);"
+	]
+}

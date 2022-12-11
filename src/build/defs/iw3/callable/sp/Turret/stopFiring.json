@@ -1,0 +1,9 @@
+{
+	"usage": "<entity> stopFiring()",
+	"description": [
+		"Stops a turret firing."
+	],
+	"example": [
+		"mg42 stopFiring();"
+	]
+}

@@ -1,0 +1,19 @@
+{
+	"usage": "setVoteTime(<time>)",
+	"description": [
+		"Sets the start time for a vote."
+	],
+	"params": [
+		{
+			"name": "time",
+			"type": "int",
+			"description": [
+				"The vote time in ms."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"setVoteTime(10000);"
+	]
+}

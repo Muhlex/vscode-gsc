@@ -1,0 +1,12 @@
+{
+	"usage": "<player> attackButtonPressed()",
+	"description": [
+		"Check if the player is pressing the \"attack\" button."
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (self attackButtonPressed()) {\n  // Code\n}"
+	]
+}

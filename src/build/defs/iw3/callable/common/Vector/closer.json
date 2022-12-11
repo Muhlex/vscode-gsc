@@ -1,0 +1,35 @@
+{
+	"usage": "closer(<reference>, <point A>, <point B>)",
+	"description": [
+		"Tests which of two points is the closest. Returns true if point A is closer to the reference than point B."
+	],
+	"params": [
+		{
+			"name": "reference",
+			"type": "Vector3",
+			"description": [
+				"The base position."
+			]
+		},
+		{
+			"name": "point A",
+			"type": "Vector3",
+			"description": [
+				"The first point."
+			]
+		},
+		{
+			"name": "point B",
+			"type": "Vector3",
+			"description": [
+				"The second point."
+			]
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (closer(center, models[j].origin, models[i].origin)) {\n  // Code\n}"
+	]
+}

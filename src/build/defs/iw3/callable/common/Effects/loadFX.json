@@ -1,0 +1,22 @@
+{
+	"usage": "loadFX(<filename>)",
+	"description": [
+		"Load the given effect."
+	],
+	"params": [
+		{
+			"name": "filename",
+			"type": "string",
+			"description": [
+				"The filename of the effect to be loaded, without \"fx/\" or \".efx\"."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"fx = loadFX(\"explosions/large_vehicle_explosion\");"
+	]
+}

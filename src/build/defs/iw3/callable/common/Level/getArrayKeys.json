@@ -1,0 +1,22 @@
+{
+	"usage": "getArrayKeys(<array>)",
+	"description": [
+		"Returns an array consisting of the keys of the input array."
+	],
+	"params": [
+		{
+			"name": "array",
+			"type": "Array",
+			"description": [
+				"Input array."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Array"
+	},
+	"example": [
+		"result = getArrayKeys(array);"
+	]
+}

@@ -1,0 +1,27 @@
+{
+	"usage": "target_setJavelinOnly(<target entity>, <javelinOnly>)",
+	"description": [
+		"Target will only draw on player's hud when they are looking through the Javelin-weapon's sight."
+	],
+	"params": [
+		{
+			"name": "target entity",
+			"type": "Entity",
+			"description": [
+				"The entity that is the target."
+			],
+			"optional": false
+		},
+		{
+			"name": "javelinOnly",
+			"type": "bool",
+			"description": [
+				"Draw only when looking through the Javelin."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"target_setJavelinOnly(enemyTank, true);"
+	]
+}

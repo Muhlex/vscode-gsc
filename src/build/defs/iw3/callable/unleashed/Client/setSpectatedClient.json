@@ -1,0 +1,13 @@
+{
+	"usage": "<client> setSpectatedClient(<clietnum>)",
+	"description": ["Set the client number of the client that a player should spectate."],
+	"params": [
+		{
+			"name": "clientnum",
+			"type": "int",
+			"description": ["A valid client number (0-63). Use -1 to set free spectating."],
+			"optional": false
+		}
+	],
+	"example": ["self setSpectatedClient(player getEntityNumber());"]
+}

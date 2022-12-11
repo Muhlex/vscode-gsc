@@ -1,0 +1,9 @@
+{
+	"usage": "<actor> getAnglesToLikelyEnemyPath()",
+	"description": [
+		"Get the angles towards the direction an enemy is most likely to appear. Returns undefined if a good guess can't be made."
+	],
+	"example": [
+		"self getAnglesToLikelyEnemyPath();"
+	]
+}

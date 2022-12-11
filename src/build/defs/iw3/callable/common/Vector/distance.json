@@ -1,0 +1,28 @@
+{
+	"usage": "distance(<point A>, <point B>)",
+	"description": [
+		"Returns the distance between two points."
+	],
+	"params": [
+		{
+			"name": "point A",
+			"type": "Vector3",
+			"description": [
+				"The first point."
+			]
+		},
+		{
+			"name": "point B",
+			"type": "Vector3",
+			"description": [
+				"The second point."
+			]
+		}
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"dist = distance(org, ai[i].origin);"
+	]
+}

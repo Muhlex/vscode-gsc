@@ -1,0 +1,22 @@
+{
+	"usage": "<entity> getTagAngles(<tagname>)",
+	"description": [
+		"Gets the angles of a particular tag on this model."
+	],
+	"params": [
+		{
+			"name": "tagname",
+			"type": "string",
+			"description": [
+				"Name of the tag."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Vector3"
+	},
+	"example": [
+		"leftorg = self getTagAngles(\"tag_wheel_back_left\");"
+	]
+}

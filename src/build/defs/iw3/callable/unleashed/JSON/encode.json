@@ -1,0 +1,17 @@
+{
+	"sourceFile": "unleashed\\json",
+	"usage": "encode(<array>)",
+	"description": ["Encode an array to a JSON string."],
+	"params": [
+		{
+			"name": "array",
+			"type": "Array",
+			"description": ["Valid array to turn into a JSON string."],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": ["obj = [];", "obj[\"hello\"] = \"Hello world!\";", "str = unleashed\\json::encode(obj);"]
+}

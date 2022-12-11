@@ -1,0 +1,12 @@
+{
+	"usage": "getAllVehicleNodes()",
+	"description": [
+		"Gets all of the vehicle nodes in a level."
+	],
+	"return": {
+		"type": "Array"
+	},
+	"example": [
+		"nodes = getAllVehicleNodes();"
+	]
+}

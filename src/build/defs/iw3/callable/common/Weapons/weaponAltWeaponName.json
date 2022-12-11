@@ -1,0 +1,22 @@
+{
+	"usage": "weaponAltWeaponName(<weapon>)",
+	"description": [
+		"Returns the name of the weapon this weapon has for its alternate mode. Returns \"none\" if there is no alt fire. Subsequent alternate weapons can be retrieved by calling the function again with the new weapon names until it returns the original weapon."
+	],
+	"params": [
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": [
+		"grenadeLauncherAttachment = weaponAltWeaponName(\"m16_gl_mp\");"
+	]
+}

@@ -1,0 +1,9 @@
+{
+	"usage": "updateGamerProfile()",
+	"description": [
+		"Saves the player's gamer profile. Does nothing on PC."
+	],
+	"example": [
+		"updateGamerProfile();"
+	]
+}

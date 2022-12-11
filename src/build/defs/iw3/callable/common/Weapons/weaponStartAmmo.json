@@ -1,0 +1,22 @@
+{
+	"usage": "weaponStartAmmo(<weapon>)",
+	"description": [
+		"Returns the amount of ammo this weapon is meant to start with when first given to a player."
+	],
+	"params": [
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"numRounds = weaponStartAmmo(\"mp5\");"
+	]
+}

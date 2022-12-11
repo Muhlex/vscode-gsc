@@ -1,0 +1,9 @@
+{
+	"usage": "<entity> clearLookAtEnt()",
+	"description": [
+		"Clear the entity the vehicle is orienting towards."
+	],
+	"example": [
+		"eTank clearLookAtEnt();"
+	]
+}

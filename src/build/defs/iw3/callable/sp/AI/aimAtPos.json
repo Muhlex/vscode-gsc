@@ -1,0 +1,22 @@
+{
+	"usage": "<actor> aimAtPos(<aim at point>)",
+	"description": [
+		"Sets the actor to aim at the given point. Returns the blend time of the aim."
+	],
+	"params": [
+		{
+			"name": "aim at point",
+			"type": "Vector3",
+			"description": [
+				"The point to aim at."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"aimTime = self aimAtPos(targetPoint);"
+	]
+}

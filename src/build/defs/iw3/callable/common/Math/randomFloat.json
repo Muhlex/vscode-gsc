@@ -1,0 +1,22 @@
+{
+	"usage": "randomFloat(<max>)",
+	"description": [
+		"Returns a random floating point number r, where 0 <= r < max."
+	],
+	"params": [
+		{
+			"name": "max",
+			"type": "float",
+			"description": [
+				"The maximum floating point size."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"if (randomFloat(100) > 50) {\n  // Code\n}"
+	]
+}

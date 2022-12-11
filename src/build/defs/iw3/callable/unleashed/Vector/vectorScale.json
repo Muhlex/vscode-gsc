@@ -1,0 +1,22 @@
+{
+	"usage": "vectorScale(<vector>, <scale>)",
+	"description": ["Scale a vector by a given multiplier."],
+	"params": [
+		{
+			"name": "vector",
+			"type": "Vector3",
+			"description": ["Vector to scale."],
+			"optional": false
+		},
+		{
+			"name": "scale",
+			"type": "float",
+			"description": ["Multiplier to scale vector by."],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Vector3"
+	},
+	"example": ["vel = vectorScale(self getVelocity(), 2.5);"]
+}

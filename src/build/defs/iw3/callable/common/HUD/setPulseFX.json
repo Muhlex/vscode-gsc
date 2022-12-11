@@ -1,0 +1,35 @@
+{
+	"usage": "<hud> setPulseFX(<speed>, <decayStart>, <decayDuration>)",
+	"description": [
+		"Set the HUD element string to display with a pulse effect."
+	],
+	"params": [
+		{
+			"name": "speed",
+			"type": "int",
+			"description": [
+				"Time (in milliseconds) each letter takes to type out."
+			],
+			"optional": false
+		},
+		{
+			"name": "decayStart",
+			"type": "int",
+			"description": [
+				"Time to wait before starting the string's decay effect."
+			],
+			"optional": false
+		},
+		{
+			"name": "decayDuration",
+			"type": "int",
+			"description": [
+				"How long to spend decaying."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"elem setPulseFX(40, 2000, 600);"
+	]
+}

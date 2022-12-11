@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setNearGoalNotifyDist(<dist>)",
+	"description": [
+		"Set distance near goal at which near_goal notification should be sent once."
+	],
+	"params": [
+		{
+			"name": "dist",
+			"type": "float",
+			"description": [
+				"Distance to goal position."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"tank setNearGoalNotifyDist(50);"
+	]
+}

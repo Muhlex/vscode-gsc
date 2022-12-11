@@ -1,0 +1,22 @@
+{
+	"usage": "getCommandFromKey(<key>)",
+	"description": [
+		"Gets the command bound to the key. Applicable values are: \"Z\", \"BUTTON_LSTICK\", \"BUTTON_START\", \"Space\", ..."
+	],
+	"params": [
+		{
+			"name": "key",
+			"type": "string",
+			"description": [
+				"Key name."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": [
+		"command = getCommandFromKey(\"BUTTON_LSTICK\");"
+	]
+}

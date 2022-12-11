@@ -1,0 +1,22 @@
+{
+	"usage": "<player> getFractionStartAmmo(<weapon>)",
+	"description": [
+		"Return the player's current ammunition amount as a fraction of the weapon's starting amunition."
+	],
+	"params": [
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"frac = self getFractionStartAmmo(\"mosin_nagant\");"
+	]
+}

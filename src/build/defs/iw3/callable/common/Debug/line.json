@@ -1,0 +1,51 @@
+{
+	"usage": "line(<start>, <end>, <color>, <depthTest>, <duration>)",
+	"description": [
+		"Draw a debug line on screen."
+	],
+	"params": [
+		{
+			"name": "start",
+			"type": "Vector3",
+			"description": [
+				"Start vector position of the line."
+			],
+			"optional": false
+		},
+		{
+			"name": "end",
+			"type": "Vector3",
+			"description": [
+				"End vector position of the line."
+			],
+			"optional": false
+		},
+		{
+			"name": "color",
+			"type": "Vector3",
+			"description": [
+				"RGB color of the line in a vector, defaults to white."
+			],
+			"optional": true
+		},
+		{
+			"name": "depthTest",
+			"type": "bool",
+			"description": [
+				"Whether to only draw the line when it is in front of objects, defaults to false. Depth test is only supported on pc."
+			],
+			"optional": true
+		},
+		{
+			"name": "duration",
+			"type": "int",
+			"description": [
+				"How many server frames the line should persist through."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"line(self.origin, self.origin + forwardFar, (0.9, 0.7, 0.6), false);"
+	]
+}

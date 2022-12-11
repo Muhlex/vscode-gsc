@@ -1,0 +1,9 @@
+{
+	"usage": "<player> disableWeapons()",
+	"description": [
+		"Disable the player's weapons."
+	],
+	"example": [
+		"level.player disableWeapons();"
+	]
+}

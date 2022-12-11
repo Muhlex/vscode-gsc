@@ -1,0 +1,35 @@
+{
+	"usage": "<hud> scaleOverTime(<time>, <width>, <height>)",
+	"description": [
+		"Set a HUD element to scale over time."
+	],
+	"params": [
+		{
+			"name": "time",
+			"type": "float",
+			"description": [
+				"The time to scale the element in seconds."
+			],
+			"optional": false
+		},
+		{
+			"name": "width",
+			"type": "int",
+			"description": [
+				"The new width of the material."
+			],
+			"optional": false
+		},
+		{
+			"name": "height",
+			"type": "int",
+			"description": [
+				"The new height of the material."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"other.progressbar scaleOverTime(level.plantTime, level.barSize, 8);"
+	]
+}

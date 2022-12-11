@@ -1,0 +1,12 @@
+{
+	"usage": "<player> isTalking()",
+	"description": [
+		"Returns true if the player is talking via voice chat."
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"self isTalking();"
+	]
+}

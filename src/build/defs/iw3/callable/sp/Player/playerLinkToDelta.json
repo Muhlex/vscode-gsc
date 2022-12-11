@@ -1,0 +1,75 @@
+{
+	"usage": "playerLinkToDelta(<entity>, <tag>, <viewpercentage fraction>, <right arc>, <left arc>, <top arc>, <bottom arc>, <use tag angles>)",
+	"description": [
+		"Attaches the player to an entity. Any entity rotation is added to the player's view, allow the player to look around. The player's eye position will remain fixed relative to the parent entity/tag. Thus, pitching and rolling will cause the player's eye position to move. (But the player entity always remains vertical)."
+	],
+	"params": [
+		{
+			"name": "entity",
+			"type": "Entity",
+			"description": [
+				"The entity to attach the player to."
+			],
+			"optional": false
+		},
+		{
+			"name": "tag",
+			"type": "string",
+			"description": [
+				"The tag to attach the player to."
+			],
+			"optional": true
+		},
+		{
+			"name": "viewpercentage fraction",
+			"type": "float",
+			"description": [
+				"How much the change in the tag's rotation affects the player's view. Defaults to 0."
+			],
+			"optional": true
+		},
+		{
+			"name": "right arc",
+			"type": "float",
+			"description": [
+				"Angle to clamp view to the right. Defaults to 180."
+			],
+			"optional": true
+		},
+		{
+			"name": "left arc",
+			"type": "float",
+			"description": [
+				"Angle to clamp view to the left. Defaults to 180."
+			],
+			"optional": true
+		},
+		{
+			"name": "top arc",
+			"type": "float",
+			"description": [
+				"Angle to clamp view to the top. Defaults to 180."
+			],
+			"optional": true
+		},
+		{
+			"name": "bottom arc",
+			"type": "float",
+			"description": [
+				"Angle to clamp view to the bottom. Defaults to 180."
+			],
+			"optional": true
+		},
+		{
+			"name": "use tag angles",
+			"type": "bool",
+			"description": [
+				"Determines how the player's view will be tilted. \"false\" (default) means that the orientation of the tag when the player is linked will appear flat to the player. Any rotation from that orientation will tilt the player's view. \"true\" means that only a tag angles of (0,0,0) will appear flat to the player. Any rotation from (0,0,0) will tilt the player's view."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"level.player playerLinkToDelta(vehicle, \"tag_player\", 0.5);"
+	]
+}

@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setWaitNode(<node>)",
+	"description": [
+		"Sets a wait node for this vehicle."
+	],
+	"params": [
+		{
+			"name": "node",
+			"type": "Entity",
+			"description": [
+				"The node for the vehicle to wait at."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self setWaitNode(pathSpot);"
+	]
+}

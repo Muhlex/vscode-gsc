@@ -1,0 +1,19 @@
+{
+	"usage": "<player> setViewModel(<view model>)",
+	"description": [
+		"Set the player's current view model."
+	],
+	"params": [
+		{
+			"name": "view model",
+			"type": "string",
+			"description": [
+				"A view model."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self setViewModel(\"viewmodel_hands_russian_vetrn\");"
+	]
+}

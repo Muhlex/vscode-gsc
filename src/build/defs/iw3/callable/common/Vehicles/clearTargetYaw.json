@@ -1,0 +1,9 @@
+{
+	"usage": "<entity> clearTargetYaw()",
+	"description": [
+		"Clear the target yaw direction for this vehicle."
+	],
+	"example": [
+		"level.fak1 clearTargetYaw();"
+	]
+}

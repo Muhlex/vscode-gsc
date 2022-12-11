@@ -1,0 +1,27 @@
+{
+	"usage": "playerLinkToAbsolute(<entity>, <tag>)",
+	"description": [
+		"Attaches the player to an entity. No view movement is allowed. The player's eye position will remain fixed relative to the parent entity/tag. Thus, pitching and rolling will cause the player's eye position to move. (But the player entity always remains vertical)."
+	],
+	"params": [
+		{
+			"name": "entity",
+			"type": "Entity",
+			"description": [
+				"The entity to attach the player to."
+			],
+			"optional": false
+		},
+		{
+			"name": "tag",
+			"type": "string",
+			"description": [
+				"The tag to attach the player to."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"level.player playerLinkToAbsolute(vehicle, \"tag_player\");"
+	]
+}

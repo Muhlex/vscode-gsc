@@ -1,0 +1,12 @@
+{
+	"usage": "<actor> getCoverNode()",
+	"description": [
+		"Gets this actor's cover node."
+	],
+	"return": {
+		"type": "entity"
+	},
+	"example": [
+		"node = self getCoverNode();"
+	]
+}

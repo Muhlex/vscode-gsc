@@ -1,0 +1,22 @@
+{
+	"usage": "weaponMaxDist(<weapon>)",
+	"description": [
+		"Returns the maximum distance for this weapon."
+	],
+	"params": [
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"maxDist = weaponMaxDist(\"m16_grenadier\");"
+	]
+}

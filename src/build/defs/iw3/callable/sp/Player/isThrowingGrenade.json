@@ -1,0 +1,12 @@
+{
+	"usage": "<player> isThrowingGrenade()",
+	"description": [
+		"Returns true if the player is currently throwing a grenade."
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (level.player isThrowingGrenade()) {\n  // Code\n}"
+	]
+}

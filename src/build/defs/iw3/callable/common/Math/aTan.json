@@ -1,0 +1,22 @@
+{
+	"usage": "aTan(<tan value>)",
+	"description": [
+		"Returns an angle corresponding to a particular tangential value."
+	],
+	"params": [
+		{
+			"name": "tan value",
+			"type": "float",
+			"description": [
+				"A tangential value."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"upAngle = aTan(height / distance);"
+	]
+}

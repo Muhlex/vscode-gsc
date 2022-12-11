@@ -1,0 +1,38 @@
+{
+	"usage": "getMoveDelta(<anim>, <start time>, <end time>)",
+	"description": [
+		"Returns the movement vector difference in the given animation."
+	],
+	"params": [
+		{
+			"name": "anim",
+			"type": "animation",
+			"description": [
+				"Reference to an animation."
+			],
+			"optional": false
+		},
+		{
+			"name": "start time",
+			"type": "float",
+			"description": [
+				"The start time as a fraction of the total animation time, from 0 to 1."
+			],
+			"optional": true
+		},
+		{
+			"name": "end time",
+			"type": "float",
+			"description": [
+				"The end time as a fraction of the total animation time, from 0 to 1."
+			],
+			"optional": true
+		}
+	],
+	"return": {
+		"type": "Vector3"
+	},
+	"example": [
+		"This function has no official examples."
+	]
+}

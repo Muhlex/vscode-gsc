@@ -1,0 +1,19 @@
+{
+	"usage": "<player> allowJump(<allow>)",
+	"description": [
+		"Sets whether the player can jump."
+	],
+	"params": [
+		{
+			"name": "allow",
+			"type": "bool",
+			"description": [
+				"A boolean: true if the player can jump, false otherwise."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"level.player allowJump(false);"
+	]
+}

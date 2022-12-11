@@ -1,0 +1,19 @@
+{
+	"usage": "<player> dropItem(<item name>)",
+	"description": [
+		"Drop an item with the given item name."
+	],
+	"params": [
+		{
+			"name": "item name",
+			"type": "string",
+			"description": [
+				"The name of the item to drop."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self dropItem(current);"
+	]
+}

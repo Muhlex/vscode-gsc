@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setBottomArc(<angle>)",
+	"description": [
+		"Set the amount that the turret can pivot down."
+	],
+	"params": [
+		{
+			"name": "angle",
+			"type": "float",
+			"description": [
+				"The bottom arc in degrees."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"mg42 setBottomArc(45);"
+	]
+}

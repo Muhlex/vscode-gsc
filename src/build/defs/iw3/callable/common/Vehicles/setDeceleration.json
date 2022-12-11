@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setDeceleration(<deceleration>)",
+	"description": [
+		"Sets the deceleration for this vehicle."
+	],
+	"params": [
+		{
+			"name": "deceleration",
+			"type": "float",
+			"description": [
+				"The deceleration of the vehicle in miles per hour per second."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self setDeceleration(5);"
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"usage": "<actor> canAttackEnemyNode()",
+	"description": [
+		"Checks if this actor can attack its enemies node."
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"self canAttackEnemyNode();"
+	]
+}

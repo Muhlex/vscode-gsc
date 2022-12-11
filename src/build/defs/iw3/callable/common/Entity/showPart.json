@@ -1,0 +1,27 @@
+{
+	"usage": "<entity> showPart(<tagname>, <modelname>)",
+	"description": [
+		"Show part of an entity."
+	],
+	"params": [
+		{
+			"name": "tagname",
+			"type": "string",
+			"description": [
+				"The tag to show. All surfaces with a vertex weighted to the tag will be shown."
+			],
+			"optional": false
+		},
+		{
+			"name": "modelname",
+			"type": "string",
+			"description": [
+				"The optional model name to help specify the part location;"
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"self showPart(\"tag_weapon\", \"weapon_saw\");"
+	]
+}

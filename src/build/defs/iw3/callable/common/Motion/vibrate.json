@@ -1,0 +1,43 @@
+{
+	"usage": "<entity> vibrate(<direction>, <amplitute>, <period>, <time>)",
+	"description": [
+		"Causes a script enttiy to vibrate, rotating around its origin, along a given vector direction."
+	],
+	"params": [
+		{
+			"name": "direction",
+			"type": "Vector3",
+			"description": [
+				"The direction of the vibration."
+			],
+			"optional": false
+		},
+		{
+			"name": "amplitute",
+			"type": "float",
+			"description": [
+				"The amount of vibration in degrees."
+			],
+			"optional": false
+		},
+		{
+			"name": "period",
+			"type": "float",
+			"description": [
+				"The period of the vibration in seconds."
+			],
+			"optional": true
+		},
+		{
+			"name": "time",
+			"type": "float",
+			"description": [
+				"The length of time of the vibration in seconds."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"self vibrate(directionVec, 0.3, 0.4, 1.0);"
+	]
+}

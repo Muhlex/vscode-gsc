@@ -1,0 +1,35 @@
+{
+	"usage": "<player> setActionSlot(<slot>, <option name>, <extra parameter>)",
+	"description": [
+		"Sets the option to perform when the player executes (for example) \"+actionslot 1\"."
+	],
+	"params": [
+		{
+			"name": "slot",
+			"type": "int",
+			"description": [
+				"1 through 4, corresponding to bindings \"+actionslot 1\" through \"+actionslot 4\"."
+			],
+			"optional": false
+		},
+		{
+			"name": "option name",
+			"type": "string",
+			"description": [
+				"Valid choises are \"weapon\", \"nightVision\", \"altMode\" and \"\" (blank)."
+			],
+			"optional": false
+		},
+		{
+			"name": "extra parameter",
+			"type": "string",
+			"description": [
+				"Used by the \"weapon\" option, the name of the weapon to switch to."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"level.player setActionSlot(1, \"altmode\"); // Switch between attached m203 grenade laucnher, if available\nlevel.player setActionSlot(2, \"nightvision\"); // Toggle nightvision on and off\nlevel.player setActionSlot(4, \"weapon\", \"c4\");\nlevel.player setActionSlot(3, \"\");"
+	]
+}

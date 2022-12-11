@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setLeftArc(<angle>)",
+	"description": [
+		"Set the amount that the turret can move to the left."
+	],
+	"params": [
+		{
+			"name": "angle",
+			"type": "float",
+			"description": [
+				"The left arc in degrees."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"mg42 setLeftArc(45);"
+	]
+}

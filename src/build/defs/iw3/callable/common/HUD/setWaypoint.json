@@ -1,0 +1,27 @@
+{
+	"usage": "<hud> setWaypoint(<constantSize>, <offscreenMaterialName>)",
+	"description": [
+		"Sets a HUD element to be a waypoint."
+	],
+	"params": [
+		{
+			"name": "constantSize",
+			"type": "bool",
+			"description": [
+				"Boolean describing whether the HUD element remains the same size."
+			],
+			"optional": false
+		},
+		{
+			"name": "offscreenMaterialName",
+			"type": "string",
+			"description": [
+				"Material to draw when waypoint is offscreen."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"newDeathIcon setWaypoint(true);"
+	]
+}

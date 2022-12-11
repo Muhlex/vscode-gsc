@@ -1,0 +1,27 @@
+{
+	"usage": "objective_state(<objective number>, <state>)",
+	"description": [
+		"Sets the state of an objective."
+	],
+	"params": [
+		{
+			"name": "objective number",
+			"type": "int",
+			"description": [
+				"The number of the objective to alter."
+			],
+			"optional": false
+		},
+		{
+			"name": "state",
+			"type": "string",
+			"description": [
+				"A string value representing the state of the objective. Valid states are \"empty\", \"active\", \"invisible\", \"done\", \"current\" and \"failed\"."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"objective_state(8, \"done\");"
+	]
+}

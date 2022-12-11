@@ -1,0 +1,12 @@
+{
+	"usage": "<player> useButtonPressed()",
+	"description": [
+		"Check if the player is pressing the \"use\" button."
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (self useButtonPressed()) {\n  // Code\n}"
+	]
+}

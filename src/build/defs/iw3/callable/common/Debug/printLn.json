@@ -1,0 +1,19 @@
+{
+	"usage": "printLn(<text>)",
+	"description": [
+		"Development only - write line to the console."
+	],
+	"params": [
+		{
+			"name": "text",
+			"type": "string",
+			"description": [
+				"Text to be written."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"printLn(\"I could be doing better!\");"
+	]
+}

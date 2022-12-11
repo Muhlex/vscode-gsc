@@ -1,0 +1,9 @@
+{
+	"usage": "<hud> clearAllTextAfterHudElem()",
+	"description": [
+		"Clear the config strings for the unique text set after this string. This is intended for development use only."
+	],
+	"example": [
+		"level.freeTextMarker clearAllTextAfterHudElem();"
+	]
+}

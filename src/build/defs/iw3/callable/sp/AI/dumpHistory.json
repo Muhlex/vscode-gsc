@@ -1,0 +1,9 @@
+{
+	"usage": "<actor> dumpHistory()",
+	"description": [
+		"Dumps the actor's history to a bug report."
+	],
+	"example": [
+		"self dumpHistory();"
+	]
+}

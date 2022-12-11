@@ -1,0 +1,27 @@
+{
+	"usage": "setSavedDvar(<dvar>, <value>)",
+	"description": [
+		"Sets the value of a code \"SAVED\" dvar. Saved dvars are preserved in save games, and reset to default on level change."
+	],
+	"params": [
+		{
+			"name": "dvar",
+			"type": "string",
+			"description": [
+				"The dvar name."
+			],
+			"optional": false
+		},
+		{
+			"name": "value",
+			"type": "string",
+			"description": [
+				"The dvar value."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"setSavedDvar(\"r_eyesAdjust\", \"1\");"
+	]
+}

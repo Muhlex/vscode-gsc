@@ -1,0 +1,22 @@
+{
+	"usage": "<actor> canUseTurret(<turret>)",
+	"description": [
+		"Check whether this actor can use this turret."
+	],
+	"params": [
+		{
+			"name": "turret",
+			"type": "entity",
+			"description": [
+				"A turret entity."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"self canUseTurret(turret);"
+	]
+}

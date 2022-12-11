@@ -1,0 +1,19 @@
+{
+	"usage": "iPrintLn(<text>)",
+	"description": [
+		"Write line to the screen."
+	],
+	"params": [
+		{
+			"name": "text",
+			"type": "string",
+			"description": [
+				"Text to be written."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"iPrintLn(\"Where have all the cowboys gone?\");"
+	]
+}

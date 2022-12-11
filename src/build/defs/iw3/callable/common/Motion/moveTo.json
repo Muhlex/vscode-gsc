@@ -1,0 +1,43 @@
+{
+	"usage": "<entity> moveTo(<point>, <time>, <acceleration time>, <deceleration time>)",
+	"description": [
+		"Move this entity to the given point."
+	],
+	"params": [
+		{
+			"name": "point",
+			"type": "Vector3",
+			"description": [
+				"The point to move the entity to."
+			],
+			"optional": false
+		},
+		{
+			"name": "time",
+			"type": "float",
+			"description": [
+				"The time to move the entity in seconds."
+			],
+			"optional": false
+		},
+		{
+			"name": "acceleration time",
+			"type": "float",
+			"description": [
+				"The time spent accelerating."
+			],
+			"optional": true
+		},
+		{
+			"name": "deceleration time",
+			"type": "float",
+			"description": [
+				"The time spent decelerating."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"dummy moveTo(destOrg, .5, .05, .05);"
+	]
+}

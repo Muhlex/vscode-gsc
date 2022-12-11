@@ -1,0 +1,46 @@
+{
+	"usage": "httpPut(<host>, <port>, <path>, <data>, <contentType>, <receive>)",
+	"description": ["Send a synchronous PUT request over HTTP to a server."],
+	"params": [
+		{
+			"name": "host",
+			"type": "string",
+			"description": ["The hostname of the server to send a request to."],
+			"optional": false
+		},
+		{
+			"name": "port",
+			"type": "int",
+			"description": ["The port of the server to send a request to."],
+			"optional": false
+		},
+		{
+			"name": "path",
+			"type": "string",
+			"description": ["The path, relative to the hostname, to send a request to."],
+			"optional": false
+		},
+		{
+			"name": "data",
+			"type": "string",
+			"description": ["The request body."],
+			"optional": false
+		},
+		{
+			"name": "contentType",
+			"type": "string",
+			"description": ["The content type of the request body (defaults to \"application/json\")."],
+			"optional": true
+		},
+		{
+			"name": "receive",
+			"type": "bool",
+			"description": ["Whether or not you want to receive a response from the server (defaults to true)."],
+			"optional": true
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": ["response = httpPut(\"localhost\", 80, \"/user/\" + self getGuid(), data);"]
+}

@@ -1,0 +1,28 @@
+{
+	"usage": "distanceSquared(<point A>, <point B>)",
+	"description": [
+		"Returns the squared distance between two points - this is cheaper than the actual distance as it doesn't involve a square root."
+	],
+	"params": [
+		{
+			"name": "point A",
+			"type": "Vector3",
+			"description": [
+				"The first point."
+			]
+		},
+		{
+			"name": "point B",
+			"type": "Vector3",
+			"description": [
+				"The second point."
+			]
+		}
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"dist = distanceSquared(models[j].origin, center);"
+	]
+}

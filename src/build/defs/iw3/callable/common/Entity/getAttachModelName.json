@@ -1,0 +1,22 @@
+{
+	"usage": "<entity> getAttachModelName(<model index>)",
+	"description": [
+		"Returns the name of the attached model at the given attachment slot."
+	],
+	"params": [
+		{
+			"name": "model index",
+			"type": "int",
+			"description": [
+				"The index of the model attached to the entity, starting from 0. So, for instance, 3 will get the fourth model attached."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": [
+		"model = self getAttachModelName(index);"
+	]
+}

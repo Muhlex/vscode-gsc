@@ -1,0 +1,19 @@
+{
+	"usage": "setMapCenter(<center>)",
+	"description": [
+		"Set the center of the map (used by the network code to optimize position data)."
+	],
+	"params": [
+		{
+			"name": "center",
+			"type": "Vector3",
+			"description": [
+				"Center of the map."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"setMapCenter((0, 0, 0));"
+	]
+}

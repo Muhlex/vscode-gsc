@@ -1,0 +1,27 @@
+{
+	"usage": "<player> uploadTime(<mission>, <time>)",
+	"description": [
+		"Upload a time to XBLIVE leaderboards."
+	],
+	"params": [
+		{
+			"name": "mission",
+			"type": "int",
+			"description": [
+				"Mission index."
+			],
+			"optional": false
+		},
+		{
+			"name": "time",
+			"type": "float",
+			"description": [
+				"Time for this mission."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"level.player uploadTime(19, 15.2);"
+	]
+}

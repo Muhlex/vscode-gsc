@@ -1,0 +1,16 @@
+{
+	"usage": "copyStr(<string>)",
+	"description": ["Creates a copy of the given string and returns the newly created copy."],
+	"params": [
+		{
+			"name": "string",
+			"type": "string",
+			"description": ["Variable holding the string to be copied."],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": ["str = \"Hello world!\";", "copy = copyStr(str);"]
+}

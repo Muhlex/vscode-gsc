@@ -1,0 +1,43 @@
+{
+	"usage": "<entity> rotateYaw(<yaw angle>, <time>, <acceleration time>, <deceleration time>)",
+	"description": [
+		"Rotate this entity to the given yaw relative to its starting angles."
+	],
+	"params": [
+		{
+			"name": "yaw angle",
+			"type": "float",
+			"description": [
+				"The amount of degrees to rotate the entity by."
+			],
+			"optional": false
+		},
+		{
+			"name": "time",
+			"type": "float",
+			"description": [
+				"The time to move the entity in seconds."
+			],
+			"optional": false
+		},
+		{
+			"name": "acceleration time",
+			"type": "float",
+			"description": [
+				"The time spent accelerating."
+			],
+			"optional": true
+		},
+		{
+			"name": "deceleration time",
+			"type": "float",
+			"description": [
+				"The time spent decelerating."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"ent rotateYaw(60, 4, .5, .5);"
+	]
+}

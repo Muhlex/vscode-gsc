@@ -1,0 +1,46 @@
+{
+	"usage": "spawnFX(<effect id>, <position>, <forward>, <up>)",
+	"description": [
+		"Create an effect entity that can be re-triggered efficiently at arbitrary intervals. This doesn't play the effect. Use delete to free it when done."
+	],
+	"params": [
+		{
+			"name": "effect id",
+			"type": "int",
+			"description": [
+				"The effect id returned by loadFX()."
+			],
+			"optional": false
+		},
+		{
+			"name": "position",
+			"type": "Vector3",
+			"description": [
+				"The position of the effect."
+			],
+			"optional": false
+		},
+		{
+			"name": "forward",
+			"type": "Vector3",
+			"description": [
+				"The forward vector for the effect."
+			],
+			"optional": true
+		},
+		{
+			"name": "up",
+			"type": "Vector3",
+			"description": [
+				"The up vector for the effect."
+			],
+			"optional": true
+		}
+	],
+	"return": {
+		"type": "entity"
+	},
+	"example": [
+		"fxObj = spawnFX(fxId, pos, dir);"
+	]
+}

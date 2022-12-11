@@ -1,0 +1,30 @@
+{
+	"usage": "<actor> canShoot(<shoot at position>, <offset from gun>)",
+	"description": [
+		"Check to see if the actor can shoot the given position."
+	],
+	"params": [
+		{
+			"name": "shoot at position",
+			"type": "Vector3",
+			"description": [
+				"The position to shoot at."
+			],
+			"optional": false
+		},
+		{
+			"name": "offset from gun",
+			"type": "Vector3",
+			"description": [
+				"The offset from the gun muzzle from which to calculate collision."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"canShoot = self canShoot(eye, offset);"
+	]
+}

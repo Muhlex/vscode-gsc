@@ -1,0 +1,12 @@
+{
+	"usage": "<entity> getLightIntensity()",
+	"description": [
+		"Gets the current intensity of the light."
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"intensity = self getLightIntensity();"
+	]
+}

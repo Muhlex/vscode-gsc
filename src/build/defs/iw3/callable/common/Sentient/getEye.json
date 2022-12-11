@@ -1,0 +1,12 @@
+{
+	"usage": "<entity> getEye()",
+	"description": [
+		"Gets the position of the eye for an AI or player."
+	],
+	"return": {
+		"type": "Vextor3"
+	},
+	"example": [
+		"eyePos = level.player getEye();"
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"usage": "getThreatBiasGroup()",
+	"description": [
+		"Get the threat bias group of an AI or player."
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": [
+		"group = self getThreatBiasGroup();"
+	]
+}

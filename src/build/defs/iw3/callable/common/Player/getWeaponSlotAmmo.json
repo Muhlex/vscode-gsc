@@ -1,0 +1,22 @@
+{
+	"usage": "<player> getWeaponSlotAmmo(<weapon slot>)",
+	"description": [
+		"Gets the ammo count for the weapon in the given slot."
+	],
+	"params": [
+		{
+			"name": "weapon slot",
+			"type": "string",
+			"description": [
+				"Valid weaponslots are \"primary\" and \"primaryb\"."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"ammo = level.player getWeaponSlotAmmo(\"primary\");"
+	]
+}

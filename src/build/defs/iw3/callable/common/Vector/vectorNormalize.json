@@ -1,0 +1,21 @@
+{
+	"usage": "vectorNormalize(<vector>)",
+	"description": [
+		"Returns a normalized copy of this vector."
+	],
+	"params": [
+		{
+			"name": "vector",
+			"type": "Vector3",
+			"description": [
+				"The vector to normalize."
+			]
+		}
+	],
+	"return": {
+		"type": "Vector3"
+	},
+	"example": [
+		"difference = vectorNormalize(end - start);"
+	]
+}

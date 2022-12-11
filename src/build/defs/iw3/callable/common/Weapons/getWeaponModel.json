@@ -1,0 +1,30 @@
+{
+	"usage": "getWeaponModel(<weapon>, <variant>)",
+	"description": [
+		"Returns the name of the weapon model used for the given weapon."
+	],
+	"params": [
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name."
+			],
+			"optional": false
+		},
+		{
+			"name": "variant",
+			"type": "int",
+			"description": [
+				"Model variant (0-15)."
+			],
+			"optional": true
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": [
+		"model = getWeaponModel(\"mosin_nagant_sniper\", 0);"
+	]
+}

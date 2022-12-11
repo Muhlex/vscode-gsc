@@ -1,0 +1,35 @@
+{
+	"usage": "<entity> playSound(<alias>, <notification>, <stoppable>)",
+	"description": [
+		"Play the sound alias as if coming from the entity."
+	],
+	"params": [
+		{
+			"name": "alias",
+			"type": "string",
+			"description": [
+				"The sound alias to play."
+			],
+			"optional": false
+		},
+		{
+			"name": "notification",
+			"type": "string",
+			"description": [
+				"If present, the sound will notify this string on this entity when done. (Single player only)"
+			],
+			"optional": true
+		},
+		{
+			"name": "stoppable",
+			"type": "bool",
+			"description": [
+				"If present and true, then this sound can be interrupted by another playsound command with notification string. It is a script error for a playsound that does not have this flag set to get interrupted by another playsound with notify, or for a playsound with notify that does not have this flag set to interrupt another playsound with notify. (Single player only)"
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"self playSound(\"dirt_skid\", \"skidsound\", true);"
+	]
+}

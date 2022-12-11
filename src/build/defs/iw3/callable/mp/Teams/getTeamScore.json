@@ -1,0 +1,22 @@
+{
+	"usage": "getTeamScore(<team>)",
+	"description": [
+		"Get a team's score."
+	],
+	"params": [
+		{
+			"name": "team",
+			"type": "string",
+			"description": [
+				"The team, either \"axis\" or \"allies\"."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"if (getTeamScore(\"allies\") > getTeamScore(\"axis\")) {\n  // Code\n}"
+	]
+}

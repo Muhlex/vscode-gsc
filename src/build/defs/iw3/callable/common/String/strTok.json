@@ -1,0 +1,30 @@
+{
+	"usage": "strTok(<string>, <delim>)",
+	"description": [
+		"Tokenizes string by the delimiters delim. Returns the array of string tokens."
+	],
+	"params": [
+		{
+			"name": "string",
+			"type": "string",
+			"description": [
+				"String to split into tokens."
+			],
+			"optional": false
+		},
+		{
+			"name": "delim",
+			"type": "string",
+			"description": [
+				"Delimiter to split string by."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Array"
+	},
+	"example": [
+		"info = strTok(playerInfo, \",\");"
+	]
+}

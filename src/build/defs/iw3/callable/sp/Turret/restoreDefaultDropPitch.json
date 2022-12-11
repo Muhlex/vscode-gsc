@@ -1,0 +1,9 @@
+{
+	"usage": "<entity> restoreDefaultDropPitch()",
+	"description": [
+		"Restores the pitch of the turret when it drops to the ground. Recalculates based on current collision environement. Use this if you move a turret and need to reconfigure."
+	],
+	"example": [
+		"turret restoreDefaultDropPitch();"
+	]
+}

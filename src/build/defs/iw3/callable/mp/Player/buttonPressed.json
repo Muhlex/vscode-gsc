@@ -1,0 +1,22 @@
+{
+	"usage": "<player> buttonPressed(<button>)",
+	"description": [
+		"Check if the <b><i>host</i></b> is pressing the button/key, \"BUTTON_A\", \"BUTTON_B\", ..."
+	],
+	"params": [
+		{
+			"name": "button",
+			"type": "string",
+			"description": [
+				"String representation of the button to check."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (self buttonPressed(\"BUTTON_A\")) {\n  // Code\n}"
+	]
+}

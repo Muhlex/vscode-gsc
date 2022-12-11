@@ -1,0 +1,22 @@
+{
+	"usage": "FS_writeLine(<file handle>, <data>)",
+	"description": ["Writes/appends (depending on the mode used with FS_fOpen) a line to an opened file."],
+	"params": [
+		{
+			"name": "file handle",
+			"type": "int",
+			"description": ["File handle returned by FS_fOpen."],
+			"optional": false
+		},
+		{
+			"name": "data",
+			"type": "string",
+			"description": ["Data to be written."],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": ["FS_writeLine(file, \"connect;\" + self getGuid());"]
+}

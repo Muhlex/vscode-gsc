@@ -1,0 +1,19 @@
+{
+	"usage": "<actor> animCustom(<animscript>)",
+	"description": [
+		"Sets the anim script for this actor."
+	],
+	"params": [
+		{
+			"name": "animscript",
+			"type": "pointer",
+			"description": [
+				"The script name to run."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self animCustom(animscripts\\scripted\\stalingrad_cover_crouch::main);"
+	]
+}

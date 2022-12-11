@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setTargetEntity(<target>)",
+	"description": [
+		"Sets the target of this turret."
+	],
+	"params": [
+		{
+			"name": "target",
+			"type": "Entity",
+			"description": [
+				"The turret target."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"roofMg42 setTargetEntity(target);"
+	]
+}

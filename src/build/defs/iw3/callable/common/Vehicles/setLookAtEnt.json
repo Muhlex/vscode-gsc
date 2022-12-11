@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setLookAtEnt(<entity>)",
+	"description": [
+		"Set the entity this vehicle will orient towards."
+	],
+	"params": [
+		{
+			"name": "entity",
+			"type": "Entity",
+			"description": [
+				"The target."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"eFlak88 setLookAtEnt(eFlakTarget);"
+	]
+}

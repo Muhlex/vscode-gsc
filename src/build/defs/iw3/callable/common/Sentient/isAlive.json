@@ -1,0 +1,22 @@
+{
+	"usage": "isAlive(<entity>)",
+	"description": [
+		"Checks whether this entity is alive."
+	],
+	"params": [
+		{
+			"name": "entity",
+			"type": "Entity",
+			"description": [
+				"An entity that might be alive or dead."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (isAlive(gunOwner)) {\n  // Code\n}"
+	]
+}

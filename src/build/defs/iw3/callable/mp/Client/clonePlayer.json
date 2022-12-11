@@ -1,0 +1,22 @@
+{
+	"usage": "<player> clonePlayer(<death animation duration>)",
+	"description": [
+		"Clone the player's model for death animations."
+	],
+	"params": [
+		{
+			"name": "death animation duration",
+			"type": "float",
+			"description": [
+				"The duration of the death animation."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "entity"
+	},
+	"example": [
+		"body = self ClonePlayer(deathAnimDuration);"
+	]
+}

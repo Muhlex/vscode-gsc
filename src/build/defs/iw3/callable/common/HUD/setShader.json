@@ -1,0 +1,35 @@
+{
+	"usage": "<hud> setShader(<material>, <width>, <height>)",
+	"description": [
+		"Set the material for this HUD element."
+	],
+	"params": [
+		{
+			"name": "material",
+			"type": "string",
+			"description": [
+				"The name of the material to set."
+			],
+			"optional": false
+		},
+		{
+			"name": "width",
+			"type": "int",
+			"description": [
+				"The width of the material."
+			],
+			"optional": true
+		},
+		{
+			"name": "height",
+			"type": "int",
+			"description": [
+				"The height of the material."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"waypoint setShader(\"playbook_objective_stop\", 15, 15);"
+	]
+}

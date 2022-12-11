@@ -1,18 +1,28 @@
 {
 	"name": "vscode-gsc",
-	"displayName": "CoD: Game Script Code",
-	"description": "Language support for different GSC versions",
+	"displayName": "GSC (Call of Duty)",
+	"description": "Language support for different GSC (game script code) versions",
 	"version": "0.0.1",
+	"repository": "github:Muhlex/vscode-gsc",
 	"engines": {
 		"vscode": "^1.69.0"
 	},
 	"categories": [
-		"Programming Languages"
+		"Programming Languages",
+		"Snippets"
 	],
 	"scripts": {
-		"vscode:prepublish": "npm run build",
-		"build": "ts-node src/main.ts"
+		"vscode:prepublish": "npm run build && npm run compile",
+		"build": "ts-node src/build/index.ts",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"lint": "eslint src --ext ts"
 	},
+	"main": "./out/extension",
+	"activationEvents": [
+		"onLanguage:gsc-iw3",
+		"onLanguage:gsc-iw4"
+	],
 	"contributes": {
 		"languages": [
 			{
@@ -51,17 +61,159 @@
 		"grammars": [
 			{
 				"language": "gsc-iw3",
-				"scopeName": "source.gsc",
-				"path": "./out/grammars/gsc-iw3.tmLanguage.json"
+				"scopeName": "source.gsc.iw3",
+				"path": "./out/grammars/gsc-iw3.json"
 			},
 			{
 				"language": "gsc-iw4",
-				"scopeName": "source.gsc",
-				"path": "./out/grammars/gsc-iw4.tmLanguage.json"
+				"scopeName": "source.gsc.iw4",
+				"path": "./out/grammars/gsc-iw4.json"
 			}
-		]
+		],
+		"snippets": [
+			{
+				"language": "gsc-iw3",
+				"path": "./out/snippets/gsc-iw3.json"
+			},
+			{
+				"language": "gsc-iw4",
+				"path": "./out/snippets/gsc-iw4.json"
+			}
+		],
+		"configuration": {
+			"title": "GSC (Call of Duty)",
+			"properties": {
+				"GSC.intelliSense.enableKeywords": {
+					"markdownDescription": "Auto complete keywords (if, for, switch, ...) with IntelliSense.",
+					"scope": "language-overridable",
+					"type": "boolean",
+					"default": true
+				},
+				"GSC.intelliSense.enableCallables": {
+					"markdownDescription": "Auto complete inbuilt functions and methods with IntelliSense.",
+					"scope": "language-overridable",
+					"type": "boolean",
+					"default": true
+				},
+				"GSC.intelliSense.conciseMode": {
+					"markdownDescription": "Make documentation entries more concise (e. g. replacing tags such as *@param* or *@return* with concise emoji versions ✴️✳️ or ↩️).",
+					"scope": "language-overridable",
+					"type": "boolean",
+					"default": false
+				},
+				"GSC.intelliSense.foldersSorting": {
+					"markdownDescription": "Determine how to sort folders when auto completing file paths with IntelliSense.",
+					"scope": "language-overridable",
+					"type": "string",
+					"default": "inline",
+					"enum": ["top", "bottom", "inline"],
+					"enumItemLabels": ["Folders before files", "Folders after files", "Alphabetical sorting"],
+					"enumDescriptions": [
+						"Sort folders to the beginning of the list.",
+						"Sort folders to the end of the list (files first).",
+						"Always sort alphabetically (mix files and folders)"
+					]
+				},
+				"GSC.featureSets.IW3": {
+					"markdownDescription": "Define sets of engine features to be used (by IntelliSense and semantic highlighting) for **Call of Duty 4: Modern Warfare**.",
+					"scope": "language-overridable",
+					"type": "object",
+					"properties": {
+						"common": {
+							"type": "boolean",
+							"description": "Base game features shared between SP & MP"
+						},
+						"sp": {
+							"type": "boolean",
+							"description": "Base game singleplayer-only features"
+						},
+						"mp": {
+							"type": "boolean",
+							"description": "Base game multiplayer-only features"
+						},
+						"unleashed": {
+							"type": "boolean",
+							"description": "Features available when targeting the CoD4: Unleashed Server mod"
+						}
+					},
+					"additionalProperties": false,
+					"default": {
+						"common": true,
+						"sp": false,
+						"mp": true,
+						"unleashed": false
+					}
+				},
+				"GSC.featureSets.IW4": {
+					"markdownDescription": "Define sets of engine features to be used (by IntelliSense and semantic highlighting) for **Call of Duty: Modern Warfare 2**.",
+					"scope": "language-overridable",
+					"type": "object",
+					"properties": {
+						"common": {
+							"type": "boolean",
+							"description": "Base game features shared between SP & MP"
+						},
+						"sp": {
+							"type": "boolean",
+							"description": "Base game singleplayer-only features"
+						},
+						"mp": {
+							"type": "boolean",
+							"description": "Base game multiplayer-only features"
+						},
+						"iw4x": {
+							"type": "boolean",
+							"description": "Features available when targeting the IW4X client"
+						}
+					},
+					"additionalProperties": false,
+					"default": {
+						"common": true,
+						"sp": false,
+						"mp": true,
+						"iw4x": false
+					}
+				},
+				"GSC.colors.enable": {
+					"markdownDescription": "Display color picker on applicable normalized vectors. (This can identify vectors as colors which are not intended as such.)",
+					"scope": "language-overridable",
+					"type": "boolean",
+					"default": true
+				},
+				"GSC.rootFolders.IW3": {
+					"markdownDescription": "**Absolute** root directory paths where other GSC files are found (for path autocompletion). Select e. g. the location of the `\\maps\\` folder to allow autocompletion of `\\maps\\mp\\...`.",
+					"scope": "machine-overridable",
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"default": []
+				},
+				"GSC.rootFolders.IW4": {
+					"markdownDescription": "**Absolute** root directory paths where other GSC files are found.\n\nFor IW4X you also want to add your `\\userraw\\scripts\\` folder here.",
+					"scope": "machine-overridable",
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"default": []
+				}
+			}
+		},
+		"configurationDefaults": {
+			"[gsc-iw3][gsc-iw4]": {
+				"files.encoding": "windows1252"
+			}
+		}
 	},
 	"devDependencies": {
-		"ts-node": "^10.8.2"
+		"@types/glob": "^7.2.0",
+		"@types/node": "^18.0.6",
+		"@types/vscode": "^1.69.0",
+		"@typescript-eslint/eslint-plugin": "^5.30.7",
+		"@typescript-eslint/parser": "^5.30.7",
+		"eslint": "^8.20.0",
+		"ts-node": "^10.8.2",
+		"typescript": "^4.7.4"
 	}
 }

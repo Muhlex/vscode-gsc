@@ -1,0 +1,22 @@
+{
+	"usage": "getDebugDvarFloat(<dvar>)",
+	"description": [
+		"Gets the value of a debug dvar, as a floating point number."
+	],
+	"params": [
+		{
+			"name": "dvar",
+			"type": "string",
+			"description": [
+				"The dvar name."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"if (getDebugDvarFloat(\"debug_stopenemypos\") < -1)"
+	]
+}

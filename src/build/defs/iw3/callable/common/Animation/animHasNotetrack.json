@@ -1,0 +1,30 @@
+{
+	"usage": "animHasNotetrack(<animation>, <note track>)",
+	"description": [
+		"Queries the given animation for a note track."
+	],
+	"params": [
+		{
+			"name": "animation",
+			"type": "animation",
+			"description": [
+				"Reference to an animation."
+			],
+			"optional": false
+		},
+		{
+			"name": "note track",
+			"type": "string",
+			"description": [
+				"A constant string with the name of the note track."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (isDefined(facialanim) && animHasNotetrack(facialanim, \"dialogue\"))"
+	]
+}

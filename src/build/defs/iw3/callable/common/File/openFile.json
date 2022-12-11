@@ -1,0 +1,30 @@
+{
+	"usage": "openFile(<filename>, <mode>)",
+	"description": [
+		"Open a file for reading, writing or appending. If successful returns a file handle, otherwise returns -1."
+	],
+	"params": [
+		{
+			"name": "filename",
+			"type": "string",
+			"description": [
+				"The name of the file to open."
+			],
+			"optional": false
+		},
+		{
+			"name": "mode",
+			"type": "string",
+			"description": [
+				"The file mode. Valid arguments are \"read\", \"write\" and \"append\"."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"file = openFile(\"data.csv\", \"read\");"
+	]
+}

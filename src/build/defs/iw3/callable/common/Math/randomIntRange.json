@@ -1,0 +1,29 @@
+{
+	"usage": "randomIntRange(<min>, <max>)",
+	"description": [
+		"Returns a random integer r, where min <= r < max."
+	],
+	"params": [
+		{
+			"name": "min",
+			"type": "int",
+			"description": [
+				"The minimum result."
+			]
+		},
+		{
+			"name": "max",
+			"type": "int",
+			"description": [
+				"The maximum result + 1."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"rand = randomIntRange(3.0, 5.0);"
+	]
+}

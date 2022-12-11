@@ -1,0 +1,20 @@
+{
+	"usage": "setArchive(<archive>)",
+	"description": [
+		"Sets whether or not to enable archiving. (Deprecated, does nothing.)"
+	],
+	"params": [
+		{
+			"name": "archive",
+			"type": "bool",
+			"description": [
+				"If true, enable archiving."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"setArchive(true);"
+	],
+	"deprecated": true
+}

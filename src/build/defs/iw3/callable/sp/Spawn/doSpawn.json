@@ -1,0 +1,22 @@
+{
+	"usage": "<entity> doSpawn(<targetname>)",
+	"description": [
+		"Spawns an actor from an actor spawner, if possible (the spawner won't spawn if the player is looking at the spawn point, or if spawning would cause a telefrag)."
+	],
+	"params": [
+		{
+			"name": "targetname",
+			"type": "string",
+			"description": [
+				"Sets the targetname of the spawned entity."
+			],
+			"optional": true
+		}
+	],
+	"return": {
+		"type": "Entity"
+	},
+	"example": [
+		"spawned = driver doSpawn(name);"
+	]
+}

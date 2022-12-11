@@ -1,0 +1,22 @@
+{
+	"usage": "<player> getWeaponAmmoClip(<weapon>)",
+	"description": [
+		"Get the amount of ammo left in the player's weapon's current clip."
+	],
+	"params": [
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"clipCount = level.player getWeaponAmmoClip(\"uzi\");"
+	]
+}

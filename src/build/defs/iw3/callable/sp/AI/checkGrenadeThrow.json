@@ -1,0 +1,38 @@
+{
+	"usage": "<actor> checkGrenadeThrow( <hand offset>, <method>, <random range> )",
+	"description": [
+		"Checks whether the actor can throw a grenade at his target. If he can't then result will be undefined, otherwise the result is the resultant velocity vector."
+	],
+	"params": [
+		{
+			"name": "hand offset",
+			"type": "Vector3",
+			"description": [
+				"The estimated offset of the hand for the throw."
+			],
+			"optional": false
+		},
+		{
+			"name": "method",
+			"type": "string",
+			"description": [
+				"The grande toss method. Can be \"min energy\", \"min time\", and \"max tune\"."
+			],
+			"optional": false
+		},
+		{
+			"name": "random range",
+			"type": "Vector3",
+			"description": [
+				"Random range from target position to throw at."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Vector3"
+	},
+	"example": [
+		"throwVel = self checkGrenadeThrow(armOffset, \"min energy\", 0);"
+	]
+}

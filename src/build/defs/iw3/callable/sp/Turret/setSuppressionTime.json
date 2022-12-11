@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setSuppressionTime(<time>)",
+	"description": [
+		"Sets the time that a turret uses supressing fire after losing sight of an enemy."
+	],
+	"params": [
+		{
+			"name": "time",
+			"type": "float",
+			"description": [
+				"The time that the turret wil supress an unseen enemy in seconds."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"roofMg42 setSuppressionTime(1.0);"
+	]
+}

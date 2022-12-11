@@ -1,0 +1,9 @@
+{
+	"usage": "<player> updateDMScores()",
+	"description": [
+		"Updates the client's knowledge of scores for himself and the (next) best player in the game. For use in Deathmatch."
+	],
+	"example": [
+		"player updateDMScores();"
+	]
+}

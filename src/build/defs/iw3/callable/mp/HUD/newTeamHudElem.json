@@ -1,0 +1,22 @@
+{
+	"usage": "newTeamHudElem(<team>)",
+	"description": [
+		"Create a new HUD element for a particular team."
+	],
+	"params": [
+		{
+			"name": "team",
+			"type": "string",
+			"description": [
+				"The team for whom the HUD element is created. Must be \"axis\", \"allies\" or \"spectator\"."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Struct"
+	},
+	"example": [
+		"level.progressbarAlliesNeutralize = newTeamHudElem(\"axis\");"
+	]
+}

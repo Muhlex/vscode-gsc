@@ -1,0 +1,19 @@
+{
+	"usage": "cinematicInGameLoopFromFastfile(<cinematic name>)",
+	"description": [
+		"Play the given cinematic, which is already loaded, in a loop, without blocking."
+	],
+	"params": [
+		{
+			"name": "cinematic name",
+			"type": "string",
+			"description": [
+				"The cinematic name."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"cinematicInGameLoopFromFastfile(\"cod_end\");"
+	]
+}

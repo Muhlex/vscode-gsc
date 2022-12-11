@@ -1,0 +1,22 @@
+{
+	"usage": "newClientHudElem(<client>)",
+	"description": [
+		"Create a new HUD element for a particular client."
+	],
+	"params": [
+		{
+			"name": "client",
+			"type": "Entity",
+			"description": [
+				"The client for whom the HUD element is created."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Struct"
+	},
+	"example": [
+		"self.kc_topBar = newClientHudElem(self);"
+	]
+}

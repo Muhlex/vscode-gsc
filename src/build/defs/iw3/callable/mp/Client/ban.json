@@ -1,0 +1,19 @@
+{
+	"usage": "ban(<clientnum>)",
+	"description": [
+		"Bans the specified player."
+	],
+	"params": [
+		{
+			"name": "clientnum",
+			"type": "int",
+			"description": [
+				"The client number of the player to ban."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"ban(player getEntityNumber());"
+	]
+}

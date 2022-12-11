@@ -1,0 +1,43 @@
+{
+	"usage": "<entity> setYawSpeed(<speed>, <acceleration>, <deceleration>, <overshoot percent>)",
+	"description": [
+		"Sets the yaw speed for this vehicle."
+	],
+	"params": [
+		{
+			"name": "speed",
+			"type": "float",
+			"description": [
+				"The speed of the vehicle in angles per second."
+			],
+			"optional": false
+		},
+		{
+			"name": "acceleration",
+			"type": "float",
+			"description": [
+				"The acceleration of the vehicle in angles per second^2."
+			],
+			"optional": false
+		},
+		{
+			"name": "deceleration",
+			"type": "float",
+			"description": [
+				"Deceleration. If not specified, set to be equal to acceleration."
+			],
+			"optional": true
+		},
+		{
+			"name": "overshoot percent",
+			"type": "float",
+			"description": [
+				"How much to over shoot goal yaw by. Default 0.1."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"self setYawSpeed(120, 60);"
+	]
+}

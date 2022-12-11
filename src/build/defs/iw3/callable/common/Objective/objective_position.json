@@ -1,0 +1,27 @@
+{
+	"usage": "objective_position(<objective number>, <position>)",
+	"description": [
+		"Set the position of an objective, assumed to be the zeroth position, must use objective_additionalPosition to set a different position index."
+	],
+	"params": [
+		{
+			"name": "objective number",
+			"type": "int",
+			"description": [
+				"The number of the objective to alter."
+			],
+			"optional": false
+		},
+		{
+			"name": "position",
+			"type": "Vector3",
+			"description": [
+				"The position of the objective."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"objective_position(4, getObjectivePosition(\"plant_boilerbomb_trigger\"));"
+	]
+}

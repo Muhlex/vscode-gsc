@@ -1,0 +1,9 @@
+{
+	"usage": "<entity> stopSounds()",
+	"description": [
+		"Stop all sounds on an entity. *WARNING*, You must have a wait between stopSounds() and delete() or the sound will not stop."
+	],
+	"example": [
+		"beatBox stopSounds();"
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"usage": "<entity> getLightExponent()",
+	"description": [
+		"Gets the current exponent of the light."
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"exponent = self getLightExponent();"
+	]
+}

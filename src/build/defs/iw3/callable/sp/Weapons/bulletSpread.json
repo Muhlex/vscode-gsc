@@ -1,0 +1,38 @@
+{
+	"usage": "bulletSpread(<start>, <end>, <spread>)",
+	"description": [
+		"Uses spread to return a new end position."
+	],
+	"params": [
+		{
+			"name": "start",
+			"type": "Vector3",
+			"description": [
+				"The bullet starting point."
+			],
+			"optional": false
+		},
+		{
+			"name": "end",
+			"type": "Vector3",
+			"description": [
+				"The bullet ending point."
+			],
+			"optional": false
+		},
+		{
+			"name": "spread",
+			"type": "float",
+			"description": [
+				"Amount of spread."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Vector3"
+	},
+	"example": [
+		"endPos = bulletSpread(self.origin, target.origin, 1.0);"
+	]
+}

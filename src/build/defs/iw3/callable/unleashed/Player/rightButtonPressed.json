@@ -1,0 +1,8 @@
+{
+	"usage": "<player> rightButtonPressed()",
+	"description": ["Checks if a player is pressing the right button."],
+	"return": {
+		"type": "bool"
+	},
+	"example": ["if (self rightButtonPressed()) {", "  // Code", "}"]
+}

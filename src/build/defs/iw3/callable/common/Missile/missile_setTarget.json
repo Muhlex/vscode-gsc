@@ -1,0 +1,27 @@
+{
+	"usage": "<entity> missile_setTarget(<target entity>, <target offset>)",
+	"description": [
+		"Sets the target entity for a guided missile."
+	],
+	"params": [
+		{
+			"name": "target entity",
+			"type": "Entity",
+			"description": [
+				"The entity toward which the missile will steer."
+			],
+			"optional": false
+		},
+		{
+			"name": "target offset",
+			"type": "Vector3",
+			"description": [
+				"A vector, giving the offset from the entity's origin toward which the missile will steer."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"eMissile missile_setTarget(eTarget, (0, 0, -56));"
+	]
+}

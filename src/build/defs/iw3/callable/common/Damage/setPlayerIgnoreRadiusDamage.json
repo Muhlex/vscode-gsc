@@ -1,0 +1,19 @@
+{
+	"usage": "<player> setPlayerIgnoreRadiusDamage(<player ignore radius damage>)",
+	"description": [
+		"Sets the player to ignore radius damage."
+	],
+	"params": [
+		{
+			"name": "player ignore radius damage",
+			"type": "bool",
+			"description": [
+				"Flag indicating whether the player is to ignore radius damage."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self setPlayerIgnoreRadiusDamage(true);"
+	]
+}

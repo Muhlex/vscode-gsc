@@ -1,0 +1,12 @@
+{
+	"usage": "<entity> getSpeed()",
+	"description": [
+		"Gets the current speed in inches per second."
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"speed = self getSpeed();"
+	]
+}

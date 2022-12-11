@@ -1,0 +1,15 @@
+{
+	"usage": "<player> isButtonPressed(<key id>)",
+	"description": ["Check if the player is pressing a key with a given mask."],
+	"params": [
+		{
+			"name": "key id",
+			"type": "int",
+			"description": ["Key mask."]
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": ["if (self isButtonPressed(1024)) {", "  // Code", "}"]
+}

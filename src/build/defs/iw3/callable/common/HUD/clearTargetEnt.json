@@ -1,0 +1,9 @@
+{
+	"usage": "<hud> clearTargetEnt()",
+	"description": [
+		"Clear this waypoint from targetting an entity."
+	],
+	"example": [
+		"waypoint clearTargetEnt();"
+	]
+}

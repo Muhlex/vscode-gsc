@@ -1,0 +1,22 @@
+{
+	"usage": "weaponInventoryType(<weapon>)",
+	"description": [
+		"Returns the way this weapon is stored, such as \"altmode\", \"item\", \"offhand\", or \"primary\"."
+	],
+	"params": [
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": [
+		"if (weaponInventoryType(\"rpg_mp\") == \"item\") {\n  // Code\n}"
+	]
+}

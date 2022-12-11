@@ -1,0 +1,43 @@
+{
+	"usage": "<entity> linkTo(<linkTo entity>, <tag>, <originOffset>, <anglesOffset>)",
+	"description": [
+		"Attaches on entity to another."
+	],
+	"params": [
+		{
+			"name": "linkTo entity",
+			"type": "Entity",
+			"description": [
+				"The entity to attach the entity to."
+			],
+			"optional": false
+		},
+		{
+			"name": "tag",
+			"type": "string",
+			"description": [
+				"The tag to attach the entity to."
+			],
+			"optional": true
+		},
+		{
+			"name": "originOffset",
+			"type": "Vector3",
+			"description": [
+				"The positional offset from the base position."
+			],
+			"optional": true
+		},
+		{
+			"name": "anglesOffset",
+			"type": "Vector3",
+			"description": [
+				"The angular offset from the base angles."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"self.rightTurret linkTo(self, \"tag_gunRight\", (0, 0, 0), (0, 0, 0));"
+	]
+}

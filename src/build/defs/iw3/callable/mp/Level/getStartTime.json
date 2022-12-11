@@ -1,0 +1,12 @@
+{
+	"usage": "getStartTime()",
+	"description": [
+		"Returns the start time for the current round."
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"level.startTime = getStartTime();"
+	]
+}

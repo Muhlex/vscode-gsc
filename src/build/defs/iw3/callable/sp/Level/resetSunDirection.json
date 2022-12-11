@@ -1,0 +1,9 @@
+{
+	"usage": "resetSunDirection()",
+	"description": [
+		"Restores the map's default sun direction values."
+	],
+	"example": [
+		"resetSunDirection();"
+	]
+}

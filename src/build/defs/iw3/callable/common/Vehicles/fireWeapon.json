@@ -1,0 +1,35 @@
+{
+	"usage": "<entity> fireWeapon(<barrel tag>, <target ent>, <target offset>)",
+	"description": [
+		"Fire the vehicle's weapon."
+	],
+	"params": [
+		{
+			"name": "barrel tag",
+			"type": "string",
+			"description": [
+				"The tag name of the barrel to fire from. Passing in nothing or an empty string will default to use the vehicle's main turret."
+			],
+			"optional": true
+		},
+		{
+			"name": "target ent",
+			"type": "Entity",
+			"description": [
+				"A target entity for guided missiles."
+			],
+			"optional": true
+		},
+		{
+			"name": "target offset",
+			"type": "Vector3",
+			"description": [
+				"Offset relative to the target entity."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"nFlak fireWeapon();"
+	]
+}

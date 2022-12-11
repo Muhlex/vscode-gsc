@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> useAnimTree(<anim tree>)",
+	"description": [
+		"Set the animation tree of an entity."
+	],
+	"params": [
+		{
+			"name": "anim tree",
+			"type": "animtree",
+			"description": [
+				"The new anim tree."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self useAnimTree(#animtree);"
+	]
+}

@@ -1,0 +1,27 @@
+{
+	"usage": "<player> deactivateChannelVolumes(<priority>, <fade time>)",
+	"description": [
+		"Deactivate the channel volumes for the player on the given priority level."
+	],
+	"params": [
+		{
+			"name": "priority",
+			"type": "string",
+			"description": [
+				"Valid priorities are \"snd_channelvolprio_holdbreath\", \"snd_channelvolprio_pain\", or \"snd_channelvolprio_shellshock\"."
+			],
+			"optional": false
+		},
+		{
+			"name": "fade time",
+			"type": "float",
+			"description": [
+				"The time spent fading to the next lowest active channelvol priority level in seconds."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"level.player deactivateChannelVolumes(\"snd_channelvolprio_holdbreath\", 3);"
+	]
+}

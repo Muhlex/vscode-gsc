@@ -1,0 +1,51 @@
+{
+	"usage": "physicsJitter(<center>, <outer radius>, <inner radius>, <min displacement>, <max displacement>)",
+	"description": [
+		"Jitters physics objects touching the ground. Jitter forces are calculated in such a way as to displace the object upwards some height between min and max displacement at each point of contact with the ground."
+	],
+	"params": [
+		{
+			"name": "center",
+			"type": "Vector3",
+			"description": [
+				"The world position of the center of the cylinder."
+			],
+			"optional": false
+		},
+		{
+			"name": "outer radius",
+			"type": "int",
+			"description": [
+				"The radius beyond which the displacement is zero."
+			],
+			"optional": false
+		},
+		{
+			"name": "inner radius",
+			"type": "int",
+			"description": [
+				"The radius within which the displacement is maximum."
+			],
+			"optional": false
+		},
+		{
+			"name": "min displacement",
+			"type": "float",
+			"description": [
+				"Approximate minimum distance each contact point will be displaced."
+			],
+			"optional": false
+		},
+		{
+			"name": "max displacement",
+			"type": "float",
+			"description": [
+				"Approximate maximum distance each contact point will be displaced."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"physicsJitter(origin, 200, 150, 1.0, 5.0);"
+	]
+}

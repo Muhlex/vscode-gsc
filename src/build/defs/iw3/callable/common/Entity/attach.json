@@ -1,0 +1,35 @@
+{
+	"usage": "<entity> attach(<modelname>, <tagname>, <ignoreCollision>)",
+	"description": [
+		"Attach a model to an entity."
+	],
+	"params": [
+		{
+			"name": "modelname",
+			"type": "string",
+			"description": [
+				"The model name to attach."
+			],
+			"optional": false
+		},
+		{
+			"name": "tagname",
+			"type": "string",
+			"description": [
+				"The tag to attach the model to."
+			],
+			"optional": true
+		},
+		{
+			"name": "ignoreCollision",
+			"type": "bool",
+			"description": [
+				"Flag to ignore collision. Defaults to false."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"self attach(\"panzerflak_ammo\", \"tag_weapon_left\");"
+	]
+}

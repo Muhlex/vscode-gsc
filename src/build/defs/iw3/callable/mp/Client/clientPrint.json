@@ -1,0 +1,27 @@
+{
+	"usage": "clientPrint(<client>, <string>)",
+	"description": [
+		"Print a localized version of this string for a given client."
+	],
+	"params": [
+		{
+			"name": "client",
+			"type": "entity",
+			"description": [
+				"A client entity."
+			],
+			"optional": false
+		},
+		{
+			"name": "string",
+			"type": "string",
+			"description": [
+				"A message to print."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"This function has no official examples."
+	]
+}

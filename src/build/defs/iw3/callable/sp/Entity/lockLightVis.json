@@ -1,0 +1,9 @@
+{
+	"usage": "<entity> lockLightVis()",
+	"description": [
+		"Locks the lights that are visible by this entity to reduce the calculations for fast entities."
+	],
+	"example": [
+		"spawn lockLightVis();"
+	]
+}

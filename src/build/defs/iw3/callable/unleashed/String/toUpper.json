@@ -1,0 +1,16 @@
+{
+	"usage": "toUpper(<string>)",
+	"description": ["Convert a string to UPPER CASE."],
+	"params": [
+		{
+			"name": "string",
+			"type": "string",
+			"description": ["String to convert."],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": ["str = toUpper(\"hello world\");"]
+}

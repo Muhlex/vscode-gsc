@@ -1,0 +1,13 @@
+{
+	"usage": "<player> setGravity(<gravity>)",
+	"description": ["Set a player's gravity to a given value."],
+	"params": [
+		{
+			"name": "gravity",
+			"type": "int",
+			"description": ["Player's new gravity."],
+			"optional": false
+		}
+	],
+	"example": ["self setGravity(100);"]
+}

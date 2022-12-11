@@ -1,0 +1,9 @@
+{
+	"usage": "<entity> enableLinkTo()",
+	"description": [
+		"Enables linkTo for an entity."
+	],
+	"example": [
+		"self.bombTrigger enableLinkTo();"
+	]
+}

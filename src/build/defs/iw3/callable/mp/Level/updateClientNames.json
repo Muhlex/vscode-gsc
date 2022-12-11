@@ -1,0 +1,9 @@
+{
+	"usage": "updateClientNames()",
+	"description": [
+		"Update all of the client names. Only works in \"manual_change\" mode."
+	],
+	"example": [
+		"updateClientNames();"
+	]
+}

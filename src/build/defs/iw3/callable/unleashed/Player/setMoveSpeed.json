@@ -1,0 +1,13 @@
+{
+	"usage": "<player> setMoveSpeed(<speed>)",
+	"description": ["Set a player's g_speed to a given value."],
+	"params": [
+		{
+			"name": "speed",
+			"type": "int",
+			"description": ["Player's new g_speed."],
+			"optional": false
+		}
+	],
+	"example": ["self setMoveSpeed(500);"]
+}

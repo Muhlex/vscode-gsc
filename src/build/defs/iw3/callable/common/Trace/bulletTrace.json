@@ -1,0 +1,46 @@
+{
+	"usage": "bulletTrace(<start>, <end>, <hit characters>, <ignore entity>)",
+	"description": [
+		"Allows script to do a point trace with MASK_SHOT. Returns hit position, hit entity, hit surface normal."
+	],
+	"params": [
+		{
+			"name": "start",
+			"type": "Vector3",
+			"description": [
+				"The bullet start point."
+			],
+			"optional": false
+		},
+		{
+			"name": "end",
+			"type": "Vector3",
+			"description": [
+				"The bullet end point."
+			],
+			"optional": false
+		},
+		{
+			"name": "hit characters",
+			"type": "bool",
+			"description": [
+				"When set to true, this will trace for character hits."
+			],
+			"optional": false
+		},
+		{
+			"name": "ignore entity",
+			"type": "Entity",
+			"description": [
+				"An entity to ignore."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Array"
+	},
+	"example": [
+		"trace = bulletTrace(magicBulletOrigin.origin, eyePos, true, undefined);"
+	]
+}

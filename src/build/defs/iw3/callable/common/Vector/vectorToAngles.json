@@ -1,0 +1,21 @@
+{
+	"usage": "vectorToAngles(<vector>)",
+	"description": [
+		"Returns a set of angles corresponding to the given vector."
+	],
+	"params": [
+		{
+			"name": "vector",
+			"type": "Vector3",
+			"description": [
+				"The vector to convert to angles."
+			]
+		}
+	],
+	"return": {
+		"type": "Vector3"
+	},
+	"example": [
+		"angles = vectorToAngles(end - start);"
+	]
+}

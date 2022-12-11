@@ -1,0 +1,12 @@
+{
+	"usage": "isSplitScreen()",
+	"description": [
+		"Returns true if the game is a splitscreen game."
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"level.splitscreen = isSplitScreen();"
+	]
+}

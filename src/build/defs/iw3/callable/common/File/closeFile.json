@@ -1,0 +1,22 @@
+{
+	"usage": "closeFile(<file>)",
+	"description": [
+		"Close a script-controlled file. Returns 1 if successful and -1 if unsuccessful."
+	],
+	"params": [
+		{
+			"name": "file",
+			"type": "int",
+			"description": [
+				"File handle returned by openFile."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"closeFile(file);"
+	]
+}

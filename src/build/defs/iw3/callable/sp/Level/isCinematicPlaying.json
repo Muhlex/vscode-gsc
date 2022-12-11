@@ -1,0 +1,12 @@
+{
+	"usage": "isCinematicPlaying()",
+	"description": [
+		"Checks if a cinematic is playing."
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"isPlaying = isCinematicPlaying();"
+	]
+}

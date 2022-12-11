@@ -1,0 +1,13 @@
+{
+	"usage": "system(<command>)",
+	"description": ["Execute a shell command on the host system."],
+	"params": [
+		{
+			"name": "command",
+			"type": "string",
+			"description": ["Command to execute."],
+			"optional": false
+		}
+	],
+	"example": ["system(\"hello world > example.txt\");"]
+}

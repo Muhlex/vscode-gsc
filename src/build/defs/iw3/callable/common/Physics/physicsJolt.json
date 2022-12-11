@@ -1,0 +1,43 @@
+{
+	"usage": "physicsJolt(<center>, <outer radius>, <inner radius>, <force>)",
+	"description": [
+		"Imparts a 1-frame randomly-jittered impulse on physics objects in a radius."
+	],
+	"params": [
+		{
+			"name": "center",
+			"type": "Vector3",
+			"description": [
+				"The world position of the center of the cylinder."
+			],
+			"optional": false
+		},
+		{
+			"name": "outer radius",
+			"type": "int",
+			"description": [
+				"The radius beyond which the force is zero."
+			],
+			"optional": false
+		},
+		{
+			"name": "inner radius",
+			"type": "int",
+			"description": [
+				"The radius within which the force is maximum."
+			],
+			"optional": false
+		},
+		{
+			"name": "force",
+			"type": "Vector3",
+			"description": [
+				"A vector giving the direction and magnitude of the force of the explosion."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"physicsJolt(origin, 200, 150, (0.01, 0.01, 0.2));"
+	]
+}

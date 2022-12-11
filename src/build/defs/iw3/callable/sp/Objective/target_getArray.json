@@ -1,0 +1,12 @@
+{
+	"usage": "target_getArray()",
+	"description": [
+		"Gets an array of entities that are set as targets."
+	],
+	"return": {
+		"type": "Array"
+	},
+	"example": [
+		"targets = target_getArray();"
+	]
+}

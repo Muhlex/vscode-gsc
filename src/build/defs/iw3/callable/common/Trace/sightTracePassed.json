@@ -1,0 +1,46 @@
+{
+	"usage": "sightTracePassed(<start>, <end>, <hit characters>, <ignore entity>)",
+	"description": [
+		"Allows script to do a point trace with MASK_OPAQUE_AI. Returns true if trace complete, else returns false."
+	],
+	"params": [
+		{
+			"name": "start",
+			"type": "Vector3",
+			"description": [
+				"The sight start point."
+			],
+			"optional": false
+		},
+		{
+			"name": "end",
+			"type": "Vector3",
+			"description": [
+				"The sight end point."
+			],
+			"optional": false
+		},
+		{
+			"name": "hit characters",
+			"type": "bool",
+			"description": [
+				"When set to true, this will trace for character hits."
+			],
+			"optional": false
+		},
+		{
+			"name": "ignore entity",
+			"type": "Entity",
+			"description": [
+				"An entity to ignore."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"success = sightTracePassed(magicBulletOrigin.origin, eyePos, true, undefined);"
+	]
+}

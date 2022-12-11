@@ -1,0 +1,30 @@
+{
+	"usage": "getCycleOriginOffset(<angles>, <animation>)",
+	"description": [
+		"For the given animation cycle and angle set, calculate the final offset of the animation."
+	],
+	"params": [
+		{
+			"name": "angles",
+			"type": "Vector3",
+			"description": [
+				"A set of world angles."
+			],
+			"optional": false
+		},
+		{
+			"name": "animation",
+			"type": "animation",
+			"description": [
+				"The animation to calculate the offset of."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"This function has no official examples."
+	]
+}

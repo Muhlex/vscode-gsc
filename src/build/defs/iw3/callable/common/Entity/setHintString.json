@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setHintString(<string>)",
+	"description": [
+		"Sets the thing string for a usable entity."
+	],
+	"params": [
+		{
+			"name": "string",
+			"type": "string",
+			"description": [
+				"The string to use for a hint near a usable entity."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"fuelLever setHintString(&\"ROCKET_FUEL_LEVER\");"
+	]
+}

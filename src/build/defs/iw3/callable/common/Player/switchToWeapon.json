@@ -1,0 +1,19 @@
+{
+	"usage": "<player> switchToWeapon(<weapon>)",
+	"description": [
+		"Switch to a different weapon."
+	],
+	"params": [
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"level.player switchToWeapon(\"mosin_nagant\");"
+	]
+}

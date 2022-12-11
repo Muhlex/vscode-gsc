@@ -1,0 +1,19 @@
+{
+	"usage": "<player> enableHealthShield(<enabled>)",
+	"description": [
+		"Sets whether the player's health shield is active."
+	],
+	"params": [
+		{
+			"name": "enabled",
+			"type": "bool",
+			"description": [
+				"A boolean: true to enable the health shield, false otherwise."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"level.player enableHealthShield(false);"
+	]
+}

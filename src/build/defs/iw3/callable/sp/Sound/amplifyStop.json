@@ -1,0 +1,9 @@
+{
+	"usage": "amplifyStop()",
+	"description": [
+		"Disables amplification if active (see amplify)."
+	],
+	"example": [
+		"amplifyStop();"
+	]
+}

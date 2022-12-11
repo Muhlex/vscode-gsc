@@ -1,0 +1,27 @@
+{
+	"usage": "<player> setWeaponAmmoStock(<weapon>, <ammunition>)",
+	"description": [
+		"Set the ammunition stockpile for the given weapon."
+	],
+	"params": [
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name for this weapon."
+			],
+			"optional": false
+		},
+		{
+			"name": "ammunition",
+			"type": "int",
+			"description": [
+				"The amount of ammunition in the stockpile."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"level.player setWeaponAmmoStock(\"m16\", 300);"
+	]
+}

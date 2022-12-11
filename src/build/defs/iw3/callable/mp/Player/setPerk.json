@@ -1,0 +1,19 @@
+{
+	"usage": "<player> setPerk(<perk>)",
+	"description": [
+		"Give a player the specified perk."
+	],
+	"params": [
+		{
+			"name": "perk",
+			"type": "string",
+			"description": [
+				"The perk to give."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"player setPerk(\"specialty_gpsjammer\");"
+	]
+}

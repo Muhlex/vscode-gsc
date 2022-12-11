@@ -1,0 +1,12 @@
+{
+	"usage": "<entity> getDebugEye()",
+	"description": [
+		"Gets the debug position of the eye for an AI or Player."
+	],
+	"return": {
+		"type": "Vector3"
+	},
+	"example": [
+		"eyePos = level.player getDebugEye();"
+	]
+}

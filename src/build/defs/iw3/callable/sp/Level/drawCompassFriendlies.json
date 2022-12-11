@@ -1,0 +1,19 @@
+{
+	"usage": "drawCompassFriendlies(<bool>)",
+	"description": [
+		"Set whether friendlies are shown on the compass."
+	],
+	"params": [
+		{
+			"name": "bool",
+			"type": "bool",
+			"description": [
+				"A boolean setting whether friendly troops are shown on the compass."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"drawCompassFriendlies(true);"
+	]
+}

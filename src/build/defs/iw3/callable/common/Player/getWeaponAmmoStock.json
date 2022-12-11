@@ -1,0 +1,22 @@
+{
+	"usage": "<player> getWeaponAmmoStock(<weapon>)",
+	"description": [
+		"Get the ammunition stockpile for the given weapon."
+	],
+	"params": [
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"stockCount = level.player getWeaponAmmoStock(\"m4_grenadier\");"
+	]
+}

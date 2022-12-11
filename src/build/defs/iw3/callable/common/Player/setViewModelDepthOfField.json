@@ -1,0 +1,27 @@
+{
+	"usage": "<player> setViewModelDepthOfField(<start>, <end>)",
+	"description": [
+		"Set the depth of field values for the player's view model when at hip. If start >= end, depth of field is disabled."
+	],
+	"params": [
+		{
+			"name": "start",
+			"type": "float",
+			"description": [
+				"Before this distance, depth of field is maximally blurry."
+			],
+			"optional": false
+		},
+		{
+			"name": "end",
+			"type": "float",
+			"description": [
+				"After this distance, depth of field is perfectly in focus."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self setViewModelDepthOfField(2, 10);"
+	]
+}

@@ -1,0 +1,17 @@
+{
+	"sourceFile": "unleashed\\json",
+	"usage": "decode(<string>)",
+	"description": ["Decode a JSON string to an array."],
+	"params": [
+		{
+			"name": "string",
+			"type": "string",
+			"description": ["Valid JSON string to turn into an array."],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Array"
+	},
+	"example": ["obj = unleashed\\json::decode(\"{\\\"hello\\\":\\\"Hello world!\\\"}\");"]
+}

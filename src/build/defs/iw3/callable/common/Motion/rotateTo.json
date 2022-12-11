@@ -1,0 +1,43 @@
+{
+	"usage": "<entity> rotateTo(<angles>, <time>, <acceleration time>, <deceleration time>)",
+	"description": [
+		"Rotate this entity to the given world angles."
+	],
+	"params": [
+		{
+			"name": "angles",
+			"type": "Vector3",
+			"description": [
+				"The new world angle to rotate to."
+			],
+			"optional": false
+		},
+		{
+			"name": "time",
+			"type": "float",
+			"description": [
+				"The time to move the entity in seconds."
+			],
+			"optional": false
+		},
+		{
+			"name": "acceleration time",
+			"type": "float",
+			"description": [
+				"The time spent accelerating."
+			],
+			"optional": true
+		},
+		{
+			"name": "deceleration time",
+			"type": "float",
+			"description": [
+				"The time spent decelerating."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"shutter rotateTo((shutter.angles[0], newYaw, shutter.anlges[2]), newTime);"
+	]
+}

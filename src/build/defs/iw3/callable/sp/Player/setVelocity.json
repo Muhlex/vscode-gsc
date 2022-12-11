@@ -1,0 +1,19 @@
+{
+	"usage": "<player> setVelocity(<velocity>)",
+	"description": [
+		"Sets the player's velocity."
+	],
+	"params": [
+		{
+			"name": "velocity",
+			"type": "Vector3",
+			"description": [
+				"New player velocity."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"level.player setVelocity((-400, 0, 100));"
+	]
+}

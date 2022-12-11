@@ -1,0 +1,8 @@
+{
+	"usage": "<player> forwardButtonPressed()",
+	"description": ["Checks if a player is pressing the forward button."],
+	"return": {
+		"type": "bool"
+	},
+	"example": ["if (self forwardButtonPressed()) {", "  // Code", "}"]
+}

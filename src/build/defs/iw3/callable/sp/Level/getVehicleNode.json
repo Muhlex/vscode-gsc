@@ -1,0 +1,30 @@
+{
+	"usage": "getVehicleNode(<name>, <key>)",
+	"description": [
+		"Gets a vehicle node with the given name, key pair."
+	],
+	"params": [
+		{
+			"name": "name",
+			"type": "string",
+			"description": [
+				"Name to search for."
+			],
+			"optional": false
+		},
+		{
+			"name": "key",
+			"type": "string",
+			"description": [
+				"Key that name goes with."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Entity"
+	},
+	"example": [
+		"node = getVehicleNode(self.target, \"targetname\");"
+	]
+}

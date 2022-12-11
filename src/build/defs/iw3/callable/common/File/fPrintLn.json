@@ -1,0 +1,27 @@
+{
+	"usage": "fPrintLn(<file>, <output>)",
+	"description": [
+		"Write text out to a script-controlled file."
+	],
+	"params": [
+		{
+			"name": "file",
+			"type": "int",
+			"description": [
+				"File handle returned by openFile."
+			],
+			"optional": false
+		},
+		{
+			"name": "output",
+			"type": "string",
+			"description": [
+				"The string to be output."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"fPrintLn(file, \"Hello world!\");"
+	]
+}

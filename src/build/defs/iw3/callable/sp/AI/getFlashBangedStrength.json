@@ -1,0 +1,12 @@
+{
+	"usage": "<actor> getFlashBangedStrength()",
+	"description": [
+		"Retrieves how strongly the actor was initially hit by a flashbang. 1.0 is full strength, 0.0 is none at all."
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"flashedPercent = self getFlashBangedStrength();"
+	]
+}

@@ -1,0 +1,9 @@
+{
+	"usage": "<entity> stopLoopSound()",
+	"description": [
+		"Stop a looping sound."
+	],
+	"example": [
+		"car stopLoopSound();"
+	]
+}

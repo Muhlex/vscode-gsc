@@ -1,0 +1,46 @@
+{
+	"usage": "saveGameNoCommit(<filename>, <description>, <screenshot>, <supressPlayerNotify>)",
+	"description": [
+		"Save the current game to a memory buffer. Returns an ID for the save. Will throw a script error if multiple saves are attempted in the same frame."
+	],
+	"params": [
+		{
+			"name": "filename",
+			"type": "string",
+			"description": [
+				"The name of the file. If not used then the file will be automatically named."
+			],
+			"optional": true
+		},
+		{
+			"name": "description",
+			"type": "string",
+			"description": [
+				"A description of the savegame."
+			],
+			"optional": true
+		},
+		{
+			"name": "screenshot",
+			"type": "string",
+			"description": [
+				"The name of the screenshot file. If not used then the file will be automatically named."
+			],
+			"optional": true
+		},
+		{
+			"name": "supressPlayerNotify",
+			"type": "bool",
+			"description": [
+				"When true, player will not get a \"Checkpoint Reached\" print on their screen."
+			],
+			"optional": true
+		}
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"id = saveGameNoCommit(\"Chateau\" + nodeNum, \"Documents Obtained\");"
+	]
+}

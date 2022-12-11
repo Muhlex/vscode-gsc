@@ -1,0 +1,22 @@
+{
+	"usage": "tan(<angle>)",
+	"description": [
+		"Returns the tangent of an angle."
+	],
+	"params": [
+		{
+			"name": "angle",
+			"type": "float",
+			"description": [
+				"An angle in degrees."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"frac = tan(degrees);"
+	]
+}

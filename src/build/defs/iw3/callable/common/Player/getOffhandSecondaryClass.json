@@ -1,0 +1,12 @@
+{
+	"usage": "<player> getOffhandSecondaryClass()",
+	"description": [
+		"Gets the name (either \"smoke\" or \"flash\") that toggle is set to."
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": [
+		"if (\"flash\" == level.player getOffhandSecondaryClass()) {\n  // Code\n}"
+	]
+}

@@ -1,0 +1,22 @@
+{
+	"usage": "<entity> getAnimTime(<animation>)",
+	"description": [
+		"Get the animation time for the given animation."
+	],
+	"params": [
+		{
+			"name": "animation",
+			"type": "animation",
+			"description": [
+				"Animation to manipulate."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"if ((self getAnimTime(%walk_and_run_loops)) < 0.5)"
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"usage": "isSaveRecentlyLoaded()",
+	"description": [
+		"Checks if the current savegame has recently been loaded."
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (isSaveRecentlyLoaded()) {\n  // Code\n}"
+	]
+}

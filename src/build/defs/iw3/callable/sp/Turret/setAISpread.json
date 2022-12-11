@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setAISpread(<spread>)",
+	"description": [
+		"Sets the spread of this turret when used by an AI."
+	],
+	"params": [
+		{
+			"name": "spread",
+			"type": "float",
+			"description": [
+				"The spread of the turret in degrees."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"roofMg42 setAISpread(0.2);"
+	]
+}

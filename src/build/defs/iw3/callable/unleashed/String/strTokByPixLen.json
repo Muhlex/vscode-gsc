@@ -1,0 +1,26 @@
+{
+	"usage": "strTokByPixLen(<string>, <length>)",
+	"description": [
+		"Counts the width of a given string and tokenizes it so that it will never exceed the given limit. This function tries to separate the string so that word remain complete."
+	],
+	"params": [
+		{
+			"name": "string",
+			"type": "string",
+			"description": ["String to tokenize."],
+			"optional": false
+		},
+		{
+			"name": "length",
+			"type": "float",
+			"description": ["Maximum length of a segment in pixels."],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Array"
+	},
+	"example": [
+		"tok = strTokByPixLen(\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam magna ex, hendrerit id posuere ac.\", 100);"
+	]
+}

@@ -1,0 +1,22 @@
+{
+	"usage": "weaponType(<weapon>)",
+	"description": [
+		"Returns the type of weapon that this weapon is, such as \"bullet\", \"projectile\", \"grenade\", or \"binoculars\"."
+	],
+	"params": [
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": [
+		"if (weaponType(\"mosin_nagant_sniper\") == \"bullet\") {\n  // Code\n}"
+	]
+}

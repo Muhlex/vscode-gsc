@@ -1,0 +1,27 @@
+{
+	"usage": "<player> setRank(<rank id>, <prestige level>)",
+	"description": [
+		"Sets the player's rank and prestige level."
+	],
+	"params": [
+		{
+			"name": "rank id",
+			"type": "int",
+			"description": [
+				"New rank."
+			],
+			"optional": false
+		},
+		{
+			"name": "prestige level",
+			"type": "int",
+			"description": [
+				"New prestige level."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"player setRank(1, 2);"
+	]
+}

@@ -1,0 +1,38 @@
+{
+	"usage": "getStartAngles(<origin>, <angles>, <animation>)",
+	"description": [
+		"Get the starting angles for an animation, in world coordinates, given its current position, and angles."
+	],
+	"params": [
+		{
+			"name": "origin",
+			"type": "Vector3",
+			"description": [
+				"The current origin of the animation in world coordinates."
+			],
+			"optional": false
+		},
+		{
+			"name": "angles",
+			"type": "Vector3",
+			"description": [
+				"The current angle set of the animation in world coordinates."
+			],
+			"optional": false
+		},
+		{
+			"name": "animation",
+			"type": "animation",
+			"description": [
+				"The currently running animation."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Vector3"
+	},
+	"example": [
+		"org1 = getStartAngles(climborg, climbang, buddyanim1);"
+	]
+}

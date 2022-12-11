@@ -1,0 +1,9 @@
+{
+	"usage": "<entity> disableAimAssist()",
+	"description": [
+		"Disables aim assist on an entity. The entity must have a brush model."
+	],
+	"example": [
+		"self disableAimAssist();"
+	]
+}

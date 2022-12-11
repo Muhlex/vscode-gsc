@@ -1,0 +1,27 @@
+{
+	"usage": "<entity> detach(<modelname>, <tagname>)",
+	"description": [
+		"Detaches an attached model from an entity."
+	],
+	"params": [
+		{
+			"name": "modelname",
+			"type": "string",
+			"description": [
+				"The model name to detach."
+			],
+			"optional": false
+		},
+		{
+			"name": "tagname",
+			"type": "string",
+			"description": [
+				"The tag to detach the model from."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"self detach(\"xmodel/explosivepack\", \"tag_weapon_right\");"
+	]
+}

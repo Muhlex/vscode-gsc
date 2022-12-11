@@ -1,0 +1,9 @@
+{
+	"usage": "<entity> unlink()",
+	"description": [
+		"Unlinks a linked entity from another entity."
+	],
+	"example": [
+		"guy unlink();"
+	]
+}

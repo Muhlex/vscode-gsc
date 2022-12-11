@@ -1,0 +1,19 @@
+{
+	"usage": "preCacheLocationSelector(<name>)",
+	"description": [
+		"Precaches a material to be used as an indicator during location selection on the map."
+	],
+	"params": [
+		{
+			"name": "name",
+			"type": "string",
+			"description": [
+				"Name of the material to precache."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"preCacheLocationSelector(\"map_crosshair\");"
+	]
+}

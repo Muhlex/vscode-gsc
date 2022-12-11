@@ -1,0 +1,9 @@
+{
+	"usage": "<entity> shootTurret()",
+	"description": [
+		"Shoots a turret."
+	],
+	"example": [
+		"roofMg42 shootTurret();"
+	]
+}

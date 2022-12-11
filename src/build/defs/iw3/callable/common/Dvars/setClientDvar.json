@@ -1,0 +1,27 @@
+{
+	"usage": "<player> setClientDvar(<dvar>, <value>)",
+	"description": [
+		"Set the value of a dvar which is specific to each client."
+	],
+	"params": [
+		{
+			"name": "dvar",
+			"type": "string",
+			"description": [
+				"The dvar name."
+			],
+			"optional": false
+		},
+		{
+			"name": "value",
+			"type": "string",
+			"description": [
+				"The dvar value."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self setClientDvar(\"cg_drawhud\", \"0\");"
+	]
+}

@@ -1,0 +1,27 @@
+{
+	"usage": "<player> deactivateReverb(<priority>, <fade time>)",
+	"description": [
+		"Deactivate the sound reverberation for the player on the given priority level."
+	],
+	"params": [
+		{
+			"name": "priority",
+			"type": "string",
+			"description": [
+				"Valid priorities are \"snd_enveffectsprio_level\" or \"snd_enveffectsprio_shellshock\"."
+			],
+			"optional": false
+		},
+		{
+			"name": "fade time",
+			"type": "float",
+			"description": [
+				"The time spent fading to the next lowest active reverb priority level in seconds."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"level.player deactivateReverb(\"snd_enveffectsprio_level\", 3);"
+	]
+}

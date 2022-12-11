@@ -1,0 +1,38 @@
+{
+	"usage": "vectorFromLineToPoint(<segment A>, <segment B>, <P>)",
+	"description": [
+		"Given a line and a point P, this returns a vector perpendicular to the line and pointing from the line to P."
+	],
+	"params": [
+		{
+			"name": "segment A",
+			"type": "Vector3",
+			"description": [
+				"One point on the line."
+			],
+			"optional": false
+		},
+		{
+			"name": "segment B",
+			"type": "Vector3",
+			"description": [
+				"Other point on the line."
+			],
+			"optional": false
+		},
+		{
+			"name": "P",
+			"type": "Vector3",
+			"description": [
+				"The point."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Vector3"
+	},
+	"example": [
+		"vec = vectorFromLineToPoint(a, b, p);"
+	]
+}

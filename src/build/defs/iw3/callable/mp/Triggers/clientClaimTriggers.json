@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> clientClaimTrigger(<trigger>)",
+	"description": [
+		"Claim a single user trigger."
+	],
+	"params": [
+		{
+			"name": "trigger",
+			"type": "Entity",
+			"description": [
+				"A trigger entity."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"other clientClaimTrigger(self);"
+	]
+}

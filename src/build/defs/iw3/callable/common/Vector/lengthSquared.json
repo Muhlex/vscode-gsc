@@ -1,0 +1,21 @@
+{
+	"usage": "lengthSquared(<vector>)",
+	"description": [
+		"Returns the squared vector length of the given vector - this is cheaper than the actual vector length as it doesn't involve a square root."
+	],
+	"params": [
+		{
+			"name": "vector",
+			"type": "Vector3",
+			"description": [
+				"A vector."
+			]
+		}
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"dist = lengthSquared(models[j].origin - center);"
+	]
+}

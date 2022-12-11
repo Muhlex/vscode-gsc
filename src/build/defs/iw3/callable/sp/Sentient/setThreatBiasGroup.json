@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setThreatBiasGroup(<group>)",
+	"description": [
+		"Set or clear threat bias group of an AI or player."
+	],
+	"params": [
+		{
+			"name": "group",
+			"type": "string",
+			"description": [
+				"Threat bias group name. If none, remove actor from current threat bias group."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"self setThreatBiasGroup(\"flanking_team\");"
+	]
+}

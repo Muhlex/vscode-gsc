@@ -1,0 +1,27 @@
+{
+	"usage": "<player> setWeaponClipAmmo(<weapon>, <ammunition>)",
+	"description": [
+		"Set the weapon clip ammunition for the given weapon."
+	],
+	"params": [
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name for this weapon."
+			],
+			"optional": false
+		},
+		{
+			"name": "ammunition",
+			"type": "int",
+			"description": [
+				"The amount of ammunition in the clip."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"level.player setWeaponClipAmmo(\"m16\", 30);"
+	]
+}

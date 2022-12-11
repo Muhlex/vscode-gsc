@@ -1,0 +1,59 @@
+{
+	"usage": "print3D(<origin>, <text>, <color>, <alpha>, <scale>, <duration>)",
+	"description": [
+		"Development only - write to the console."
+	],
+	"params": [
+		{
+			"name": "origin",
+			"type": "Vector3",
+			"description": [
+				"3D position of text to be drawn."
+			],
+			"optional": false
+		},
+		{
+			"name": "text",
+			"type": "string",
+			"description": [
+				"The text to draw on the screen."
+			],
+			"optional": false
+		},
+		{
+			"name": "color",
+			"type": "Vector3",
+			"description": [
+				"RGB color of the line in a vector, defaults to white."
+			],
+			"optional": true
+		},
+		{
+			"name": "alpha",
+			"type": "float",
+			"description": [
+				"Alpha value of the text (how transparent), defaults to 1."
+			],
+			"optional": true
+		},
+		{
+			"name": "scale",
+			"type": "float",
+			"description": [
+				"Size scale of the text, defaults to 1."
+			],
+			"optional": true
+		},
+		{
+			"name": "duration",
+			"type": "int",
+			"description": [
+				"How many server frames the text should persist through."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"print3d(start, \"START', (1.0, 0.8, 0.5), 1, 3);"
+	]
+}

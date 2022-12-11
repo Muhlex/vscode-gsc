@@ -1,0 +1,43 @@
+{
+	"usage": "obituary(<victim>, <attacker>, <weapon>, <means of death>)",
+	"description": [
+		"Create an obituary for a character."
+	],
+	"params": [
+		{
+			"name": "victim",
+			"type": "Entity",
+			"description": [
+				"The victim entity."
+			],
+			"optional": false
+		},
+		{
+			"name": "attacker",
+			"type": "Entity",
+			"description": [
+				"The attacker entity."
+			],
+			"optional": false
+		},
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name."
+			],
+			"optional": false
+		},
+		{
+			"name": "means of death",
+			"type": "string",
+			"description": [
+				"The means of death as a string."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"obituary(self, attacker, sWeapon, sMeansOfDeath);"
+	]
+}

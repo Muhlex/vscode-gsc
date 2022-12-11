@@ -1,0 +1,30 @@
+{
+	"usage": "getPartName(<xmodel name>, <index>)",
+	"description": [
+		"Gets the name of a part of a model."
+	],
+	"params": [
+		{
+			"name": "xmodel name",
+			"type": "string",
+			"description": [
+				"Name of the xmodel."
+			],
+			"optional": false
+		},
+		{
+			"name": "index",
+			"type": "int",
+			"description": [
+				"The part index. Must be less than the number of bones in the model."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": [
+		"partName = getPartName(self.hatModel, 0);"
+	]
+}

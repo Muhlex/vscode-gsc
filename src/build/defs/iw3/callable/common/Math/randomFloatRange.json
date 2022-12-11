@@ -1,0 +1,29 @@
+{
+	"usage": "randomFloatRange(<min>, <max>)",
+	"description": [
+		"Returns a random floating point number r, where min <= r < max."
+	],
+	"params": [
+		{
+			"name": "min",
+			"type": "float",
+			"description": [
+				"The minimum result."
+			]
+		},
+		{
+			"name": "max",
+			"type": "float",
+			"description": [
+				"The maximum result."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"rand = randomFloatRange(3.0, 5.0);"
+	]
+}

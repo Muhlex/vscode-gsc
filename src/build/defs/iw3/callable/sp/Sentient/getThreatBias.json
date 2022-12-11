@@ -1,0 +1,30 @@
+{
+	"usage": "getThreatBias(<group 1>, <group 2>)",
+	"description": [
+		"Get threat bias of first group against second group."
+	],
+	"params": [
+		{
+			"name": "group 1",
+			"type": "string",
+			"description": [
+				"Threat bias group for."
+			],
+			"optional": false
+		},
+		{
+			"name": "group 2",
+			"type": "string",
+			"description": [
+				"Threat bias group against."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"bias = getThreatBias(\"axis\", \"flanking_team\");"
+	]
+}

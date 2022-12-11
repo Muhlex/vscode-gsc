@@ -1,0 +1,12 @@
+{
+	"usage": "getAllNodes()",
+	"description": [
+		"Gets all of the nodes in a level."
+	],
+	"return": {
+		"type": "Array"
+	},
+	"example": [
+		"nodes = getAllNodes();"
+	]
+}

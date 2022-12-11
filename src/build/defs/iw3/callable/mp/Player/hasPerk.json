@@ -1,0 +1,22 @@
+{
+	"usage": "<player> hasPerk(<perk>)",
+	"description": [
+		"Test if player has a perk."
+	],
+	"params": [
+		{
+			"name": "perk",
+			"type": "string",
+			"description": [
+				"The perk to check."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (player hasPerk(\"specialty_gpsjammer\")) {\n  // Code\n}"
+	]
+}

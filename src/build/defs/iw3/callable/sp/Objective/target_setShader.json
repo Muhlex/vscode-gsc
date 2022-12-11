@@ -1,0 +1,27 @@
+{
+	"usage": "target_setShader(<target entity>, <material>)",
+	"description": [
+		"Changes the material of a target. The target must have already been created with target_set."
+	],
+	"params": [
+		{
+			"name": "target entity",
+			"type": "Entity",
+			"description": [
+				"The entity that is the target."
+			],
+			"optional": false
+		},
+		{
+			"name": "material",
+			"type": "string",
+			"description": [
+				"The shader for the quad drawn over the target."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"target_setShader(enemyChopper, \"locked_on_shader\");"
+	]
+}

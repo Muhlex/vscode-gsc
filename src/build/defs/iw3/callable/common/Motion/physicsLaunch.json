@@ -1,0 +1,27 @@
+{
+	"usage": "<entity> physicsLaunch(<contactPoint>, <initialForce>)",
+	"description": [
+		"Permanently turn this entity into a physics object with an initial force vector at the specified point."
+	],
+	"params": [
+		{
+			"name": "contactPoint",
+			"type": "Vector3",
+			"description": [
+				"The point to apply the initial force."
+			],
+			"optional": false
+		},
+		{
+			"name": "initialForce",
+			"type": "Vector3",
+			"description": [
+				"The force vector to apply."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"dummy physicsLaunch(contactPoint, initialForce);"
+	]
+}

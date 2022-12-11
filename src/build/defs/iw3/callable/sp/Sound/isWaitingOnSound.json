@@ -1,0 +1,12 @@
+{
+	"usage": "<entity> isWaitingOnSound()",
+	"description": [
+		"Checks if this entity is waiting on a sound notify."
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (car isWaitingOnSound()) {\n  // Code\n}"
+	]
+}

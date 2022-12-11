@@ -1,0 +1,22 @@
+{
+	"usage": "getDvarFloat(<dvar>)",
+	"description": [
+		"Gets the value of a dvar, as a floating point number."
+	],
+	"params": [
+		{
+			"name": "dvar",
+			"type": "string",
+			"description": [
+				"The dvar name."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"oldDelay = getDvarFloat(\"effect_delay\");"
+	]
+}

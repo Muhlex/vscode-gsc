@@ -1,0 +1,13 @@
+{
+	"usage": "exec(<command>)",
+	"description": ["Executes a command on the server."],
+	"params": [
+		{
+			"name": "command",
+			"type": "string",
+			"description": ["Command to execute."],
+			"optional": false
+		}
+	],
+	"example": ["exec(\"fast_restart\");"]
+}

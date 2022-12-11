@@ -1,0 +1,27 @@
+{
+	"usage": "setTeamScore(<team>, <score>)",
+	"description": [
+		"Set a team's score."
+	],
+	"params": [
+		{
+			"name": "team",
+			"type": "string",
+			"description": [
+				"The team, either \"axis\" or \"allies\"."
+			],
+			"optional": false
+		},
+		{
+			"name": "score",
+			"type": "int",
+			"description": [
+				"The new team score."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"setTeamScore(\"allies\", 100);"
+	]
+}

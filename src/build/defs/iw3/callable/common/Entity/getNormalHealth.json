@@ -1,0 +1,12 @@
+{
+	"usage": "<entity> getNormalHealth()",
+	"description": [
+		"Gets the normal health of this entity."
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"health = entity getNormalHealth();"
+	]
+}

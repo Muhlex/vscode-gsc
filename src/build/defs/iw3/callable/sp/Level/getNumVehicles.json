@@ -1,0 +1,12 @@
+{
+	"usage": "getNorthYaw()",
+	"description": [
+		"Gets the number of vehicle entities in the level."
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"vehicleCount = getNumVehicles();"
+	]
+}

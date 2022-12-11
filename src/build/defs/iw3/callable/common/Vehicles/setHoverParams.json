@@ -1,0 +1,35 @@
+{
+	"usage": "<entity> setHoverParams(<radius>, <speed>, <accel>)",
+	"description": [
+		"Set the hovering parameters."
+	],
+	"params": [
+		{
+			"name": "radius",
+			"type": "float",
+			"description": [
+				"The hovering range."
+			],
+			"optional": false
+		},
+		{
+			"name": "speed",
+			"type": "float",
+			"description": [
+				"Speed to hover at (MPH)."
+			],
+			"optional": true
+		},
+		{
+			"name": "accel",
+			"type": "float",
+			"description": [
+				"Acceleration to hover at (MPH/s)."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"self setHoverParams(50, 1, 0.5);"
+	]
+}

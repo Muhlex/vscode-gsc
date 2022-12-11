@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setCanDamage(<can damage>)",
+	"description": [
+		"Set the candamage flag for this entity - this means that it can respond to notifies from bullets and grenade hits."
+	],
+	"params": [
+		{
+			"name": "can damage",
+			"type": "bool",
+			"description": [
+				"The can damage flag."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self setCanDamage(true);"
+	]
+}

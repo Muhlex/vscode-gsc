@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setPlayerSpread(<spread>)",
+	"description": [
+		"Sets the spread of this turret when used by the player."
+	],
+	"params": [
+		{
+			"name": "spread",
+			"type": "float",
+			"description": [
+				"The spread of the turret in degrees."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"roofMg42 setPlayerSpread(0.2);"
+	]
+}

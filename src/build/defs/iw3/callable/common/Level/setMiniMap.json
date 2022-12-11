@@ -1,0 +1,51 @@
+{
+	"usage": "setMiniMap(<material>, <upper-left x>, <upper-left y>, <lower-right x>, <lower-right y>)",
+	"description": [
+		"Sets the info for the satelite map on the compass."
+	],
+	"params": [
+		{
+			"name": "material",
+			"type": "string",
+			"description": [
+				"The name of the satelite map material."
+			],
+			"optional": false
+		},
+		{
+			"name": "upper-left x",
+			"type": "int",
+			"description": [
+				"X-coordinate of the world location of the upper-left corner of the material."
+			],
+			"optional": false
+		},
+		{
+			"name": "upper-left y",
+			"type": "int",
+			"description": [
+				"Y-coordinate of the world location of the upper-left corner of the material."
+			],
+			"optional": false
+		},
+		{
+			"name": "lower-right x",
+			"type": "int",
+			"description": [
+				"X-coordinate of the world location of the lower-right corner of the material."
+			],
+			"optional": false
+		},
+		{
+			"name": "lower-right y",
+			"type": "int",
+			"description": [
+				"Y-coordinate of the world location of the lower-right corner of the material."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"setMiniMap(\"compass_map_default\", 12672, 5824, -4224, -11072);"
+	]
+}

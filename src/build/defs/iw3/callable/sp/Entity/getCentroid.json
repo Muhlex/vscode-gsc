@@ -1,0 +1,12 @@
+{
+	"usage": "<entity> getCentroid()",
+	"description": [
+		"Gets the centroid of an entity."
+	],
+	"return": {
+		"type": "Vector3"
+	},
+	"example": [
+		"centroid = self getCentroid();"
+	]
+}

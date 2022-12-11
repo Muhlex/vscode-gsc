@@ -1,0 +1,22 @@
+{
+	"usage": "cos(<angle>)",
+	"description": [
+		"Returns the cosine of an angle."
+	],
+	"params": [
+		{
+			"name": "angle",
+			"type": "float",
+			"description": [
+				"An angle in degrees."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "float"
+	},
+	"example": [
+		"frac = cos(degrees);"
+	]
+}

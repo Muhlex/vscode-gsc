@@ -1,0 +1,59 @@
+{
+	"usage": "amplify(<origin>, <min_range>, <max_range>, <min_volume>, <max_volume>, <falloff>)",
+	"description": [
+		"Amplifies the sound around the origin."
+	],
+	"params": [
+		{
+			"name": "origin",
+			"type": "Vector3",
+			"description": [
+				"The location around which to amplify sound."
+			],
+			"optional": false
+		},
+		{
+			"name": "min_range",
+			"type": "float",
+			"description": [
+				"The minimum distance to begin applying falloff."
+			],
+			"optional": false
+		},
+		{
+			"name": "max_range",
+			"type": "float",
+			"description": [
+				"The maximum distance of amplification"
+			],
+			"optional": false
+		},
+		{
+			"name": "min_volume",
+			"type": "float",
+			"description": [
+				"The amount of amplification at max_range."
+			],
+			"optional": false
+		},
+		{
+			"name": "max_volume",
+			"type": "float",
+			"description": [
+				"The amount of amplification with in min_range."
+			],
+			"optional": false
+		},
+		{
+			"name": "falloff",
+			"type": "float",
+			"description": [
+				"The rate at which amplification falls off (0 means no fall off)."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"amplify(org, 5, 50, 0, 1, 1.2);"
+	]
+}

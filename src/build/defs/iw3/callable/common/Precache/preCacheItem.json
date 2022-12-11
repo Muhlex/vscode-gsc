@@ -1,0 +1,19 @@
+{
+	"usage": "precacheHeadIcon(<name>)",
+	"description": [
+		"Precaches the given item. It must be called before any wait statements in the level script."
+	],
+	"params": [
+		{
+			"name": "name",
+			"type": "string",
+			"description": [
+				"Name of the item to precache."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"preCacheItem(\"m40a3_mp\");"
+	]
+}

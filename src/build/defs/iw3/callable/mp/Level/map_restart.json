@@ -1,0 +1,19 @@
+{
+	"usage": "map_restart(<save persistent>)",
+	"description": [
+		"Restarts the map."
+	],
+	"params": [
+		{
+			"name": "save persistent",
+			"type": "bool",
+			"description": [
+				"If true, player info is retained."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"map_restart(true);"
+	]
+}

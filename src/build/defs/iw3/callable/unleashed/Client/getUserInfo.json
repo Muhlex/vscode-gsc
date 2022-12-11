@@ -1,0 +1,18 @@
+{
+	"usage": "<client> getUserInfo(<key>)",
+	"description": [
+		"Gets a userinfo value from a client (e.g. name). Can also be used with custom values set through setu."
+	],
+	"params": [
+		{
+			"name": "key",
+			"type": "string",
+			"description": ["Key name in the userinfo table."],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": ["name = self getUserInfo(\"name\");"]
+}

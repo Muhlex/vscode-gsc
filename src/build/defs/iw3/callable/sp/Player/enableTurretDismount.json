@@ -1,0 +1,9 @@
+{
+	"usage": "<player> enableTurretDismount()",
+	"description": [
+		"Player can dismount from turrets as normal."
+	],
+	"example": [
+		"level.player enableTurretDismount();"
+	]
+}

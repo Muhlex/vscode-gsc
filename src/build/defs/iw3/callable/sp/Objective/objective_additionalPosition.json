@@ -1,0 +1,35 @@
+{
+	"usage": "objective_additionalPosition(<objective index>, <position index>, <position>)",
+	"description": [
+		"Set an additional position for objectives with multiple positions."
+	],
+	"params": [
+		{
+			"name": "objective index",
+			"type": "int",
+			"description": [
+				"The ID of the objective to alter."
+			],
+			"optional": false
+		},
+		{
+			"name": "position index",
+			"type": "int",
+			"description": [
+				"The position of the objective."
+			],
+			"optional": false
+		},
+		{
+			"name": "position",
+			"type": "Vector3",
+			"description": [
+				"The position of the objective."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"objective_additionalPosition(level.mortarObjNumber, ent.index, nMortarCarrier.origin);"
+	]
+}

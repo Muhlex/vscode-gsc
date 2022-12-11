@@ -1,0 +1,9 @@
+{
+	"usage": "<entity> returnPlayerControl()",
+	"description": [
+		"After controlling a vehicle from script using something like setVehGoalPos(), if the vehicle is being driven by a player, you call this function to return control of the vehicle to the player."
+	],
+	"example": [
+		"cobra returnPlayerControl();"
+	]
+}

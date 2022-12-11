@@ -1,0 +1,12 @@
+{
+	"usage": "<entity> hasEQ()",
+	"description": [
+		"Checks if an entity has EQ enabled."
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (ai hasEQ()) {\n  // Code\n}"
+	]
+}

@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es2021",
+		"outDir": "out",
+		"lib": [
+			"es2021"
+		],
+		"rootDir": "src",
+		"sourceMap": true,
+		"strict": true,
+		"resolveJsonModule": true
+	},
+	"files": [
+		"./src/extension.ts"
+	],
+	"exclude": [
+		"node_modules",
+		".vscode-test"
+	]
+}

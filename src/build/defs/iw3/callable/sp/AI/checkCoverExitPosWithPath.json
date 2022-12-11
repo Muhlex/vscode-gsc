@@ -1,0 +1,22 @@
+{
+	"usage": "<actor> checkCoverExitPosWithPath(<exit pos>)",
+	"description": [
+		"Check if an exit pos is valid with regard to the AI path."
+	],
+	"params": [
+		{
+			"name": "exit pos",
+			"type": "Vector3",
+			"description": [
+				"The exit animation end position."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"soldier checkCoverExitPosWithPath(exitPos);"
+	]
+}

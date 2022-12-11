@@ -1,0 +1,27 @@
+{
+	"usage": "visionSetNaked(<visionset name>, <transition time>)",
+	"description": [
+		"Sets players' naked-eye vision. Optionally give a transition time from the current vision."
+	],
+	"params": [
+		{
+			"name": "visionset name",
+			"type": "string",
+			"description": [
+				"Vision to transition to."
+			],
+			"optional": false
+		},
+		{
+			"name": "transition time",
+			"type": "float",
+			"description": [
+				"How long, in seconds, to take transitioning to the new vision set if a transition is possible. Default is one second."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"visionSetNaked(\"armada\", 1.5);"
+	]
+}

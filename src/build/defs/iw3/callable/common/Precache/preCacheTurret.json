@@ -1,0 +1,19 @@
+{
+	"usage": "preCacheTurret(<name>)",
+	"description": [
+		"Precaches the weapon info structure for the turret. It must be called before any wait statements in the level script."
+	],
+	"params": [
+		{
+			"name": "name",
+			"type": "string",
+			"description": [
+				"Name of the turret to precache."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"preCacheTurret(\"mg42_tank_tiger\");"
+	]
+}

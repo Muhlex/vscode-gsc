@@ -1,0 +1,12 @@
+{
+	"usage": "<entity> getLightFovOuter()",
+	"description": [
+		"Gets the current outer FOV of a spot light."
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"radius = self getLightFovOuter();"
+	]
+}

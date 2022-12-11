@@ -1,0 +1,27 @@
+{
+	"usage": "<player> setEqLerp(<eqLerp>, <eqIndex>)",
+	"description": [
+		"Set the blend amount for the specified eqIndex, for eqIndex 0 if none is specified. Automatically sets the blend amount of the other eqIndex to 1-eqLerp."
+	],
+	"params": [
+		{
+			"name": "eqLerp",
+			"type": "float",
+			"description": [
+				"Float value from 0 to 1, percentage of specified eqIndex, 0 if none specified."
+			],
+			"optional": false
+		},
+		{
+			"name": "eqIndex",
+			"type": "int",
+			"description": [
+				"The EQ index to use (0 and 1)."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"level.player setEqLerp(0.25, 1); // Now using 25% of EQ 1 and 75% of EQ 0"
+	]
+}

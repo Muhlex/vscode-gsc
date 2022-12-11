@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setModel(<model>)",
+	"description": [
+		"Sets the model of the entity to the given model name."
+	],
+	"params": [
+		{
+			"name": "model",
+			"type": "string",
+			"description": [
+				"The name of the model to set this entity to."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"splinter setModel(\"wood_plank2\");"
+	]
+}

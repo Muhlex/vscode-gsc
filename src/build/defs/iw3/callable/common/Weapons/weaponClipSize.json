@@ -1,0 +1,22 @@
+{
+	"usage": "weaponClipSize(<weapon>)",
+	"description": [
+		"Get the weapon clip size for the given weapon."
+	],
+	"params": [
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"clipSize = weaponClipSize(\"mosin_nagant_sniper\");"
+	]
+}

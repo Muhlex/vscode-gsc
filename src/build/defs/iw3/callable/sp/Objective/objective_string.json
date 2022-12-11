@@ -1,0 +1,27 @@
+{
+	"usage": "objective_string(<objective number>, <string>...)",
+	"description": [
+		"Set the description string for an objective."
+	],
+	"params": [
+		{
+			"name": "objective number",
+			"type": "int",
+			"description": [
+				"The number of the objective to alter."
+			],
+			"optional": false
+		},
+		{
+			"name": "string",
+			"type": "string",
+			"description": [
+				"One or more (localised) objective strings."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"objective_string(index, &\"SCRIPT_OBJ_DESTROYFLAKPANZERS\", level.flaksRemaining);"
+	]
+}

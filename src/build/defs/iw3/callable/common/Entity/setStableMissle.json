@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setStableMissle(<flag>)",
+	"description": [
+		"The entity will shoot missles that do not destabilize. Only applicable to vehicles, players and AI."
+	],
+	"params": [
+		{
+			"name": "flag",
+			"type": "bool",
+			"description": [
+				"True if the entity shoots stables missles."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self setStableMissle(true);"
+	]
+}

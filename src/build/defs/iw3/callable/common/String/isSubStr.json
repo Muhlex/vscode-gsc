@@ -1,0 +1,30 @@
+{
+	"usage": "isSubStr(<string>, <substring>)",
+	"description": [
+		"Returns true/false if substring is a substring of string. Case sensitive."
+	],
+	"params": [
+		{
+			"name": "string",
+			"type": "string",
+			"description": [
+				"String to check for a substring."
+			],
+			"optional": false
+		},
+		{
+			"name": "substring",
+			"type": "string",
+			"description": [
+				"Substring to check for."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (isSubStr(self.classname, \"axis\") || isSubStr(self.classname, \"enemy\")) {\n  // Code\n}"
+	]
+}

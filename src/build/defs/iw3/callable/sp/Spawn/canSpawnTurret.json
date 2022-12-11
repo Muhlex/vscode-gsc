@@ -1,0 +1,12 @@
+{
+	"usage": "canSpawnTurret()",
+	"description": [
+		"Returns whether a new turret can be spawned."
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (canSpawnTurret()) {\n  // Code\n}"
+	]
+}

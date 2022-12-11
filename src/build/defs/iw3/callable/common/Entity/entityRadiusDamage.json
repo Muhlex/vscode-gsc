@@ -1,0 +1,51 @@
+{
+	"usage": "<entity> entityRadiusDamage(<origin>, <range>, <max damage>, <min damage>, <attacker>)",
+	"description": [
+		"Does damage to all damageable objects within a given radius. The amount of damage is linear according to how close the object is to the radius. See also damage/damageRadius if you don't wish to specify an entity the damage is coming from."
+	],
+	"params": [
+		{
+			"name": "origin",
+			"type": "Vector3",
+			"description": [
+				"The centre of the damage."
+			],
+			"optional": false
+		},
+		{
+			"name": "range",
+			"type": "int",
+			"description": [
+				"The radius of the damage done."
+			],
+			"optional": false
+		},
+		{
+			"name": "max damage",
+			"type": "int",
+			"description": [
+				"The maximum damage done. This will be done to objects close to the origin."
+			],
+			"optional": false
+		},
+		{
+			"name": "min damage",
+			"type": "int",
+			"description": [
+				"The minimum damage done. This will be done to objects at the edge of the damage sphere."
+			],
+			"optional": false
+		},
+		{
+			"name": "attacker",
+			"type": "Entity",
+			"description": [
+				"The attacker. Defaults to world. Can be different from the entity this is called on."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"self entityRadiusDamage(level.player.origin, 500, max, min, attacker);"
+	]
+}

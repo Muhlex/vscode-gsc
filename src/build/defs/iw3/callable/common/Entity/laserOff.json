@@ -1,0 +1,9 @@
+{
+	"usage": "<entity> laserOff()",
+	"description": [
+		"Turns off an entity's laser sight."
+	],
+	"example": [
+		"self laserOff();"
+	]
+}

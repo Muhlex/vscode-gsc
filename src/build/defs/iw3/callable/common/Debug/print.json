@@ -1,0 +1,19 @@
+{
+	"usage": "print(<text>)",
+	"description": [
+		"Development only - write to the console."
+	],
+	"params": [
+		{
+			"name": "text",
+			"type": "string",
+			"description": [
+				"Text to be written."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"print(\"Stuff and things!\");"
+	]
+}

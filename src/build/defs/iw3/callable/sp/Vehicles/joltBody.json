@@ -1,0 +1,43 @@
+{
+	"usage": "<entity> getWheelSurface(<jolt position>, <intensity>, <speedFrac>, <deceleration>)",
+	"description": [
+		"Jolts the vehicle."
+	],
+	"params": [
+		{
+			"name": "jolt position",
+			"type": "Vector3",
+			"description": [
+				"The position of the jolt."
+			],
+			"optional": false
+		},
+		{
+			"name": "intensity",
+			"type": "float",
+			"description": [
+				"The intensity of the jolt."
+			],
+			"optional": false
+		},
+		{
+			"name": "speedFrac",
+			"type": "float",
+			"description": [
+				"A speed fraction to apply to the jolt. Must be between 0 and 1."
+			],
+			"optional": true
+		},
+		{
+			"name": "deceleration",
+			"type": "float",
+			"description": [
+				"The deceleration to apply to this vehicle in midles per hour per second."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"self joltBody(self.origin + (0, 0, 64), 0.5);"
+	]
+}

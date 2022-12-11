@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setEngineVolume(<scale>)",
+	"description": [
+		"Scales the volume of engine sound for this vehicle. This is useful for ramping up sounds of newly spawned vehicles."
+	],
+	"params": [
+		{
+			"name": "scale",
+			"type": "float",
+			"description": [
+				"Scales the total volume of the vehicle."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"helicopter setEngineVolume(0.5);"
+	]
+}

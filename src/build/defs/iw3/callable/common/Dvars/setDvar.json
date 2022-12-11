@@ -1,0 +1,27 @@
+{
+	"usage": "setDvar(<dvar>, <value>)",
+	"description": [
+		"Sets the value of a script dvar. Can not set code dvars. Script dvars are not preserved in savegames."
+	],
+	"params": [
+		{
+			"name": "dvar",
+			"type": "string",
+			"description": [
+				"The dvar name."
+			],
+			"optional": false
+		},
+		{
+			"name": "value",
+			"type": "string",
+			"description": [
+				"The dvar value."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"setDvar(\"r_eyesAdjust\", \"1\");"
+	]
+}

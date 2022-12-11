@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setTurretTeam(<team>)",
+	"description": [
+		"Sets the team of a turret."
+	],
+	"params": [
+		{
+			"name": "team",
+			"type": "string",
+			"description": [
+				"The turret's team. Either \"axis\" or \"allies\"."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"roofMg42 setTurretTeam(\"axis\");"
+	]
+}

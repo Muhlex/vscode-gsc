@@ -1,0 +1,19 @@
+{
+	"usage": "iPrintLnBold(<text>)",
+	"description": [
+		"Write bold line to the screen."
+	],
+	"params": [
+		{
+			"name": "text",
+			"type": "string",
+			"description": [
+				"Text to be written."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"iPrintLnBold(\"Mitchell!\");"
+	]
+}

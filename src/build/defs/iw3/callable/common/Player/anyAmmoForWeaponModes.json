@@ -1,0 +1,22 @@
+{
+	"usage": "<player> anyAmmoForWeaponModes(<weapon>)",
+	"description": [
+		"Returns true if the player has any ammo available for the weapon or any of its alt-modes (grenade launcher, etc)."
+	],
+	"params": [
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name for this weapon."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (level.player anyAmmoForWeaponModes(\"m4_grenadier\")) {\n  // Code\n}"
+	]
+}

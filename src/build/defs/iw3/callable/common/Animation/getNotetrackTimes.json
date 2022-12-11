@@ -1,0 +1,30 @@
+{
+	"usage": "getNotetrackTimes(<animation>, <note track>)",
+	"description": [
+		"Gets an array of the times during an animation that the given notetrack occurs. The times returned are fractional (0 to 1)."
+	],
+	"params": [
+		{
+			"name": "animation",
+			"type": "animation",
+			"description": [
+				"Reference to an animation."
+			],
+			"optional": false
+		},
+		{
+			"name": "note track",
+			"type": "string",
+			"description": [
+				"A constant string with the name of the note track"
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Array"
+	},
+	"example": [
+		"exitAlignTimes = getNotetrackTimes(exitAnim, \"exit_align\");"
+	]
+}

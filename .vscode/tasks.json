@@ -7,8 +7,7 @@
 			"problemMatcher": "$tsc",
 			"label": "npm: build",
 			"presentation": {
-				"revealProblems": "onProblem",
-				"close": true
+				"close": false
 			},
 			"group": "build"
 		},
@@ -21,7 +20,8 @@
 			"presentation": {
 				"reveal": "never"
 			},
-			"group": "build"
+			"group": "build",
+			"dependsOn": "npm: build"
 		}
 	]
 }

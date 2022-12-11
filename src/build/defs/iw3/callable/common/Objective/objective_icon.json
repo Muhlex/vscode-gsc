@@ -1,0 +1,27 @@
+{
+	"usage": "objective_icon(<objective number>, <icon>)",
+	"description": [
+		"Set the compass icon for an objective."
+	],
+	"params": [
+		{
+			"name": "objective number",
+			"type": "int",
+			"description": [
+				"The number of the objective to alter."
+			],
+			"optional": false
+		},
+		{
+			"name": "icon",
+			"type": "string",
+			"description": [
+				"A compass icon."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"objective_icon(0, game[\"radio_none\"]);"
+	]
+}

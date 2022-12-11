@@ -1,0 +1,24 @@
+{
+	"usage": "FS_fOpen(<filename>, <mode>)",
+	"description": [
+		"Opens a file inside the current FS_gameDir. Mode is selectable. It can be \"read\", \"write\" or \"append\". On success the file handle will be returned as an integer."
+	],
+	"params": [
+		{
+			"name": "filename",
+			"type": "string",
+			"description": ["Filename inside FS_gameDir."],
+			"optional": false
+		},
+		{
+			"name": "mode",
+			"type": "string",
+			"description": ["Mode to open with with (read, write, append)."],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": ["file = FS_fOpen(\"log.txt\", \"write\");"]
+}

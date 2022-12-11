@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setVehicleTeam(<team>)",
+	"description": [
+		"Set which team a vehicle is on."
+	],
+	"params": [
+		{
+			"name": "team",
+			"type": "string",
+			"description": [
+				"The team name. Must be either \"allies\", \"axis\", or \"none\"."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self setVehicleTeam(\"allies\");"
+	]
+}

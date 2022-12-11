@@ -1,0 +1,22 @@
+{
+	"usage": "<entity> stalingradSpawn(<targetname>)",
+	"description": [
+		"Force spawns an actor from an actor spawner, reguardless of whether the spawn point is in sight or if the spawn will cause a telefrag."
+	],
+	"params": [
+		{
+			"name": "targetname",
+			"type": "string",
+			"description": [
+				"Sets the targetname of the spawned entity."
+			],
+			"optional": true
+		}
+	],
+	"return": {
+		"type": "Entity"
+	},
+	"example": [
+		"spawned = driver stalingradSpawn(name);"
+	]
+}

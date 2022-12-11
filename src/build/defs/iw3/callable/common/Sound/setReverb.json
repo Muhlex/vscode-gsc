@@ -1,0 +1,51 @@
+{
+	"usage": "<player> setReverb(<priority>, <room type>, <dry level>, <wet level>, <fade time>)",
+	"description": [
+		"Set the sound reverberation for the player."
+	],
+	"params": [
+		{
+			"name": "priority",
+			"type": "string",
+			"description": [
+				"Valid priorities are \"snd_enveffectsprio_level\", or \"snd_enveffectsprio_shellshock\"."
+			],
+			"optional": false
+		},
+		{
+			"name": "room type",
+			"type": "string",
+			"description": [
+				"String describing the type of reverb."
+			],
+			"optional": false
+		},
+		{
+			"name": "dry level",
+			"type": "float",
+			"description": [
+				"A float rom 0 (no source sound) to 1 (full source sound)."
+			],
+			"optional": true
+		},
+		{
+			"name": "wet level",
+			"type": "float",
+			"description": [
+				"A float from 0 (no effect) to 1 (full effect)."
+			],
+			"optional": true
+		},
+		{
+			"name": "fade time",
+			"type": "float",
+			"description": [
+				"Fade time in seconds. Modifies dry level and wet level."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"level.player setReverb(\"snd_enveffectsprio_level\", \"stoneroom\", 1, .7, 3);"
+	]
+}

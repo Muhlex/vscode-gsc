@@ -1,0 +1,22 @@
+{
+	"usage": "<entity> showToPlayer(<player>)",
+	"description": ["Show the entity to a given client."],
+	"receiver": {
+		"name": "entity",
+		"type": "Entity",
+		"description": ["Entity to make visible."]
+	},
+	"params": [
+		{
+			"name": "player",
+			"type": "Player",
+			"description": [
+				"The player to show the entity to."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self showToPlayer(player);"
+	]
+}

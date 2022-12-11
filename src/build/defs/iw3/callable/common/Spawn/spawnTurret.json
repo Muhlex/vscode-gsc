@@ -1,0 +1,38 @@
+{
+	"usage": "spawnTurret(<classname>, <origin>, <weapon>)",
+	"description": [
+		"Spawns a new turret, eg MG42 or flag gun and returns a reference to it."
+	],
+	"params": [
+		{
+			"name": "classname",
+			"type": "string",
+			"description": [
+				"The classname of the entity."
+			],
+			"optional": false
+		},
+		{
+			"name": "origin",
+			"type": "Vector3",
+			"description": [
+				"The position of the vehicle."
+			],
+			"optional": false
+		},
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The name of the weapon to use for this turret."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Entity"
+	},
+	"example": [
+		"turret = spawnTurret(\"misc_turret\", (0, 0, 0), \"heli_minigun_noai\");"
+	]
+}

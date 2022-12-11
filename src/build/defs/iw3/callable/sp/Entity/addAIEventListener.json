@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> addAIEventListener(<event>)",
+	"description": [
+		"Registers an entity to listen to an AI event. Call waittill(<event>) to get the actual notification."
+	],
+	"params": [
+		{
+			"name": "event",
+			"type": "string",
+			"description": [
+				"An AI event to listen to."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self addAIEventListener(\"bulletwhizby\");"
+	]
+}

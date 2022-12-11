@@ -1,0 +1,35 @@
+{
+	"usage": "playFXOnTag(<effect id >, <entity>, <tag name>)",
+	"description": [
+		"Play this effect on the entity and tag."
+	],
+	"params": [
+		{
+			"name": "effect id",
+			"type": "int",
+			"description": [
+				"The effect id returned by loadFX()."
+			],
+			"optional": false
+		},
+		{
+			"name": "entity",
+			"type": "entity",
+			"description": [
+				"The entity to attach the effect to."
+			],
+			"optional": false
+		},
+		{
+			"name": "tag name",
+			"type": "string",
+			"description": [
+				"Tag name to attach the effect to."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"playFXOnTag(id, ent, tag);"
+	]
+}

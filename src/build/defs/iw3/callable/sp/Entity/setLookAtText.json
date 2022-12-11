@@ -1,0 +1,27 @@
+{
+	"usage": "<entity> setLookAtText(<line 1>, <line 2>)",
+	"description": [
+		"Set look at text for entity."
+	],
+	"params": [
+		{
+			"name": "line 1",
+			"type": "string",
+			"description": [
+				"The unlocalized look at text for this entity. Line is green and usually a name."
+			],
+			"optional": false
+		},
+		{
+			"name": "line 2",
+			"type": "string",
+			"description": [
+				"The localized look at text for this entity. Line is white and usually a type."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"self setLookAtText(self.name, &\"\");"
+	]
+}

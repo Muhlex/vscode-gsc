@@ -1,0 +1,22 @@
+{
+	"usage": "getDebugDvar(<dvar>)",
+	"description": [
+		"Gets the value of a debug dvar, as a string."
+	],
+	"params": [
+		{
+			"name": "dvar",
+			"type": "string",
+			"description": [
+				"The dvar name."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": [
+		"if (getDebugDvar(\"debug\") != \"1\")"
+	]
+}

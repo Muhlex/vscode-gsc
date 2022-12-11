@@ -1,0 +1,27 @@
+{
+	"usage": "missionSuccess(<mapname>, <persistent>)",
+	"description": [
+		"Transitions to a new level via a mission success page."
+	],
+	"params": [
+		{
+			"name": "mapname",
+			"type": "string",
+			"description": [
+				"The name of the map to change to."
+			],
+			"optional": false
+		},
+		{
+			"name": "persistent",
+			"type": "bool",
+			"description": [
+				"Flag allowing player to keep their inventory through the transition."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"missionSuccess(\"tankdrivetown\", false);"
+	]
+}

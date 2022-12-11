@@ -1,0 +1,22 @@
+{
+	"usage": "getNumParts(<xmodel name>)",
+	"description": [
+		"Gets the number of bones in the xmodel."
+	],
+	"params": [
+		{
+			"name": "xmodel name",
+			"type": "string",
+			"description": [
+				"Name of the xmodel."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"parts = getNumParts(\"viewhands_player_blackkit\");"
+	]
+}

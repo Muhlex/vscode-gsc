@@ -1,0 +1,19 @@
+{
+	"usage": "preCacheShellShock(<name>)",
+	"description": [
+		"Precaches the given shell shock effect. It must be called before any wait statements in the level script."
+	],
+	"params": [
+		{
+			"name": "name",
+			"type": "string",
+			"description": [
+				"Name of the shell shock effect to precache."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"preCacheShellShock(\"ac130\");"
+	]
+}

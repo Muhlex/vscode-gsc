@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setAcceleration(<acceleration>)",
+	"description": [
+		"Sets the acceleration for this vehicle."
+	],
+	"params": [
+		{
+			"name": "acceleration",
+			"type": "float",
+			"description": [
+				"The acceleration of the vehicle in miles per hour per second."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self setAcceleration(15);"
+	]
+}

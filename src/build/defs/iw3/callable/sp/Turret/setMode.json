@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setMode(<mode>)",
+	"description": [
+		"Set the mode of a turret."
+	],
+	"params": [
+		{
+			"name": "mode",
+			"type": "string",
+			"description": [
+				"The turret mode. Possible modes are \"auto_ai\", \"manual\", \"manual_ai\" and \"auto_nonai\"."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"mg42 setMode(\"auto_ai\");"
+	]
+}

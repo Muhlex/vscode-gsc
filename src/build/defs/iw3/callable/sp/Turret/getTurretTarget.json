@@ -1,0 +1,9 @@
+{
+	"usage": "<entity> getTurretTarget()",
+	"description": [
+		"Gets the current target of this turret."
+	],
+	"example": [
+		"target = roofMg42 getTurretTarget();"
+	]
+}

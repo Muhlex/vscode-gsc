@@ -1,0 +1,19 @@
+{
+	"usage": "setCullDist(<cull distance>)",
+	"description": [
+		"Set the cull distance for a level."
+	],
+	"params": [
+		{
+			"name": "cull distance",
+			"type": "int",
+			"description": [
+				"The cull distance."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"setCullDist(7200);"
+	]
+}

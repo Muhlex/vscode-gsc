@@ -1,0 +1,22 @@
+{
+	"usage": "isSentient(<entity>)",
+	"description": [
+		"Checks whether this entity is a sentient, that is either an AI character or the player."
+	],
+	"params": [
+		{
+			"name": "entity",
+			"type": "Entity",
+			"description": [
+				"An entity that may be a sentient character."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (isSentient(vehicle.riders[j])) {\n  // Code\n}"
+	]
+}

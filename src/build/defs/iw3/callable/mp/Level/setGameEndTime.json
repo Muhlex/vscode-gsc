@@ -1,0 +1,19 @@
+{
+	"usage": "setGameEndTime(<time>)",
+	"description": [
+		"Sets the time the current match will end."
+	],
+	"params": [
+		{
+			"name": "time",
+			"type": "int",
+			"description": [
+				"Game end time."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"setGameEndTime(getTime() + 100000);"
+	]
+}

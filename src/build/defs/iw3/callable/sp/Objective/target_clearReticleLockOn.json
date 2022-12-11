@@ -1,0 +1,9 @@
+{
+	"usage": "target_clearReticleLockOn()",
+	"description": [
+		"Cancels any lock-on sequence on the HUD."
+	],
+	"example": [
+		"target_clearReticleLockOn();"
+	]
+}

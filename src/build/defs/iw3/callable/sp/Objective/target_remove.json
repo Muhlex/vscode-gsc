@@ -1,0 +1,19 @@
+{
+	"usage": "target_remove(<target entity>)",
+	"description": [
+		"Removes a target."
+	],
+	"params": [
+		{
+			"name": "target entity",
+			"type": "Entity",
+			"description": [
+				"The entity that is the target."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"target_remove(enemyChopper);"
+	]
+}

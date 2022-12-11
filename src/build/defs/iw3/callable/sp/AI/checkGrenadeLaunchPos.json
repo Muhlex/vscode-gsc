@@ -1,0 +1,30 @@
+{
+	"usage": "<actor> checkGrenadeLaunchPos(<barrel offset>, <targetpos>)",
+	"description": [
+		"Checks whether the actor can launch a grenade at his target. If he can't then result will be undefined, otherwise the result is the resultant velocity vector."
+	],
+	"params": [
+		{
+			"name": "barrel offset",
+			"type": "Vector3",
+			"description": [
+				"The estimated offset of the grenade launcher barrel."
+			],
+			"optional": false
+		},
+		{
+			"name": "targetpos",
+			"type": "Vector3",
+			"description": [
+				"The target position."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Vector3"
+	},
+	"example": [
+		"throwVel = self checkGrenadeLaunchPos(offset, targetPos);"
+	]
+}

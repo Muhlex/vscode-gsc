@@ -1,0 +1,22 @@
+{
+	"usage": "getKeyBinding(<key binding>)",
+	"description": [
+		"Gets a key binding. Applicable values are: \"+scores\", \"+speed\", \"+forward\", \"+back\", \"+moveleft\", \"+moveright\", \"+moveup\", \"+movedown\", \"+left\", \"+right\", \"+strafe\", \"+lookup\", \"+lookdown\", \"+mlook\", \"centerview\", \"toggleads\", \"+melee\", \"+prone\", \"lowerstance\", \"raisestance\", \"togglecrouch\", \"toggleprone\", \"goprone\", \"gocrouch\", \"+gostand\", \"weaponslot primary\", \"weaponslot primaryb\", \"+attack\", \"weapprev\", \"weapnext\", \"+activate\", \"+reload\", \"+leanleft\", \"+leanright\", \"screenshot\", \"screenshotJPEG\", ..."
+	],
+	"params": [
+		{
+			"name": "key binding",
+			"type": "string",
+			"description": [
+				"A key binding name as a string."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": [
+		"firekey = getKeyBinding(\"+attack\");"
+	]
+}

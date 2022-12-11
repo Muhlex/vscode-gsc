@@ -1,0 +1,16 @@
+{
+	"usage": "<client> setUid(<uid>)",
+	"description": ["Sets the client's UID."],
+	"params": [
+		{
+			"name": "uid",
+			"type": "int",
+			"description": ["New UID (0-9999999)."],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": ["self setUid(123);"]
+}

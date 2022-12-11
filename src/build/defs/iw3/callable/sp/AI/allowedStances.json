@@ -1,0 +1,19 @@
+{
+	"usage": "<actor> allowedStances(<stance> ...);",
+	"description": [
+		"Sets the list of the actor's allowed stances."
+	],
+	"params": [
+		{
+			"name": "stance",
+			"type": "string",
+			"description": [
+				"A stance, can be \"prone\", \"crouch\", \"stand\". Any number of stances may be added."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self allowedStances(\"crouch\", \"prone\");"
+	]
+}

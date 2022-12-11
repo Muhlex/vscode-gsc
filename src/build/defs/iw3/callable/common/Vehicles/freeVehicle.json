@@ -1,0 +1,9 @@
+{
+	"usage": "<entity> freeVehicle()",
+	"description": [
+		"Free this vehicle instance."
+	],
+	"example": [
+		"self freeVehicle();"
+	]
+}

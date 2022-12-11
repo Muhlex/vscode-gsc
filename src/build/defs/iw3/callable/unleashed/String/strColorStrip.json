@@ -1,0 +1,18 @@
+{
+	"usage": "strColorStrip(<string>)",
+	"description": [
+		"Directly cleans the given string from all color codes. The original string will be modified! If it is required that the original string remains, you need to create a copy of the string using copyStr() first."
+	],
+	"params": [
+		{
+			"name": "string",
+			"type": "string",
+			"description": ["Variable holding the string to be cleaned."],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": ["strColorStrip(self.name);"]
+}

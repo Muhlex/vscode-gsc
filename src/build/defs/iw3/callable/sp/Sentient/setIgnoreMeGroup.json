@@ -1,0 +1,27 @@
+{
+	"usage": "setIgnoreMeGroup(<ignored group>, <ignoring group>)",
+	"description": [
+		"Make first group ignored by second group."
+	],
+	"params": [
+		{
+			"name": "ignored group",
+			"type": "string",
+			"description": [
+				"Ignored group."
+			],
+			"optional": false
+		},
+		{
+			"name": "ignoring group",
+			"type": "string",
+			"description": [
+				"Ignoring group."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"setIgnoreMeGroup(\"flanking_team\", \"axis\");"
+	]
+}

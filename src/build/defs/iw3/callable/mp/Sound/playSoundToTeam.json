@@ -1,0 +1,35 @@
+{
+	"usage": "<entity> playSoundToTeam(<alias>, <team>, <ignoreplayer>)",
+	"description": [
+		"Play the sound alias as if coming from the entity, as a master sound."
+	],
+	"params": [
+		{
+			"name": "alias",
+			"type": "string",
+			"description": [
+				"The sound alias to play."
+			],
+			"optional": false
+		},
+		{
+			"name": "team",
+			"type": "string",
+			"description": [
+				"The team that will be able to hear the sound. Must be either \"axis\" or \"allies\"."
+			],
+			"optional": false
+		},
+		{
+			"name": "ignoreplayer",
+			"type": "Entity",
+			"description": [
+				"If present, this player will not hear the sound."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"self playSoundToTeam(\"frag_out\", \"axis\", self);"
+	]
+}

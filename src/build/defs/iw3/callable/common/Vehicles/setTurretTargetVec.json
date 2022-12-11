@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setTurretTargetVec(<target position>)",
+	"description": [
+		"Set the target position for this vehicle turret."
+	],
+	"params": [
+		{
+			"name": "target position",
+			"type": "Vector3",
+			"description": [
+				"The position of the target."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"level.flak1 setTurretTargetVec(vec1);"
+	]
+}

@@ -1,0 +1,35 @@
+{
+	"usage": "musicPlay(<music>, <timescale>, <overrideCheat>)",
+	"description": [
+		"Play the given piece of music."
+	],
+	"params": [
+		{
+			"name": "music",
+			"type": "string",
+			"description": [
+				"The piece to play. Must be a valid sound alias."
+			],
+			"optional": false
+		},
+		{
+			"name": "timescale",
+			"type": "bool",
+			"description": [
+				"Whether this music is effected by timescale changes."
+			],
+			"optional": true
+		},
+		{
+			"name": "overrideCheat",
+			"type": "bool",
+			"description": [
+				"Certain player cheats can disable this function, set this true to force the issue."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"musicPlay(\"redsquare_dark\", false);"
+	]
+}

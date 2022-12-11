@@ -1,0 +1,30 @@
+{
+	"usage": "epochTimeToString(<epoch time>, <zone>, <format>)",
+	"description": ["Returns the current UNIX style time."],
+	"params": [
+		{
+			"name": "epoch time",
+			"type": "int",
+			"description": ["Time in seconds since 01/01/1970 UTC (as returned by getEpochTime)."],
+			"optional": false
+		},
+		{
+			"name": "zone",
+			"type": "int",
+			"description": ["Timezone to use. 0 = UTC, 1 = Local."],
+			"optional": false
+		},
+		{
+			"name": "format",
+			"type": "string",
+			"description": [
+				"Formatting string describing how to display the time. (see: <a href=\"http://www.cplusplus.com/reference/ctime/strftime/\">http://www.cplusplus.com/reference/ctime/strftime/</a>)"
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": ["iPrintLn(\"Current time: \" + epochTimeToString(getEpochTime(), 1, \"%H:%M:%S\"));"]
+}

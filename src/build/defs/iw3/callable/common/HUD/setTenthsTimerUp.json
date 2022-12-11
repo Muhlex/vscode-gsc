@@ -1,0 +1,19 @@
+{
+	"usage": "<hud> setTenthsTimerUp(<time>)",
+	"description": [
+		"Set a time HUD element to count up in tenths of a second."
+	],
+	"params": [
+		{
+			"name": "time",
+			"type": "float",
+			"description": [
+				"The new timer time."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self.kc_timer setTenthsTimerUp(self.archiveTime - delay);"
+	]
+}

@@ -1,0 +1,27 @@
+{
+	"usage": "setTeamRadar(<team>, <availability>)",
+	"description": [
+		"Sets whether a team has radar or not."
+	],
+	"params": [
+		{
+			"name": "team",
+			"type": "string",
+			"description": [
+				"The team, either \"axis\", \"allies\" or \"none\"."
+			],
+			"optional": false
+		},
+		{
+			"name": "availability",
+			"type": "bool",
+			"description": [
+				"Whether the team has radar. Defaults to false."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"setTeamRadar(\"allies\", true);"
+	]
+}

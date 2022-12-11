@@ -1,0 +1,12 @@
+{
+	"usage": "<player> fragButtonPressed()",
+	"description": [
+		"Check if the player is pressing the \"frag\" button."
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (self fragButtonPressed()) {\n  // Code\n}"
+	]
+}

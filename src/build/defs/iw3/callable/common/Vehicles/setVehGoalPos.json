@@ -1,0 +1,27 @@
+{
+	"usage": "<entity> setVehGoalPos(<goalpos> <stopAtGoal>)",
+	"description": [
+		"Set the target position for this vehicle."
+	],
+	"params": [
+		{
+			"name": "goalpos",
+			"type": "Vector3",
+			"description": [
+				"The goal position."
+			],
+			"optional": false
+		},
+		{
+			"name": "stopAtGoal",
+			"type": "bool",
+			"description": [
+				"Whether the vehicle should slow down to stop at the goal position."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"tank setVehGoalPos((0, 0, 0), true);"
+	]
+}

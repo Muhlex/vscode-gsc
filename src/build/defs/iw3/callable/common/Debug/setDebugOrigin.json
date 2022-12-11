@@ -1,0 +1,19 @@
+{
+	"usage": "setDebugOrigin(<origin>)",
+	"description": [
+		"Set the debugging origin for a debug camera."
+	],
+	"params": [
+		{
+			"name": "origin",
+			"type": "Vector3",
+			"description": [
+				"The debug player position."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"setDebugOrigin(camera.origin + (0,0,-60));"
+	]
+}

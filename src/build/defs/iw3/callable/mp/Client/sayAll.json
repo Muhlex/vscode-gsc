@@ -1,0 +1,19 @@
+{
+	"usage": "<player> sayAll(<message>)",
+	"description": [
+		"Write a client chat message from this client to everybody."
+	],
+	"params": [
+		{
+			"name": "message",
+			"type": "string",
+			"description": [
+				"A localizable message to send to all players."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self sayAll(saytext);"
+	]
+}

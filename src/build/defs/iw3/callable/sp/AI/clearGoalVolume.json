@@ -1,0 +1,9 @@
+{
+	"usage": "<actor> clearGoalVolume()",
+	"description": [
+		"Clears this actor's goal volume."
+	],
+	"example": [
+		"self clearGoalVolume()"
+	]
+}

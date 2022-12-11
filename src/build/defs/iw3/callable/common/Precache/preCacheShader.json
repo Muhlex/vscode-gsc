@@ -1,0 +1,19 @@
+{
+	"usage": "preCacheShader(<name>)",
+	"description": [
+		"Precaches the given shader. It must be called before any wait statements in the level script."
+	],
+	"params": [
+		{
+			"name": "name",
+			"type": "string",
+			"description": [
+				"Name of the material to precache."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"preCacheShader(\"artillery_firing\");"
+	]
+}

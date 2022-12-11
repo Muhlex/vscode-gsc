@@ -1,0 +1,9 @@
+{
+	"usage": "<player> showViewModel()",
+	"description": [
+		"Show the player's current view model."
+	],
+	"example": [
+		"level.player showViewModel();"
+	]
+}

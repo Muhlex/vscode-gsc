@@ -1,0 +1,43 @@
+{
+	"usage": "<entity> moveZ(<units>, <time>, <acceleration time>, <deceleration time>)",
+	"description": [
+		"Move this entity to a position on the Z-axis relative to its current position."
+	],
+	"params": [
+		{
+			"name": "units",
+			"type": "float",
+			"description": [
+				"The amount of units to move the entity by."
+			],
+			"optional": false
+		},
+		{
+			"name": "time",
+			"type": "float",
+			"description": [
+				"The time to move the entity in seconds."
+			],
+			"optional": false
+		},
+		{
+			"name": "acceleration time",
+			"type": "float",
+			"description": [
+				"The time spent accelerating."
+			],
+			"optional": true
+		},
+		{
+			"name": "deceleration time",
+			"type": "float",
+			"description": [
+				"The time spent decelerating."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"gate moveZ(320, 5, .5, .5);"
+	]
+}

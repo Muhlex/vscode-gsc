@@ -1,0 +1,35 @@
+{
+	"usage": "bulletTracer(<start>, <end>, <forceDraw>)",
+	"description": [
+		"Creates a bullet tracer from the start to end point."
+	],
+	"params": [
+		{
+			"name": "start",
+			"type": "Vector3",
+			"description": [
+				"The bullet starting point."
+			],
+			"optional": false
+		},
+		{
+			"name": "end",
+			"type": "Vector3",
+			"description": [
+				"The bullet ending point."
+			],
+			"optional": false
+		},
+		{
+			"name": "forceDraw",
+			"type": "bool",
+			"description": [
+				"Set to true to ignore \"cg_tracerChance\" setting and always draw the tracer."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"bulletTracer(self.origin, target.origin);"
+	]
+}

@@ -1,0 +1,22 @@
+{
+	"usage": "isGodMode(<entity>)",
+	"description": [
+		"Checks whether this entity is in god mode."
+	],
+	"params": [
+		{
+			"name": "entity",
+			"type": "Entity",
+			"description": [
+				"An entity to check for god mode."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (isGodMode(level.player)) {\n  // Code\n}"
+	]
+}

@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> clientReleaseTrigger(<trigger>)",
+	"description": [
+		"Release a single user trigger."
+	],
+	"params": [
+		{
+			"name": "trigger",
+			"type": "Entity",
+			"description": [
+				"A trigger entity."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"other clientReleaseTrigger(self);"
+	]
+}

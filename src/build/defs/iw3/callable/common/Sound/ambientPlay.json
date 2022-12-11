@@ -1,0 +1,27 @@
+{
+	"usage": "ambientPlay(<ambient>, <fadetime>)",
+	"description": [
+		"Play the given piece of ambient sound."
+	],
+	"params": [
+		{
+			"name": "ambient",
+			"type": "string",
+			"description": [
+				"Sound alias name. Must be a valid sound alias."
+			],
+			"optional": false
+		},
+		{
+			"name": "fadetime",
+			"type": "float",
+			"description": [
+				"Fade in time in seconds. If not used, the track will start immediately."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"ambientPlay(\"redsquare_dark\");"
+	]
+}

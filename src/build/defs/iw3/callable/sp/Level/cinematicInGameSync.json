@@ -1,0 +1,19 @@
+{
+	"usage": "cinematicInGameSync(<cinematic name>)",
+	"description": [
+		"Play the given cinematic, blocking until it starts."
+	],
+	"params": [
+		{
+			"name": "cinematic name",
+			"type": "string",
+			"description": [
+				"The cinematic name."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"cinematicInGameSync(\"cod_end\");"
+	]
+}

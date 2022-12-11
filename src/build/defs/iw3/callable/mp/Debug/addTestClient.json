@@ -1,0 +1,12 @@
+{
+	"usage": "addTestClient()",
+	"description": [
+		"Adds a test client to the map and returns a reference to that client."
+	],
+	"return": {
+		"type": "entity"
+	},
+	"example": [
+		"ent[i] = addTestClient();"
+	]
+}

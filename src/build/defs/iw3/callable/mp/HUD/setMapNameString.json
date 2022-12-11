@@ -1,0 +1,19 @@
+{
+	"usage": "<hud> setMapNameString(<map name>)",
+	"description": [
+		"Set the map name string."
+	],
+	"params": [
+		{
+			"name": "map name",
+			"type": "string",
+			"description": [
+				"A string containing the map name."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"hud setMapNameString(\"Crash\");"
+	]
+}

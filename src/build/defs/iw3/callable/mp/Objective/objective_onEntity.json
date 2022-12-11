@@ -1,0 +1,27 @@
+{
+	"usage": "objective_onEntity(<objective number>, <entity>)",
+	"description": [
+		"Sets the objective to get its position from an entity."
+	],
+	"params": [
+		{
+			"name": "objective number",
+			"type": "int",
+			"description": [
+				"The number of the objective to alter."
+			],
+			"optional": false
+		},
+		{
+			"name": "entity",
+			"type": "Entity",
+			"description": [
+				"The entity to set the objective to."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"objective_onEntity(0, ent);"
+	]
+}

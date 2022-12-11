@@ -1,0 +1,35 @@
+{
+	"usage": "setThreatBias(<group for>, <group against>, <bias>)",
+	"description": [
+		"Make first group ignored by second group."
+	],
+	"params": [
+		{
+			"name": "group for",
+			"type": "string",
+			"description": [
+				"Threat bias group for."
+			],
+			"optional": false
+		},
+		{
+			"name": "group against",
+			"type": "string",
+			"description": [
+				"Threat bias group against."
+			],
+			"optional": false
+		},
+		{
+			"name": "bias",
+			"type": "int",
+			"description": [
+				"Threat bias value."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"setThreatBias(\"axis\", \"flanking_team\", 120);"
+	]
+}

@@ -1,0 +1,22 @@
+{
+	"usage": "<entity> getTagOrigin(<tagname>)",
+	"description": [
+		"Gets the origin of a particular tag on this model."
+	],
+	"params": [
+		{
+			"name": "tagname",
+			"type": "string",
+			"description": [
+				"Name of the tag."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Vector3"
+	},
+	"example": [
+		"leftorg = self getTagOrigin(\"tag_wheel_back_left\");"
+	]
+}

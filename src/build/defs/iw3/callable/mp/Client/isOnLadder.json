@@ -1,0 +1,12 @@
+{
+	"usage": "<player> isOnLadder()",
+	"description": [
+		"Return true if the player is on a ladder, false otherwise."
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"self isOnLadder();"
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"usage": "<entity> getVehicleOwner()",
+	"description": [
+		"Returns the owner of this particular vehicle."
+	],
+	"return": {
+		"type": "Entity"
+	},
+	"example": [
+		"eFlak88User = eFlak88 getVehicleOwner();"
+	]
+}

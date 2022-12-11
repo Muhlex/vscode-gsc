@@ -1,0 +1,19 @@
+{
+	"usage": "objective_current(<objective index>...)",
+	"description": [
+		"Set which objective(s) are currently being done. If none specified, there's no current objective. Current objectives that are not specified to still be current, are set to active."
+	],
+	"params": [
+		{
+			"name": "objective index",
+			"type": "int",
+			"description": [
+				"The ID of the objective to set current. You can add multiple index arguments to the function call."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"objective_current(aHardpointObjectives[0].obj, aHardpointObjectives[1].obj, aHardpointObjectives[2].obj);"
+	]
+}

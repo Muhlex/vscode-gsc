@@ -1,0 +1,19 @@
+{
+	"usage": "missile_deleteAttractor(<attractor>)",
+	"description": [
+		"Deletes a missle attractor or repulsor."
+	],
+	"params": [
+		{
+			"name": "attractor",
+			"type": "Entity",
+			"description": [
+				"The attractor or repulsor to delete."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"missile_deleteAttractor(attractor);"
+	]
+}

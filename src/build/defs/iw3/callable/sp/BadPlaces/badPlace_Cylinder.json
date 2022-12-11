@@ -1,0 +1,59 @@
+{
+	"usage": "badPlace_Cylinder(<name>, <duration>, <origin>, <radius>, <height>, <team>, <team>)",
+	"description": [
+		"Creates a bad place cylinder. AI will flee this position if they can, and will not go into it if they can avoid it."
+	],
+	"params": [
+		{
+			"name": "name",
+			"type": "string",
+			"description": [
+				"The name of the bad place. If name is not \"\", the bad place can be moved or deleted by using the unique name."
+			],
+			"optional": false
+		},
+		{
+			"name": "duration",
+			"type": "float",
+			"description": [
+				"If duration > 0, the bad place will automatically delete itself after this time. If duration <= 0, the bad place must have a name and will last until manually deleted."
+			],
+			"optional": false
+		},
+		{
+			"name": "origin",
+			"type": "Vector3",
+			"description": [
+				"The base position of the bad place."
+			],
+			"optional": false
+		},
+		{
+			"name": "radius",
+			"type": "float",
+			"description": [
+				"The radius of the blad place."
+			],
+			"optional": false
+		},
+		{
+			"name": "height",
+			"type": "float",
+			"description": [
+				"The height of the bad place."
+			],
+			"optional": false
+		},
+		{
+			"name": "team",
+			"type": "string",
+			"description": [
+				"You must specify at least one team for which this place is bad, but can give several. The allowed teams are \"axis\", \"allies\", and \"neutral\"."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"badPlace_Cylinder(\"moody\", -1, level.moodyfall_origin, 75, 300, \"neutral\");"
+	]
+}

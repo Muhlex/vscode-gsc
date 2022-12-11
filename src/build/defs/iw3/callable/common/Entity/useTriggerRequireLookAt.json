@@ -1,0 +1,9 @@
+{
+	"usage": "<entity> useTriggerRequireLookAt()",
+	"description": [
+		"Modifies the use trigger so that it requires the user to be looking at it."
+	],
+	"example": [
+		"fuelLever useTriggerRequireLookAt();"
+	]
+}

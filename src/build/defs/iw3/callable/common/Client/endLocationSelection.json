@@ -1,0 +1,9 @@
+{
+	"usage": "<player> endLocationSelection()",
+	"description": [
+		"Causes the player to leave location selection mode. Works with beginlocationselection()."
+	],
+	"example": [
+		"self endLocationSelection();"
+	]
+}

@@ -1,0 +1,19 @@
+{
+	"usage": "<player> freezeControls(<freeze state>)",
+	"description": [
+		"Blocks or unblocks control input from this player."
+	],
+	"params": [
+		{
+			"name": "freeze state",
+			"type": "bool",
+			"description": [
+				"A boolean: true if the player's controls are frozen, false otherwise."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"level.player freezeControls(true);"
+	]
+}

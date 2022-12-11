@@ -1,0 +1,19 @@
+{
+	"usage": "createPrintChannel(<channel name>)",
+	"description": [
+		"Open a print channel."
+	],
+	"params": [
+		{
+			"name": "channel name",
+			"type": "string",
+			"description": [
+				"Name of the channel to be opened."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"createPrintChannel(\"script_bler\");"
+	]
+}

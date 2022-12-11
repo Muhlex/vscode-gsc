@@ -1,0 +1,8 @@
+{
+	"usage": "<player> backwardButtonPressed()",
+	"description": ["Checks if a player is pressing the backward button."],
+	"return": {
+		"type": "bool"
+	},
+	"example": ["if (self backwardButtonPressed()) {", "  // Code", "}"]
+}

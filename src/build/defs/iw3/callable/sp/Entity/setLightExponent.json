@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setLightExponent(<exponent>)",
+	"description": [
+		"Sets the current exponent of the light."
+	],
+	"params": [
+		{
+			"name": "exponent",
+			"type": "int",
+			"description": [
+				"A new value for the exponent of the light in the of 0 to 100."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self setLightExponent(1);"
+	]
+}

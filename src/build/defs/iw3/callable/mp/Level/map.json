@@ -1,0 +1,27 @@
+{
+	"usage": "map(<map name>, <save persistent>)",
+	"description": [
+		"Loads a new map."
+	],
+	"params": [
+		{
+			"name": "map name",
+			"type": "string",
+			"description": [
+				"The map to load."
+			],
+			"optional": false
+		},
+		{
+			"name": "save persistent",
+			"type": "bool",
+			"description": [
+				"If true, player info is retained."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"map(\"mp_crash\");"
+	]
+}

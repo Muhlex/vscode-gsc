@@ -1,0 +1,13 @@
+{
+	"usage": "<player> setJumpHeight(<height>)",
+	"description": ["Set a player's jump_height to a given value."],
+	"params": [
+		{
+			"name": "height",
+			"type": "int",
+			"description": ["Player's new jump height."],
+			"optional": false
+		}
+	],
+	"example": ["self setJumpHeight(1000);"]
+}

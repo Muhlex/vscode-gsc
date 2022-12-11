@@ -1,0 +1,59 @@
+{
+	"usage": "playLoopedFX(<effect id>, <repeat delay>, <position>, <cull distance>, <forward>, <up>)",
+	"description": [
+		"Play this effect on the entity and tag."
+	],
+	"params": [
+		{
+			"name": "effect id",
+			"type": "int",
+			"description": [
+				"The effect id returned by loadFX()."
+			],
+			"optional": false
+		},
+		{
+			"name": "repeat delay",
+			"type": "float",
+			"description": [
+				"The delay between each loop."
+			],
+			"optional": false
+		},
+		{
+			"name": "position",
+			"type": "Vector3",
+			"description": [
+				"The position of the effect."
+			],
+			"optional": false
+		},
+		{
+			"name": "cull distance",
+			"type": "float",
+			"description": [
+				"The culling distance of the effect. 0 means that the effect won't be culled."
+			],
+			"optional": true
+		},
+		{
+			"name": "forward",
+			"type": "Vector3",
+			"description": [
+				"The forward vector of the effect."
+			],
+			"optional": true
+		},
+		{
+			"name": "up",
+			"type": "Vector3",
+			"description": [
+				"The up vector of the effect."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"playLoopedFX(id, delay, position);"
+	]
+}

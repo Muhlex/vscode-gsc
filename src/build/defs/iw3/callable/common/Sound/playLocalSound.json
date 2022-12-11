@@ -1,0 +1,35 @@
+{
+	"usage": "<player> playLocalSound(<sound>, <notification string>, <stoppable flag>)",
+	"description": [
+		"Plays a sound locally to the player."
+	],
+	"params": [
+		{
+			"name": "sound",
+			"type": "string",
+			"description": [
+				"The name of the sound to play."
+			],
+			"optional": false
+		},
+		{
+			"name": "notification string",
+			"type": "string",
+			"description": [
+				"If present, the sound will notify this string on this player when done. (Single player only)"
+			],
+			"optional": true
+		},
+		{
+			"name": "stoppable flag",
+			"type": "string",
+			"description": [
+				"If present and true, then this sound can be interrupted by another playLocalSound command with notification string. It is a script error for a playSound that does not have this flag set to get interrupted by another playLocalSound with notify, or for a playLocalSound with notify that does not have this flag set to interrupt another playLocalSound with notify. (Single player only)"
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"players[i] playLocalSound(\"MP_announcer_round_draw\");"
+	]
+}

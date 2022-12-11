@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> setTopArc(<angle>)",
+	"description": [
+		"Set the amount that the turret can move to the top."
+	],
+	"params": [
+		{
+			"name": "angle",
+			"type": "float",
+			"description": [
+				"The top arc in degrees."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"mg42 setTopArc(45);"
+	]
+}

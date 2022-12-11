@@ -1,0 +1,19 @@
+{
+	"usage": "<player> allowProne(<allow>)",
+	"description": [
+		"Sets whether the player can go prone."
+	],
+	"params": [
+		{
+			"name": "allow",
+			"type": "bool",
+			"description": [
+				"A boolean: true if the player can go prone, false otherwise."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"level.player allowProne(false);"
+	]
+}

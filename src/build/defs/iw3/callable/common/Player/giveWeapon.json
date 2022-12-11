@@ -1,0 +1,27 @@
+{
+	"usage": "<player> giveWeapon(<weapon>, <variant>)",
+	"description": [
+		"Give the player a weapon."
+	],
+	"params": [
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name."
+			],
+			"optional": false
+		},
+		{
+			"name": "variant",
+			"type": "int",
+			"description": [
+				"Model variant (0-15)."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"self giveWeapon(\"m1garand\");"
+	]
+}

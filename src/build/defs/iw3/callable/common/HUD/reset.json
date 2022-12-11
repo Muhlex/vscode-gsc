@@ -1,0 +1,9 @@
+{
+	"usage": "<hud> reset()",
+	"description": [
+		"Reset a HUD element to its default state."
+	],
+	"example": [
+		"element reset();"
+	]
+}

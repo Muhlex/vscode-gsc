@@ -1,0 +1,19 @@
+{
+	"usage": "commitSave(<save ID>)",
+	"description": [
+		"Commits the current save in the save buffer."
+	],
+	"params": [
+		{
+			"name": "save ID",
+			"type": "int",
+			"description": [
+				"The ID of the save to commit."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"commitSave(id);"
+	]
+}

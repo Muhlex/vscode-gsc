@@ -1,0 +1,22 @@
+{
+	"usage": "getDebugDvarInt(<dvar>)",
+	"description": [
+		"Gets the value of a debug dvar, as an integer."
+	],
+	"params": [
+		{
+			"name": "dvar",
+			"type": "string",
+			"description": [
+				"The dvar name."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "int"
+	},
+	"example": [
+		"if (getDebugDvarInt(\"debug_stopenemypos\") != -1)"
+	]
+}

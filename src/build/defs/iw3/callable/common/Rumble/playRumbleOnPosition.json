@@ -1,0 +1,27 @@
+{
+	"usage": "playRumbleOnPosition(<rumble>, <position>)",
+	"description": [
+		"Plays a rumble at a given position."
+	],
+	"params": [
+		{
+			"name": "rumble",
+			"type": "string",
+			"description": [
+				"The name of the rumble to play."
+			],
+			"optional": false
+		},
+		{
+			"name": "position",
+			"type": "Vector3",
+			"description": [
+				"The position of the rumble."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"playRumbleOnPosition(\"artillery_quake\", level.player.origin);"
+	]
+}

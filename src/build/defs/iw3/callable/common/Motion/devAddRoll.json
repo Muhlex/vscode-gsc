@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> devAddRoll(<roll angle>)",
+	"description": [
+		"Add roll in local space. This is just for development purposes and doesn't interpolate."
+	],
+	"params": [
+		{
+			"name": "roll angle",
+			"type": "float",
+			"description": [
+				"The change in roll in degrees."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"ent devAddRoll(15);"
+	]
+}

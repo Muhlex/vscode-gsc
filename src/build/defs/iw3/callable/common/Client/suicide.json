@@ -1,0 +1,9 @@
+{
+	"usage": "<player> suicide()",
+	"description": [
+		"Kills the player immediately as a suicide."
+	],
+	"example": [
+		"self suicide();"
+	]
+}

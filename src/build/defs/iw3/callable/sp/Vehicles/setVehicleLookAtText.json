@@ -1,0 +1,27 @@
+{
+	"usage": "<entity> setVehicleLookAtText(<lookat text line 1> <lookat text line 2>)",
+	"description": [
+		"Set look at text for vehicle."
+	],
+	"params": [
+		{
+			"name": "lookat text line 1",
+			"type": "string",
+			"description": [
+				"The unlocalized look at text for this vehicle. Line is green and usually a name."
+			],
+			"optional": false
+		},
+		{
+			"name": "lookat text line 2",
+			"type": "string",
+			"description": [
+				"The localized look at text for this vehicle. Line is white and usually a type."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"self setVehicleLookAtText(vehicleName, level.vehicleTypeFancy[self.vehicleType]);"
+	]
+}

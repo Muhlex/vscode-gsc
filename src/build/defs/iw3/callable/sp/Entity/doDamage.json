@@ -1,0 +1,43 @@
+{
+	"usage": "<entity> doDamage(<health>, <source position>, <attacker>, <inflictor>)",
+	"description": [
+		"Does damage to an entity."
+	],
+	"params": [
+		{
+			"name": "health",
+			"type": "int",
+			"description": [
+				"The amount of damage to do."
+			],
+			"optional": false
+		},
+		{
+			"name": "source position",
+			"type": "Vector3",
+			"description": [
+				"The position that the damage comes from."
+			],
+			"optional": false
+		},
+		{
+			"name": "attacker",
+			"type": "Entity",
+			"description": [
+				"The entity that dealth the damage (such as an AI or player)."
+			],
+			"optional": true
+		},
+		{
+			"name": "inflictor",
+			"type": "Entity",
+			"description": [
+				"The entity that the damage came from (such as a grenade or turret)."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"tank doDamage(tank.health + 200, (0, 0, 0));"
+	]
+}

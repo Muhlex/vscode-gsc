@@ -1,0 +1,30 @@
+{
+	"usage": "strRepl(<string>, <match>, <replace>)",
+	"description": [
+		"Finds all occurrences of a given string an replaces them with a given replacement and returnes the new resulting string."
+	],
+	"params": [
+		{
+			"name": "string",
+			"type": "string",
+			"description": ["String to replace matches on."],
+			"optional": false
+		},
+		{
+			"name": "match",
+			"type": "string",
+			"description": ["String to find occurrences of."],
+			"optional": false
+		},
+		{
+			"name": "replace",
+			"type": "string",
+			"description": ["String to replace all occurrences of match with."],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": ["var = strRepl(\"aaa\", \"a\", \"b\");"]
+}

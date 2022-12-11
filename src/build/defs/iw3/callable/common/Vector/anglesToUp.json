@@ -1,0 +1,21 @@
+{
+	"usage": "anglesToUp(<angles>)",
+	"description": [
+		"Returns the up vector corresponding to a set of angles."
+	],
+	"params": [
+		{
+			"name": "angles",
+			"type": "Vector3",
+			"description": [
+				"A set of angles."
+			]
+		}
+	],
+	"return": {
+		"type": "Vector3"
+	},
+	"example": [
+		"up = anglesToUp(angles);"
+	]
+}

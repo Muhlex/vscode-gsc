@@ -1,0 +1,19 @@
+{
+	"usage": "preCacheStatusIcon(<name>)",
+	"description": [
+		"Precaches the given status icon."
+	],
+	"params": [
+		{
+			"name": "name",
+			"type": "string",
+			"description": [
+				"Name of the material to precache."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"preCacheStatusIcon(\"hud_status_dead\");"
+	]
+}

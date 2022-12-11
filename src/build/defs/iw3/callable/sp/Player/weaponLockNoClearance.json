@@ -1,0 +1,19 @@
+{
+	"usage": "<player> weaponLockNoClearance(<bool>)",
+	"description": [
+		"When set to true, the player will be unable to fire their lockon weapon, and will recieve a hint print telling them that there is an obstruction."
+	],
+	"params": [
+		{
+			"name": "bool",
+			"type": "bool",
+			"description": [
+				"Values: true or false."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"level.player weaponLockNoClearance(true);"
+	]
+}

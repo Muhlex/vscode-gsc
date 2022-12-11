@@ -1,0 +1,43 @@
+{
+	"usage": "physicsExplosionCylinder(<center>, <outer radius>, <inner radius>, <magnitude>)",
+	"description": [
+		"Imparts a 1-frame impulse on physics objects radially outward in a cylinder (i.e., all the added forces are parallel to the ground). This can be used to simulate wind from a helicopter."
+	],
+	"params": [
+		{
+			"name": "center",
+			"type": "Vector3",
+			"description": [
+				"The world position of the center of the cylinder."
+			],
+			"optional": false
+		},
+		{
+			"name": "outer radius",
+			"type": "int",
+			"description": [
+				"The radius beyond which the force is zero."
+			],
+			"optional": false
+		},
+		{
+			"name": "inner radius",
+			"type": "int",
+			"description": [
+				"The radius within which the force is maximum."
+			],
+			"optional": false
+		},
+		{
+			"name": "magnitude",
+			"type": "float",
+			"description": [
+				"The strength of the force. 1 = the default explosion."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"physicsExplosionCylinder(origin, 50, 40, 1);"
+	]
+}

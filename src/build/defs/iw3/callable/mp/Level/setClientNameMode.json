@@ -1,0 +1,19 @@
+{
+	"usage": "setClientNameMode(<name mode>)",
+	"description": [
+		"Alters the way that the player name is updated, to prevent cheating by spectators altering their name to communicate with active players."
+	],
+	"params": [
+		{
+			"name": "name mode",
+			"type": "string",
+			"description": [
+				"Either \"auto_change\" or \"manual_change\"."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"setClientNameMode(\"auto_change\");"
+	]
+}

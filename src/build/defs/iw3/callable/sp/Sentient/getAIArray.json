@@ -1,0 +1,22 @@
+{
+	"usage": "getAIArray(<team>...)",
+	"description": [
+		"Returns an array of the human AI."
+	],
+	"params": [
+		{
+			"name": "team",
+			"type": "string",
+			"description": [
+				"A team name, either \"axis\", \"allies\", or \"neutral\". Supports multiple teams."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "Array"
+	},
+	"example": [
+		"array = getAIArray(\"axis\", \"neutral\");"
+	]
+}

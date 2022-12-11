@@ -1,0 +1,12 @@
+{
+	"usage": "<player> getClanName()",
+	"description": [
+		"Return the name of the player's clan."
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": [
+		"player getClanName();"
+	]
+}

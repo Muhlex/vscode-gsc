@@ -1,0 +1,9 @@
+{
+	"usage": "<entity> makeTurretUsable()",
+	"description": [
+		"Sets a turret able to be used."
+	],
+	"example": [
+		"roofMg42 makeTurretUsable();"
+	]
+}

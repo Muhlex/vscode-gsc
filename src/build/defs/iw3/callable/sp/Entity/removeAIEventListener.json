@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> removeAIEventListener(<event>)",
+	"description": [
+		"Remove an entity from listening to an AI event."
+	],
+	"params": [
+		{
+			"name": "event",
+			"type": "string",
+			"description": [
+				"An AI event to stop listening to. If none, remove all events for this entity."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"self removeAIEventListener();"
+	]
+}

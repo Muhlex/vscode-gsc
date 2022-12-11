@@ -1,0 +1,27 @@
+{
+	"usage": "fPrintFields(<file>, <output> ...)",
+	"description": [
+		"Writes items out to a script-controlled file, inserting a comma in-between each one."
+	],
+	"params": [
+		{
+			"name": "file",
+			"type": "int",
+			"description": [
+				"File handle returned by openFile."
+			],
+			"optional": false
+		},
+		{
+			"name": "output",
+			"type": "string",
+			"description": [
+				"The string to be output."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"fPrintFields(file, player, health, weaponName);"
+	]
+}

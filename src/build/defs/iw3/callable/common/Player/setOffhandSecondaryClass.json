@@ -1,0 +1,19 @@
+{
+	"usage": "<player> setOffhandSecondaryClass(<class>)",
+	"description": [
+		"Set whether player can use smoke grenades or flashbangs."
+	],
+	"params": [
+		{
+			"name": "class",
+			"type": "string",
+			"description": [
+				"Either \"smoke\" or \"flash\"."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"level.player setOffhandSecondaryClass(\"flash\");"
+	]
+}

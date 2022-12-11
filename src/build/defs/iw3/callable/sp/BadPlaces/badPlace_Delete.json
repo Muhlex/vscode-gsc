@@ -1,0 +1,19 @@
+{
+	"usage": "badPlace_Delete(<bad place identifier>)",
+	"description": [
+		"Deletes a bad place. It is okay to delete a bad place name that doesn't exist. It is not okay to delete the special name \"\"."
+	],
+	"params": [
+		{
+			"name": "bad place identifier",
+			"type": "string",
+			"description": [
+				"The bad place to delete."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"badPlace_Delete(\"bpFlak1\");"
+	]
+}

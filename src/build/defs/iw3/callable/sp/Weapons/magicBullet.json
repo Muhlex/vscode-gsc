@@ -1,0 +1,35 @@
+{
+	"usage": "magicBullet(<weapon>, <source>, <destination>)",
+	"description": [
+		"Fire a \"magic bullet\" from the source location towards the destination point."
+	],
+	"params": [
+		{
+			"name": "weapon",
+			"type": "string",
+			"description": [
+				"The weapon name."
+			],
+			"optional": false
+		},
+		{
+			"name": "source",
+			"type": "Vector3",
+			"description": [
+				"The bullet tracer starting point."
+			],
+			"optional": false
+		},
+		{
+			"name": "destination",
+			"type": "Vector3",
+			"description": [
+				"The end point."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"magicBullet(\"mosin_nagant_sniper\", self.origin, target.origin);"
+	]
+}

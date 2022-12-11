@@ -1,0 +1,27 @@
+{
+	"usage": "<entity> moveGravity(<initial velocity>, <time>)",
+	"description": [
+		"Fling this entity."
+	],
+	"params": [
+		{
+			"name": "initial velocity",
+			"type": "Vector3",
+			"description": [
+				"The initial velocity to fling this entity at."
+			],
+			"optional": false
+		},
+		{
+			"name": "time",
+			"type": "float",
+			"description": [
+				"The time to move the entity in seconds."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self moveGravity(breakVector, time);"
+	]
+}

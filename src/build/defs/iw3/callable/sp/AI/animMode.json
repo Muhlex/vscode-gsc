@@ -1,0 +1,27 @@
+{
+	"usage": "<entity> animMode(<mode>)",
+	"description": [
+		"Set the way that animation deltas are interpreted by the game engine.",
+		"",
+		"<b>Note:</b>",
+		"&lt;mode&gt; arguments-",
+		"&emsp;gravity: &emsp;&emsp;&emsp; The animation's angle and position deltas will be used, and gravity will pull the entity down.",
+		"&emsp;nogravity:&emsp;&emsp; The animation's angle and position deltas will be used, gravity is ignored.",
+		"&emsp;angle_deltas: &ensp;The animation's angle deltas will be used. The position will be fixed. Gravity is effective.",
+		"&emsp;zonly_physics: Just like \"gravity\" mode, but only the Z (up and down) of the entity's position will change.",
+		"&emsp;none: &emsp;&emsp;&emsp;&emsp; Use default animmode behavior (i.e., code controls the movement)."
+	],
+	"params": [
+		{
+			"name": "mode",
+			"type": "string",
+			"description": [
+				"Which animmode to use. Must be \"gravity\", \"nogravity\", \"angle_deltas\", \"zonly_physics\", \"nophysics\", \"none\"."
+			],
+			"optional": false
+		}
+	],
+	"example": [
+		"self animMode(\"gravity\");"
+	]
+}

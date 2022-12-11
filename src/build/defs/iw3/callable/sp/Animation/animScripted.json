@@ -1,0 +1,59 @@
+{
+	"usage": "<entity> animScripted(<notify>, <origin>, <angles>, <animation>, <mode>, <root>)",
+	"description": [
+		"Runs an animscript on an entity."
+	],
+	"params": [
+		{
+			"name": "notify",
+			"type": "string",
+			"description": [
+				"The notify to send."
+			],
+			"optional": false
+		},
+		{
+			"name": "origin",
+			"type": "Vector3",
+			"description": [
+				"The starting position of the anim script."
+			],
+			"optional": false
+		},
+		{
+			"name": "angles",
+			"type": "Vector3",
+			"description": [
+				"The starting angle of the anim script."
+			],
+			"optional": false
+		},
+		{
+			"name": "animation",
+			"type": "animation",
+			"description": [
+				"The animation."
+			],
+			"optional": false
+		},
+		{
+			"name": "mode",
+			"type": "string",
+			"description": [
+				"Valid modes are \"normal\" and \"deathplant\"."
+			],
+			"optional": true
+		},
+		{
+			"name": "root",
+			"type": "animation",
+			"description": [
+				"The root animation."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"driver animScripted(\"germantruck_driver_closedoor\", org , angles, driver.closedooranim);"
+	]
+}

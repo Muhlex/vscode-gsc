@@ -1,0 +1,51 @@
+{
+	"usage": "<hud> setClock(<time>, <full time>, <material>, <width>, <height>)",
+	"description": [
+		"Set a clock HUD element to count down over a time period."
+	],
+	"params": [
+		{
+			"name": "time",
+			"type": "float",
+			"description": [
+				"The new timer time in seconds to count down."
+			],
+			"optional": false
+		},
+		{
+			"name": "full time",
+			"type": "float",
+			"description": [
+				"The time in seconds represented by a full cycle of the hand, for instance a stopwatch would be 60s."
+			],
+			"optional": false
+		},
+		{
+			"name": "material",
+			"type": "string",
+			"description": [
+				"The material for the HUD clock."
+			],
+			"optional": false
+		},
+		{
+			"name": "width",
+			"type": "int",
+			"description": [
+				"The width of the material."
+			],
+			"optional": true
+		},
+		{
+			"name": "height",
+			"type": "int",
+			"description": [
+				"The height of the material."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"level.bombStopwatch setClock(5, 60, \"hudStopwatch\", 64, 64);"
+	]
+}

@@ -1,0 +1,22 @@
+{
+	"usage": "target_isTarget(<entity>)",
+	"description": [
+		"Returns whether an entity has been marked as a target."
+	],
+	"params": [
+		{
+			"name": "entity",
+			"type": "Entity",
+			"description": [
+				"The entity to check."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (target_isTarget(foundEnt)) {\n  // Code\n}"
+	]
+}

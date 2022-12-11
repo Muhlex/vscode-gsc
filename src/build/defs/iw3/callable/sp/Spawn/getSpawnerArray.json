@@ -1,0 +1,12 @@
+{
+	"usage": "getSpawnerArray()",
+	"description": [
+		"Returns an array of all the spawners in a level."
+	],
+	"return": {
+		"type": "Array"
+	},
+	"example": [
+		"spawners = getSpawnerArray();"
+	]
+}

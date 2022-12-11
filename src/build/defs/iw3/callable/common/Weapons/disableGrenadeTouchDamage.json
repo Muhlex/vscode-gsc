@@ -1,0 +1,9 @@
+{
+	"usage": "<entity> disableGrenadeTouchDamage()",
+	"description": [
+		"Disable grenade damage for damage triggers."
+	],
+	"example": [
+		"self disableGrenadeTouchDamage();"
+	]
+}

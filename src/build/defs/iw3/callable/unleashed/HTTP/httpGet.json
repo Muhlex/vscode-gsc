@@ -1,0 +1,34 @@
+{
+	"usage": "httpGet(<host>, <port>, <path>, <receive>)",
+	"description": ["Send a synchronous GET request over HTTP to a server."],
+	"params": [
+		{
+			"name": "host",
+			"type": "string",
+			"description": ["The hostname of the server to send a request to."],
+			"optional": false
+		},
+		{
+			"name": "port",
+			"type": "int",
+			"description": ["The port of the server to send a request to."],
+			"optional": false
+		},
+		{
+			"name": "path",
+			"type": "string",
+			"description": ["The path, relative to the hostname, to send a request to."],
+			"optional": false
+		},
+		{
+			"name": "receive",
+			"type": "bool",
+			"description": ["Whether or not you want to receive a response from the server (defaults to true)."],
+			"optional": true
+		}
+	],
+	"return": {
+		"type": "string"
+	},
+	"example": ["response = httpGet(\"localhost\", 80, \"/user/\" + self getGuid());"]
+}

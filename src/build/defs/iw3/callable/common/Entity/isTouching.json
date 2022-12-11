@@ -1,0 +1,24 @@
+{
+	"usage": "<entity> isTouching(<touched entity>)",
+	"description": [
+		"Checks if an entity is touching a specified entity."
+	],
+	"params": [
+		{
+			"name": "touched entity",
+			"type": "Entity",
+			"description": [
+				"The entity that is to be tested against."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (level.player isTouching(self)) {",
+		"  // Code",
+		"}"
+	]
+}

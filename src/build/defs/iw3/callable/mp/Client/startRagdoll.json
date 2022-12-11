@@ -1,0 +1,19 @@
+{
+	"usage": "<entity> startRagdoll(<rig_index>)",
+	"description": [
+		"Begin ragdoll physics for this entity. Does nothing if the entity is already a ragdoll."
+	],
+	"params": [
+		{
+			"name": "rig_index",
+			"type": "int",
+			"description": [
+				"Index of the ragdoll rig to use. Defaults to 0."
+			],
+			"optional": true
+		}
+	],
+	"example": [
+		"self startRagdoll();"
+	]
+}

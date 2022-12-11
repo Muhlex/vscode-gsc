@@ -1,0 +1,22 @@
+{
+	"usage": "<actor> canSee(<target>)",
+	"description": [
+		"Check to see if the actor can see the given entity."
+	],
+	"params": [
+		{
+			"name": "target",
+			"type": "entity",
+			"description": [
+				"The entity to check."
+			],
+			"optional": false
+		}
+	],
+	"return": {
+		"type": "bool"
+	},
+	"example": [
+		"if (self canSee(player))"
+	]
+}
