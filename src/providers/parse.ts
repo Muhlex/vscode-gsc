@@ -110,7 +110,21 @@ export const parseFunctionDefs = (document: vscode.TextDocument, topLevelBlocks:
 					document.positionAt(offset + match[1].length)
 				),
 			},
-			params: parseParams(document, match[2], blockOffset + match.indices[2][0], true),
+			params: (() => {
+				const text = match[2];
+				const offset = blockOffset + match.indices[2][0];
+				const regexp = /\b([A-Za-z_][A-Za-z0-9_]*)\b\s*(?:,|$)/g;
+				const matches = [...text.matchAll(regexp) as IterableIterator<RegExpMatchArray & { index: number }>];
+				if (matches.length === 0) return [];
+
+				return matches.map(({ 1: name, index }) => ({
+					name,
+					range: new vscode.Range(
+						document.positionAt(offset + index),
+						document.positionAt(offset + index + name.length)
+					)
+				}));
+			})(),
 			body: {
 				range: new vscode.Range(
 					range.end,
@@ -128,17 +142,17 @@ export const parseFunctionDefs = (document: vscode.TextDocument, topLevelBlocks:
 export enum CallableInstanceType { Reference, Call }
 
 export const parseCallableInstances = (document: vscode.TextDocument, topLevelBlocks: ParsedBlock[], ignoredBlocks?: ParsedBlock[]) => {
-	const text = document.getText();
-	const regexp = /::\s*\b([A-Za-z_][A-Za-z0-9_]*)\b|\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\(([^)]*?)\)/gd;
+	const regexp = /::\s*\b([A-Za-z_][A-Za-z0-9_]*)\b|\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\(/gd;
 	const result: {
 		type: CallableInstanceType
 		ident: { name: string, range: vscode.Range }
-		params?: { name: string, range: vscode.Range }[]
+		params?: { range: vscode.Range }[]
 	}[] = [];
+	const text = document.getText();
 
 	for (const match of text.matchAll(regexp) as IterableIterator<RegExpMatchArray & { indices: Array<[number, number]> }>) {
 		const type = match[1] ? CallableInstanceType.Reference : CallableInstanceType.Call;
-		const ident = match[1] || match[2];
+		const name = match[1] || match[2];
 		const offset = match[1] ? match.indices[1][0] : match.indices[2][0];
 		const position = document.positionAt(offset);
 		if (getIsPosInsideParsedBlocks(topLevelBlocks, position)) continue;
@@ -146,41 +160,66 @@ export const parseCallableInstances = (document: vscode.TextDocument, topLevelBl
 
 		const callable: typeof result[number] = {
 			ident: {
-				name: ident,
-				range: (() => {
-					return new vscode.Range(
-						position,
-						document.positionAt(offset + ident.length)
-					);
-				})()
+				name,
+				range: new vscode.Range(position, document.positionAt(offset + name.length)),
 			},
 			type
 		};
 
+		// parse params
 		if (type === CallableInstanceType.Call) {
-			// TODO: match nested callables instead of assuming there can't be another callable inside
-			// the params parentheses:
-			callable.params = parseParams(document, match[3], match.indices[3][0]);
+			const openingIndex = offset + name.length;
+			let closingIndex: number | undefined = undefined;
+			let level = 0;
+			const commaIndices = [];
+
+			for (let i = openingIndex;;) {
+				const chars = ["(", ")"];
+				if (level === 1) chars.push(","); // only on the braces concerning this function call
+				const next = chars
+					.map(char => ({ char, index: text.indexOf(char, i) }))
+					.filter(({ index }) => index !== -1)
+					.sort((a, b) => a.index - b.index)
+					.at(0);
+				if (!next) break;
+
+				if (next.char === "(") {
+					level++;
+				} else if (next.char === ")") {
+					level--;
+					if (level === 0) {
+						closingIndex = next.index;
+						break;
+					}
+				} else if (next.char === ",") {
+					commaIndices.push(next.index);
+				}
+
+				i = next.index + 1;
+			}
+
+			const endIndices = [...commaIndices, closingIndex || text.length - 1];
+
+			const params = [];
+			for (const [i, endIndex] of endIndices.entries()) {
+				const startIndex = i === 0 ? (openingIndex + 1) : (endIndices[i - 1] + 1);
+				const paramText = text.slice(startIndex, endIndex);
+				const match = paramText.match(/^\s*(.*?)\s*$/d) as (RegExpMatchArray & { indices: Array<[number, number]> }) | null;
+				if (!match || match.indices[1][0] === match.indices[1][1]) continue; // no param
+
+				const startOffset = match.indices[1][0];
+				const endOffset = match.indices[0][1] - match.indices[1][1];
+				const range = new vscode.Range(
+					document.positionAt(startIndex + startOffset),
+					document.positionAt(endIndex - endOffset)
+				);
+				params.push({ range });
+			}
+			callable.params = params;
 		}
 
 		result.push(callable);
 	}
 
 	return result;
-};
-
-const parseParams = (document: vscode.TextDocument, text: string, offset = 0, isDef = false) => {
-	const regexp = isDef
-		? /\b([A-Za-z_][A-Za-z0-9_]*)\b\s*(?:,|$)/gd
-		: /\s*(\S+?)\s*(?:,|$)/gd;
-	const matches = [...text.matchAll(regexp) as IterableIterator<RegExpMatchArray & { indices: [number, number][] }>];
-	if (matches.length === 0) return [];
-
-	return matches.map(({ 1: name, indices: [, [index]] }) => ({
-		name,
-		range: new vscode.Range(
-			document.positionAt(offset + index),
-			document.positionAt(offset + index + name.length)
-		)
-	}));
 };

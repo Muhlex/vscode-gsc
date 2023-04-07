@@ -128,15 +128,15 @@ export default class Store {
 			const identLC = callable.ident.name.toLowerCase();
 			const def = this.#staticData.callableDefsFlat.get(identLC) || defs.get(identLC);
 			if (!def) return [];
-			const params = def.params || [];
-			if (!params) return [];
+			const paramDefs = def.params || [];
+			if (!paramDefs) return [];
 
 			const paramHints = [];
 			for (const [i, param] of callable.params.entries()) {
-				if (!params[i]) break;
+				if (!paramDefs[i]) break;
 				paramHints.push({
 					position: param.range.start,
-					label: `${params[i].name}:`,
+					label: `${paramDefs[i].name}:`,
 					kind: vscode.InlayHintKind.Parameter,
 					paddingRight: true
 				});
