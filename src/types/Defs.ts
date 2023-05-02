@@ -1,4 +1,4 @@
-import { Range } from "vscode";
+import { Range, MarkdownString } from "vscode";
 
 export type VariableDef = {
 	name?: string
@@ -30,6 +30,7 @@ export type CallableDefCustom = CallableDef & {
 	ident: { range: Range }
 	params: (ParamDef & { range: Range })[]
 	body: Required<CallableDef>["body"]
+	documentation: MarkdownString
 }
 
 export type CallableDefsModule = {

@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import { CallableInstance, CallableInstanceType } from "../types/Instances";
 import { CallableDefCustom } from "../types/Defs";
+import { createDocumentation } from "./items";
 
 export enum ParsedBlockType { BlockComment, LineComment, String }
 export type ParsedBlock = {
@@ -85,7 +86,10 @@ export const parseTopLevelBlocks = (document: vscode.TextDocument, ignoredBlocks
 	return topLevelBlocks;
 };
 
-export const parseCallableDefs = (document: vscode.TextDocument, topLevelBlocks: ParsedBlock[], ignoredBlocks?: ParsedBlock[]) => {
+export const parseCallableDefs = (
+	document: vscode.TextDocument, documentationOptions: { engine: string, concise: boolean },
+	topLevelBlocks: ParsedBlock[], ignoredBlocks?: ParsedBlock[],
+) => {
 	// No global flag as there is at most one function per top-level-block:
 	const regexp = /\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\(([^)]*?)\)\s*{/sd;
 	const result = new Map<string, CallableDefCustom>();
@@ -128,10 +132,12 @@ export const parseCallableDefs = (document: vscode.TextDocument, topLevelBlocks:
 					range.end,
 					topLevelBlocks[i + 1]?.range.start || document.lineAt(document.lineCount - 1).range.end
 				)
-			}
+			},
 		};
+		const { engine, concise } = documentationOptions;
+		const documentation = createDocumentation(entry, engine, concise);
 
-		result.set(entry.ident.name.toLowerCase(), entry);
+		result.set(entry.ident.name.toLowerCase(), { ...entry, documentation });
 	}
 
 	return result;

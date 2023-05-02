@@ -1,61 +1,31 @@
 import * as vscode from "vscode";
 
-import { CallableDefsEngine, CallableDef, VariableDef } from "../types/Defs";
+import { CallableDefsEngine, CallableDef } from "../types/Defs";
 import {
 	createKeywordCompletionItem,
 	createCallableCompletionItem,
 	createFolderCompletionItem,
 	createHover,
-	createSignatures
+	createSignatures,
+	createDocumentation
 } from "./items";
-
-const createDocumentation = (def: CallableDef, engine: string, concise: boolean) => {
-	const getVariableDoc = (v: VariableDef | undefined, name: string) => {
-		if (!v) return "";
-
-		return (concise ? `${name} *` : `*${name} `)
-			+ (v.name ? ("`" + v.name + "`" + (v.type ? " " : "")) : "")
-			+ (v.type || "")
-			+ "*"
-			+ (v.description ? (" — " + v.description.join("\n")) : "");
-	};
-
-	const receiver = getVariableDoc(def.receiver, concise ? "📥️" : "@receiver");
-	const params = def.params?.map(p => getVariableDoc(p, concise ? (p.optional ? "✳️" : "✴️") : "@param")).join("\n\n") || "";
-	const returns = getVariableDoc(def.return, concise ? "↩️" : "@return");
-
-	return new vscode.MarkdownString(""
-		+ (def.deprecated ? "**👎 Deprecated**\n\n" : "")
-		+ (def.description?.join("\n") || "")
-		+ "\n***\n"
-		+ receiver + (receiver ? "\n\n" : "")
-		+ params + (params ? "\n\n" : "")
-		+ returns + (returns ? "\n\n" : "")
-		+ (def.example
-			? "\n***\n"
-				+ (concise ? "" : "*Example:*\n")
-				+ "```gsc-" + engine + "\n" + def.example.join("\n") + "\n```"
-			: ""
-		)
-	);
-};
 
 export default async (engine: string, defsUri: vscode.Uri) => {
 	const config: {
 		featuresets: { [featureset: string]: boolean } | undefined
-		enableKeywords: boolean | undefined
-		enableCallables: boolean | undefined
-		conciseMode: boolean | undefined
-		foldersSorting: "top" | "bottom" | "inline" | undefined
+		enableKeywords: boolean
+		enableCallables: boolean
+		conciseMode: boolean
+		foldersSorting: "top" | "bottom" | "inline"
 		rootFolders: Map<string, vscode.Uri[]>
 	} = await (async () => {
 		const intelliSense = vscode.workspace.getConfiguration("GSC.intelliSense");
 		return {
 			featuresets: vscode.workspace.getConfiguration("GSC.featureSets").get(engine.toUpperCase()),
-			enableKeywords: intelliSense.get("enableKeywords"),
-			enableCallables: intelliSense.get("enableCallables"),
-			conciseMode: intelliSense.get("conciseMode"),
-			foldersSorting: intelliSense.get("foldersSorting"),
+			enableKeywords: intelliSense.get("enableKeywords") ?? true,
+			enableCallables: intelliSense.get("enableCallables") ?? true,
+			conciseMode: intelliSense.get("conciseMode") ?? false,
+			foldersSorting: intelliSense.get("foldersSorting") ?? "inline",
 			rootFolders: await (async () => {
 				const rootFolderPaths: string[] = vscode.workspace.getConfiguration("GSC.rootFolders").get(engine.toUpperCase()) || [];
 				const rootFolders = new Map<string, vscode.Uri[]>();

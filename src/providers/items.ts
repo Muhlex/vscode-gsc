@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import * as path from "path";
 
-import { CallableDef } from "../types/Defs";
+import { CallableDef, VariableDef } from "../types/Defs";
 
 export const createKeywordCompletionItem = (keyword: string): vscode.CompletionItem => {
 	return {
@@ -67,4 +67,35 @@ export const createSignatures = (def: CallableDef): vscode.SignatureInformation[
 		label: def.ident.name + "(" + parameters.map(({ label }) => label).join(", ") + ")",
 		parameters
 	}];
+};
+
+export const createDocumentation = (def: CallableDef, engine: string, concise: boolean) => {
+	const getVariableDoc = (v: VariableDef | undefined, name: string) => {
+		if (!v) return "";
+
+		return (concise ? `${name} *` : `*${name} `)
+			+ (v.name ? ("`" + v.name + "`" + (v.type ? " " : "")) : "")
+			+ (v.type || "")
+			+ "*"
+			+ (v.description ? (" — " + v.description.join("\n")) : "");
+	};
+
+	const receiver = getVariableDoc(def.receiver, concise ? "📥️" : "@receiver");
+	const params = def.params?.map(p => getVariableDoc(p, concise ? (p.optional ? "✳️" : "✴️") : "@param")).join("\n\n") || "";
+	const returns = getVariableDoc(def.return, concise ? "↩️" : "@return");
+
+	return new vscode.MarkdownString(""
+		+ (def.deprecated ? "**👎 Deprecated**\n\n" : "")
+		+ (def.description?.join("\n") || "")
+		+ "\n***\n"
+		+ receiver + (receiver ? "\n\n" : "")
+		+ params + (params ? "\n\n" : "")
+		+ returns + (returns ? "\n\n" : "")
+		+ (def.example
+			? "\n***\n"
+				+ (concise ? "" : "*Example:*\n")
+				+ "```gsc-" + engine + "\n" + def.example.join("\n") + "\n```"
+			: ""
+		)
+	);
 };

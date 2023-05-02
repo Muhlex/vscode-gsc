@@ -8,7 +8,7 @@ import { escapeRegExp, isCall, isReference } from "../util";
 
 const createEngineProviders = async (engine: string, defsUri: vscode.Uri) => {
 	const staticData = await parseStaticData(engine, defsUri);
-	const store = new Store(staticData);
+	const store = new Store(staticData, engine);
 
 	const completionItemProvider: vscode.CompletionItemProvider = {
 		async provideCompletionItems(document, position, token, context) {
@@ -39,7 +39,7 @@ const createEngineProviders = async (engine: string, defsUri: vscode.Uri) => {
 			if (!wordRange) return;
 
 			const word = document.getText(wordRange);
-			const hover = store.getHover(word);
+			const hover = store.getHover(document, word);
 			if (!hover) return;
 
 			if (isCall(wordRange, document) || isReference(wordRange, document))
@@ -175,7 +175,7 @@ const createEngineProviders = async (engine: string, defsUri: vscode.Uri) => {
 			const ident = readIdent(iterator);
 			if (!ident) return;
 
-			const signatures = store.getSignatures(ident, document);
+			const signatures = store.getSignatures(document, ident);
 			if (!signatures) return;
 
 			return {

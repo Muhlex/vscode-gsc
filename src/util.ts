@@ -24,3 +24,14 @@ export function isReference(range: vscode.Range, document: vscode.TextDocument) 
 	const text = document.getText(new vscode.Range(start, end));
 	return text === REF;
 }
+
+const languageIDsToEngines = new Map<string, string>();
+export function clearLanguageIDs() {
+	languageIDsToEngines.clear();
+}
+export function registerLanguageID(id: string, engine: string) {
+	languageIDsToEngines.set(id, engine);
+}
+export function languageIDToEngine(id: string) {
+	return languageIDsToEngines.get(id);
+}

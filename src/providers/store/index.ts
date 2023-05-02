@@ -16,10 +16,12 @@ import {
 	createFolderCompletionItem,
 	createFileCompletionItem,
 	createCallableCompletionItem,
-	createSignatures
+	createSignatures,
+	createHover
 } from "../items";
 
 export default class Store {
+	private engine: string;
 	private staticData: Awaited<ReturnType<typeof createStaticData>>;
 	private disposables: vscode.Disposable[] = [];
 	private gscs = new GscStore();
@@ -28,7 +30,8 @@ export default class Store {
 		gscPathCompletionItemsMap: new Map<string, vscode.CompletionItem[]>(),
 	};
 
-	constructor(staticData: (Store["staticData"])) {
+	constructor(staticData: (Store["staticData"]), engine: string) {
+		this.engine = engine;
 		this.staticData = staticData;
 
 		type GscDiskUpdateOptions = { pathRoot: string, rootIndex: number, rootUri: vscode.Uri, uri: vscode.Uri };
@@ -84,9 +87,9 @@ export default class Store {
 		file.invalidateCache();
 		const ignoredBlocks = parseIgnoredBlocks(document);
 		const topLevelBlocks = parseTopLevelBlocks(document, ignoredBlocks);
-		const callableDefs = parseCallableDefs(document, topLevelBlocks, ignoredBlocks);
-		const callableInstances = parseCallableInstances(document, topLevelBlocks, ignoredBlocks);
-		file.updateCache({ ignoredBlocks, topLevelBlocks, callableDefs, callableInstances });
+		const docOptions = { engine: this.engine, concise: this.staticData.config.conciseMode };
+		const callableDefs = parseCallableDefs(document, docOptions, topLevelBlocks, ignoredBlocks);
+		file.updateCache({ ignoredBlocks, topLevelBlocks, callableDefs });
 	}
 
 	onDidChangeGscDocument(event: vscode.TextDocumentChangeEvent) {
@@ -138,7 +141,12 @@ export default class Store {
 
 	getCallableDefs(document: vscode.TextDocument) {
 		return this.getCached(document, "callableDefs", document => {
-			return parseCallableDefs(document, this.getTopLevelBlocks(document), this.getIgnoredBlocks(document));
+			return parseCallableDefs(
+				document,
+				{ engine: this.engine, concise: this.staticData.config.conciseMode },
+				this.getTopLevelBlocks(document),
+				this.getIgnoredBlocks(document)
+			);
 		});
 	}
 
@@ -218,14 +226,17 @@ export default class Store {
 		}), ...this.staticData.completionItems];
 	}
 
-	getHover(identifier: string) {
-		// TODO: Create hovers from callableDefs
-		const hover = this.staticData.hovers[identifier.toLowerCase()];
+	getHover(document: vscode.TextDocument, identifier: string) {
+		const identLC = identifier.toLowerCase();
+		const hover = this.staticData.hovers[identLC] || (() => {
+			const def = this.getCallableDefs(document).get(identLC);
+			return def && createHover(def.documentation);
+		})();
 		if (!hover) return undefined;
 		return hover;
 	}
 
-	getSignatures(identifier: string, document: vscode.TextDocument) {
+	getSignatures(document: vscode.TextDocument, identifier: string) {
 		const identLc = identifier.toLowerCase();
 		const staticMatch = this.staticData.signatureGroups[identLc];
 		if (staticMatch) return staticMatch;

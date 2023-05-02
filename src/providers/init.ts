@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import createProviders from "./create";
+import { clearLanguageIDs, registerLanguageID, languageIDToEngine } from "../util";
 
 let initID = 0;
 const disposables: vscode.Disposable[] = [];
@@ -10,13 +11,14 @@ export default async () => {
 	disposables.forEach(d => d.dispose());
 
 	const providers = await createProviders();
-	const languageIDsToEngines = new Map<string, string>();
 
 	if (initID !== thisInitID) return;
 
+	clearLanguageIDs();
+
 	for (const engine in providers) {
 		const languageID = `gsc-${engine}`;
-		languageIDsToEngines.set(languageID, engine);
+		registerLanguageID(languageID, engine);
 
 		const {
 			completionItemProvider,
@@ -74,7 +76,7 @@ export default async () => {
 	}
 
 	disposables.push(vscode.workspace.onDidChangeTextDocument(event => {
-		const engine = languageIDsToEngines.get(event.document.languageId);
+		const engine = languageIDToEngine(event.document.languageId);
 		if (!engine) return;
 		providers[engine].store.onDidChangeGscDocument(event);
 	}));
