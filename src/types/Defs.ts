@@ -1,43 +1,53 @@
-export interface FieldDef {
+import { Range } from "vscode";
+
+export type VariableDef = {
 	name?: string
 	type?: string
 	description?: string[]
+	optional?: boolean
 }
 
-export interface CallableDef {
-	ident: string
+export type ParamDef = VariableDef & { name: string, range?: Range }
+
+export type CallableDef = {
+	ident: { name: string, range?: Range }
 	module?: string
 	featureset?: string
 	engine?: string
 	path?: string
 	description?: string[]
-	receiver?: FieldDef
-	params?: (FieldDef & {
-		optional?: boolean
-	})[],
+	receiver?: VariableDef
+	params?: ParamDef[]
 	paramsRepeatable?: "last" | "all"
-	return?: FieldDef
+	return?: Omit<VariableDef, "optional">
 	example?: string[]
 	deprecated?: boolean
 	devOnly?: boolean // TODO
+	body?: { range: Range }
 }
 
-export interface CallableDefsModule {
+export type CallableDefCustom = CallableDef & {
+	ident: { range: Range }
+	params: (ParamDef & { range: Range })[]
+	body: Required<CallableDef>["body"]
+}
+
+export type CallableDefsModule = {
 	[ident: string]: CallableDef
 }
 
-export interface CallableDefsFeatureset {
+export type CallableDefsFeatureset = {
 	[module: string]: CallableDefsModule
 }
 
-export interface CallableDefsEngine {
+export type CallableDefsEngine = {
 	[featureset: string]: CallableDefsFeatureset
 }
 
-export interface CallableDefsHierarchy {
+export type CallableDefsHierarchy = {
 	[engine: string]: CallableDefsEngine
 }
 
-export interface KeywordDefsHierarchy {
+export type KeywordDefsHierarchy = {
 	[engine: string]: string[]
 }

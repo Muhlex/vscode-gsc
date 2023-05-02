@@ -1,24 +1,19 @@
 import * as vscode from "vscode";
 import * as path from "path";
 
-import buildStaticData from "./static";
+import parseStaticData from "./static";
 import Store from "./store";
-import {
-	getIsPosInsideParsedBlocks,
-	parseIgnoredBlocks,
-	parseTopLevelBlocks,
-	parseFunctionDefs
-} from "./parse";
+import { getIsPosInsideParsedBlocks } from "./parse";
 import { escapeRegExp, isCall, isReference } from "../util";
 
-const buildEngineProviders = async (engine: string, defsUri: vscode.Uri) => {
-	const staticData = await buildStaticData(engine, defsUri);
+const createEngineProviders = async (engine: string, defsUri: vscode.Uri) => {
+	const staticData = await parseStaticData(engine, defsUri);
 	const store = new Store(staticData);
 
 	const completionItemProvider: vscode.CompletionItemProvider = {
 		async provideCompletionItems(document, position, token, context) {
 			if (context.triggerCharacter) {
-				const ignoredBlocks = parseIgnoredBlocks(document);
+				const ignoredBlocks = store.getIgnoredBlocks(document);
 				if (getIsPosInsideParsedBlocks(ignoredBlocks, position)) return;
 			}
 
@@ -27,7 +22,7 @@ const buildEngineProviders = async (engine: string, defsUri: vscode.Uri) => {
 			const linePreCursorText = document.lineAt(position).text.slice(0, position.character);
 			const partialPathMatch = linePreCursorText.match(/[A-Za-z0-9_\\]*\\[A-Za-z0-9_\\]*$/);
 			if (partialPathMatch) {
-				items = await store.getGscPathCompletionItems(partialPathMatch[0], token);
+				items = await store.getPathCompletionItems(partialPathMatch[0], token);
 			} else {
 				items = store.getCallableCompletionItems(document);
 			}
@@ -38,6 +33,8 @@ const buildEngineProviders = async (engine: string, defsUri: vscode.Uri) => {
 
 	const hoverProvider: vscode.HoverProvider = {
 		provideHover(document, position, token) {
+			if (getIsPosInsideParsedBlocks(store.getIgnoredBlocks(document), position)) return;
+
 			const wordRange = document.getWordRangeAtPosition(position, /[A-Za-z_][A-Za-z0-9_]*/);
 			if (!wordRange) return;
 
@@ -198,11 +195,7 @@ const buildEngineProviders = async (engine: string, defsUri: vscode.Uri) => {
 	const provideSemanticTokens = (document: vscode.TextDocument, range?: vscode.Range) => {
 		const builder = new vscode.SemanticTokensBuilder();
 
-		const ignoredBlocks = parseIgnoredBlocks(
-			document,
-			range && new vscode.Range(new vscode.Position(0, 0), range.end)
-		);
-		const topLevelBlocks = parseTopLevelBlocks(document, ignoredBlocks);
+		const ignoredBlocks = store.getIgnoredBlocks(document);
 
 		const provideInbuilts = () => {
 			const text = document.getText(range);
@@ -227,9 +220,7 @@ const buildEngineProviders = async (engine: string, defsUri: vscode.Uri) => {
 		};
 
 		const provideCustomFunctions = () => {
-			const decls = parseFunctionDefs(document, topLevelBlocks, ignoredBlocks);
-
-			for (const [, { ident, params, body }] of decls) {
+			for (const [, { ident, params, body }] of store.getCallableDefs(document)) {
 				if (range && range.end.compareTo(ident.range.start) < 0) break;
 				builder.push(ident.range.start.line, ident.range.start.character, ident.name.length, 0, 0b1);
 
@@ -281,7 +272,7 @@ const buildEngineProviders = async (engine: string, defsUri: vscode.Uri) => {
 			if (!isCall(wordRange, document) && !isReference(wordRange, document))
 				return;
 
-			return store.getCallableDefinition(document, wordRange);
+			return store.getCallableDefinitionLocation(document, wordRange);
 		}
 	};
 
@@ -304,7 +295,7 @@ const buildEngineProviders = async (engine: string, defsUri: vscode.Uri) => {
 			}));
 		},
 		provideDocumentColors(document, token) {
-			const ignoredBlocks = parseIgnoredBlocks(document);
+			const ignoredBlocks = store.getIgnoredBlocks(document);
 			const colorsWithBase = /\(\s*(?<r>\d*\.?\d+)\s*(?:\/\s*(?<rb>\d+))?\s*,\s*(?<g>\d*\.?\d+)\s*(?:\/\s*(?<gb>\d+))?\s*,\s*(?<b>\d*\.?\d+)\s*(?:\/\s*(?<bb>\d+))?\s*\)/gd;
 			const result: vscode.ColorInformation[] = [];
 
@@ -340,7 +331,8 @@ const buildEngineProviders = async (engine: string, defsUri: vscode.Uri) => {
 		semanticTokensLegend,
 		definitionProvider,
 		inlayHintsProvider,
-		colorProvider
+		colorProvider,
+		store
 	};
 };
 
@@ -349,7 +341,10 @@ export default async () => {
 	const engines = (await vscode.workspace.fs.readDirectory(defsUri))
 		.filter(([, fileType]) => fileType === vscode.FileType.Directory)
 		.map(([name]) => name);
-	return Object.fromEntries(await Promise.all(engines.map(async engine => {
-		return [engine, await buildEngineProviders(engine, defsUri)];
-	})));
+	const providersPerEngine = engines.map(
+		async (engine): Promise<[string, Awaited<(ReturnType<typeof createEngineProviders>)>]> => {
+			return [engine, await createEngineProviders(engine, defsUri)];
+		}
+	);
+	return Object.fromEntries(await Promise.all(providersPerEngine));
 };

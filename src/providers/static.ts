@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 
-import { CallableDefsEngine, CallableDef, FieldDef } from "../types/Defs";
+import { CallableDefsEngine, CallableDef, VariableDef } from "../types/Defs";
 import {
 	createKeywordCompletionItem,
 	createCallableCompletionItem,
@@ -10,14 +10,14 @@ import {
 } from "./items";
 
 const createDocumentation = (def: CallableDef, engine: string, concise: boolean) => {
-	const getVariableDoc = (f: FieldDef | undefined, name: string) => {
-		if (!f) return "";
+	const getVariableDoc = (v: VariableDef | undefined, name: string) => {
+		if (!v) return "";
 
 		return (concise ? `${name} *` : `*${name} `)
-			+ (f.name ? ("`" + f.name + "`" + (f.type ? " " : "")) : "")
-			+ (f.type || "")
+			+ (v.name ? ("`" + v.name + "`" + (v.type ? " " : "")) : "")
+			+ (v.type || "")
 			+ "*"
-			+ (f.description ? (" — " + f.description.join("\n")) : "");
+			+ (v.description ? (" — " + v.description.join("\n")) : "");
 	};
 
 	const receiver = getVariableDoc(def.receiver, concise ? "📥️" : "@receiver");
@@ -47,7 +47,7 @@ export default async (engine: string, defsUri: vscode.Uri) => {
 		enableCallables: boolean | undefined
 		conciseMode: boolean | undefined
 		foldersSorting: "top" | "bottom" | "inline" | undefined
-		rootFolders: { root: string, uri: vscode.Uri }[]
+		rootFolders: Map<string, vscode.Uri[]>
 	} = await (async () => {
 		const intelliSense = vscode.workspace.getConfiguration("GSC.intelliSense");
 		return {
@@ -57,14 +57,17 @@ export default async (engine: string, defsUri: vscode.Uri) => {
 			conciseMode: intelliSense.get("conciseMode"),
 			foldersSorting: intelliSense.get("foldersSorting"),
 			rootFolders: await (async () => {
-				const rootFoldersRaw: string[] = vscode.workspace.getConfiguration("GSC.rootFolders").get(engine.toUpperCase()) || [];
-				const rootFolders = [];
-				for (const folderPath of rootFoldersRaw) {
+				const rootFolderPaths: string[] = vscode.workspace.getConfiguration("GSC.rootFolders").get(engine.toUpperCase()) || [];
+				const rootFolders = new Map<string, vscode.Uri[]>();
+				for (const folderPath of rootFolderPaths) {
 					const uri = vscode.Uri.file(folderPath);
-					const root = uri.path.split("/").at(-1) as string;
+					const gscPathRoot = uri.path.split("/").at(-1) as string;
 					try {
 						await vscode.workspace.fs.stat(uri);
-						rootFolders.push({ root, uri });
+
+						const entry = rootFolders.get(gscPathRoot);
+						if (entry) entry.push(uri);
+						else rootFolders.set(gscPathRoot, [uri]);
 					} catch (error) {
 						vscode.window.showWarningMessage(`Error registering ${engine.toUpperCase()} GSC root directory: "${folderPath}"\\nReview your extension settings.`);
 					}
@@ -122,12 +125,9 @@ export default async (engine: string, defsUri: vscode.Uri) => {
 		}
 	}
 
-	// GSC Paths
-	const roots = new Set<string>();
-	for (const path of config.rootFolders) {
-		if (roots.has(path.root)) continue; // handle multiple root folders with the same name
-		completionItems.push(createFolderCompletionItem(path.root));
-		roots.add(path.root);
+	// GSC path roots
+	for (const [gscPathRoot] of config.rootFolders) {
+		completionItems.push(createFolderCompletionItem(gscPathRoot));
 	}
 
 	return {

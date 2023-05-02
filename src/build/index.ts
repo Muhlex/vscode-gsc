@@ -55,7 +55,7 @@ const OUT_DIR = tsconfig.compilerOptions.outDir;
 		const defs: CallableDefsHierarchy = {};
 
 		await Promise.all(files.map(async filepath => {
-			const { dir, name: ident } = path.parse(filepath);
+			const { dir, name } = path.parse(filepath);
 			const segments = dir.split(path.sep);
 			const module = segments[segments.length - 1];
 			const featureset = segments[segments.length - 2];
@@ -63,14 +63,14 @@ const OUT_DIR = tsconfig.compilerOptions.outDir;
 
 			try {
 				const def: CallableDef = JSON.parse((await fs.readFile(filepath)).toString());
-				def.ident = ident;
+				def.ident = { name };
 				def.module = module;
 				def.featureset = featureset;
 				def.engine = engine;
 				if (!defs[engine]) defs[engine] = {};
 				if (!defs[engine][featureset]) defs[engine][featureset] = {};
 				if (!defs[engine][featureset][module]) defs[engine][featureset][module] = {};
-				defs[engine][featureset][module][ident] = def;
+				defs[engine][featureset][module][name] = def;
 			} catch (error) {
 				throw new Error(`JSON.parse error in '${filepath}':\n${error}`);
 			}

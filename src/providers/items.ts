@@ -16,24 +16,28 @@ export const createCallableCompletionItem = (
 ): vscode.CompletionItem => {
 	const getUsage = () => {
 		return (def.receiver ? ("<" + (def.receiver.name || def.receiver.type) + "> ") : "")
-			+ def.ident + "("
+			+ def.ident.name + "("
 			+ (def.params?.map(p => `${p.optional ? "[" : "<"}${p.name}${p.optional ? "]" : ">"}`).join(", ") || "")
 			+ ")";
 	};
 
+	const isEngine = Boolean(def.module && def.featureset);
 	return {
-		label: { label: def.ident, description: def.path || `${def.module} (${def.featureset})` },
+		label: {
+			label: def.ident.name,
+			description: isEngine ? `${def.module} (${def.featureset})` : def.path || "(local)"
+		},
 		detail: getUsage(),
 		documentation: documentation || def.description?.join("\n"),
 		kind: def.receiver ? vscode.CompletionItemKind.Method : vscode.CompletionItemKind.Function,
-		commitCharacters: ["("]
+		commitCharacters: [/* "(" */] // annoying when completion items are shown all the time
 	};
 };
 
 export const createFolderCompletionItem = (foldername: string, sortToTop = false): vscode.CompletionItem => {
 	return {
 		label: foldername + "\\",
-		sortText: sortToTop ? "0" + foldername : undefined,
+		sortText: sortToTop ? " " + foldername : undefined,
 		command: { command: "editor.action.triggerSuggest", title: "Retrigger Suggest" },
 		kind: vscode.CompletionItemKind.Folder
 	};
@@ -42,7 +46,7 @@ export const createFolderCompletionItem = (foldername: string, sortToTop = false
 export const createFileCompletionItem = (filename: string, sortToTop = false): vscode.CompletionItem => {
 	return {
 		label: filename,
-		sortText: sortToTop ? "0" + filename : undefined,
+		sortText: sortToTop ? "\u0000" + filename : undefined,
 		insertText: path.parse(filename).name + "::",
 		filterText: "\\" + filename,
 		kind: vscode.CompletionItemKind.File
@@ -60,7 +64,7 @@ export const createSignatures = (def: CallableDef): vscode.SignatureInformation[
 		documentation: new vscode.MarkdownString(p.description?.join("\n") || "")
 	}));
 	return [{
-		label: def.ident + "(" + parameters.map(({ label }) => label).join(", ") + ")",
+		label: def.ident.name + "(" + parameters.map(({ label }) => label).join(", ") + ")",
 		parameters
 	}];
 };

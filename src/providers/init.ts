@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import getProviders from "./providers";
+import createProviders from "./create";
 
 let initID = 0;
 const disposables: vscode.Disposable[] = [];
@@ -9,24 +9,41 @@ export default async () => {
 	const thisInitID = initID;
 	disposables.forEach(d => d.dispose());
 
-	const providers = await getProviders();
+	const providers = await createProviders();
+	const languageIDsToEngines = new Map<string, string>();
 
 	if (initID !== thisInitID) return;
 
 	for (const engine in providers) {
-		const languageID = ("gsc-" + engine);
+		const languageID = `gsc-${engine}`;
+		languageIDsToEngines.set(languageID, engine);
+
+		const {
+			completionItemProvider,
+			hoverProvider,
+			signatureHelpProvider,
+			rangeSemanticTokensProvider,
+			semanticTokensLegend,
+			definitionProvider,
+			inlayHintsProvider,
+			colorProvider,
+			store
+		} = providers[engine];
+
+		disposables.push(store); // Always dispose stores which are created per engine!
+
 		disposables.push(vscode.languages.registerCompletionItemProvider(
 			languageID,
-			providers[engine].completionItemProvider,
+			completionItemProvider,
 			"\\"
 		));
 		disposables.push(vscode.languages.registerHoverProvider(
 			languageID,
-			providers[engine].hoverProvider
+			hoverProvider
 		));
 		disposables.push(vscode.languages.registerSignatureHelpProvider(
 			languageID,
-			providers[engine].signatureHelpProvider,
+			signatureHelpProvider,
 			"(", ","
 		));
 		/**
@@ -37,22 +54,28 @@ export default async () => {
 		 **/
 		disposables.push(vscode.languages.registerDocumentRangeSemanticTokensProvider(
 			languageID,
-			providers[engine].rangeSemanticTokensProvider,
-			providers[engine].semanticTokensLegend
+			rangeSemanticTokensProvider,
+			semanticTokensLegend
 		));
 		disposables.push(vscode.languages.registerDefinitionProvider(
 			languageID,
-			providers[engine].definitionProvider
+			definitionProvider
 		));
 		disposables.push(vscode.languages.registerInlayHintsProvider(
 			languageID,
-			providers[engine].inlayHintsProvider
+			inlayHintsProvider
 		));
 		if (vscode.workspace.getConfiguration("GSC.colors").get("enable")) {
 			disposables.push(vscode.languages.registerColorProvider(
 				languageID,
-				providers[engine].colorProvider
+				colorProvider
 			));
 		}
 	}
+
+	disposables.push(vscode.workspace.onDidChangeTextDocument(event => {
+		const engine = languageIDsToEngines.get(event.document.languageId);
+		if (!engine) return;
+		providers[engine].store.onDidChangeGscDocument(event);
+	}));
 };

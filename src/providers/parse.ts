@@ -1,8 +1,10 @@
 import * as vscode from "vscode";
+import { CallableInstance, CallableInstanceType } from "../types/Instances";
+import { CallableDefCustom } from "../types/Defs";
 
 export enum ParsedBlockType { BlockComment, LineComment, String }
-export interface ParsedBlock {
-	text: string,
+export type ParsedBlock = {
+	text: string
 	range: vscode.Range
 	type?: ParsedBlockType
 }
@@ -83,14 +85,10 @@ export const parseTopLevelBlocks = (document: vscode.TextDocument, ignoredBlocks
 	return topLevelBlocks;
 };
 
-export const parseFunctionDefs = (document: vscode.TextDocument, topLevelBlocks: ParsedBlock[], ignoredBlocks?: ParsedBlock[]) => {
+export const parseCallableDefs = (document: vscode.TextDocument, topLevelBlocks: ParsedBlock[], ignoredBlocks?: ParsedBlock[]) => {
 	// No global flag as there is at most one function per top-level-block:
 	const regexp = /\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\(([^)]*?)\)\s*{/sd;
-	const result = new Map<string, {
-		ident: { name: string, range: vscode.Range }
-		params: { name: string, range: vscode.Range }[]
-		body: { range: vscode.Range }
-	}>();
+	const result = new Map<string, CallableDefCustom>();
 
 	for (let i = 0; i < topLevelBlocks.length; i++) {
 		const { range, text } = topLevelBlocks[i];
@@ -139,15 +137,9 @@ export const parseFunctionDefs = (document: vscode.TextDocument, topLevelBlocks:
 	return result;
 };
 
-export enum CallableInstanceType { Reference, Call }
-
 export const parseCallableInstances = (document: vscode.TextDocument, topLevelBlocks: ParsedBlock[], ignoredBlocks?: ParsedBlock[]) => {
 	const regexp = /::\s*\b([A-Za-z_][A-Za-z0-9_]*)\b|\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\(/gd;
-	const result: {
-		type: CallableInstanceType
-		ident: { name: string, range: vscode.Range }
-		params?: { range: vscode.Range }[]
-	}[] = [];
+	const result: CallableInstance[] = [];
 	const text = document.getText();
 
 	for (const match of text.matchAll(regexp) as IterableIterator<RegExpMatchArray & { indices: Array<[number, number]> }>) {
