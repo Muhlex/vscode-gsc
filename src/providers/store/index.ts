@@ -262,23 +262,27 @@ export default class Store {
 	}
 
 	getInlayHints(document: vscode.TextDocument, range: vscode.Range) {
-		return this.getDefinedCallableInstances(document).flatMap(callable => {
-			if (!callable.params || callable.params.length < 1) return [];
-			if (!range.contains(callable.params[callable.params.length - 1].range.end)) return []; // TODO: break if after range
-			const def = callable.def;
-			if (!def.params) return [];
+		const result: vscode.InlayHint[] = [];
 
-			const paramHints = [];
+		for (const callable of this.getDefinedCallableInstances(document)) {
+			if (!callable.params || callable.params.length < 1) continue;
+			if (range.start.isAfter(callable.params[callable.params.length - 1].range.start)) continue;
+			if (range.end.isBefore(callable.params[0].range.start)) break;
+
+			const def = callable.def;
+			if (!def.params) continue;
+
 			for (const [i, param] of callable.params.entries()) {
 				if (!def.params[i]) break;
-				paramHints.push({
+				result.push({
 					position: param.range.start,
 					label: `${def.params[i].name}:`,
 					kind: vscode.InlayHintKind.Parameter,
 					paddingRight: true
 				});
 			}
-			return paramHints;
-		});
+		}
+
+		return result;
 	}
 }
