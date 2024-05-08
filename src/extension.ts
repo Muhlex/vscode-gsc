@@ -5,10 +5,12 @@ export async function activate(context: vscode.ExtensionContext) {
 	initProviders();
 
 	vscode.workspace.onDidChangeConfiguration(event => {
-		const reinitProviders = event.affectsConfiguration("GSC.intelliSense")
-			|| event.affectsConfiguration("GSC.featureSets")
-			|| event.affectsConfiguration("GSC.colors.enable")
-			|| event.affectsConfiguration("GSC.rootFolders");
+		const reinitProviders = [
+			"GSC.intelliSense",
+			"GSC.featureSets",
+			"GSC.colors.enable",
+			"GSC.rootFolders"
+		].some(section => event.affectsConfiguration(section));
 		if (reinitProviders) initProviders();
 	});
 }

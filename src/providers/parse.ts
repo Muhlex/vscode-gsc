@@ -1,14 +1,18 @@
 import * as vscode from "vscode";
-import { CallableInstance, CallableInstanceType } from "../types/Instances";
-import { CallableDefCustom } from "../types/Defs";
-import { createDocumentation } from "./items";
+import { type CallableInstance, CallableInstanceKind } from "../types/Instances";
+import type { CallableDef, CallableDefScript } from "../types/Defs";
+import type { GscFile } from "./GscStore/GscFile";
 
-export enum ParsedBlockType { BlockComment, LineComment, String }
-export type ParsedBlock = {
-	text: string
-	range: vscode.Range
-	type?: ParsedBlockType
+export enum ParsedBlockType {
+	BlockComment = 0,
+	LineComment = 1,
+	String = 2,
 }
+export type ParsedBlock = {
+	text: string;
+	range: vscode.Range;
+	type?: ParsedBlockType;
+};
 
 export const getIsPosInsideParsedBlocks = (sortedBlocks: ParsedBlock[], pos: vscode.Position) => {
 	for (let i = sortedBlocks.length - 1; i >= 0; i--) {
@@ -21,13 +25,14 @@ export const getIsPosInsideParsedBlocks = (sortedBlocks: ParsedBlock[], pos: vsc
 };
 
 export const parseIgnoredBlocks = (document: vscode.TextDocument, range?: vscode.Range) => {
-	const regexp = /(?<block>\/\*.*?(?:\*\/|$))|(?<line>\/\/.*?(?=$|[\r\n]))|(?<string>"[^"\\]*(?:\\.[^"\\]*)*(?:"|$))/gs;
+	const regexp =
+		/(?<block>\/\*.*?(?:\*\/|$))|(?<line>\/\/.*?(?=$|[\r\n]))|(?<string>"[^"\\]*(?:\\.[^"\\]*)*(?:"|$))/gs;
 	const result: ParsedBlock[] = [];
 
 	for (const match of document.getText(range).matchAll(regexp)) {
 		const [text, block, line, string] = match;
 		const startPos = document.positionAt(match.index as number);
-		const endPos = document.positionAt(match.index as number + text.length);
+		const endPos = document.positionAt((match.index as number) + text.length);
 		const range = new vscode.Range(startPos, endPos);
 
 		if (block) result.push({ text, range, type: ParsedBlockType.BlockComment });
@@ -38,21 +43,26 @@ export const parseIgnoredBlocks = (document: vscode.TextDocument, range?: vscode
 	return result;
 };
 
-export const parseTopLevelBlocks = (document: vscode.TextDocument, ignoredBlocks?: ParsedBlock[]) => {
+export const parseTopLevelBlocks = (
+	document: vscode.TextDocument,
+	ignoredBlocks?: ParsedBlock[],
+) => {
 	const eofPos = document.lineAt(document.lineCount - 1).range.end;
-	const includedBlocks = [...(ignoredBlocks || []), { range: new vscode.Range(eofPos, eofPos) }]
-		.map((block, i, array) => {
-			const start = i === 0 ? new vscode.Position(0, 0) : array[i - 1].range.end;
-			const end = block.range.start;
-			const range = new vscode.Range(start, end);
-			return { range, text: document.getText(range) };
-		});
+	const includedBlocks = [
+		...(ignoredBlocks || []),
+		{ range: new vscode.Range(eofPos, eofPos) },
+	].map((block, i, array) => {
+		const start = i === 0 ? new vscode.Position(0, 0) : array[i - 1].range.end;
+		const end = block.range.start;
+		const range = new vscode.Range(start, end);
+		return { range, text: document.getText(range) };
+	});
 
 	const topLevelBlocks: ParsedBlock[] = [];
 	let level = 0;
 	let offset = 0;
 	for (const { text, range } of includedBlocks) {
-		for (let i = 0;;) {
+		for (let i = 0; ; ) {
 			const iOpen = text.indexOf("{", i);
 			const iClose = text.indexOf("}", i);
 			if (iOpen !== -1 && (iOpen < iClose || iClose === -1)) {
@@ -61,7 +71,7 @@ export const parseTopLevelBlocks = (document: vscode.TextDocument, ignoredBlocks
 				if (level === 1) {
 					const r = new vscode.Range(
 						document.positionAt(offset),
-						document.positionAt(document.offsetAt(range.start) + i)
+						document.positionAt(document.offsetAt(range.start) + i),
 					);
 					topLevelBlocks.push({ range: r, text: document.getText(r) });
 				}
@@ -87,12 +97,14 @@ export const parseTopLevelBlocks = (document: vscode.TextDocument, ignoredBlocks
 };
 
 export const parseCallableDefs = (
-	document: vscode.TextDocument, documentationOptions: { engine: string, concise: boolean },
-	topLevelBlocks: ParsedBlock[], ignoredBlocks?: ParsedBlock[],
+	document: vscode.TextDocument,
+	file: GscFile,
+	topLevelBlocks: ParsedBlock[],
+	ignoredBlocks?: ParsedBlock[],
 ) => {
 	// No global flag as there is at most one function per top-level-block:
-	const regexp = /\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\(([^)]*?)\)\s*{/sd;
-	const result = new Map<string, CallableDefCustom>();
+	const regexp = /\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\(([^)]*?)\)\s*{/ds;
+	const result = new Map<string, CallableDefScript>();
 
 	for (let i = 0; i < topLevelBlocks.length; i++) {
 		const { range, text } = topLevelBlocks[i];
@@ -105,77 +117,82 @@ export const parseCallableDefs = (
 		if (ignoredBlocks && getIsPosInsideParsedBlocks(ignoredBlocks, position)) continue;
 
 		const entry = {
+			origin: "script",
 			ident: {
 				name: match[1],
-				range: new vscode.Range(
-					position,
-					document.positionAt(offset + match[1].length)
-				),
+				range: new vscode.Range(position, document.positionAt(offset + match[1].length)),
 			},
 			params: (() => {
 				const text = match[2];
 				const offset = blockOffset + match.indices[2][0];
 				const regexp = /\b([A-Za-z_][A-Za-z0-9_]*)\b\s*(?:,|$)/g;
-				const matches = [...text.matchAll(regexp) as IterableIterator<RegExpMatchArray & { index: number }>];
+				const matches = [
+					...(text.matchAll(regexp) as IterableIterator<RegExpMatchArray & { index: number }>),
+				];
 				if (matches.length === 0) return [];
 
-				return matches.map(({ 1: name, index }) => ({
+				return matches.map(({ index, 1: name }) => ({
 					name,
 					range: new vscode.Range(
 						document.positionAt(offset + index),
-						document.positionAt(offset + index + name.length)
-					)
+						document.positionAt(offset + index + name.length),
+					),
 				}));
 			})(),
 			body: {
 				range: new vscode.Range(
 					range.end,
-					topLevelBlocks[i + 1]?.range.start || document.lineAt(document.lineCount - 1).range.end
-				)
+					topLevelBlocks[i + 1]?.range.start || document.lineAt(document.lineCount - 1).range.end,
+				),
 			},
-		};
-		const { engine, concise } = documentationOptions;
-		const documentation = createDocumentation(entry, engine, concise);
+			file,
+		} satisfies CallableDefScript;
 
-		result.set(entry.ident.name.toLowerCase(), { ...entry, documentation });
+		result.set(entry.ident.name.toLowerCase(), entry);
 	}
 
 	return result;
 };
 
-export const parseCallableInstances = (document: vscode.TextDocument, topLevelBlocks: ParsedBlock[], ignoredBlocks?: ParsedBlock[]) => {
-	const regexp = /::\s*\b([A-Za-z_][A-Za-z0-9_]*)\b|\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\(/gd;
+export const parseCallableInstances = (
+	document: vscode.TextDocument,
+	topLevelBlocks: ParsedBlock[],
+	ignoredBlocks?: ParsedBlock[],
+) => {
+	const regexp = /::\s*\b([A-Za-z_][A-Za-z0-9_]*)\b|\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\(/dg;
 	const result: CallableInstance[] = [];
 	const text = document.getText();
 
-	for (const match of text.matchAll(regexp) as IterableIterator<RegExpMatchArray & { indices: Array<[number, number]> }>) {
-		const type = match[1] ? CallableInstanceType.Reference : CallableInstanceType.Call;
+	for (const match of text.matchAll(regexp) as IterableIterator<
+		RegExpMatchArray & { indices: Array<[number, number]> }
+	>) {
+		const type = match[1] ? CallableInstanceKind.Reference : CallableInstanceKind.Call;
 		const name = match[1] || match[2];
 		const offset = match[1] ? match.indices[1][0] : match.indices[2][0];
 		const position = document.positionAt(offset);
 		if (getIsPosInsideParsedBlocks(topLevelBlocks, position)) continue;
 		if (ignoredBlocks && getIsPosInsideParsedBlocks(ignoredBlocks, position)) continue;
 
-		const callable: typeof result[number] = {
+		const callable: (typeof result)[number] = {
 			ident: {
 				name,
 				range: new vscode.Range(position, document.positionAt(offset + name.length)),
 			},
-			type
+			type,
 		};
 
 		// parse params
-		if (type === CallableInstanceType.Call) {
+		if (type === CallableInstanceKind.Call) {
 			const openingIndex = offset + name.length;
 			let closingIndex: number | undefined = undefined;
 			let level = 0;
 			const commaIndices = [];
 
-			for (let i = openingIndex;;) {
+			for (let i = openingIndex; ; ) {
 				const chars = ["(", ")"];
 				if (level === 1) chars.push(","); // only on the braces concerning this function call
 				const next = chars
-					.map(char => ({ char, index: text.indexOf(char, i) }))
+					.map((char) => ({ char, index: text.indexOf(char, i) }))
 					.filter(({ index }) => index !== -1)
 					.sort((a, b) => a.index - b.index)
 					.at(0);
@@ -200,16 +217,18 @@ export const parseCallableInstances = (document: vscode.TextDocument, topLevelBl
 
 			const params = [];
 			for (const [i, endIndex] of endIndices.entries()) {
-				const startIndex = i === 0 ? (openingIndex + 1) : (endIndices[i - 1] + 1);
+				const startIndex = i === 0 ? openingIndex + 1 : endIndices[i - 1] + 1;
 				const paramText = text.slice(startIndex, endIndex);
-				const match = paramText.match(/^\s*(.*?)\s*$/d) as (RegExpMatchArray & { indices: Array<[number, number]> }) | null;
+				const match = paramText.match(/^\s*(.*?)\s*$/d) as
+					| (RegExpMatchArray & { indices: Array<[number, number]> })
+					| null;
 				if (!match || match.indices[1][0] === match.indices[1][1]) continue; // no param
 
 				const startOffset = match.indices[1][0];
 				const endOffset = match.indices[0][1] - match.indices[1][1];
 				const range = new vscode.Range(
 					document.positionAt(startIndex + startOffset),
-					document.positionAt(endIndex - endOffset)
+					document.positionAt(endIndex - endOffset),
 				);
 				params.push({ range });
 			}
@@ -220,4 +239,24 @@ export const parseCallableInstances = (document: vscode.TextDocument, topLevelBl
 	}
 
 	return result;
+};
+
+export const parseIncludes = (
+	document: vscode.TextDocument,
+	topLevelBlocks: ParsedBlock[],
+	ignoredBlocks?: ParsedBlock[],
+) => {
+	const regexp = /#include\s+(\b[\w\\ ]+)/g;
+	const text = document.getText(topLevelBlocks[0]?.range);
+	const paths = new Set<string>();
+
+	for (const match of text.matchAll(regexp) as IterableIterator<
+		RegExpMatchArray & { index: number }
+	>) {
+		const position = document.positionAt(match.index);
+		if (ignoredBlocks && getIsPosInsideParsedBlocks(ignoredBlocks, position)) continue;
+		paths.add(match[1]);
+	}
+
+	return [...paths];
 };

@@ -1,54 +1,62 @@
-import { Range, MarkdownString } from "vscode";
+import type { Range } from "vscode";
+import type { GscFile } from "../providers/GscStore/GscFile";
 
 export type VariableDef = {
-	name?: string
-	type?: string
-	description?: string[]
-	optional?: boolean
-}
+	name?: string;
+	type?: string;
+	description?: string[];
+	optional?: boolean;
+};
 
-export type ParamDef = VariableDef & { name: string, range?: Range }
+export type ParamDef = VariableDef & {
+	name: string;
+};
 
-export type CallableDef = {
-	ident: { name: string, range?: Range }
-	module?: string
-	featureset?: string
-	engine?: string
-	path?: string
-	description?: string[]
-	receiver?: VariableDef
-	params?: ParamDef[]
-	paramsRepeatable?: "last" | "all"
-	return?: Omit<VariableDef, "optional">
-	example?: string[]
-	deprecated?: boolean
-	devOnly?: boolean // TODO
-	body?: { range: Range }
-}
+type CallableDefCommon = {
+	ident: { name: string };
+	description?: string[];
+	receiver?: VariableDef;
+	params?: ParamDef[];
+	paramsRepeatable?: "last" | "all";
+	return?: Omit<VariableDef, "optional">;
+	example?: string[];
+};
 
-export type CallableDefCustom = CallableDef & {
-	ident: { range: Range }
-	params: (ParamDef & { range: Range })[]
-	body: Required<CallableDef>["body"]
-	documentation: MarkdownString
-}
+export type CallableDefGame = CallableDefCommon & {
+	origin: "game";
+	module: string;
+	featureset: string;
+	engine: string;
+	deprecated?: boolean;
+	devOnly?: boolean; // TODO
+};
+
+export type CallableDefScript = CallableDefCommon & {
+	origin: "script";
+	ident: CallableDefCommon["ident"] & { range: Range };
+	params: (ParamDef & { range: Range })[];
+	body: { range: Range };
+	file: GscFile;
+};
+
+export type CallableDef = CallableDefGame | CallableDefScript;
 
 export type CallableDefsModule = {
-	[ident: string]: CallableDef
-}
+	[ident: string]: CallableDefGame;
+};
 
 export type CallableDefsFeatureset = {
-	[module: string]: CallableDefsModule
-}
+	[module: string]: CallableDefsModule;
+};
 
 export type CallableDefsEngine = {
-	[featureset: string]: CallableDefsFeatureset
-}
+	[featureset: string]: CallableDefsFeatureset;
+};
 
 export type CallableDefsHierarchy = {
-	[engine: string]: CallableDefsEngine
-}
+	[engine: string]: CallableDefsEngine;
+};
 
 export type KeywordDefsHierarchy = {
-	[engine: string]: string[]
-}
+	[engine: string]: string[];
+};

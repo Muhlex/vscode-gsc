@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 
-import { CallableDefsEngine, CallableDef } from "../types/Defs";
+import type { CallableDefsEngine, CallableDefGame } from "../types/Defs";
 import {
 	createKeywordCompletionItem,
 	createCallableCompletionItem,
@@ -10,40 +10,35 @@ import {
 	createDocumentation
 } from "./items";
 
-export default async (engine: string, defsUri: vscode.Uri) => {
+export const loadStaticData = async (engine: string, defsUri: vscode.Uri) => {
 	const config: {
-		featuresets: { [featureset: string]: boolean } | undefined
+		featuresets: { [featureset: string]: boolean }
 		enableKeywords: boolean
 		enableCallables: boolean
 		conciseMode: boolean
 		foldersSorting: "top" | "bottom" | "inline"
-		rootFolders: Map<string, vscode.Uri[]>
+		rootUris: vscode.Uri[]
 	} = await (async () => {
 		const intelliSense = vscode.workspace.getConfiguration("GSC.intelliSense");
 		return {
-			featuresets: vscode.workspace.getConfiguration("GSC.featureSets").get(engine.toUpperCase()),
+			featuresets: vscode.workspace.getConfiguration("GSC.featureSets").get(engine.toUpperCase()) ?? {},
 			enableKeywords: intelliSense.get("enableKeywords") ?? true,
 			enableCallables: intelliSense.get("enableCallables") ?? true,
 			conciseMode: intelliSense.get("conciseMode") ?? false,
 			foldersSorting: intelliSense.get("foldersSorting") ?? "inline",
-			rootFolders: await (async () => {
-				const rootFolderPaths: string[] = vscode.workspace.getConfiguration("GSC.rootFolders").get(engine.toUpperCase()) || [];
-				const rootFolders = new Map<string, vscode.Uri[]>();
-				for (const folderPath of rootFolderPaths) {
-					const uri = vscode.Uri.file(folderPath);
-					const gscPathRoot = uri.path.split("/").at(-1) as string;
+			rootUris: await (async () => {
+				const paths: string[] = vscode.workspace.getConfiguration("GSC.rootFolders").get(engine.toUpperCase()) ?? [];
+				const uris = await Promise.all(paths.map(async (path) => {
 					try {
+						const uri = vscode.Uri.file(path);
 						await vscode.workspace.fs.stat(uri);
-
-						const entry = rootFolders.get(gscPathRoot);
-						if (entry) entry.push(uri);
-						else rootFolders.set(gscPathRoot, [uri]);
-					} catch (error) {
-						vscode.window.showWarningMessage(`Error registering ${engine.toUpperCase()} GSC root directory: "${folderPath}"\\nReview your extension settings.`);
+						return uri;
+					} catch {
+						vscode.window.showWarningMessage(`Invalid ${engine.toUpperCase()} GSC root directory: "${path}" Review your extension settings.`);
 					}
-				}
-				return rootFolders;
-			})()
+				}));
+				return uris.filter((uri): uri is vscode.Uri => uri !== undefined);
+			})(),
 		};
 	})();
 
@@ -53,13 +48,13 @@ export default async (engine: string, defsUri: vscode.Uri) => {
 
 	// Keywords
 	const keywordsPath = [...defsUri.path.split("/"), engine, "keyword.json"].join("/");
-	const keywordDefsEngine: string[] = JSON.parse(
+	const keywordDefs: string[] = JSON.parse(
 		(await vscode.workspace.fs.readFile(vscode.Uri.file(keywordsPath))).toString()
 	);
 	if (config.enableKeywords) {
-		keywordDefsEngine.forEach(keywordDef => {
-			completionItems.push(createKeywordCompletionItem(keywordDef));
-		});
+		for (const def of keywordDefs) {
+			completionItems.push(createKeywordCompletionItem(def));
+		}
 	}
 
 	// Functions & Methods
@@ -74,7 +69,7 @@ export default async (engine: string, defsUri: vscode.Uri) => {
 		callableDefsEngineFiltered[featureset] = callableDefsEngine[featureset];
 	}
 
-	const callableDefsFlat: Map<string, CallableDef> = new Map();
+	const callableDefs: Map<string, CallableDefGame> = new Map();
 
 	for (const featureset in callableDefsEngineFiltered) {
 		const callableDefsFeatureset = callableDefsEngineFiltered[featureset];
@@ -82,12 +77,13 @@ export default async (engine: string, defsUri: vscode.Uri) => {
 			const callableDefsModule = callableDefsFeatureset[module];
 			for (const ident in callableDefsModule) {
 				const callableDef = callableDefsModule[ident];
+				callableDef.origin = "game";
 				const identLc = ident.toLowerCase();
 				const documentation = createDocumentation(callableDef, engine, Boolean(config.conciseMode));
 
-				callableDefsFlat.set(identLc, callableDef);
+				callableDefs.set(identLc, callableDef);
 				if (config.enableCallables) {
-					completionItems.push(createCallableCompletionItem(callableDef, documentation));
+					completionItems.push(createCallableCompletionItem(callableDef, false, documentation));
 				}
 				hovers[identLc] = createHover(documentation);
 				signatureGroups[identLc] = createSignatures(callableDef);
@@ -96,16 +92,20 @@ export default async (engine: string, defsUri: vscode.Uri) => {
 	}
 
 	// GSC path roots
-	for (const [gscPathRoot] of config.rootFolders) {
-		completionItems.push(createFolderCompletionItem(gscPathRoot));
-	}
+	// TODO: Recreate with GscStore
+	// for (const [gscPathRoot] of config.rootFolders) {
+	// 	completionItems.push(createFolderCompletionItem(gscPathRoot));
+	// }
+
+	// TODO: remove unused stuff
 
 	return {
 		config,
-		keywordDefs: keywordDefsEngine,
-		callableDefsFlat,
-		completionItems,
-		hovers,
-		signatureGroups
+		defs: {
+			keyword: keywordDefs,
+			callable: callableDefs,
+		}
 	};
 };
+
+export type StaticData = Awaited<ReturnType<typeof loadStaticData>>;
