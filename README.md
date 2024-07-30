@@ -1,4 +1,4 @@
-# CoD: Game Script Code support for Visual Studio Code
+# CoD: Game Script support for Visual Studio Code
 
 ## Features
 
