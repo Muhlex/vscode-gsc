@@ -4,7 +4,7 @@
 		"Gets the current speed in inches per second."
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"speed = self getSpeed();"

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "animation",
-			"type": "animation",
+			"types": ["animation"],
 			"description": [
 				"Reference to an animation."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "note track",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"A constant string with the name of the note track."
 			],
@@ -22,7 +22,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (isDefined(facialanim) && animHasNotetrack(facialanim, \"dialogue\"))"

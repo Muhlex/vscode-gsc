@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "effect id",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The effect id returned by loadFX()."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "repeat delay",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The delay between each loop."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "position",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The position of the effect."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "cull distance",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The culling distance of the effect. 0 means that the effect won't be culled."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "forward",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The forward vector of the effect."
 			],
@@ -46,7 +46,7 @@
 		},
 		{
 			"name": "up",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The up vector of the effect."
 			],

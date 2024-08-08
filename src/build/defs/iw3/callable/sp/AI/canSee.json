@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "target",
-			"type": "entity",
+			"types": ["entity"],
 			"description": [
 				"The entity to check."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (self canSee(player))"

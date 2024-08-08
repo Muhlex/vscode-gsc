@@ -6,14 +6,14 @@
 	"params": [
 		{
 			"name": "vector",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The vector to convert to angles."
 			]
 		}
 	],
 	"return": {
-		"type": "Vector3"
+		"types": ["Vector3"]
 	},
 	"example": [
 		"angles = vectorToAngles(end - start);"

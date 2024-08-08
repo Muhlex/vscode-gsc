@@ -4,12 +4,12 @@
 	"params": [
 		{
 			"name": "key id",
-			"type": "int",
+			"types": ["int"],
 			"description": ["Key mask."]
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": ["if (self isButtonPressed(1024)) {", "  // Code", "}"]
 }

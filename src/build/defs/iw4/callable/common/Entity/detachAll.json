@@ -1,0 +1,6 @@
+{
+	"description": ["Detach all previously attached models from an entity."],
+	"receiver": {
+		"types": ["entity"]
+	}
+}

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "weapon",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The weapon name."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": [
 		"grenadeLauncherAttachment = weaponAltWeaponName(\"m16_gl_mp\");"

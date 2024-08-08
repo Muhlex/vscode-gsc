@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "team",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The team name of the winning team. Must be \"axis\", \"allies\" or \"none\"."
 			],

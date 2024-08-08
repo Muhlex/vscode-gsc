@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "save persistent",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"If true, player info is retained."
 			],

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "flag",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"True if the entity shoots stables missles."
 			],

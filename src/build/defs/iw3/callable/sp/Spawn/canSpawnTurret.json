@@ -4,7 +4,7 @@
 		"Returns whether a new turret can be spawned."
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (canSpawnTurret()) {\n  // Code\n}"

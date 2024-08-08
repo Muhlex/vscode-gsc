@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "turret",
-			"type": "entity",
+			"types": ["entity"],
 			"description": [
 				"A turret entity."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"self canUseTurret(turret);"

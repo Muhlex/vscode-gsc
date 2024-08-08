@@ -3,6 +3,9 @@ import * as path from "node:path";
 
 import type { CallableDef, VariableDef } from "../types/Defs";
 
+const getTypesString = (types?: string[]) => (types?.length ? types.join("/") : "");
+const getVariableString = (v: VariableDef) => v.name || getTypesString(v.types) || "unknown";
+
 export const createKeywordCompletionItem = (keyword: string): vscode.CompletionItem => {
 	return {
 		label: keyword,
@@ -16,11 +19,9 @@ export const createCallableCompletionItem = (
 	documentation?: vscode.MarkdownString,
 ): vscode.CompletionItem => {
 	const getUsage = () => {
-		return `${def.receiver ? `<${def.receiver.name || def.receiver.type}> ` : ""}${
-			def.ident.name
-		}(${
+		return `${def.receiver ? `<${getVariableString(def.receiver)}> ` : ""}${def.ident.name}(${
 			def.params
-				?.map((p) => `${p.optional ? "[" : "<"}${p.name}${p.optional ? "]" : ">"}`)
+				?.map((p) => `${p.optional ? "[" : "<"}${getVariableString(p)}${p.optional ? "]" : ">"}`)
 				.join(", ") || ""
 		})`;
 	};
@@ -76,7 +77,7 @@ export const createHover = (markdown: vscode.MarkdownString): vscode.Hover => {
 export const createSignatures = (def: CallableDef): vscode.SignatureInformation[] => {
 	if (!def.params) return [];
 	const parameters = def.params.map((p) => ({
-		label: `${p.optional ? "[" : "<"}${p.name}${p.optional ? "]" : ">"}`,
+		label: `${p.optional ? "[" : "<"}${getVariableString(p)}${p.optional ? "]" : ">"}`,
 		documentation: new vscode.MarkdownString(p.description?.join("\n") || ""),
 	}));
 	return [
@@ -88,23 +89,22 @@ export const createSignatures = (def: CallableDef): vscode.SignatureInformation[
 };
 
 export const createDocumentation = (def: CallableDef, engine: string, concise: boolean) => {
-	const getVariableDoc = (v: VariableDef | undefined, name: string) => {
+	const getVariableDoc = (v: VariableDef | undefined, kind: string) => {
 		if (!v) return "";
 
-		return `${
-			(concise ? `${name} *` : `*${name} `) +
-			(v.name ? `\`${v.name}\`${v.type ? " " : ""}` : "") +
-			(v.type || "")
-		}*${v.description ? ` — ${v.description.join("\n")}` : ""}`;
+		const types = getTypesString(v.types);
+		return `${concise ? `${kind} ` : `*${kind}* `}${
+			v.name ? `\`${v.name}\`${types ? " " : ""}` : ""
+		}${types ? `*${types}*` : ""}${v.description ? ` — ${v.description.join("\n")}` : ""}`;
 	};
 
 	const isGame = def.origin === "game";
-	const receiver = getVariableDoc(def.receiver, concise ? "📥️" : "@receiver");
+	const receiver = getVariableDoc(def.receiver, concise ? "📥️️" : "@receiver");
 	const params =
 		def.params
-			?.map((p) => getVariableDoc(p, concise ? (p.optional ? "✳️" : "✴️") : "@param"))
+			?.map((p) => getVariableDoc(p, concise ? (p.optional ? "✳️️" : "✴️️") : "@param"))
 			.join("\n\n") || "";
-	const returns = getVariableDoc(def.return, concise ? "↩️" : "@return");
+	const returns = getVariableDoc(def.return, concise ? "↩️️" : "@return");
 
 	const variables = `\
 ${receiver ? `${receiver}\n\n` : ""}\
@@ -120,8 +120,9 @@ ${def.example.join("\n")}
 \`\`\``;
 
 	return new vscode.MarkdownString(`\
-${isGame && def.deprecated ? "**👎 Deprecated**\n\n" : ""}\
-${def.description?.join("\n") || ""}\
+${isGame && def.deprecated ? "**👎️ Deprecated**\n\n" : ""}\
+${isGame && def.devOnly ? "**🛠️️ Development only**\n\n" : ""}\
+${def.description?.join("\n\n") || ""}\
 ${variables ? `\n***\n${variables}` : ""}\
 ${example ? `\n***\n${example}` : ""}`);
 };

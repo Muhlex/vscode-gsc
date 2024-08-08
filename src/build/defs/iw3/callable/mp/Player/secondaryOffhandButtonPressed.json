@@ -4,7 +4,7 @@
 		"Check if the player is pressing the \"secondary off-hand\" button."
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (self secondaryOffhandButtonPressed()) {\n  // Code\n}"

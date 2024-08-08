@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "entity",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The entity to attach the player to."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "tag",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The tag to attach the player to."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "viewpercentage fraction",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"How much the change in the tag's rotation affects the player's view. Defaults to 0."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "right arc",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Angle to clamp view to the right. Defaults to 180."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "left arc",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Angle to clamp view to the left. Defaults to 180."
 			],
@@ -46,7 +46,7 @@
 		},
 		{
 			"name": "top arc",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Angle to clamp view to the top. Defaults to 180."
 			],
@@ -54,7 +54,7 @@
 		},
 		{
 			"name": "bottom arc",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Angle to clamp view to the bottom. Defaults to 180."
 			],
@@ -62,7 +62,7 @@
 		},
 		{
 			"name": "collide",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"Whether the player is to collide with geo, preventing the player from entering solid (but will try to keep the player as close as possible to the parent)."
 			],

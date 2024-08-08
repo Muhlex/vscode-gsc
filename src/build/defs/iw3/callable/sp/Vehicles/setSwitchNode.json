@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "source node",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The switch source node."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "dest node",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The switch destination node."
 			],

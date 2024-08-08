@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "animation",
-			"type": "animation",
+			"types": ["animation"],
 			"description": [
 				"The animation or animtree node to change."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "weight",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Goal weight of this animation. Defaults to 1.0."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Time to transition to this weight in seconds. Defaults to 0.2."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "rate",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Playback rate of the animation. Defaults to 1.0."
 			],

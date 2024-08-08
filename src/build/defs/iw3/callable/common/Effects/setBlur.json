@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "target_blur",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The final blur. The value is pixels for Gaussian blur at 640x480. Must be a floating point value greater than 0."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Time in seconds."
 			],

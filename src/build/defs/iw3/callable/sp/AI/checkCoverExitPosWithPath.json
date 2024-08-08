@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "exit pos",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The exit animation end position."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"soldier checkCoverExitPosWithPath(exitPos);"

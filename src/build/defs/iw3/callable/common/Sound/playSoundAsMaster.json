@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "alias",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The sound alias to play."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "notification",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"If present, the sound will notify this string on this entity when done. (Single player only)"
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "stoppable",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"If present and true, then this sound can be interrupted by another playsound command with notification string. It is a script error for a playsound that does not have this flag set to get interrupted by another playsound with notify, or for a playsound with notify that does not have this flag set to interrupt another playsound with notify. (Single player only)"
 			],

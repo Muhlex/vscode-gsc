@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "clientnum",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The client number of the player to ban."
 			],

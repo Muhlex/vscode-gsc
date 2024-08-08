@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "intensity",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"A new value for the intensity of the light. 1 is fullbright, but values can be larger than 1."
 			],

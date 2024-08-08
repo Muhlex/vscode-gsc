@@ -1,0 +1,14 @@
+{
+	"description": ["Return the arc/inverse tangent of a number."],
+	"params": [
+		{
+			"name": "tangent",
+			"types": ["float"],
+			"description": ["An angle's tangent value."]
+		}
+	],
+	"return": {
+		"types": ["float"],
+		"description": ["Arc tangent in degrees."]
+	}
+}

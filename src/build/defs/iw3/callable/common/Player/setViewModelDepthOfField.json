@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "start",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Before this distance, depth of field is maximally blurry."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "end",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"After this distance, depth of field is perfectly in focus."
 			],

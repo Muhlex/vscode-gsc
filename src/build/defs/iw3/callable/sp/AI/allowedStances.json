@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "stance",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"A stance, can be \"prone\", \"crouch\", \"stand\". Any number of stances may be added."
 			],

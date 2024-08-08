@@ -6,19 +6,19 @@
 	"params": [
 		{
 			"name": "string",
-			"type": "string",
+			"types": ["string"],
 			"description": ["String to tokenize."],
 			"optional": false
 		},
 		{
 			"name": "length",
-			"type": "int",
+			"types": ["int"],
 			"description": ["Maximum amount of characters in a segment."],
 			"optional": false
 		}
 	],
 	"return": {
-		"type": "Array"
+		"types": ["Array"]
 	},
 	"example": ["tok = strTokByLen(\"Hello world!\", 6);"]
 }

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "team",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The team for this spawner. Either \"axis\", \"allies\", or \"neutral\"."
 			],

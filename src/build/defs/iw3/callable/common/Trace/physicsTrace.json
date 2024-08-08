@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "start",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The start point."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "end",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The end point."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "hit characters",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"Ignore characters in the physics trace."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "ignore entity",
-			"type": "entity",
+			"types": ["entity"],
 			"description": [
 				"Ignore a specified entity in the physics trace."
 			],
@@ -38,7 +38,7 @@
 		}
 	],
 	"return": {
-		"type": "Vector3"
+		"types": ["Vector3"]
 	},
 	"example": [
 		"endPos = physicsTrace(start, end, true, ignoredEntity);"

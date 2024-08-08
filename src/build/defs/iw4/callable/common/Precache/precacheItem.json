@@ -1,0 +1,10 @@
+{
+	"description": ["Precache a given item. Must be called before it can be used."],
+	"params": [
+		{
+			"name": "item",
+			"types": ["string"],
+			"description": ["Item name."]
+		}
+	]
+}

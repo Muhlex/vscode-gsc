@@ -1,0 +1,14 @@
+{
+	"description": ["Return the cosine of a number."],
+	"params": [
+		{
+			"name": "angle",
+			"types": ["float", "int"],
+			"description": ["An angle in degrees."]
+		}
+	],
+	"return": {
+		"types": ["float"],
+		"description": ["Cosine value."]
+	}
+}

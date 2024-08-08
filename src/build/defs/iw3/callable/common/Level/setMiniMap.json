@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "material",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the satelite map material."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "upper-left x",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"X-coordinate of the world location of the upper-left corner of the material."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "upper-left y",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Y-coordinate of the world location of the upper-left corner of the material."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "lower-right x",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"X-coordinate of the world location of the lower-right corner of the material."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "lower-right y",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Y-coordinate of the world location of the lower-right corner of the material."
 			],

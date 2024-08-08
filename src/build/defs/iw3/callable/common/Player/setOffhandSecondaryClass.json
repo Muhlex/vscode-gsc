@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "class",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Either \"smoke\" or \"flash\"."
 			],

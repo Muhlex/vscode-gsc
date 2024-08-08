@@ -4,7 +4,7 @@
 		"Check if the player is pressing the \"melee\" button."
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (self meleeButtonPressed()) {\n  // Code\n}"

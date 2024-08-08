@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "origin",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The current origin of the animation in world coordinates."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "angles",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The current angle set of the animation in world coordinates."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "animation",
-			"type": "animation",
+			"types": ["animation"],
 			"description": [
 				"The currently running animation."
 			],
@@ -30,7 +30,7 @@
 		}
 	],
 	"return": {
-		"type": "Vector3"
+		"types": ["Vector3"]
 	},
 	"example": [
 		"org1 = getStartOrigin(climborg, climbang, buddyanim1);"

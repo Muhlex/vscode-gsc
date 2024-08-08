@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "save ID",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The ID of the save to commit."
 			],

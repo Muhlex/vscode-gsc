@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "button",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"String representation of the button to check."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (self buttonPressed(\"BUTTON_A\")) {\n  // Code\n}"

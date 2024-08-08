@@ -1,0 +1,26 @@
+{
+	"description": ["Search a column in a CSV file and return the matched row index."],
+	"params": [
+		{
+			"name": "path",
+			"types": ["string"],
+			"description": ["Path to the file."]
+		},
+		{
+			"name": "search column",
+			"types": ["int"],
+			"description": ["Index of the column to search in."]
+		},
+		{
+			"name": "search value",
+			"types": ["string"],
+			"description": ["Value to search for in the search column."]
+		}
+	],
+	"return": {
+		"types": ["int"],
+		"description": [
+			"Index of the row where the search value was found. `-1` if no match was found."
+		]
+	}
+}

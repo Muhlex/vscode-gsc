@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "key binding",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"A key binding name as a string."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": [
 		"firekey = getKeyBinding(\"+attack\");"

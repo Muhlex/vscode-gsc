@@ -4,7 +4,7 @@
 		"Gets the volume of engine sound for this vehicle (the scaling value set by setEngineVolume). The volume of the soundalias itself may be less than 1.0."
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"scale = helicopter getEngineVolume();"

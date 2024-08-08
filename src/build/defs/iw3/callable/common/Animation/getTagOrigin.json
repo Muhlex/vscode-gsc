@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "tagname",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Name of the tag."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "Vector3"
+		"types": ["Vector3"]
 	},
 	"example": [
 		"leftorg = self getTagOrigin(\"tag_wheel_back_left\");"

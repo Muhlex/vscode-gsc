@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "animation",
-			"type": "animation",
+			"types": ["animation"],
 			"description": [
 				"Animation to manipulate."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"if ((self getAnimTime(%walk_and_run_loops)) < 0.5)"

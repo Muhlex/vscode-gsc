@@ -1,0 +1,5 @@
+{
+	"deprecated": true,
+	"description": ["No effect. In CoD 4, wrote multiple values to a file opened via `openFile`."],
+	"devOnly": true
+}

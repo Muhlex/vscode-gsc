@@ -4,13 +4,13 @@
 	"params": [
 		{
 			"name": "command",
-			"type": "string",
+			"types": ["string"],
 			"description": ["Command to execute."],
 			"optional": false
 		}
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": ["execEx(\"fast_restart\");"]
 }

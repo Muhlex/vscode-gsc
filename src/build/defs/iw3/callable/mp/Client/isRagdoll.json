@@ -4,7 +4,7 @@
 		"Returns true if the entity is a ragdoll body, false otherwise."
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"self isRagdoll();"

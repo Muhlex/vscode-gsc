@@ -4,7 +4,7 @@
 		"Gets the current intensity of the light."
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"intensity = self getLightIntensity();"

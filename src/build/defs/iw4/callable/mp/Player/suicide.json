@@ -1,0 +1,6 @@
+{
+	"description": ["Kills the player as a suicide."],
+	"receiver": {
+		"types": ["player"]
+	}
+}

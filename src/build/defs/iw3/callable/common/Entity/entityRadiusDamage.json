@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "origin",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The centre of the damage."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "range",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The radius of the damage done."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "max damage",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The maximum damage done. This will be done to objects close to the origin."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "min damage",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The minimum damage done. This will be done to objects at the edge of the damage sphere."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "attacker",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The attacker. Defaults to world. Can be different from the entity this is called on."
 			],

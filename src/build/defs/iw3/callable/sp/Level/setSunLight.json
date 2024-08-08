@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "red",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The red component of sunlight color. 0 is black, 1 is fullbright, more than 1 is overbright."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "green",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The green component of sunlight color. 0 is black, 1 is fullbright, more than 1 is overbright."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "blue",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The blue component of sunlight color. 0 is black, 1 is fullbright, more than 1 is overbright."
 			],

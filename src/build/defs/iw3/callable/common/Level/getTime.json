@@ -4,7 +4,7 @@
 		"Gets the level time milliseconds from the start of the level."
 	],
 	"return": {
-		"type": "int"
+		"types": ["int"]
 	},
 	"example": [
 		"nextNodeTime = getTime() + 500;"

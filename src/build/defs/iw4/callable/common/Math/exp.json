@@ -1,0 +1,15 @@
+{
+	"description": [
+		"Return **e** raised to the power of a number, where **e** is the base of the natural logarithm."
+	],
+	"params": [
+		{
+			"name": "exponent",
+			"types": ["float", "int"]
+		}
+	],
+	"return": {
+		"types": ["float"],
+		"description": ["**e** raised to the power of the exponent."]
+	}
+}

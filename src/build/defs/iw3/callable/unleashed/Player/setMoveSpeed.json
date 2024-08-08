@@ -4,7 +4,7 @@
 	"params": [
 		{
 			"name": "speed",
-			"type": "int",
+			"types": ["int"],
 			"description": ["Player's new g_speed."],
 			"optional": false
 		}

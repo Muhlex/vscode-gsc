@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "barrel tag",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The tag name of the barrel to fire from. Passing in nothing or an empty string will default to use the vehicle's main turret."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "target ent",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"A target entity for guided missiles."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "target offset",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"Offset relative to the target entity."
 			],

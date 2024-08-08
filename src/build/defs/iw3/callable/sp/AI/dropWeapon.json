@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "weapon name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the weapon."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "hand",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The weapon hand. Can be either \"left\" or \"right\"."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "throw speed",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The speed that the weapon is thrown at."
 			],

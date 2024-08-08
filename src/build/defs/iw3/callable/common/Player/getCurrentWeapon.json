@@ -4,7 +4,7 @@
 		"Gets the player's current weapon."
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": [
 		"currentWeapon = level.player getCurrentWeapon();"

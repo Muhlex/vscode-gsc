@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "player",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The player."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "int"
+		"types": ["int"]
 	},
 	"example": [
 		"team = getAssignedTeam(player);"

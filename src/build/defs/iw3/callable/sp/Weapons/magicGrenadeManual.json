@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "origin",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The starting point of the grenade toss."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "velocity",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The initial velocity vector for the grenade movement."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "time to blow",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The grenade fuse time in seconds."
 			],

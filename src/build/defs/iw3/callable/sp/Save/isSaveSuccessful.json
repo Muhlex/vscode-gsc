@@ -4,7 +4,7 @@
 		"Checks if the last saved game was successfully saved."
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (isSaveSuccessful()) {\n  // Code\n}"

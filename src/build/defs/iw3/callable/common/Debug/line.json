@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "start",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"Start vector position of the line."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "end",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"End vector position of the line."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "color",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"RGB color of the line in a vector, defaults to white."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "depthTest",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"Whether to only draw the line when it is in front of objects, defaults to false. Depth test is only supported on pc."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "duration",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"How many server frames the line should persist through."
 			],

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "health",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The amount of damage to do."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "source position",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The position that the damage comes from."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "attacker",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The entity that dealth the damage (such as an AI or player)."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "inflictor",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The entity that the damage came from (such as a grenade or turret)."
 			],

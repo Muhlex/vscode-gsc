@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "alias",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The sound alias to play."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "team",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The team that will be able to hear the sound. Must be either \"axis\" or \"allies\"."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "ignoreplayer",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"If present, this player will not hear the sound."
 			],

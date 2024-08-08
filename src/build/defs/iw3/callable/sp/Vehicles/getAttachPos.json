@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "node",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"A node on the path to attach."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "Array"
+		"types": ["Array"]
 	},
 	"example": [
 		"pos = self getAttachPos(node);\norigin = pos[0];\nangles = pos[1];"

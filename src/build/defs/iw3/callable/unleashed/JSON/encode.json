@@ -5,13 +5,13 @@
 	"params": [
 		{
 			"name": "array",
-			"type": "Array",
+			"types": ["Array"],
 			"description": ["Valid array to turn into a JSON string."],
 			"optional": false
 		}
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": ["obj = [];", "obj[\"hello\"] = \"Hello world!\";", "str = unleashed\\json::encode(obj);"]
 }

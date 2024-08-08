@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "spread",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The spread of the turret in degrees."
 			],

@@ -1,0 +1,11 @@
+{
+	"description": ["Assert that a condition is true. Throw a script error otherwise."],
+	"params": [
+		{
+			"name": "condition",
+			"types": ["bool"],
+			"description": ["The condition to assert."]
+		}
+	],
+	"devOnly": true
+}

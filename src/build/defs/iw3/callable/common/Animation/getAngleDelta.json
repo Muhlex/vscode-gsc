@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "anim",
-			"type": "animation",
+			"types": ["animation"],
 			"description": [
 				"Reference to an animation."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "start time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The start time as a fraction of the total animation time, from 0 to 1."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "end time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The end time as a fraction of the total animation time, from 0 to 1."
 			],
@@ -30,7 +30,7 @@
 		}
 	],
 	"return": {
-		"type": "Vector3"
+		"types": ["Vector3"]
 	},
 	"example": [
 		"This function has no official examples"

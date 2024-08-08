@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "yaw angle",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The change in yaw in degrees."
 			],

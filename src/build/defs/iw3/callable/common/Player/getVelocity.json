@@ -4,7 +4,7 @@
 		"Gets the player's velocity."
 	],
 	"return": {
-		"type": "Vector3"
+		"types": ["Vector3"]
 	},
 	"example": [
 		"vel = level.player getVelocity();"

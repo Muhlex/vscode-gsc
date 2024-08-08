@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "scale",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Scales the total volume of the vehicle."
 			],

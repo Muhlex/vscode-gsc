@@ -1,0 +1,10 @@
+{
+	"description": ["Precache a given vehicle. Must be called before it can be used."],
+	"params": [
+		{
+			"name": "vehicle",
+			"types": ["string"],
+			"description": ["Vehicle name."]
+		}
+	]
+}

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "timescale",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Timescale."
 			],

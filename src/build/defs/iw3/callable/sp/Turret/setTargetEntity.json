@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "target",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The turret target."
 			],

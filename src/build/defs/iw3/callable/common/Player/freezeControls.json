@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "freeze state",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"A boolean: true if the player's controls are frozen, false otherwise."
 			],

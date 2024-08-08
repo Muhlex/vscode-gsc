@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "weapon",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Weapon name."
 			],

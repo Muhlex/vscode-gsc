@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "aim at point",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The point to aim at."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"aimTime = self aimAtPos(targetPoint);"

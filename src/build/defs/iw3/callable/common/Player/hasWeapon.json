@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "perk",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The weapon name."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (player hasWeapon(\"panzerfaust\")) {\n  // Code\n}"

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "ignoreGoals",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"If this is true then any actor on this turret will ignore his goals, and continue to use the turret. This is useful for vehicle based turrets."
 			],

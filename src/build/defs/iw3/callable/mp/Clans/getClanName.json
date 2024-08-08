@@ -4,7 +4,7 @@
 		"Return the name of the player's clan."
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": [
 		"player getClanName();"

@@ -4,7 +4,7 @@
 		"Get the distance to the nearest enemy."
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"dist = self getClosestEnemySqDist();"

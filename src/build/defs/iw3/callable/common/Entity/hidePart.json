@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "tagname",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The tag to hide. All surfaces with a vertex weighted to the tag will be hidden and have no bullet collision."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "modelname",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The optional model name to help specify the part location."
 			],

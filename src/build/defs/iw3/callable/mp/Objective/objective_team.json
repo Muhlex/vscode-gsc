@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "objective number",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The number of the objective to alter."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "team",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The team that the objective is for. Valid entries are \"allies\", \"axis\", or \"none\"."
 			],

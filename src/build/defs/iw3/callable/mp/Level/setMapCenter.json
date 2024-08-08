@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "center",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"Center of the map."
 			],

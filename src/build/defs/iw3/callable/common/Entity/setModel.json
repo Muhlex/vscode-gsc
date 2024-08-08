@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "model",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the model to set this entity to."
 			],

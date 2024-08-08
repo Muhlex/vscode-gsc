@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "text",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"A localized text reference."
 			],

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "value",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"Statement that is asserted to be correct."
 			],

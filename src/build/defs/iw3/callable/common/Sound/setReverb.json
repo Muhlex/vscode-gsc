@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "priority",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Valid priorities are \"snd_enveffectsprio_level\", or \"snd_enveffectsprio_shellshock\"."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "room type",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"String describing the type of reverb."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "dry level",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"A float rom 0 (no source sound) to 1 (full source sound)."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "wet level",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"A float from 0 (no effect) to 1 (full effect)."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "fade time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Fade time in seconds. Modifies dry level and wet level."
 			],

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "death animation duration",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The duration of the death animation."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "entity"
+		"types": ["entity"]
 	},
 	"example": [
 		"body = self ClonePlayer(deathAnimDuration);"

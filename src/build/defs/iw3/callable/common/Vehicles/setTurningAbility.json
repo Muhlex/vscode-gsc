@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "turning ability",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Between 0.001 and 1.0. Defaults to 0.5."
 			],

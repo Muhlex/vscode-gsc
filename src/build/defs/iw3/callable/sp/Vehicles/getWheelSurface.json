@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "wheel",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The wheel position, can be \"front_left\", \"front_right\", \"back_left\", \"back_right\", \"middle_left\" or \"middle_right\"."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": [
 		"surface = self getWheelSurface(side);"

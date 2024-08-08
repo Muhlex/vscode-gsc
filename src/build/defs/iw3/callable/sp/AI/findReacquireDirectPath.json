@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "ignore suppression",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"Whether to ignore suppression when looking for a path. True makes a success more likely but may result in a more dangerous path."
 			],

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "perk",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The perk to unset."
 			],

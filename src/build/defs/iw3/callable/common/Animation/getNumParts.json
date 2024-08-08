@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "xmodel name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Name of the xmodel."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "int"
+		"types": ["int"]
 	},
 	"example": [
 		"parts = getNumParts(\"viewhands_player_blackkit\");"

@@ -1,0 +1,13 @@
+{
+	"description": ["Retrieve the value of a DVar."],
+	"params": [
+		{
+			"name": "dvar",
+			"types": ["string"],
+			"description": ["Name of the DVar."]
+		}
+	],
+	"return": {
+		"types": ["string"]
+	}
+}

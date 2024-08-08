@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "archive",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"If true, enable archiving."
 			],

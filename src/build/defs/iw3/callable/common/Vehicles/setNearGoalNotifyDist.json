@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "dist",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Distance to goal position."
 			],

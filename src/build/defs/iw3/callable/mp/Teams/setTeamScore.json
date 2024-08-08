@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "team",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The team, either \"axis\" or \"allies\"."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "score",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The new team score."
 			],

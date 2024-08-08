@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "position",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The position of the prone character."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "yaw",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The world yaw in degrees."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "is prone",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"Flag if the character is already prone."
 			],
@@ -30,7 +30,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"canFitProne = self checkProne(origin, yaw, alreadyProne);"

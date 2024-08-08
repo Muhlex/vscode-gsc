@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "hand offset",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The estimated offset of the hand for the throw."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "method",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The grande toss method. Can be \"min energy\", \"min time\", and \"max tune\"."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "targetpos",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The target position, should be at ground level of potential target."
 			],
@@ -30,7 +30,7 @@
 		}
 	],
 	"return": {
-		"type": "Vector3"
+		"types": ["Vector3"]
 	},
 	"example": [
 		"throwVel = self checkGrenadeThrowPos(armOffset, \"min energy\", targetPos);"

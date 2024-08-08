@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "entity",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"An entity."
 			],

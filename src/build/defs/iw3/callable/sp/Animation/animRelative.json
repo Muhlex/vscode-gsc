@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "notify",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The notify to send."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "origin",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The starting position of the anim script."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "angles",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The starting angle of the anim script."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "animation",
-			"type": "animation",
+			"types": ["animation"],
 			"description": [
 				"The animation."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "mode",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Valid modes are \"normal\" and \"deathplant\"."
 			],
@@ -46,7 +46,7 @@
 		},
 		{
 			"name": "root",
-			"type": "animation",
+			"types": ["animation"],
 			"description": [
 				"The root animation."
 			],

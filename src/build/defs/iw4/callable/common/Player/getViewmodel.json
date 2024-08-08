@@ -1,0 +1,10 @@
+{
+	"description": ["Get the viewmodel of a player."],
+	"receiver": {
+		"types": ["player"]
+	},
+	"return": {
+		"types": ["string"],
+		"description": ["Viewmodel name."]
+	}
+}

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "segment A",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"One endpoint of the line segment."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "segment B",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"Other endpoint of the line segment."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "P",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The point."
 			],
@@ -30,7 +30,7 @@
 		}
 	],
 	"return": {
-		"type": "Vector3"
+		"types": ["Vector3"]
 	},
 	"example": [
 		"nearestPoint = pointOnSegmentNearestToPoint(a, b, p);"

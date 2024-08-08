@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "event",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"An AI event to stop listening to. If none, remove all events for this entity."
 			],

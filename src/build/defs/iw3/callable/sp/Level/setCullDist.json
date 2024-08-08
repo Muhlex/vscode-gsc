@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "cull distance",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The cull distance."
 			],

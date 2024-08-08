@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "game type",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"A string containing the game type."
 			],

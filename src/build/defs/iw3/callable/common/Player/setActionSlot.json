@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "slot",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"1 through 4, corresponding to bindings \"+actionslot 1\" through \"+actionslot 4\"."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "option name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Valid choises are \"weapon\", \"nightVision\", \"altMode\" and \"\" (blank)."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "extra parameter",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Used by the \"weapon\" option, the name of the weapon to switch to."
 			],

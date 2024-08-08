@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "notify",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Notification to send."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "command",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Command to watch for."
 			],

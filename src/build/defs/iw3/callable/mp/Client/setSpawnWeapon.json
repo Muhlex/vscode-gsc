@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "weapon name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the weapon to spawn with."
 			],

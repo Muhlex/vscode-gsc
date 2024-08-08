@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "objective index",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The ID of the objective to alter."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "position index",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The position of the objective."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "position",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The position of the objective."
 			],

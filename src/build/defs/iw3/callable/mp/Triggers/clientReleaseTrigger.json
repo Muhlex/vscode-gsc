@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "trigger",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"A trigger entity."
 			],

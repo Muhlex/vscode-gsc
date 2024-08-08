@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "origin",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"3D position of text to be drawn."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "text",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The text to draw on the screen."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "color",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"RGB color of the line in a vector, defaults to white."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "alpha",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Alpha value of the text (how transparent), defaults to 1."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "scale",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Size scale of the text, defaults to 1."
 			],
@@ -46,7 +46,7 @@
 		},
 		{
 			"name": "duration",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"How many server frames the text should persist through."
 			],

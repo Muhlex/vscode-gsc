@@ -4,7 +4,7 @@
 	"params": [
 		{
 			"name": "velocity",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": ["Player's new velocity."],
 			"optional": false
 		}

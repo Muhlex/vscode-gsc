@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "map name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The map to check."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"mapExists(\"mp_crash\");"

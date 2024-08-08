@@ -4,7 +4,7 @@
 		"Return the id of the player's clan."
 	],
 	"return": {
-		"type": "int"
+		"types": ["int"]
 	},
 	"example": [
 		"player getClanID();"

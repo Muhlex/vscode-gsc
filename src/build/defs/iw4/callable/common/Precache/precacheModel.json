@@ -1,0 +1,10 @@
+{
+	"description": ["Precache a given model. Must be called before it can be used."],
+	"params": [
+		{
+			"name": "model",
+			"types": ["string"],
+			"description": ["Model name."]
+		}
+	]
+}

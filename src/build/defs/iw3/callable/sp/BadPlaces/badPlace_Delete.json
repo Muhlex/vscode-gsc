@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "bad place identifier",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The bad place to delete."
 			],

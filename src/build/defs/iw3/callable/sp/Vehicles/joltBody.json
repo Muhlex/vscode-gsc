@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "jolt position",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The position of the jolt."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "intensity",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The intensity of the jolt."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "speedFrac",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"A speed fraction to apply to the jolt. Must be between 0 and 1."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "deceleration",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The deceleration to apply to this vehicle in midles per hour per second."
 			],

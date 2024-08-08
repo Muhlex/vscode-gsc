@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "alias",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The sound alias."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (soundExists(\"dirt_skid\")) {\n  // Code\n}"

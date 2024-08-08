@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "origin",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The center of the attractor."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "strength",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The strength of the attractor (maximum acceleration it can apply to a missle)."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "maxDist",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The maximum distance at which the missile can be affected. The effect of the attractor falls off from <strength> to zero from the center to this distance away from the center."
 			],
@@ -30,7 +30,7 @@
 		}
 	],
 	"return": {
-		"type": "Entity"
+		"types": ["Entity"]
 	},
 	"example": [
 		"attractor = missile_createAttractorOrigin((100, 350, 10), 10000, 6000);"

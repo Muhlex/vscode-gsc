@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "rank id",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"New rank."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "prestige level",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"New prestige level."
 			],

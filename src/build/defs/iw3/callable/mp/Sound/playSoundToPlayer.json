@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "alias",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The sound alias to play."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "player",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The player that will be able to hear the sound."
 			],

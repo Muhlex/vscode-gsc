@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "pitch",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Max pitch angle."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "roll",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Max roll angle."
 			],

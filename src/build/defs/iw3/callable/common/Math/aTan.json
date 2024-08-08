@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "tan value",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"A tangential value."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"upAngle = aTan(height / distance);"

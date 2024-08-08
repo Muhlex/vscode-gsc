@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "type",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"0: Returns a two-character country code as a string (e.g. US, FR)",
 				"1: Returns a three-character country code as a string (e.g. USA, FRA)",
@@ -18,7 +18,7 @@
 		}
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": ["loc = self getGeoLocation(2);"]
 }

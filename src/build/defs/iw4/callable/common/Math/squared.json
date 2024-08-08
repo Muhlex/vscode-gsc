@@ -1,0 +1,13 @@
+{
+	"description": ["Return the square of a number."],
+	"params": [
+		{
+			"name": "number",
+			"types": ["float", "int"]
+		}
+	],
+	"return": {
+		"types": ["float"],
+		"description": ["Squared number."]
+	}
+}

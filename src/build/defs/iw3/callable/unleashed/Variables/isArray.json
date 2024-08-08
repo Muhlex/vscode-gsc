@@ -4,13 +4,13 @@
 	"params": [
 		{
 			"name": "variable",
-			"type": "Any",
+			"types": ["Any"],
 			"description": ["Variable that may or may not be an array."],
 			"optional": false
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": ["if (isArray(var)) {\n  // Code\n}"]
 }

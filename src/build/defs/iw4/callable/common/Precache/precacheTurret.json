@@ -1,0 +1,10 @@
+{
+	"description": ["Precache a given turret weapon. Must be called before it can be used."],
+	"params": [
+		{
+			"name": "weapon",
+			"types": ["string"],
+			"description": ["Weapon name."]
+		}
+	]
+}

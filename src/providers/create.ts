@@ -35,6 +35,7 @@ const createEngineProviders = async (engine: string, defsUri: vscode.Uri) => {
 			}
 
 			const getItems = async () => {
+				const intelliSense = staticData.config.intelliSense;
 				const items: vscode.CompletionItem[] = [];
 
 				const linePreCursorText = document.lineAt(position).text.slice(0, position.character);
@@ -45,11 +46,11 @@ const createEngineProviders = async (engine: string, defsUri: vscode.Uri) => {
 
 				const scriptDir = store.getScriptDir(parentScriptPath);
 				if (scriptDir) {
-					const foldersToTop = staticData.config.foldersSorting === "top";
+					const foldersToTop = intelliSense.foldersSorting === "top";
 					for (const [foldername] of scriptDir.children) {
 						items.push(createFolderCompletionItem(foldername, foldersToTop));
 					}
-					const filesToTop = staticData.config.foldersSorting === "bottom";
+					const filesToTop = intelliSense.foldersSorting === "bottom";
 					for (const [filename] of scriptDir.scripts) {
 						items.push(createFileCompletionItem(filename, filesToTop));
 					}
@@ -57,21 +58,29 @@ const createEngineProviders = async (engine: string, defsUri: vscode.Uri) => {
 
 				if (partialScriptPath) return items;
 
-				for (const def of staticData.defs.keyword) {
-					items.push(createKeywordCompletionItem(def));
+				if (intelliSense.enableKeywords) {
+					for (const def of staticData.defs.keyword) {
+						items.push(createKeywordCompletionItem(def));
+					}
 				}
 
-				for (const [, def] of staticData.defs.callable) {
-					items.push(
-						createCallableCompletionItem(
-							def,
-							false,
-							createDocumentation(def, engine, staticData.config.conciseMode),
-						),
-					);
+				if (intelliSense.enableCallablesGame !== "off") {
+					for (const [, def] of staticData.defs.callable) {
+						if (def.deprecated && intelliSense.enableCallablesGame === "non-deprecated") continue;
+						items.push(
+							createCallableCompletionItem(
+								def,
+								false,
+								createDocumentation(def, engine, intelliSense.conciseMode),
+							),
+						);
+					}
 				}
-				for (const [, def] of await file.getCallableDefsInScope()) {
-					items.push(createCallableCompletionItem(def, def.file === file));
+
+				if (intelliSense.enableCallablesScript) {
+					for (const [, def] of await file.getCallableDefsInScope()) {
+						items.push(createCallableCompletionItem(def, def.file === file));
+					}
 				}
 
 				return items;
@@ -94,7 +103,8 @@ const createEngineProviders = async (engine: string, defsUri: vscode.Uri) => {
 			const def = await getDef(word, document);
 			if (!def) return;
 
-			return createHover(createDocumentation(def, engine, staticData.config.conciseMode));
+			const conciseMode = staticData.config.intelliSense.conciseMode;
+			return createHover(createDocumentation(def, engine, conciseMode));
 		},
 	};
 

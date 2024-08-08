@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "contents",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Description of the contents of this entity."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "int"
+		"types": ["int"]
 	},
 	"example": [
 		"level.solid setContents(1);"

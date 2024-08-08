@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "rotate velocity",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The rotational velocity to rotate at."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The time to move the entity in seconds."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "acceleration time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The time spent accelerating."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "deceleration time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The time spent decelerating."
 			],

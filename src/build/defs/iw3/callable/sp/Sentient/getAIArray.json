@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "team",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"A team name, either \"axis\", \"allies\", or \"neutral\". Supports multiple teams."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "Array"
+		"types": ["Array"]
 	},
 	"example": [
 		"array = getAIArray(\"axis\", \"neutral\");"

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "constantSize",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"Boolean describing whether the HUD element remains the same size."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "offscreenMaterialName",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Material to draw when waypoint is offscreen."
 			],

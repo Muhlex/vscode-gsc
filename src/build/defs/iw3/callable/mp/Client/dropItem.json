@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "item name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the item to drop."
 			],

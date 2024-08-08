@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The new timer time in seconds to count down."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "full time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The time in seconds represented by a full cycle of the hand, for instance a stopwatch would be 60s."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "material",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The material for the HUD clock."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "width",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The width of the material."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "height",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The height of the material."
 			],

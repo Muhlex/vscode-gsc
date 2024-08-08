@@ -4,7 +4,7 @@
 		"Gets the current outer FOV of a spot light."
 	],
 	"return": {
-		"type": "int"
+		"types": ["int"]
 	},
 	"example": [
 		"radius = self getLightFovOuter();"

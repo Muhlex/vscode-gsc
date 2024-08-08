@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "enabled",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"A boolean: true to enable the health shield, false otherwise."
 			],

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "file",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"File handle returned by openFile."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "int"
+		"types": ["int"]
 	},
 	"example": [
 		"fReadLn(file);"

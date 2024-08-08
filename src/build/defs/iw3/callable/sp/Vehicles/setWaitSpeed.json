@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "speed",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The wait speed for the vehicle."
 			],

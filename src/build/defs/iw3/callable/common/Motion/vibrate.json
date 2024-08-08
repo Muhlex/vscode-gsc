@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "direction",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The direction of the vibration."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "amplitute",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The amount of vibration in degrees."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "period",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The period of the vibration in seconds."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The length of time of the vibration in seconds."
 			],

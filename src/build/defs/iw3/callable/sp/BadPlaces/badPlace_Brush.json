@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the bad place. If name is not \"\", the bad place can be moved or deleted by using the unique name."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "duration",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"If duration > 0, the bad place will automatically delete itself after this time. If duration <= 0, the bad place must have a name and will last until manually deleted."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "brush entity",
-			"type": "entity",
+			"types": ["entity"],
 			"description": [
 				"The brush entity representing the bad place."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "team",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"You must specify at least one team for which this place is bad, but can give several. The allowed teams are \"axis\", \"allies\", and \"neutral\"."
 			],

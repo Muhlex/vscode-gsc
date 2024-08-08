@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "position",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The position of the potential spawn point."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (positionWouldTelefrag(spawnpoints[i].origin)) {\n  // Code\n}"

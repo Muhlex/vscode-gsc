@@ -4,13 +4,13 @@
 	"params": [
 		{
 			"name": "add port",
-			"type": "bool",
+			"types": ["bool"],
 			"description": ["Whether or not to include the port number the client is using to connect to the server."],
 			"optional": true
 		}
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": ["ip = self getIp();"]
 }

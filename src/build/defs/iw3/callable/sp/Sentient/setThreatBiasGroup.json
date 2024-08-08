@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "group",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Threat bias group name. If none, remove actor from current threat bias group."
 			],

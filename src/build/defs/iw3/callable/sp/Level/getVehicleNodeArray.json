@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Name to search for."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "key",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Key that name goes with."
 			],
@@ -22,7 +22,7 @@
 		}
 	],
 	"return": {
-		"type": "Array"
+		"types": ["Array"]
 	},
 	"example": [
 		"nodes = getVehicleNodeArray(self.target, \"targetname\");"

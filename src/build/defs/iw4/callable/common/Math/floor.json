@@ -1,0 +1,13 @@
+{
+	"description": ["Round a number downward to the next integral value and return it as a float."],
+	"params": [
+		{
+			"name": "number",
+			"types": ["float", "int"]
+		}
+	],
+	"return": {
+		"types": ["float"],
+		"description": ["Floored number."]
+	}
+}

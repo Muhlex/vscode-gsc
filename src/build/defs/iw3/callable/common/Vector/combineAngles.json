@@ -6,21 +6,21 @@
 	"params": [
 		{
 			"name": "angles A",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"Angles representing the orientation in which to place angles B."
 			]
 		},
 		{
 			"name": "angles B",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"Angles which will be reoriented."
 			]
 		}
 	],
 	"return": {
-		"type": "Vector3"
+		"types": ["Vector3"]
 	},
 	"example": [
 		"crateAnglesInWorld = combineAngles(boatAngles, crateAnglesInBoat);"

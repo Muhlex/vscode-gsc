@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "angle",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"An angle in degrees."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"frac = sin(degrees);"

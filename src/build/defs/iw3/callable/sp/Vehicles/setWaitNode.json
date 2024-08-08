@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "node",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The node for the vehicle to wait at."
 			],

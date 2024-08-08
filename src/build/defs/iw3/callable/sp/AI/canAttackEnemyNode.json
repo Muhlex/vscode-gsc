@@ -4,7 +4,7 @@
 		"Checks if this actor can attack its enemies node."
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"self canAttackEnemyNode();"

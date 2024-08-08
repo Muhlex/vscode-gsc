@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "weapon name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Name of the weapon to play an animation from."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "anim name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Name of the animation to play. Can be \"reload\", \"fire\", \"nvg_up\", or \"nvg_down\"."
 			],

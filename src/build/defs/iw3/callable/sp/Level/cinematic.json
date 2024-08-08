@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "cinematic name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The cinematic name."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "exitTime",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Time in seconds of the exit fade."
 			],

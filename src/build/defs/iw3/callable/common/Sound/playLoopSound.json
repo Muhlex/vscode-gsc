@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "alias",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The sound alias to play."
 			],

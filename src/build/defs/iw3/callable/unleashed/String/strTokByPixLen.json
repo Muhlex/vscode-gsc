@@ -6,19 +6,19 @@
 	"params": [
 		{
 			"name": "string",
-			"type": "string",
+			"types": ["string"],
 			"description": ["String to tokenize."],
 			"optional": false
 		},
 		{
 			"name": "length",
-			"type": "float",
+			"types": ["float"],
 			"description": ["Maximum length of a segment in pixels."],
 			"optional": false
 		}
 	],
 	"return": {
-		"type": "Array"
+		"types": ["Array"]
 	},
 	"example": [
 		"tok = strTokByPixLen(\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam magna ex, hendrerit id posuere ac.\", 100);"

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "allow",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"A boolean: true if the player can crouch, false otherwise."
 			],

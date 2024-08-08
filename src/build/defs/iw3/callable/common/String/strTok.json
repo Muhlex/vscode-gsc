@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "string",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"String to split into tokens."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "delim",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Delimiter to split string by."
 			],
@@ -22,7 +22,7 @@
 		}
 	],
 	"return": {
-		"type": "Array"
+		"types": ["Array"]
 	},
 	"example": [
 		"info = strTok(playerInfo, \",\");"

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "firstString",
-			"type": "HudElem",
+			"types": ["HudElem"],
 			"description": [
 				"The first HudElem with a string to clan AI event to stop listening to. If none, remove all events for this entity."
 			],

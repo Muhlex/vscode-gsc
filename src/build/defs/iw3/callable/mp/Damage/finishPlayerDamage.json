@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "inflictor",
-			"type": "entity",
+			"types": ["entity"],
 			"description": [
 				"The entity that causes the damage.(e.g. a turret)."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "attacker",
-			"type": "entity",
+			"types": ["entity"],
 			"description": [
 				"The entity that is attacking."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "damage",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Integer specifying the amount of damage done."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "damage flags",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Integer specifying flags that are to be applied to the damage."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "means of death",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The method of death."
 			],
@@ -46,7 +46,7 @@
 		},
 		{
 			"name": "weapon",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The weapon used to inflict the damage."
 			],
@@ -54,7 +54,7 @@
 		},
 		{
 			"name": "origin",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The origin of the damage."
 			],
@@ -62,7 +62,7 @@
 		},
 		{
 			"name": "direction",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The direction of the damage."
 			],
@@ -70,7 +70,7 @@
 		},
 		{
 			"name": "hit loc",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The location of the hit."
 			],
@@ -78,7 +78,7 @@
 		},
 		{
 			"name": "offset time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The time offset for the damage"
 			],

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "target entity",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The target."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "target offset",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The target offset."
 			],

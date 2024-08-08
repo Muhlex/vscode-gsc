@@ -1,0 +1,10 @@
+{
+	"description": ["Precache a given shader. Must be called before it can be used."],
+	"params": [
+		{
+			"name": "shader",
+			"types": ["string"],
+			"description": ["Shader name."]
+		}
+	]
+}

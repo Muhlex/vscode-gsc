@@ -4,19 +4,19 @@
 	"params": [
 		{
 			"name": "vector",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": ["Vector to scale."],
 			"optional": false
 		},
 		{
 			"name": "scale",
-			"type": "float",
+			"types": ["float"],
 			"description": ["Multiplier to scale vector by."],
 			"optional": false
 		}
 	],
 	"return": {
-		"type": "Vector3"
+		"types": ["Vector3"]
 	},
 	"example": ["vel = vectorScale(self getVelocity(), 2.5);"]
 }

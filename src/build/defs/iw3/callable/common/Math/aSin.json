@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "sin value",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"A sine value."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"upAngle = aSin(upAmount);"

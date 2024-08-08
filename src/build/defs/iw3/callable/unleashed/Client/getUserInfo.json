@@ -6,13 +6,13 @@
 	"params": [
 		{
 			"name": "key",
-			"type": "string",
+			"types": ["string"],
 			"description": ["Key name in the userinfo table."],
 			"optional": false
 		}
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": ["name = self getUserInfo(\"name\");"]
 }

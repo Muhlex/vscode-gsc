@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "speed",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Time (in milliseconds) each letter takes to type out."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "decayStart",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Time to wait before starting the string's decay effect."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "decayDuration",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"How long to spend decaying."
 			],

@@ -6,14 +6,14 @@
 	"params": [
 		{
 			"name": "min",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The minimum result."
 			]
 		},
 		{
 			"name": "max",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The maximum result."
 			],
@@ -21,7 +21,7 @@
 		}
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"rand = randomFloatRange(3.0, 5.0);"

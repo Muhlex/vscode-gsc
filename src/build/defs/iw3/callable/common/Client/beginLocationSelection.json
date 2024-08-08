@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "location selector",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Name of the material to use as a cursor on the map. Must be precached with precacheLocationSelector()."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "selector size",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The radius of the cursor material in world units. Cannot be larger than the entire south-to-north span of the minimap. If not specified, will be 15% of the south-to-north span of the minimap."
 			],

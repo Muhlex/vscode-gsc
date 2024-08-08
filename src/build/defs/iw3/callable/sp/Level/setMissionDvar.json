@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "dvar",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Dvar name."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "value",
-			"type": "int/float/string",
+			"types": ["int/float/string"],
 			"description": [
 				"Dvar value."
 			],

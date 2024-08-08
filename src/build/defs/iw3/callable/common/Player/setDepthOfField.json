@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "near start",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Before this distance, near depth of field is maximally blurry."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "near end",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"After this distance, near depth of field is perfectly in focus."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "far start",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Before this distance, far depth of field is perfectly in focus."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "far end",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"After this distance, far depth of field is maximally blurry."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "near blur",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Maximal blur radius for near depth of field, in pixels at 640x480."
 			],
@@ -46,7 +46,7 @@
 		},
 		{
 			"name": "far blur",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Maximal blur radius for far depth of field, in pixels at 640x480."
 			],

@@ -4,7 +4,7 @@
 		"Gets the amount of ammo left in the player's clip."
 	],
 	"return": {
-		"type": "int"
+		"types": ["int"]
 	},
 	"example": [
 		"bulletCount = level.player getCurrentWeaponClipAmmo();"

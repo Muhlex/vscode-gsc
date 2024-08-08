@@ -4,13 +4,13 @@
 	"params": [
 		{
 			"name": "string",
-			"type": "string",
+			"types": ["string"],
 			"description": ["String to measure."],
 			"optional": false
 		}
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": ["len = strPixLen(\"Hello world!\");"]
 }

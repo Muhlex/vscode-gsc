@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "rumble",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the rumble to stop."
 			],

@@ -3,14 +3,12 @@ import type { GscFile } from "../providers/GscStore/GscFile";
 
 export type VariableDef = {
 	name?: string;
-	type?: string;
+	types?: string[];
 	description?: string[];
 	optional?: boolean;
 };
 
-export type ParamDef = VariableDef & {
-	name: string;
-};
+export type ParamDef = VariableDef & Required<Pick<VariableDef, "name">>;
 
 type CallableDefCommon = {
 	ident: { name: string };
@@ -24,11 +22,12 @@ type CallableDefCommon = {
 
 export type CallableDefGame = CallableDefCommon & {
 	origin: "game";
-	module: string;
-	featureset: string;
 	engine: string;
+	featureset: string;
+	module: string;
+	priority?: number;
 	deprecated?: boolean;
-	devOnly?: boolean; // TODO
+	devOnly?: boolean;
 };
 
 export type CallableDefScript = CallableDefCommon & {

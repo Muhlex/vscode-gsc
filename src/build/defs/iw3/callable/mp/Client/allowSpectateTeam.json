@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "team",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"A string description of the team. Valid teams are \"axis\", \"allies\", \"none\" or \"freelook\"."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "spectator",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"A boolean value describing whether this player can spectate on this team."
 			],

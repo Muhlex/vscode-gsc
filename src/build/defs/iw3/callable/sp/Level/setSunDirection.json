@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "dir to sun",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The direction to the sun. It need not be normalized."
 			],

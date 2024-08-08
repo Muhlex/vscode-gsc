@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "sound",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the sound to play."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "notification string",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"If present, the sound will notify this string on this player when done. (Single player only)"
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "stoppable flag",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"If present and true, then this sound can be interrupted by another playLocalSound command with notification string. It is a script error for a playSound that does not have this flag set to get interrupted by another playLocalSound with notify, or for a playLocalSound with notify that does not have this flag set to interrupt another playLocalSound with notify. (Single player only)"
 			],

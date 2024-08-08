@@ -4,7 +4,7 @@
 		"Gets the entity number of this entity."
 	],
 	"return": {
-		"type": "int"
+		"types": ["int"]
 	},
 	"example": [
 		"selfNum = self getEntityNumber();"
