@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "radius",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The hovering range."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "speed",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Speed to hover at (MPH)."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "accel",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Acceleration to hover at (MPH/s)."
 			],

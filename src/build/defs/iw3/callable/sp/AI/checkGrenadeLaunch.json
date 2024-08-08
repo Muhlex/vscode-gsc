@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "barrel offset",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The estimated offset of the grenade launcher barrel."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "Vector3"
+		"types": ["Vector3"]
 	},
 	"example": [
 		"throwVel = self checkGrenadeLaunch(offset);"

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "lookat text line 1",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The unlocalized look at text for this vehicle. Line is green and usually a name."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "lookat text line 2",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The localized look at text for this vehicle. Line is white and usually a type."
 			],

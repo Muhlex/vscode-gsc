@@ -1,18 +1,20 @@
-import * as vscode from "vscode";
-import initProviders from "./providers/init";
+import type * as vscode from "vscode";
+import { createSettings } from "./settings";
+import { createStores } from "./stores";
+import { Providers } from "./providers";
 
 export async function activate(context: vscode.ExtensionContext) {
-	initProviders();
+	const contributes = context.extension.packageJSON.contributes;
+	const languageIds = (contributes.languages as { id: string }[]).map(({ id }) => id);
+	const engines = languageIds.map((id) => id.replace("gsc-", ""));
 
-	vscode.workspace.onDidChangeConfiguration(event => {
-		const reinitProviders = [
-			"GSC.intelliSense",
-			"GSC.featureSets",
-			"GSC.colors.enable",
-			"GSC.rootFolders"
-		].some(section => event.affectsConfiguration(section));
-		if (reinitProviders) initProviders();
-	});
+	const settings = createSettings(context, engines);
+	for (const [i, engine] of engines.entries()) {
+		const languageId = languageIds[i];
+		const stores = createStores(context, settings, engine, languageId);
+		const providers = new Providers(context, settings, languageId, stores);
+		providers.register();
+	}
 }
 
-// export function deactivate() {} // TODO: do we have to dispose of the providers manually?
+// TODO: Update typescript and remove some casts in providers (done?)

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "animation",
-			"type": "animation",
+			"types": ["animation"],
 			"description": [
 				"Reference to an animation."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": [
 		"getAnimAssetType(%walk_and_run_loops)"

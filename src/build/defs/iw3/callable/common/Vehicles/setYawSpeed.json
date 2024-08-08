@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "speed",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The speed of the vehicle in angles per second."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "acceleration",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The acceleration of the vehicle in angles per second^2."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "deceleration",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Deceleration. If not specified, set to be equal to acceleration."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "overshoot percent",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"How much to over shoot goal yaw by. Default 0.1."
 			],

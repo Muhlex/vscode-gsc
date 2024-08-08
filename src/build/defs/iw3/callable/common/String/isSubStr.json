@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "string",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"String to check for a substring."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "substring",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Substring to check for."
 			],
@@ -22,7 +22,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (isSubStr(self.classname, \"axis\") || isSubStr(self.classname, \"enemy\")) {\n  // Code\n}"

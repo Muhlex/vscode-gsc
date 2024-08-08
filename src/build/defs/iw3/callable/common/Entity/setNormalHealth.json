@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "health",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The new normal health."
 			],

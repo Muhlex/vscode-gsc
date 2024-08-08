@@ -4,7 +4,7 @@
 		"Get the threat bias group of an AI or player."
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": [
 		"group = self getThreatBiasGroup();"

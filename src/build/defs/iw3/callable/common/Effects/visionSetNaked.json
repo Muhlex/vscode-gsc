@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "visionset name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Vision to transition to."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "transition time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"How long, in seconds, to take transitioning to the new vision set if a transition is possible. Default is one second."
 			],

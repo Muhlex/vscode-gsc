@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "map name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"A string containing the map name."
 			],

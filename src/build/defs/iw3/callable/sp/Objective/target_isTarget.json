@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "entity",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The entity to check."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (target_isTarget(foundEnt)) {\n  // Code\n}"

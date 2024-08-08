@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "startDist",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The distance, in world units, at which the fog begins."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "halfwayDist",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The distance, beyond the startDist, at which the scene will be 50% fogged."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "red",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The red component of the fog as a value between 0.0 and 1.0."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "green",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The green component of the fog as a value between 0.0 and 1.0."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "blue",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The blue component of the fog as a value between 0.0 and 1.0."
 			],
@@ -46,7 +46,7 @@
 		},
 		{
 			"name": "transition time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Transition time in seconds."
 			],

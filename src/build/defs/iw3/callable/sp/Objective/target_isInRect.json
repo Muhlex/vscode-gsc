@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "target entity",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The entity that is the target."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "player",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The player entity."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "fov",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The player's field of view."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "halfWidth",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Half the width of the rectangle."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "halfHeight",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Half the height of the rectangle."
 			],
@@ -46,7 +46,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (target_isInRect(enemyChopper, level.player, 65, 100, 100)) {\n  // Code\n}"

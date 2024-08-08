@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "origin",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The location around which to amplify sound."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "min_range",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The minimum distance to begin applying falloff."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "max_range",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The maximum distance of amplification"
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "min_volume",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The amount of amplification at max_range."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "max_volume",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The amount of amplification with in min_range."
 			],
@@ -46,7 +46,7 @@
 		},
 		{
 			"name": "falloff",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The rate at which amplification falls off (0 means no fall off)."
 			],

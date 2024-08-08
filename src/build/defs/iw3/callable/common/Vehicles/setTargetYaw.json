@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "yaw",
-			"type": "angle",
+			"types": ["angle"],
 			"description": [
 				"The yaw direction of the target."
 			],

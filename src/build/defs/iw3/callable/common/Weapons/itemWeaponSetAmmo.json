@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "clip ammo",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The amount of ammo in the clip."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "stock ammo",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The amount of ammo in the stockpile."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "alt weapon",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"Pass false to set ammo for the primary weapon. Pass true to set ammo for the alt weapon. Defaults to false."
 			],

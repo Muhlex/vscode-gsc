@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "angles",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"A set of world angles."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "animation",
-			"type": "animation",
+			"types": ["animation"],
 			"description": [
 				"The animation to calculate the offset of."
 			],
@@ -22,7 +22,7 @@
 		}
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"This function has no official examples."

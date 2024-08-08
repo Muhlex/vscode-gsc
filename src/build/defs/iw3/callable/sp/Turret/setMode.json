@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "mode",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The turret mode. Possible modes are \"auto_ai\", \"manual\", \"manual_ai\" and \"auto_nonai\"."
 			],

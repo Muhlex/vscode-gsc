@@ -1,7 +1,4 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 const raw = String.raw;
-
-// TODO: Add brackets
 
 export default (options: { engine: string; keywords: string[] }) => {
 	const { engine, keywords } = options;
@@ -10,40 +7,23 @@ export default (options: { engine: string; keywords: string[] }) => {
 		$schema: "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 		name: `Game Script (${engine.toUpperCase()})`,
 		patterns: [
-			{ include: "#preprocessor" },
 			{ include: "#comment" },
 			{ include: "#string" },
+			{ include: "#block" },
+			{ include: "#variable-call" },
+			{ include: "#brace" },
+			{ include: "#directive" },
 			{ include: "#keyword-control" },
 			{ include: "#variable-animation" },
 			{ include: "#keyword-operator" },
 			{ include: "#number" },
 			{ include: "#special" },
-			{ include: "#functions" },
-			{ include: "#expression-evaluation" },
+			{ include: "#path" },
+			{ include: "#function" },
 			{ include: "#punctuation" },
 			{ include: "#variable" },
 		],
 		repository: {
-			preprocessor: {
-				name: "meta.preprocessor.gsc",
-				patterns: [
-					{
-						match: raw`^(#[a-z_]*)\b\s*(?:(?:\((.*)\))|(.*?));*\n`,
-						name: "meta.preprocessor",
-						captures: {
-							"1": {
-								name: "keyword.control.preprocessor.gsc",
-							},
-							"2": {
-								patterns: [{ include: "$self" }],
-							},
-							"3": {
-								patterns: [{ include: "#path" }],
-							},
-						},
-					},
-				],
-			},
 			comment: {
 				patterns: [
 					{
@@ -78,12 +58,66 @@ export default (options: { engine: string; keywords: string[] }) => {
 					},
 				],
 			},
+			block: {
+				name: "meta.block.gsc",
+				begin: "{",
+				end: "}",
+				captures: {
+					"0": { name: "punctuation.definition.block.gsc" },
+				},
+				patterns: [{ include: "$self" }],
+			},
+			"variable-call": {
+				begin: raw`\[\[`,
+				end: raw`\]\]`,
+				name: "meta.variable-call.gsc",
+				captures: {
+					"0": { name: "punctuation.definition.variable-call.gsc" },
+				},
+				patterns: [{ include: "$self" }],
+			},
+			brace: {
+				patterns: [
+					{
+						match: raw`\(|\)`,
+						name: "meta.brace.round.gsc",
+					},
+					{
+						match: raw`\[|\]`,
+						name: "meta.brace.square.gsc",
+					},
+				],
+			},
+			// TODO: remove the one meta.preprocessor w/o gsc
+			// punctuation.definition.directive.cpp (for #)
+			// keyword.control.directive.include.cpp for (include)
+			directive: {
+				name: "meta.preprocessor.gsc",
+				patterns: [
+					{
+						match: raw`^\s*(#[a-z_]*)\b\s*(?:(?:\((.*)\))|(.*?));*\n`,
+						name: "meta.preprocessor",
+						captures: {
+							"1": {
+								name: "keyword.control.preprocessor.gsc",
+							},
+							"2": {
+								patterns: [{ include: "$self" }],
+							},
+							"3": {
+								name: "entity.name.scope-resolution.gsc",
+								patterns: [{ match: raw`.*\/.*`, name: "invalid.illegal.import.path.gsc" }],
+							},
+						},
+					},
+				],
+			},
 			"keyword-control": {
 				match: raw`\b(${keywords.join("|")})\b`,
 				name: "keyword.control.gsc",
 			},
 			"variable-animation": {
-				match: raw`%[A-Za-z_][A-Za-z0-9_]*\b`,
+				match: raw`%[A-Za-z_][\w]*\b`,
 				name: "variable.other.constant.animation.gsc",
 			},
 			"keyword-operator": {
@@ -146,53 +180,40 @@ export default (options: { engine: string; keywords: string[] }) => {
 						match: raw`\b(self|level|game|anim)\b`,
 						name: "support.constant.gsc",
 					},
+					{
+						match: "::",
+						name: "punctuation.separator.scope-resolution.gsc",
+					},
 				],
 			},
-			functions: {
-				patterns: [{ include: "#function-reference" }, { include: "#function" }],
-			},
-			// Handled via semantic highlighting now:
-			// "function-declaration": {
-			// 	// To somewhat accomodate root-level function calls (usually invalid but good for code examples):
-			// 	// Prevent if `;` is in same line: Won't work for multiline function calls but better than nothing.
-			// 	begin: raw`^\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\((?!.*;)`,
-			// 	end: raw`\)`,
-			// 	name: "meta.function.gsc",
-			// 	beginCaptures: {
-			// 		"1": { name: "entity.name.function.gsc" }
-			// 	},
-			// 	patterns: [{
-			// 		include: "#comment"
-			// 	}, {
-			// 		match: raw`\b[A-Za-z_][A-Za-z0-9_]*\b`,
-			// 		name: "variable.parameter.gsc"
-			// 	}]
-			// },
-			function: {
-				begin: raw`\b(?:([\w\\/]*)\s*(::)\s*)?\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\(`,
-				end: raw`\)`,
-				name: "meta.function.gsc",
-				beginCaptures: {
-					"1": { patterns: [{ include: "#path" }] },
-					"2": { name: "keyword.control.function.gsc" },
-					"3": { name: "entity.name.function.gsc" },
-				},
-				patterns: [{ include: "$self" }],
-			},
-			"function-reference": {
-				match: raw`(\b[\w\\/]*)?\s*(::)\s*\b([A-Za-z_][A-Za-z0-9_]*)\b\s*(?!\()`,
-				name: "meta.function-reference.gsc",
+			path: {
+				match: raw`\w+(?:(?=\s*::)|(?:[\\/]\w*)+)`,
+				name: "entity.name.scope-resolution.gsc",
 				captures: {
-					"1": { patterns: [{ include: "#path" }] },
-					"2": { name: "keyword.control.function.gsc" },
-					"3": { name: "entity.name.function.gsc" },
+					"0": {
+						patterns: [{ match: raw`.*\/.*`, name: "invalid.illegal.import.path.gsc" }],
+					},
 				},
 			},
-			"expression-evaluation": {
-				begin: raw`\[\[`,
-				end: raw`\]\]`,
-				patterns: [{ include: "$self" }],
-				name: "meta.expression-evaluation.gsc",
+			function: {
+				patterns: [
+					{
+						begin: raw`([A-Za-z_][\w]*)\s*(\()`,
+						end: raw`\)`,
+						beginCaptures: {
+							"1": { name: "entity.name.function.gsc" },
+							"2": { name: "meta.brace.round.gsc" },
+						},
+						endCaptures: {
+							"0": { name: "meta.brace.round.gsc" },
+						},
+						patterns: [{ include: "$self" }],
+					},
+					{
+						match: raw`(?<=::\s*)[A-Za-z_][\w]*`,
+						name: "entity.name.function.gsc",
+					},
+				],
 			},
 			punctuation: {
 				patterns: [
@@ -217,20 +238,8 @@ export default (options: { engine: string; keywords: string[] }) => {
 						name: "variable.other.constant.gsc",
 					},
 					{
-						match: raw`\b[A-Za-z_][A-Za-z0-9_]*\b`,
+						match: raw`\b[A-Za-z_][\w]*\b`,
 						name: "variable.other.readwrite.gsc",
-					},
-				],
-			},
-			path: {
-				patterns: [
-					{
-						match: raw`.*[^A-Za-z0-9_\\].*`,
-						name: "invalid.illegal.import.path.gsc",
-					},
-					{
-						match: ".*",
-						name: "storage.modifier.import.path.gsc",
 					},
 				],
 			},

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "channel",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Name (or number) of channel to print to."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": [
 		"prevchannel = setPrintChannel(\"script_bler\");"

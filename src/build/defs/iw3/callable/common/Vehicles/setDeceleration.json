@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "deceleration",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The deceleration of the vehicle in miles per hour per second."
 			],

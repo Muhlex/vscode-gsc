@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "animation",
-			"type": "animation",
+			"types": ["animation"],
 			"description": [
 				"The animation or animtree node to clear."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The blending time for the clear."
 			],

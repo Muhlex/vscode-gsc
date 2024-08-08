@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the bad place. If name is not \"\", the bad place can be moved or deleted by using the unique name."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "duration",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"If duration > 0, the bad place will automatically delete itself after this time. If duration <= 0, the bad place must have a name and will last until manually deleted."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "origin",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The base position of the bad place."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "radius",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The radius of the blad place."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "height",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The height of the bad place."
 			],
@@ -46,7 +46,7 @@
 		},
 		{
 			"name": "team",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"You must specify at least one team for which this place is bad, but can give several. The allowed teams are \"axis\", \"allies\", and \"neutral\"."
 			],

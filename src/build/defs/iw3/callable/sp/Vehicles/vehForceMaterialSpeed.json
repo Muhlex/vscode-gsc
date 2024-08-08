@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "force",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"Boolean value, true if treads should be force to move."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "speed",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Speed to move treads at."
 			],

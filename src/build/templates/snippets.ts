@@ -105,5 +105,14 @@ export default (options: { keywords: string[] }) => {
 		},
 	]);
 
+	snippets.push([
+		"Color",
+		{
+			prefix: "color",
+			body: ["(${1:red}/255, ${2:green}/255, ${3:blue}/255)"],
+			description: "Color vector",
+		},
+	]);
+
 	return Object.fromEntries(snippets);
 };

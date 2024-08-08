@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "max air resistance speed",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Speed at which air resistance maxes out (MPH)."
 			],

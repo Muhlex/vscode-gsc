@@ -4,7 +4,7 @@
 		"Returns the yaw value of North."
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"northYaw = getNorthYaw();"

@@ -4,7 +4,7 @@
 		"Gets an array of entities that are set as targets."
 	],
 	"return": {
-		"type": "Array"
+		"types": ["Array"]
 	},
 	"example": [
 		"targets = target_getArray();"

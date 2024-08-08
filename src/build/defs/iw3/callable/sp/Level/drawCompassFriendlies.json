@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "bool",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"A boolean setting whether friendly troops are shown on the compass."
 			],

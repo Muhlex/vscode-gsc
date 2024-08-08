@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "dir to sun now",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The direction to the sun now. It need not be normalized."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "dir to sun at end",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The direction to the sun after lerp time. It need not be normalized."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "lerp time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Time in seconds to lerp over."
 			],

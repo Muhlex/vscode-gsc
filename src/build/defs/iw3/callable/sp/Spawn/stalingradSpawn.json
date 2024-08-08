@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "targetname",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Sets the targetname of the spawned entity."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "Entity"
+		"types": ["Entity"]
 	},
 	"example": [
 		"spawned = driver stalingradSpawn(name);"

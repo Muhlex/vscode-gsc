@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "node",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"A node on the path to attach."
 			],

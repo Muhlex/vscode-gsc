@@ -2,7 +2,7 @@
 	"usage": "<player> sprintButtonPressed()",
 	"description": ["Checks if a player is pressing the sprint button."],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": ["if (self sprintButtonPressed()) {", "  // Code", "}"]
 }

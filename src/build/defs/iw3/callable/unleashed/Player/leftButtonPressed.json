@@ -2,7 +2,7 @@
 	"usage": "<player> leftButtonPressed()",
 	"description": ["Checks if a player is pressing the left button."],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": ["if (self leftButtonPressed()) {", "  // Code", "}"]
 }

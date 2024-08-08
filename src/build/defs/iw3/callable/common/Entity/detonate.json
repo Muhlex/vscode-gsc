@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "newOwner",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The player who will be the attacker if the grenade does damage to another player. If not specified, will be the original owner of the grenade."
 			],

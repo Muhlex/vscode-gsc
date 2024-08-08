@@ -4,7 +4,7 @@
 		"Gets this actor's fixed node safe volume."
 	],
 	"return": {
-		"type": "entity"
+		"types": ["entity"]
 	},
 	"example": [
 		"volume = self getFixedNodeSafeVolume();"

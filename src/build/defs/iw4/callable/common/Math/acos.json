@@ -1,0 +1,14 @@
+{
+	"description": ["Return the arc/inverse cosine of a number."],
+	"params": [
+		{
+			"name": "cosine",
+			"types": ["float"],
+			"description": ["An angle's cosine value."]
+		}
+	],
+	"return": {
+		"types": ["float"],
+		"description": ["Arc cosine in degrees."]
+	}
+}

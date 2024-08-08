@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "attractor",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The attractor or repulsor to delete."
 			],

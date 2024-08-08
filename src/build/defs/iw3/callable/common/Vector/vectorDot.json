@@ -6,21 +6,21 @@
 	"params": [
 		{
 			"name": "vector A",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The first vector."
 			]
 		},
 		{
 			"name": "vector B",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The second vector."
 			]
 		}
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"dot = vectorDot(forward, normal);"

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "origin",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The debug player position."
 			],

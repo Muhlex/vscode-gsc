@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "cos value",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"A cosine value."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"upAngle = aCos(distanceRatio);"

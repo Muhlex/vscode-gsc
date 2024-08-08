@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "time",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The vote time in ms."
 			],

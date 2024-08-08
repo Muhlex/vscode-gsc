@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "target entity",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The entity toward which the missile will steer."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "target offset",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"A vector, giving the offset from the entity's origin toward which the missile will steer."
 			],

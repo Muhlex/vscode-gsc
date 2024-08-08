@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "start",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The sight start point."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "end",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The sight end point."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "hit characters",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"When set to true, this will trace for character hits."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "ignore entity",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"An entity to ignore."
 			],
@@ -38,7 +38,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"success = sightTracePassed(magicBulletOrigin.origin, eyePos, true, undefined);"

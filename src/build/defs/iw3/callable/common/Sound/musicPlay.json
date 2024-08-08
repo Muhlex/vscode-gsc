@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "music",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The piece to play. Must be a valid sound alias."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "timescale",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"Whether this music is effected by timescale changes."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "overrideCheat",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"Certain player cheats can disable this function, set this true to force the issue."
 			],

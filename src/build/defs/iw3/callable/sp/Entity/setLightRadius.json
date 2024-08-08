@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "radius",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"A new value for the radius of the light. This cannot be larger than the radius when the map was compiled."
 			],

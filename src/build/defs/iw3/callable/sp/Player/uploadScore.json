@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "mission",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Mission index."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "score",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Score for that mission."
 			],

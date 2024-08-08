@@ -4,7 +4,7 @@
 		"Get the player's normalized movement vector. Returns [-1, 1] for X (forward) and Y (right) based on player's input."
 	],
 	"return": {
-		"type": "Vector2"
+		"types": ["Vector2"]
 	},
 	"example": [
 		"movement = self getNormalizedMovement();"

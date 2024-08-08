@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "count",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Number of No votes."
 			],

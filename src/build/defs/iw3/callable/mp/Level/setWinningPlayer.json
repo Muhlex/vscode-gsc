@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "player",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The player to set as the winning player."
 			],

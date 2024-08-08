@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "filename",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The table to look up."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "search column num",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The column number of the stats table to search through."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "search value",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The value to use when searching the <search column num>."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "return value column num",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The column number value to return after we find the correct row."
 			],

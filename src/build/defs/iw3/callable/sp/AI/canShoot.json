@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "shoot at position",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The position to shoot at."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "offset from gun",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The offset from the gun muzzle from which to calculate collision."
 			],
@@ -22,7 +22,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"canShoot = self canShoot(eye, offset);"

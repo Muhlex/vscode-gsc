@@ -6,19 +6,19 @@
 	"params": [
 		{
 			"name": "filename",
-			"type": "string",
+			"types": ["string"],
 			"description": ["Filename inside FS_gameDir."],
 			"optional": false
 		},
 		{
 			"name": "mode",
-			"type": "string",
+			"types": ["string"],
 			"description": ["Mode to open with with (read, write, append)."],
 			"optional": false
 		}
 	],
 	"return": {
-		"type": "int"
+		"types": ["int"]
 	},
 	"example": ["file = FS_fOpen(\"log.txt\", \"write\");"]
 }

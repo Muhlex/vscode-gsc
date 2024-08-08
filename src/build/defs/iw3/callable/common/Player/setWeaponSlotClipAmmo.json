@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "weapon slot",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Valid weaponslots are \"primary\" and \"primaryb\"."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "ammo count",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The amount of ammunition."
 			],

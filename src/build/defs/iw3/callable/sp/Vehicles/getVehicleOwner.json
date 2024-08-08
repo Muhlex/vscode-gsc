@@ -4,7 +4,7 @@
 		"Returns the owner of this particular vehicle."
 	],
 	"return": {
-		"type": "Entity"
+		"types": ["Entity"]
 	},
 	"example": [
 		"eFlak88User = eFlak88 getVehicleOwner();"

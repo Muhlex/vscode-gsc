@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "objective number",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The number of the objective to alter."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "entity",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The entity to set the objective to."
 			],

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "priority",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"\"normal\", \"never\", \"high_priority\", \"low_priority\", \"always\" or \"receiver\""
 			],

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "can damage",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"The can damage flag."
 			],

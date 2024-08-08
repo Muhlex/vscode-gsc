@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "effect id",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The effect id returned by loadFX()."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "entity",
-			"type": "entity",
+			"types": ["entity"],
 			"description": [
 				"The entity to attach the effect to."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "tag name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Tag name to attach the effect to."
 			],

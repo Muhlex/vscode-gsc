@@ -6,14 +6,14 @@
 	"params": [
 		{
 			"name": "vector",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"A vector."
 			]
 		}
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"dist = lengthSquared(models[j].origin - center);"

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "team name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the team that the trigger will respond to. Must be either \"axis\", \"allies\" or \"none\"."
 			],

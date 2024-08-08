@@ -6,21 +6,21 @@
 	"params": [
 		{
 			"name": "point A",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The first point."
 			]
 		},
 		{
 			"name": "point B",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The second point."
 			]
 		}
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"dist = distance(org, ai[i].origin);"

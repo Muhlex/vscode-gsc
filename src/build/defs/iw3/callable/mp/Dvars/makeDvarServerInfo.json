@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "dvar name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the dvar to change."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "dvar value",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The new value of the dvar."
 			],

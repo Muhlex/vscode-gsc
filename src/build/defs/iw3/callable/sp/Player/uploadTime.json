@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "mission",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Mission index."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Time for this mission."
 			],

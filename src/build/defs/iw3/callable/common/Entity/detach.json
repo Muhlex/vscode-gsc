@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "modelname",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The model name to detach."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "tagname",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The tag to detach the model from."
 			],

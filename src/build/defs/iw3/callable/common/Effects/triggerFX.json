@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "effect entity",
-			"type": "entity",
+			"types": ["entity"],
 			"description": [
 				"The effect entity."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "when",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The time at which the effect should be triggered. This can be in the past."
 			],

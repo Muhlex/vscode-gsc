@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "tagname",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The tag to show. All surfaces with a vertex weighted to the tag will be shown."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "modelname",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The optional model name to help specify the part location;"
 			],

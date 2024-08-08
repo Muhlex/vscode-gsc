@@ -4,31 +4,31 @@
 	"params": [
 		{
 			"name": "vector",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": ["Vector to add values to."],
 			"optional": false
 		},
 		{
 			"name": "x",
-			"type": "float",
+			"types": ["float"],
 			"description": ["Value to add to the vector's X value."],
 			"optional": false
 		},
 		{
 			"name": "y",
-			"type": "float",
+			"types": ["float"],
 			"description": ["Value to add to the vector's Y value."],
 			"optional": false
 		},
 		{
 			"name": "z",
-			"type": "float",
+			"types": ["float"],
 			"description": ["Value to add to the vector's Z value."],
 			"optional": false
 		}
 	],
 	"return": {
-		"type": "Vector3"
+		"types": ["Vector3"]
 	},
 	"example": ["vec = vectorAdd(vec, 1, 0, 2);"]
 }

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "center",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The world position of the center of the explosion."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "outer radius",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The radius beyond which the force is zero."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "inner radius",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The radius within which the force is maximum."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "magnitude",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The strength of the force. 1 = the default explosion."
 			],

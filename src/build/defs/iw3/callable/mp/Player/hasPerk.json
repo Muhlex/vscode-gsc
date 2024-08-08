@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "perk",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The perk to check."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (player hasPerk(\"specialty_gpsjammer\")) {\n  // Code\n}"

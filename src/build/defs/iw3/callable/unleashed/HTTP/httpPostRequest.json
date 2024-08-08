@@ -4,37 +4,37 @@
 	"params": [
 		{
 			"name": "host",
-			"type": "string",
+			"types": ["string"],
 			"description": ["The hostname of the server to send a request to."],
 			"optional": false
 		},
 		{
 			"name": "port",
-			"type": "int",
+			"types": ["int"],
 			"description": ["The port of the server to send a request to."],
 			"optional": false
 		},
 		{
 			"name": "path",
-			"type": "string",
+			"types": ["string"],
 			"description": ["The path, relative to the hostname, to send a request to."],
 			"optional": false
 		},
 		{
 			"name": "data",
-			"type": "string",
+			"types": ["string"],
 			"description": ["The data to send to the server."],
 			"optional": false
 		},
 		{
 			"name": "getResponse",
-			"type": "bool",
+			"types": ["bool"],
 			"description": ["Whether or not you want to receive a response from the server (defaults to true)."],
 			"optional": true
 		}
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": [
 		"self.pers[\"auth\"] = httpPostRequest(\"localhost\", 80, \"auth.php\", \"guid=\" + self getGuid() + \"&ip=\" + self getIp(), true);"

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "range vector",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The jitter range vector."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "min period",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Minimum time in seconds to switch jitter direction. Default 0.5 sec."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "max period",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Maximum time in seconds to switch jitter direction. Default 1.0 sec."
 			],

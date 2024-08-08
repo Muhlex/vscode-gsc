@@ -4,13 +4,13 @@
 	"params": [
 		{
 			"name": "string",
-			"type": "string",
+			"types": ["string"],
 			"description": ["String to calculate a hash for."],
 			"optional": false
 		}
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": ["data = \"Some important bit of information... Blah blah...\";", "hash = sha256(data);"]
 }

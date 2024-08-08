@@ -4,7 +4,7 @@
 	"params": [
 		{
 			"name": "clientnum",
-			"type": "int",
+			"types": ["int"],
 			"description": ["A valid client number (0-63). Use -1 to set free spectating."],
 			"optional": false
 		}

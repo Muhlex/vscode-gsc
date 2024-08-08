@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "convergence time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The time that the turret takes to converge in seconds."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "type",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The type of convergence. Can be either \"pitch\" or \"yaw\". Defaults to \"yaw\"."
 			],

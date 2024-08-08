@@ -6,28 +6,28 @@
 	"params": [
 		{
 			"name": "from",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The vector whose value is used when fraction is 0."
 			]
 		},
 		{
 			"name": "to",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The vector whose value is used when fraction is 1."
 			]
 		},
 		{
 			"name": "fraction",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The fraction of the way between vectors. Values less than 0 or greater than 1 do linear extrapolation."
 			]
 		}
 	],
 	"return": {
-		"type": "Vector3"
+		"types": ["Vector3"]
 	},
 	"example": [
 		"color = vectorLerp(oldColor, newColor, timeElapsed / timeTotal);"

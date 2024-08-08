@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "material",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the material to set."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "width",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The width of the material."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "height",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The height of the material."
 			],

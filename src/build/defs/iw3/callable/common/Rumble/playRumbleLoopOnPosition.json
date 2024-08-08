@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "rumble",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the rumble to play."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "position",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The position of the rumble."
 			],

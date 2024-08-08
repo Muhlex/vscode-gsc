@@ -1,0 +1,23 @@
+{
+	"priority": 1,
+	"description": [
+		"Open a file for reading. The file is implicitly stored in global state, thus only one file can be open at a time. Close with `closeFile`."
+	],
+	"params": [
+		{
+			"name": "path",
+			"types": ["string"],
+			"description": ["Path to the file."]
+		},
+		{
+			"name": "mode",
+			"types": ["\"read\""],
+			"description": ["Mode to open the file in. Must be `\"read\"`."]
+		}
+	],
+	"return": {
+		"name": "success",
+		"types": ["int"],
+		"description": ["`1` on success, `-1` if the file could not be opened."]
+	}
+}

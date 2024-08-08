@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "angle",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The right arc in degrees."
 			],

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "message",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Error message."
 			],

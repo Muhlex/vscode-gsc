@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "direction",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The direction that gravity will pull (i.e., \"down\"). Set to (0,0,-1) for normal gravity behavior."
 			],

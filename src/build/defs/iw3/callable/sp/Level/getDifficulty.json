@@ -4,7 +4,7 @@
 		"Gets the game difficulty - can return values of \"easy\", \"medium\", \"difficult\" and \"fu\"."
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": [
 		"skill = getDifficulty();"

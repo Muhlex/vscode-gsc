@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "fov outer",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"A new value for the outer FOV of the light, in degrees. This cannot be larger than the FOV when the map was compiled, or less than 1."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "fov inner",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"A new value for the inner FOV of the light, in degrees. This cannot be larger than fov outer, or less than 0. If not specified, the map value is used."
 			],

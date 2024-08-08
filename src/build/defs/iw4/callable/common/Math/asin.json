@@ -1,0 +1,14 @@
+{
+	"description": ["Return the arc/inverse sine of a number."],
+	"params": [
+		{
+			"name": "sine",
+			"types": ["float"],
+			"description": ["An angle's sine value."]
+		}
+	],
+	"return": {
+		"types": ["float"],
+		"description": ["Arc sine in degrees."]
+	}
+}

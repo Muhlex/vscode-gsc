@@ -1,0 +1,25 @@
+{
+	"deprecated": true,
+	"description": ["Incorrect effect. Functions as an alias for `tableLookupByRow`."],
+	"params": [
+		{
+			"name": "path",
+			"types": ["string"],
+			"description": ["Path to the file."]
+		},
+		{
+			"name": "row",
+			"types": ["int"],
+			"description": ["Index of the row."]
+		},
+		{
+			"name": "column",
+			"types": ["int"],
+			"description": ["Index of the column."]
+		}
+	],
+	"return": {
+		"types": ["string"],
+		"description": ["Value from the resulting cell. Empty string if the cell does not exist."]
+	}
+}

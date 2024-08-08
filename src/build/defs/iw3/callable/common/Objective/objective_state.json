@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "objective number",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The number of the objective to alter."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "state",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"A string value representing the state of the objective. Valid states are \"empty\", \"active\", \"invisible\", \"done\", \"current\" and \"failed\"."
 			],

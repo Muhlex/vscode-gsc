@@ -4,19 +4,19 @@
 	"params": [
 		{
 			"name": "epoch time",
-			"type": "int",
+			"types": ["int"],
 			"description": ["Time in seconds since 01/01/1970 UTC (as returned by getEpochTime)."],
 			"optional": false
 		},
 		{
 			"name": "zone",
-			"type": "int",
+			"types": ["int"],
 			"description": ["Timezone to use. 0 = UTC, 1 = Local."],
 			"optional": false
 		},
 		{
 			"name": "format",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Formatting string describing how to display the time. (see: <a href=\"http://www.cplusplus.com/reference/ctime/strftime/\">http://www.cplusplus.com/reference/ctime/strftime/</a>)"
 			],
@@ -24,7 +24,7 @@
 		}
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": ["iPrintLn(\"Current time: \" + epochTimeToString(getEpochTime(), 1, \"%H:%M:%S\"));"]
 }

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "ignored group",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Ignored group."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "ignoring group",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Ignoring group."
 			],

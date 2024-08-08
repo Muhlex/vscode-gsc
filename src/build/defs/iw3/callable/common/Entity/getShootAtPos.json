@@ -4,7 +4,7 @@
 		"Gets the position an attacker would shoot at to hit this entity. For AI or player this is the eye position. For other entities it's the tag_eye if there is one, else the center of the entity bounding box."
 	],
 	"return": {
-		"type": "Vector3"
+		"types": ["Vector3"]
 	},
 	"example": [
 		"targetPos = self.enemy getShootAtPos();"

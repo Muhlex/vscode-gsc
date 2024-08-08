@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "interpolation time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Time to go prone in seconds."
 			],

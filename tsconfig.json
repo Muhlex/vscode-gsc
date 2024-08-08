@@ -2,21 +2,14 @@
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"compilerOptions": {
 		"module": "commonjs",
-		"target": "es2022",
+		"target": "ES2023",
 		"outDir": "out",
-		"lib": [
-			"es2022"
-		],
+		"lib": ["ES2023"],
 		"rootDir": "src",
 		"sourceMap": true,
 		"strict": true,
 		"resolveJsonModule": true
 	},
-	"files": [
-		"./src/extension.ts"
-	],
-	"exclude": [
-		"node_modules",
-		".vscode-test"
-	]
+	"files": ["./src/extension.ts"],
+	"exclude": ["node_modules", ".vscode-test"]
 }

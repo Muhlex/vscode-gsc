@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "client",
-			"type": "entity",
+			"types": ["entity"],
 			"description": [
 				"A client entity."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "string",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"A message to print."
 			],

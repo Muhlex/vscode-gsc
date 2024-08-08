@@ -6,14 +6,14 @@
 	"params": [
 		{
 			"name": "vector",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The vector to normalize."
 			]
 		}
 	],
 	"return": {
-		"type": "Vector3"
+		"types": ["Vector3"]
 	},
 	"example": [
 		"difference = vectorNormalize(end - start);"

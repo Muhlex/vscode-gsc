@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "compassIconType",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Type of icon to show on the minimap, can be \"tank\", \"helicopter\", \"plane\" or \"automobile\"."
 			],

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "classname",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the class to spawn."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "origin",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The position where the entity is to be spawned."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "flags",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Spawn flags."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "radius",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"If the entity is a \"trigger_radius\" entity then this is the radius of the trigger. Otherwise this parameter is invalid."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "height",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"If the entity is a \"trigger_radius\" entity then this is the height of the trigger. Otherwise this parameter is invalid."
 			],
@@ -46,7 +46,7 @@
 		}
 	],
 	"return": {
-		"type": "Entity"
+		"types": ["Entity"]
 	},
 	"example": [
 		"org = spawn(\"script_origin\", self getOrigin());"

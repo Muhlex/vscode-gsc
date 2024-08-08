@@ -4,13 +4,13 @@
 	"params": [
 		{
 			"name": "uid",
-			"type": "int",
+			"types": ["int"],
 			"description": ["New UID (0-9999999)."],
 			"optional": false
 		}
 	],
 	"return": {
-		"type": "int"
+		"types": ["int"]
 	},
 	"example": ["self setUid(123);"]
 }

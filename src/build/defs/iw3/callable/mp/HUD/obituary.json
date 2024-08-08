@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "victim",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The victim entity."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "attacker",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The attacker entity."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "weapon",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The weapon name."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "means of death",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The means of death as a string."
 			],

@@ -4,7 +4,7 @@
 		"Returns true if the game is a splitscreen game."
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"level.splitscreen = isSplitScreen();"

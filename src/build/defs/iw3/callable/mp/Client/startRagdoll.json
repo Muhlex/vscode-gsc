@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "rig_index",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Index of the ragdoll rig to use. Defaults to 0."
 			],

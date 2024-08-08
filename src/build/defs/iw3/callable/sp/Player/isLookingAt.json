@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "entity",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"An entity."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (level.player isLookingAt(trigger)) {\n  // Code\n}"

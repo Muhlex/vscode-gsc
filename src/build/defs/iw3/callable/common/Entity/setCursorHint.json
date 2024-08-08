@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "hint",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"One of the following strings: \"HINT_NOICON\", \"HINT_ACTIVATE\", \"HINT_HEALTH\", \"HINT_FRIENDLY\"."
 			],

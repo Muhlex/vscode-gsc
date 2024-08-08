@@ -1,0 +1,10 @@
+{
+	"description": ["Get if a player is pressing the \"melee\" button.", "Engine command: `+melee`"],
+	"receiver": {
+		"types": ["player"]
+	},
+	"return": {
+		"types": ["bool"],
+		"description": ["Whether the button is pressed."]
+	}
+}

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "eqLerp",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Float value from 0 to 1, percentage of specified eqIndex, 0 if none specified."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "eqIndex",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The EQ index to use (0 and 1)."
 			],

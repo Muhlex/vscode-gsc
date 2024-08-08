@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "speed",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The speed of the vehicle in miles per hour."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "acceleration",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The acceleration of the vehicle in miles per hour per second."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "deceleration",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Deceleration. If not specified, set to be equal to half of accleration."
 			],

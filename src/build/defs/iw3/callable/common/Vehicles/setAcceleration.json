@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "acceleration",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The acceleration of the vehicle in miles per hour per second."
 			],

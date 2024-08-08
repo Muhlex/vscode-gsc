@@ -4,7 +4,7 @@
 		"Returns true if the player is currently using meleeing."
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (level.player isMeleeing()) {\n  // Code\n}"

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "line 1",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The unlocalized look at text for this entity. Line is green and usually a name."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "line 2",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The localized look at text for this entity. Line is white and usually a type."
 			],

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "weapon slot",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Valid weaponslots are \"primary\" and \"primaryb\"."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": [
 		"playerWeapon[0] = level.player getWeaponSlotWeapon(\"primary\");"

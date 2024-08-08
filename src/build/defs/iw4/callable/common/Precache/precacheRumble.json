@@ -1,0 +1,10 @@
+{
+	"description": ["Precache a given rumble effect. Must be called before it can be used."],
+	"params": [
+		{
+			"name": "rumble",
+			"types": ["string"],
+			"description": ["Rumble effect name."]
+		}
+	]
+}

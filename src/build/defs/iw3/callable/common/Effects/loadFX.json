@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "filename",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The filename of the effect to be loaded, without \"fx/\" or \".efx\"."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "int"
+		"types": ["int"]
 	},
 	"example": [
 		"fx = loadFX(\"explosions/large_vehicle_explosion\");"

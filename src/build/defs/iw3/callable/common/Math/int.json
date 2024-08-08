@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "value",
-			"type": "float/string",
+			"types": ["float/string"],
 			"description": [
 				"A string or floating point number to cast to an integer."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "int"
+		"types": ["int"]
 	},
 	"example": [
 		"x = int(self.hudHealthHeight);"

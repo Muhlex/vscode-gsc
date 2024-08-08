@@ -4,7 +4,7 @@
 		"Returns true if the player is currently using a weapon."
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (level.player isFiring()) {\n  // Code\n}"

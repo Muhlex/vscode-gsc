@@ -1,0 +1,13 @@
+{
+	"description": ["Set whether a player can jump."],
+	"receiver": {
+		"types": ["player"]
+	},
+	"params": [
+		{
+			"name": "allow",
+			"types": ["bool"],
+			"description": ["`true` to allow jumping, `false` to disable."]
+		}
+	]
+}

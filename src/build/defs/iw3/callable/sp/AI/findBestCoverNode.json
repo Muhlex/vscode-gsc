@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "nodemeaning",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Whether to ignore or prefer the next parameter. \"ignore\" or \"prefer\" are valid values."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "node",
-			"type": "entity",
+			"types": ["entity"],
 			"description": [
 				"A node to consider based on previous parameter."
 			],

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "animscript",
-			"type": "pointer",
+			"types": ["pointer"],
 			"description": [
 				"The script name to run."
 			],

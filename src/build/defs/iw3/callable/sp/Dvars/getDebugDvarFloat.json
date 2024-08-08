@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "dvar",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The dvar name."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"if (getDebugDvarFloat(\"debug_stopenemypos\") < -1)"

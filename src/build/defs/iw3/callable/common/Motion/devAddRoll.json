@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "roll angle",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The change in roll in degrees."
 			],

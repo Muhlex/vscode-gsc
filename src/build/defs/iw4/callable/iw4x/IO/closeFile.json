@@ -1,0 +1,9 @@
+{
+	"priority": 1,
+	"description": ["Close the file currently opened from `openFile`."],
+	"return": {
+		"name": "success",
+		"types": ["int"],
+		"description": ["`0` on success, a negative value on failure."]
+	}
+}

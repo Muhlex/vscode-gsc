@@ -1,0 +1,20 @@
+{
+	"description": ["Reorient a set of angles by a set of orientation angles."],
+	"params": [
+		{
+			"name": "orientation",
+			"types": ["vector"],
+			"description": ["Orientation angles in which to place the set of angles."]
+		},
+		{
+			"name": "angles",
+			"types": ["vector"],
+			"description": ["Angles to reorient."]
+		}
+	],
+	"return": {
+		"types": ["vector"],
+		"description": ["Reoriented angles."]
+	},
+	"example": ["crateAnglesInWorld = combineAngles(boatAngles, crateAnglesInBoat);"]
+}

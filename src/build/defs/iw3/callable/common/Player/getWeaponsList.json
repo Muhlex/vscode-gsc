@@ -4,7 +4,7 @@
 		"Gets an array of all weapons that the player has. Includes any alt-mode weapons (eg: m203_m4)."
 	],
 	"return": {
-		"type": "Array"
+		"types": ["Array"]
 	},
 	"example": [
 		"weaponList = level.player getWeaponsList();"

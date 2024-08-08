@@ -1,0 +1,10 @@
+{
+	"description": ["Get if a player is pressing the \"use\" button.", "Engine command: `+activate`"],
+	"receiver": {
+		"types": ["player"]
+	},
+	"return": {
+		"types": ["bool"],
+		"description": ["Whether the button is pressed."]
+	}
+}

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "damage position",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The point the damage is coming from."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "ignore entity",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"An entity to ignore."
 			],
@@ -22,7 +22,7 @@
 		}
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"damageAmount = player damageConeTrace(damager.origin, damager);"

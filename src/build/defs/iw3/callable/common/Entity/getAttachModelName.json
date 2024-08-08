@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "model index",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The index of the model attached to the entity, starting from 0. So, for instance, 3 will get the fourth model attached."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": [
 		"model = self getAttachModelName(index);"

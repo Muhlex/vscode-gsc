@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "mapname",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the map to change to."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "persistent",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"Flag allowing player to keep their inventory through the transition."
 			],

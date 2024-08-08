@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "channel name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Name of the channel to be opened."
 			],

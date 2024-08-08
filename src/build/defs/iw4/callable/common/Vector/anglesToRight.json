@@ -1,0 +1,13 @@
+{
+	"description": ["Return the right vector for a set of angles."],
+	"params": [
+		{
+			"name": "angles",
+			"types": ["vector"]
+		}
+	],
+	"return": {
+		"types": ["vector"],
+		"description": ["Right vector."]
+	}
+}

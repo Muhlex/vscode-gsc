@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "start",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The bullet starting point."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "end",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The bullet ending point."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "spread",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Amount of spread."
 			],
@@ -30,7 +30,7 @@
 		}
 	],
 	"return": {
-		"type": "Vector3"
+		"types": ["Vector3"]
 	},
 	"example": [
 		"endPos = bulletSpread(self.origin, target.origin, 1.0);"

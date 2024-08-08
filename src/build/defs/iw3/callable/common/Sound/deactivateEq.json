@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "eqIndex",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Which EQ index to deactivate (0, 1)."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "channel",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the channel. Channel names are specified in \"channels.def\"."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "band",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Select which band to disable. There are currently three bands (0, 1, 2)."
 			],

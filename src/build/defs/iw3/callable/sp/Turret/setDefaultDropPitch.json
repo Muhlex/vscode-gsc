@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "pitch",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Pitch of the turret (side to side) in degrees."
 			],

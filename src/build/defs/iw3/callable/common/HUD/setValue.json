@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "value",
-			"type": "string/int/float",
+			"types": ["string/int/float"],
 			"description": [
 				"The value to set the element to."
 			],

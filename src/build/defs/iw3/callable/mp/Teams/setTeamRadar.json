@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "team",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The team, either \"axis\", \"allies\" or \"none\"."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "availability",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"Whether the team has radar. Defaults to false."
 			],

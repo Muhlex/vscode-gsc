@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "sound 1",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The first sound."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "sound 2",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The second sound."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "mix",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The mix between the two sounds, a floating point number between 0 and 1"
 			],

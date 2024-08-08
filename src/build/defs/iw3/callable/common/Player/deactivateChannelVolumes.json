@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "priority",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Valid priorities are \"snd_channelvolprio_holdbreath\", \"snd_channelvolprio_pain\", or \"snd_channelvolprio_shellshock\"."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "fade time",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The time spent fading to the next lowest active channelvol priority level in seconds."
 			],

@@ -4,7 +4,7 @@
 		"Gets this actor's cover node."
 	],
 	"return": {
-		"type": "entity"
+		"types": ["entity"]
 	},
 	"example": [
 		"node = self getCoverNode();"

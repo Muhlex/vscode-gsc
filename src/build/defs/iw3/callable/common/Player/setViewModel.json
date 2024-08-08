@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "view model",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"A view model."
 			],

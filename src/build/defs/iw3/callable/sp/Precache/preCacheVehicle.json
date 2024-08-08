@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Name of the vehicle to precache."
 			],

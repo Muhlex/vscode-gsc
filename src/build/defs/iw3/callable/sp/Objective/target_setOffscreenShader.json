@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "target entity",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The entity that is the target."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "material",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The shader for the quad drawn over the target."
 			],

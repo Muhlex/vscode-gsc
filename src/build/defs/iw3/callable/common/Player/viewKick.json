@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "force",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The force of the kick, from 0 to 127."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "source",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The source of the kick."
 			],

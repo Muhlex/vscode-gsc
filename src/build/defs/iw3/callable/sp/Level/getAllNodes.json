@@ -4,7 +4,7 @@
 		"Gets all of the nodes in a level."
 	],
 	"return": {
-		"type": "Array"
+		"types": ["Array"]
 	},
 	"example": [
 		"nodes = getAllNodes();"

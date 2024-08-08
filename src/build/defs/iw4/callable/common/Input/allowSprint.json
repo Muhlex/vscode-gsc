@@ -1,0 +1,13 @@
+{
+	"description": ["Set whether a player can sprint."],
+	"receiver": {
+		"types": ["player"]
+	},
+	"params": [
+		{
+			"name": "allow",
+			"types": ["bool"],
+			"description": ["`true` to allow sprinting, `false` to disable."]
+		}
+	]
+}

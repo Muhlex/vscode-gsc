@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "effect id",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The effect id returned by loadFX()."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "position of effect",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The world position of the effect."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "forward vector",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The forward vector of the effect."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "up vector",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The up vector of the effect."
 			],

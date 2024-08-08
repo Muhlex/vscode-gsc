@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "channel",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the audio channel to apply the EQ to."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "eqIndex",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The EQ index to use (0 and 1)."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "band",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Select which band, there are currently two bands (0 and 1)."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "filter type",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The type of filter to apply (\"lowpass\", \"highpass\", \"lowshelf\", \"highshelf\", \"bell\")."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "gain",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The gain in dB. Has no effect on \"lowpass\" or \"highpass\"."
 			],
@@ -46,7 +46,7 @@
 		},
 		{
 			"name": "frequency",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The \"important\" frequency, between 0 and 20 kHZ. enter value in Hz."
 			],
@@ -54,7 +54,7 @@
 		},
 		{
 			"name": "q",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The quality factor."
 			],

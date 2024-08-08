@@ -3,13 +3,13 @@
 	"description": ["Show the entity to a given client."],
 	"receiver": {
 		"name": "entity",
-		"type": "Entity",
+		"types": ["Entity"],
 		"description": ["Entity to make visible."]
 	},
 	"params": [
 		{
 			"name": "player",
-			"type": "Player",
+			"types": ["Player"],
 			"description": [
 				"The player to show the entity to."
 			],

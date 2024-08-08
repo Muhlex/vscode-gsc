@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "objective number",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The number of the objective to add."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "state",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"A string value representing the state of the objective. Valid states are \"empty\", \"active\", \"invisible\", \"done\", \"current\" and \"failed\"."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "text",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The text to use for the object. This should be a valid localized text reference."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "position",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The position of the objective."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "icon",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The objective icon to embed (shader)."
 			],

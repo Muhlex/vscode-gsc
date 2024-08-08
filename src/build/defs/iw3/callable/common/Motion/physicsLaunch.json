@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "contactPoint",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The point to apply the initial force."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "initialForce",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The force vector to apply."
 			],

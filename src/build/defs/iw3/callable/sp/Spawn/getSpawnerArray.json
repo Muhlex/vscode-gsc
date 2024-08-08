@@ -4,7 +4,7 @@
 		"Returns an array of all the spawners in a level."
 	],
 	"return": {
-		"type": "Array"
+		"types": ["Array"]
 	},
 	"example": [
 		"spawners = getSpawnerArray();"

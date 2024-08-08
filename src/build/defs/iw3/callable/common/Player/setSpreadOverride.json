@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "spread",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"Override all spread values (min, max, stand, crouch, prone) no matter which weapon is in use."
 			],

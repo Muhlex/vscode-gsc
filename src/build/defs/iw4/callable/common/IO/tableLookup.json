@@ -1,0 +1,37 @@
+{
+	"description": [
+		"Search a column in a CSV file and return a value from a different column in the matched row."
+	],
+	"params": [
+		{
+			"name": "path",
+			"types": ["string"],
+			"description": ["Path to the file."]
+		},
+		{
+			"name": "search column",
+			"types": ["int"],
+			"description": ["Index of the column to search in."]
+		},
+		{
+			"name": "search value",
+			"types": ["string"],
+			"description": ["Value to search for in the search column."]
+		},
+		{
+			"name": "result column",
+			"types": ["int"],
+			"description": ["Index of the column to return a value from."]
+		}
+	],
+	"return": {
+		"types": ["string"],
+		"description": [
+			"Value from the result column. Empty string if no match was found or the result column does not exist."
+		]
+	},
+	"example": [
+		"file = \"mp/killstreakTable.csv\"",
+		"requiredKills = int(tableLookup(file, 1, \"helicopter\", 4)); // 7"
+	]
+}

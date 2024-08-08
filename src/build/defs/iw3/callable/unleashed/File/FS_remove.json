@@ -4,13 +4,13 @@
 	"params": [
 		{
 			"name": "filename",
-			"type": "string",
+			"types": ["string"],
 			"description": ["Filename inside FS_gameDir."],
 			"optional": false
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": ["FS_remove(\"log.txt\");"]
 }

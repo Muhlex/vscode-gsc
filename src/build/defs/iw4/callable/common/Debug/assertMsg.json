@@ -1,0 +1,11 @@
+{
+	"description": ["Throw a script error including a given message."],
+	"params": [
+		{
+			"name": "message",
+			"types": ["string"],
+			"description": ["Error message."]
+		}
+	],
+	"devOnly": true
+}

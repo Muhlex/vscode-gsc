@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "variable",
-			"type": "Any",
+			"types": ["Any"],
 			"description": [
 				"Variable that may or may not be a string."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (isString(var)) {\n  // Code\n}"

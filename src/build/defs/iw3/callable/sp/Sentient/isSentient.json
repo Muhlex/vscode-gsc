@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "entity",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"An entity that may be a sentient character."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"if (isSentient(vehicle.riders[j])) {\n  // Code\n}"

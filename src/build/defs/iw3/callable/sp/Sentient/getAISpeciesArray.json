@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "team",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"A team name, either \"axis\", \"allies\", \"neutral\", or \"all\". Defaults to \"all\"."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "species",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Species of the AI to get: \"human\", \"dog\", or \"all\". Defaults to \"human\"."
 			],
@@ -22,7 +22,7 @@
 		}
 	],
 	"return": {
-		"type": "Array"
+		"types": ["Array"]
 	},
 	"example": [
 		"array = getAISpeciesArray(\"axis\", \"all\");"

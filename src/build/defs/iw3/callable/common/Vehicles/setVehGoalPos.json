@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "goalpos",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The goal position."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "stopAtGoal",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"Whether the vehicle should slow down to stop at the goal position."
 			],

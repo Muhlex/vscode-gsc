@@ -4,7 +4,7 @@
 		"Get the viewmodel name for the given player."
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": [
 		"info[ \"viewmodel\" ] = self getViewModel();"

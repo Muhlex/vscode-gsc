@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "max",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"The maximum floating point size."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"if (randomFloat(100) > 50) {\n  // Code\n}"

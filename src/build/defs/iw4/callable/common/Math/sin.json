@@ -1,0 +1,14 @@
+{
+	"description": ["Return the sine of a number."],
+	"params": [
+		{
+			"name": "angle",
+			"types": ["float", "int"],
+			"description": ["An angle in degrees."]
+		}
+	],
+	"return": {
+		"types": ["float"],
+		"description": ["Sine value."]
+	}
+}

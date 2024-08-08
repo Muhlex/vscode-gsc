@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "enabled",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"A boolean: true if the player will automatically pick up pickups."
 			],

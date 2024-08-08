@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "entity",
-			"type": "int",
+			"types": ["int"],
 			"description": ["The reference entity's ID."],
 			"optional": false
 		}

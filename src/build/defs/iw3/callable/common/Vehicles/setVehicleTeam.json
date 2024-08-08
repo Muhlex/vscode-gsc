@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "team",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The team name. Must be either \"allies\", \"axis\", or \"none\"."
 			],

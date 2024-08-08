@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "model",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the model to spawn."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "targetname",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Vehicle targetname."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "vehicletype",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Vehicle type."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "origin",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The position of the vehicle."
 			],
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "angles",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The angle to spawn the vehicle at."
 			],
@@ -46,7 +46,7 @@
 		}
 	],
 	"return": {
-		"type": "Entity"
+		"types": ["Entity"]
 	},
 	"example": [
 		"vehicle = spawnVehicle(\"vehicle_blackhawk\", \"vclogger\", \"blackhawk\", (0, 0, 0), (0, 0, 0));"

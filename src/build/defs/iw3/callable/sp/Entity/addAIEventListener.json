@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "event",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"An AI event to listen to."
 			],

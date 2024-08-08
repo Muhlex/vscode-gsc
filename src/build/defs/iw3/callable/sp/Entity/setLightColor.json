@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "color",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"An RGB vector with components in the range 0 to 1. The given values get rounded before they are stored."
 			],

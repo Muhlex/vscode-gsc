@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "start",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Starting point."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "end",
-			"type": "float",
+			"types": ["float"],
 			"description": [
 				"Ending point."
 			],
@@ -22,7 +22,7 @@
 		}
 	],
 	"return": {
-		"type": "float"
+		"types": ["float"]
 	},
 	"example": [
 		"vis = getFXVisibility(start, end);"

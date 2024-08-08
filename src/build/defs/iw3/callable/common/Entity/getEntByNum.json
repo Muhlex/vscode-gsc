@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "entity number",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The number of the entity to get."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "Entity"
+		"types": ["Entity"]
 	},
 	"example": [
 		"entity = getEntByNum(entNum);"

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "player ignore radius damage",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"Flag indicating whether the player is to ignore radius damage."
 			],

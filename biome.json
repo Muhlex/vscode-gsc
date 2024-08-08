@@ -1,5 +1,8 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.7.1/schema.json",
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"files": {
+		"ignore": ["./package.json", "./package-lock.json"]
+	},
 	"vcs": {
 		"enabled": true,
 		"clientKind": "git",
@@ -14,6 +17,9 @@
 			"recommended": true,
 			"style": {
 				"noNonNullAssertion": "off"
+			},
+			"suspicious": {
+				"noExplicitAny": "off"
 			}
 		}
 	},
@@ -30,7 +36,7 @@
 		"formatter": {
 			"bracketSpacing": true,
 			"semicolons": "always",
-			"trailingComma": "all"
+			"trailingCommas": "all"
 		}
 	}
 }

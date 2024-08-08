@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "barrel tag",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Barrel tag to fire from."
 			],

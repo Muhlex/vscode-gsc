@@ -1,0 +1,21 @@
+{
+	"description": ["Get if vector `a` is closer to a reference point than vector `b`."],
+	"params": [
+		{
+			"name": "reference",
+			"types": ["vector"]
+		},
+		{
+			"name": "a",
+			"types": ["vector"]
+		},
+		{
+			"name": "b",
+			"types": ["vector"]
+		}
+	],
+	"return": {
+		"types": ["bool"],
+		"description": ["Whether `a` is closer to `reference` than `b`."]
+	}
+}

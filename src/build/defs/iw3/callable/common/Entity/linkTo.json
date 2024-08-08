@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "linkTo entity",
-			"type": "Entity",
+			"types": ["Entity"],
 			"description": [
 				"The entity to attach the entity to."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "tag",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The tag to attach the entity to."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "originOffset",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The positional offset from the base position."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "anglesOffset",
-			"type": "Vector3",
+			"types": ["Vector3"],
 			"description": [
 				"The angular offset from the base angles."
 			],

@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "dvar",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The dvar name."
 			],
@@ -14,7 +14,7 @@
 		}
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": [
 		"if (getDvar(\"debug_skipintro\") == \"on\")"

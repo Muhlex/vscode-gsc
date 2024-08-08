@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "xmodel name",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"Name of the xmodel."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "index",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"The part index. Must be less than the number of bones in the model."
 			],
@@ -22,7 +22,7 @@
 		}
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": [
 		"partName = getPartName(self.hatModel, 0);"

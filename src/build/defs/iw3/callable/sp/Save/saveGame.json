@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "filename",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the file. If not used then the file will be automatically named."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "description",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"A description of the savegame."
 			],
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "screenshot",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the screenshot file. If not used then the file will be automatically named."
 			],
@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "supressPlayerNotify",
-			"type": "bool",
+			"types": ["bool"],
 			"description": [
 				"When true, player will not get a \"Checkpoint Reached\" print on their screen."
 			],

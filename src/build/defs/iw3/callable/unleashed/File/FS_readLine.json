@@ -4,13 +4,13 @@
 	"params": [
 		{
 			"name": "file handle",
-			"type": "int",
+			"types": ["int"],
 			"description": ["File handle returned by FS_fOpen."],
 			"optional": false
 		}
 	],
 	"return": {
-		"type": "string"
+		"types": ["string"]
 	},
 	"example": ["line = FS_readLine(file);"]
 }

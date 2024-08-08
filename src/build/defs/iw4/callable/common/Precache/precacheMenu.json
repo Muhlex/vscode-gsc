@@ -1,0 +1,10 @@
+{
+	"description": ["Precache a given menu. Must be called before it can be used."],
+	"params": [
+		{
+			"name": "menu",
+			"types": ["string"],
+			"description": ["Menu name."]
+		}
+	]
+}

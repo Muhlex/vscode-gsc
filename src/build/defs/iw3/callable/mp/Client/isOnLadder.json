@@ -4,7 +4,7 @@
 		"Return true if the player is on a ladder, false otherwise."
 	],
 	"return": {
-		"type": "bool"
+		"types": ["bool"]
 	},
 	"example": [
 		"self isOnLadder();"

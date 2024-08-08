@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "filename",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The name of the file to open."
 			],
@@ -14,7 +14,7 @@
 		},
 		{
 			"name": "mode",
-			"type": "string",
+			"types": ["string"],
 			"description": [
 				"The file mode. Valid arguments are \"read\", \"write\" and \"append\"."
 			],
@@ -22,7 +22,7 @@
 		}
 	],
 	"return": {
-		"type": "int"
+		"types": ["int"]
 	},
 	"example": [
 		"file = openFile(\"data.csv\", \"read\");"

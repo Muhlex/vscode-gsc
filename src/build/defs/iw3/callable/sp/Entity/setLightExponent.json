@@ -6,7 +6,7 @@
 	"params": [
 		{
 			"name": "exponent",
-			"type": "int",
+			"types": ["int"],
 			"description": [
 				"A new value for the exponent of the light in the of 0 to 100."
 			],
