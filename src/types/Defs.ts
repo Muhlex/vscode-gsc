@@ -1,5 +1,5 @@
 import type { Range } from "vscode";
-import type { GscFile } from "../providers/GscStore/GscFile";
+import type { GscFile } from "../stores/GscStore/GscFile";
 
 export type VariableDef = {
 	name?: string;
@@ -52,10 +52,10 @@ export type CallableDefsEngine = {
 	[featureset: string]: CallableDefsFeatureset;
 };
 
-export type CallableDefsHierarchy = {
+export type CallableDefsTree = {
 	[engine: string]: CallableDefsEngine;
 };
 
-export type KeywordDefsHierarchy = {
+export type KeywordDefsTree = {
 	[engine: string]: string[];
 };

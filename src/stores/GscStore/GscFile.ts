@@ -12,7 +12,7 @@ import {
 	parseIncludes,
 	parseTopLevelBlocks,
 	type ParsedBlock,
-} from "../parse";
+} from "../../parse";
 
 type Cache = {
 	ignoredBlocks?: ParsedBlock[];
@@ -34,6 +34,13 @@ export class GscFile {
 		this.uri = uri;
 		this.script = script;
 		this.cache = {};
+	}
+
+	get filename() {
+		const path = this.uri.path;
+		const lastSlashIndex = path.lastIndexOf("/");
+		if (lastSlashIndex === -1) return path;
+		return path.slice(lastSlashIndex + 1);
 	}
 
 	clearCache() {
@@ -115,7 +122,7 @@ export class GscFile {
 
 	async getCallableInstancesDefined() {
 		const instances: CallableInstanceWithDef[] = await this.getCallableInstances();
-		const defsGame = this.store.staticData.defs.callable;
+		const defsGame = this.store.staticStore.callables;
 		const defsScript = await this.getCallableDefsInScope();
 		for (const instance of instances) {
 			const identLc = instance.ident.name.toLowerCase();

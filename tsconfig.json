@@ -2,10 +2,10 @@
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"compilerOptions": {
 		"module": "commonjs",
-		"target": "es2022",
+		"target": "ES2023",
 		"outDir": "out",
 		"lib": [
-			"es2022"
+			"ES2023"
 		],
 		"rootDir": "src",
 		"sourceMap": true,

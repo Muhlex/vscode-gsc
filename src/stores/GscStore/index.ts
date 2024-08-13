@@ -1,57 +1,85 @@
 import * as vscode from "vscode";
 import * as path from "node:path";
 
-import type { StaticData } from "../static";
+import type { Settings } from "../../settings";
+import type { StaticStore } from "../StaticStore";
 import { GscScriptDir } from "./GscScriptDir";
 import { GscScript } from "./GscScript";
 import { GscFile } from "./GscFile";
-import { languageIDToEngine } from "../../util";
 
 export class GscStore {
-	private disposables: vscode.Disposable[];
+	readonly staticStore: StaticStore;
 	private scripts: GscScriptDir;
 	private files: Map<vscode.Uri["path"], GscFile>;
-	staticData: StaticData;
 
-	constructor(options: { engine: string; staticData: StaticData }) {
-		this.disposables = [];
+	constructor(
+		context: vscode.ExtensionContext,
+		settings: Settings,
+		engine: string,
+		languageId: string,
+		staticStore: StaticStore,
+	) {
+		this.staticStore = staticStore;
 		this.scripts = new GscScriptDir("");
 		this.files = new Map();
-		this.staticData = options.staticData;
 
-		// Track configured directories:
-		for (const [priority, rootUri] of this.staticData.config.rootUris.entries()) {
-			const pattern = new vscode.RelativePattern(rootUri, "**/*.{gsc,csc}");
-
-			vscode.workspace.findFiles(pattern).then((uris) => {
-				for (const uri of uris) this.addFile(uri, rootUri, priority);
-			});
-
-			const watcher = vscode.workspace.createFileSystemWatcher(pattern);
-			this.disposables.push(watcher);
-			watcher.onDidCreate((uri) => this.addFile(uri, rootUri, priority));
-			watcher.onDidChange((uri) => this.getFile(uri)?.clearCache());
-			watcher.onDidDelete((uri) => this.removeFile(uri, priority));
-		}
-
-		// Track changes to open files:
-		this.disposables.push(
+		// Track changes when editing files:
+		context.subscriptions.push(
 			vscode.workspace.onDidChangeTextDocument(({ document }) => {
-				const engine = languageIDToEngine(document.languageId);
-				if (!engine) return;
+				if (document.languageId !== languageId) return;
 
-				if (!document.isDirty) return; // Disk events will handle it...
-				this.getFile(document).clearCache();
+				const file = this.getFile(document);
+				if (!document.isDirty && file.script) {
+					return; // File system watcher for root directories will handle it...
+				}
+				file.clearCache();
 			}),
 		);
 
-		// Forget files that are not part of tracked directories on close:
-		this.disposables.push(
+		// Forget files that are not part of configured directories on close:
+		context.subscriptions.push(
 			vscode.workspace.onDidCloseTextDocument((document) => {
 				const file = this.getFile(document.uri);
 				if (!file || file.script) return;
 
 				this.removeFile(document.uri);
+			}),
+		);
+
+		// Track disk changes for configured directories:
+		let fileSystemWatchers: vscode.FileSystemWatcher[] = [];
+		const disposeFileSystemWatchers = () => {
+			for (const watcher of fileSystemWatchers) watcher.dispose();
+			fileSystemWatchers = [];
+		};
+
+		const initRootDirectories = (rootUris: vscode.Uri[]) => {
+			disposeFileSystemWatchers();
+			this.files.clear();
+
+			for (const [priority, rootUri] of rootUris.entries()) {
+				const pattern = new vscode.RelativePattern(rootUri, "**/*.{gsc,csc}");
+
+				vscode.workspace.findFiles(pattern).then((uris) => {
+					for (const uri of uris) this.createFileScript(uri, rootUri, priority);
+				});
+
+				const watcher = vscode.workspace.createFileSystemWatcher(pattern);
+				fileSystemWatchers.push(watcher);
+				watcher.onDidCreate((uri) => this.createFileScript(uri, rootUri, priority));
+				watcher.onDidChange((uri) => this.getFile(uri)?.clearCache());
+				watcher.onDidDelete((uri) => this.removeFile(uri));
+			}
+		};
+
+		const rootDirectoriesSetting = settings.engines[engine].rootDirs;
+		initRootDirectories(rootDirectoriesSetting.value);
+		rootDirectoriesSetting.subscribe(initRootDirectories);
+
+		context.subscriptions.push(
+			new vscode.Disposable(() => {
+				rootDirectoriesSetting.unsubscribe(initRootDirectories);
+				disposeFileSystemWatchers();
 			}),
 		);
 	}
@@ -97,7 +125,13 @@ export class GscStore {
 		return file;
 	}
 
-	private addFile(uri: vscode.Uri, rootUri: vscode.Uri, priority: number) {
+	private createFile(uri: vscode.Uri) {
+		const file = new GscFile(this, uri);
+		this.files.set(uri.path, file);
+		return file;
+	}
+
+	private createFileScript(uri: vscode.Uri, rootUri: vscode.Uri, priority: number) {
 		const { folders, filename } = GscStore.uriToScriptPathSegments(uri, rootUri);
 		if (!filename) throw new Error(`Cannot add file "${uri.path}" due to invalid script path.`);
 
@@ -117,20 +151,20 @@ export class GscStore {
 			currentDir.scripts.set(filename, script);
 		}
 
-		const file = new GscFile(this, uri, script);
-		script.addFile(priority, file);
-		this.files.set(uri.path, file);
+		const file = this.createFile(uri);
+		file.script = script;
+		script.addFile(file, priority);
 	}
 
-	private removeFile(uri: vscode.Uri, priority?: number) {
+	private removeFile(uri: vscode.Uri) {
 		const file = this.getFile(uri);
 		if (!file) throw new Error(`Cannot remove unknown file "${uri.path}".`);
 
 		this.files.delete(uri.path);
 		const script = file.script;
-		if (!script || priority === undefined) return;
+		if (!script) return;
 
-		script.removeFile(priority);
+		script.removeFile(file);
 
 		if (script.fileCount > 0) return;
 		script.dir.scripts.delete(script.name);
@@ -141,10 +175,6 @@ export class GscStore {
 			dir.parent.children.delete(dir.name);
 			dir = dir.parent;
 		}
-	}
-
-	dispose() {
-		for (const disposable of this.disposables) disposable.dispose();
 	}
 
 	static scriptPathToScriptPathSegments(path: string | string[]) {

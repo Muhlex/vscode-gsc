@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
-import { type CallableInstance, CallableInstanceKind } from "../types/Instances";
-import type { CallableDef, CallableDefScript } from "../types/Defs";
-import type { GscFile } from "./GscStore/GscFile";
+import { type CallableInstance, CallableInstanceKind } from "./types/Instances";
+import type { CallableDefScript } from "./types/Defs";
+import type { GscFile } from "./stores/GscStore/GscFile";
 
 export enum ParsedBlockType {
 	BlockComment = 0,

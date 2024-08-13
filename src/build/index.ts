@@ -6,7 +6,7 @@ import getSnippets from "./templates/snippets";
 import { writeFile, getFilesRecursive } from "./files";
 import * as tsconfig from "../../tsconfig.json";
 
-import type { KeywordDefsHierarchy, CallableDefsHierarchy, CallableDefGame } from "../types/Defs";
+import type { KeywordDefsTree, CallableDefsTree, CallableDefGame } from "../types/Defs";
 
 const OUT_DIR = tsconfig.compilerOptions.outDir;
 
@@ -23,8 +23,8 @@ const OUT_DIR = tsconfig.compilerOptions.outDir;
 		/* noop, out dir was empty */
 	}
 
-	const getKeywordDefs = async (): Promise<KeywordDefsHierarchy> => {
-		const keywordDefs: KeywordDefsHierarchy = {};
+	const getKeywordDefs = async (): Promise<KeywordDefsTree> => {
+		const keywordDefs: KeywordDefsTree = {};
 		await Promise.all(
 			engines.map(async (engine) => {
 				const keywordsPath = path.join(__dirname, "defs", engine, "keyword.json");
@@ -40,7 +40,7 @@ const OUT_DIR = tsconfig.compilerOptions.outDir;
 		return keywordDefs;
 	};
 
-	const buildKeywordDefs = async (defs: KeywordDefsHierarchy) => {
+	const buildKeywordDefs = async (defs: KeywordDefsTree) => {
 		for (const engine of engines) {
 			writeFile(
 				path.join(OUT_DIR, "defs", engine, "keyword.json"),
@@ -58,7 +58,7 @@ const OUT_DIR = tsconfig.compilerOptions.outDir;
 				}),
 			)
 		).flat();
-		const defs: CallableDefsHierarchy = {};
+		const defs: CallableDefsTree = {};
 
 		await Promise.all(
 			files.map(async (filepath) => {
@@ -92,7 +92,7 @@ const OUT_DIR = tsconfig.compilerOptions.outDir;
 		}
 	};
 
-	const buildGrammars = (keywordDefs: KeywordDefsHierarchy) => {
+	const buildGrammars = (keywordDefs: KeywordDefsTree) => {
 		return Promise.all(
 			engines.map((engine) =>
 				writeFile(
@@ -103,7 +103,7 @@ const OUT_DIR = tsconfig.compilerOptions.outDir;
 		);
 	};
 
-	const buildSnippets = (keywordDefs: KeywordDefsHierarchy) => {
+	const buildSnippets = (keywordDefs: KeywordDefsTree) => {
 		return Promise.all(
 			engines.map((engine) =>
 				writeFile(
@@ -122,5 +122,6 @@ const OUT_DIR = tsconfig.compilerOptions.outDir;
 		buildSnippets(keywordDefs);
 	} catch (error) {
 		console.error(error);
+		process.exit(1);
 	}
 })();
