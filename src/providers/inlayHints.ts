@@ -5,10 +5,10 @@ import type { Stores } from "../stores";
 export const createInlayHintsProvider = (stores: Stores): vscode.InlayHintsProvider => ({
 	async provideInlayHints(document, range, token) {
 		const result: vscode.InlayHint[] = [];
-		const instances = await stores.gsc.getFile(document).getCallableInstancesDefined();
+		const instances = await stores.gsc.getFile(document).getCallableInstances();
 		if (token.isCancellationRequested) return;
 
-		for (const instance of instances) {
+		for (const instance of instances.list) {
 			const def = instance.def;
 			if (!def || !def.params) continue;
 			if (!instance.params || instance.params.length < 1) continue;

@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 
 import type { Stores } from "../stores";
 
-import { getIsPosInsideParsedBlocks } from "../parse";
+import { hasFragmentAtPos } from "../models/Fragment";
 import { escapeRegExp } from "../util";
 
 export const createSemanticTokensProvider = (
@@ -35,26 +35,23 @@ const provideSemanticTokens = async (
 ) => {
 	const builder = new vscode.SemanticTokensBuilder();
 	const file = stores.gsc.getFile(document);
-	const ignoredBlocks = await file.getIgnoredBlocks();
+	const ignoredFragments = await file.getIgnoredFragments();
 	if (token.isCancellationRequested) return;
 
 	const provideFromGame = () => {
 		const text = document.getText(range);
 		const callOrRef = /::\s*\b([A-Za-z_][A-Za-z0-9_]*)\b|\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\(/dg;
 
-		// Typescript doesn't yet know about .indices in RegExpMatchArray
-		for (const match of text.matchAll(callOrRef) as IterableIterator<
-			RegExpMatchArray & { indices: Array<[number, number]> }
-		>) {
+		for (const match of text.matchAll(callOrRef)) {
 			const ident = match[1] || match[2];
 			const def = stores.static.callables.get(ident.toLowerCase());
 			if (!def) continue;
 
 			const offset = range ? document.offsetAt(range.start) : 0;
-			const index = (match.indices[1] || match.indices[2])[0];
+			const index = (match.indices![1] || match.indices![2])[0];
 			const startPos = document.positionAt(index + offset);
 
-			if (getIsPosInsideParsedBlocks(ignoredBlocks, startPos)) continue;
+			if (hasFragmentAtPos(ignoredFragments, startPos)) continue;
 
 			const type = def.receiver ? 1 : 0;
 			const modifiers = def.deprecated ? 0b110 : 0b010;
@@ -91,13 +88,11 @@ const provideSemanticTokens = async (
 
 				// Params in body
 				// TODO: Parse these centrally to allow refactoring?
-				const regexp = new RegExp(String.raw`\b(?<!\.)${escapeRegExp(param.name)}(?!\s*\()\b`, "g");
-				const matches = extBody.text.matchAll(regexp) as IterableIterator<
-					RegExpMatchArray & { index: number }
-				>;
+				const regExp = new RegExp(String.raw`\b(?<!\.)${escapeRegExp(param.name)}(?!\s*\()\b`, "g");
+				const matches = extBody.text.matchAll(regExp);
 				for (const match of matches) {
 					const startPos = document.positionAt(extBody.offset + match.index);
-					if (getIsPosInsideParsedBlocks(ignoredBlocks, startPos)) continue;
+					if (hasFragmentAtPos(ignoredFragments, startPos)) continue;
 					builder.push(startPos.line, startPos.character, param.name.length, 2);
 				}
 			}

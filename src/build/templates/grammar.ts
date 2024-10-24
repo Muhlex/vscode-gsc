@@ -10,9 +10,11 @@ export default (options: { engine: string; keywords: string[] }) => {
 		$schema: "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 		name: `Game Script (${engine.toUpperCase()})`,
 		patterns: [
-			{ include: "#preprocessor" },
 			{ include: "#comment" },
 			{ include: "#string" },
+			{ include: "#block" },
+			{ include: "#brace" },
+			{ include: "#preprocessor" },
 			{ include: "#keyword-control" },
 			{ include: "#variable-animation" },
 			{ include: "#keyword-operator" },
@@ -24,26 +26,6 @@ export default (options: { engine: string; keywords: string[] }) => {
 			{ include: "#variable" },
 		],
 		repository: {
-			preprocessor: {
-				name: "meta.preprocessor.gsc",
-				patterns: [
-					{
-						match: raw`^(#[a-z_]*)\b\s*(?:(?:\((.*)\))|(.*?));*\n`,
-						name: "meta.preprocessor",
-						captures: {
-							"1": {
-								name: "keyword.control.preprocessor.gsc",
-							},
-							"2": {
-								patterns: [{ include: "$self" }],
-							},
-							"3": {
-								patterns: [{ include: "#path" }],
-							},
-						},
-					},
-				],
-			},
 			comment: {
 				patterns: [
 					{
@@ -75,6 +57,50 @@ export default (options: { engine: string; keywords: string[] }) => {
 					{
 						match: raw`\\.`,
 						name: "constant.character.escape.gsc",
+					},
+				],
+			},
+			block: {
+				name: "meta.block.gsc",
+				begin: "{",
+				beginCaptures: {
+					"0": { name: "punctuation.definition.block.gsc" },
+				},
+				end: "}",
+				endCaptures: {
+					"0": { name: "punctuation.definition.block.gsc" },
+				},
+				patterns: [{ include: "$self" }],
+			},
+			brace: { // TODO: Maybe don't have them standalone ever? Instead match their use cases?
+				patterns: [
+					{
+						match: raw`\(|\)`,
+						name: "meta.brace.round.gsc",
+					},
+					{
+						match: raw`\[|\]`,
+						name: "meta.brace.square.gsc",
+					},
+				],
+			},
+			preprocessor: {
+				name: "meta.preprocessor.gsc",
+				patterns: [
+					{
+						match: raw`^\s*(#[a-z_]*)\b\s*(?:(?:\((.*)\))|(.*?));*\n`,
+						name: "meta.preprocessor",
+						captures: {
+							"1": {
+								name: "keyword.control.preprocessor.gsc",
+							},
+							"2": {
+								patterns: [{ include: "$self" }],
+							},
+							"3": {
+								patterns: [{ include: "#path" }],
+							},
+						},
 					},
 				],
 			},
@@ -148,7 +174,7 @@ export default (options: { engine: string; keywords: string[] }) => {
 					},
 				],
 			},
-			functions: {
+			functions: { // TODO: Seperate calls from declarations, highlight braces
 				patterns: [{ include: "#function-reference" }, { include: "#function" }],
 			},
 			// Handled via semantic highlighting now:

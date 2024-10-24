@@ -2,13 +2,14 @@ import * as vscode from "vscode";
 import * as path from "node:path";
 
 import type { Settings } from "../../settings";
+import type { Stores } from "..";
 import type { StaticStore } from "../StaticStore";
 import { GscScriptDir } from "./GscScriptDir";
 import { GscScript } from "./GscScript";
 import { GscFile } from "./GscFile";
 
 export class GscStore {
-	readonly staticStore: StaticStore;
+	readonly stores: Stores;
 	private scripts: GscScriptDir;
 	private files: Map<vscode.Uri["path"], GscFile>;
 
@@ -19,7 +20,7 @@ export class GscStore {
 		languageId: string,
 		staticStore: StaticStore,
 	) {
-		this.staticStore = staticStore;
+		this.stores = { static: staticStore, gsc: this };
 		this.scripts = new GscScriptDir("");
 		this.files = new Map();
 
@@ -32,7 +33,7 @@ export class GscStore {
 				if (!document.isDirty && file.script) {
 					return; // File system watcher for root directories will handle it...
 				}
-				file.clearCache();
+				this.onFileChange(file);
 			}),
 		);
 
@@ -67,7 +68,10 @@ export class GscStore {
 				const watcher = vscode.workspace.createFileSystemWatcher(pattern);
 				fileSystemWatchers.push(watcher);
 				watcher.onDidCreate((uri) => this.createFileScript(uri, rootUri, priority));
-				watcher.onDidChange((uri) => this.getFile(uri)?.clearCache());
+				watcher.onDidChange((uri) => {
+					const file = this.getFile(uri);
+					if (file) this.onFileChange(file);
+				});
 				watcher.onDidDelete((uri) => this.removeFile(uri));
 			}
 		};
@@ -116,17 +120,18 @@ export class GscStore {
 		}
 
 		const document = identifier;
-		let file = this.files.get(document.uri.path);
-
-		if (!file) {
-			file = new GscFile(this, document.uri);
-			this.files.set(document.uri.path, file);
-		}
-		return file;
+		return this.files.get(document.uri.path) ?? this.createFile(document.uri);
 	}
 
-	private createFile(uri: vscode.Uri) {
-		const file = new GscFile(this, uri);
+	private createFile(uri: vscode.Uri, scriptOptions?: { script: GscScript; priority: number }) {
+		const file = new GscFile(this.stores, uri);
+		if (scriptOptions) {
+			file.script = scriptOptions.script;
+			scriptOptions.script.addFile(file, scriptOptions.priority);
+		}
+		for (const otherFile of this.files.values()) {
+			otherFile.onOtherFileCreate(file);
+		}
 		this.files.set(uri.path, file);
 		return file;
 	}
@@ -151,9 +156,7 @@ export class GscStore {
 			currentDir.scripts.set(filename, script);
 		}
 
-		const file = this.createFile(uri);
-		file.script = script;
-		script.addFile(file, priority);
+		return this.createFile(uri, { script, priority });
 	}
 
 	private removeFile(uri: vscode.Uri) {
@@ -161,6 +164,9 @@ export class GscStore {
 		if (!file) throw new Error(`Cannot remove unknown file "${uri.path}".`);
 
 		this.files.delete(uri.path);
+		for (const otherFile of this.files.values()) {
+			otherFile.onOtherFileRemove(file);
+		}
 		const script = file.script;
 		if (!script) return;
 
@@ -174,6 +180,14 @@ export class GscStore {
 			if (dir.children.size + dir.scripts.size > 0) break;
 			dir.parent.children.delete(dir.name);
 			dir = dir.parent;
+		}
+	}
+
+	private onFileChange(file: GscFile) {
+		file.onChange();
+		for (const otherFile of this.files.values()) {
+			if (otherFile === file) continue;
+			otherFile.onOtherFileChange(file);
 		}
 	}
 

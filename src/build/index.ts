@@ -6,7 +6,7 @@ import getSnippets from "./templates/snippets";
 import { writeFile, getFilesRecursive } from "./files";
 import * as tsconfig from "../../tsconfig.json";
 
-import type { KeywordDefsTree, CallableDefsTree, CallableDefGame } from "../types/Defs";
+import type { KeywordDefsTree, CallableDefsTree, CallableDefGame } from "../types/Def";
 
 const OUT_DIR = tsconfig.compilerOptions.outDir;
 

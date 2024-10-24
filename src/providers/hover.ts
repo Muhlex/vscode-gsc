@@ -3,22 +3,17 @@ import * as vscode from "vscode";
 import type { Stores } from "../stores";
 import type { Settings } from "../settings";
 
-import { getDef, isCall, isReference, createDocumentation } from "./shared";
-import { getIsPosInsideParsedBlocks } from "../parse";
+import { createDocumentation } from "./shared";
 
 export const createHoverProvider = (stores: Stores, settings: Settings): vscode.HoverProvider => ({
 	async provideHover(document, position, token) {
-		if (getIsPosInsideParsedBlocks(await stores.gsc.getFile(document).getIgnoredBlocks(), position))
-			return;
-		if (token.isCancellationRequested) return;
-
 		const wordRange = document.getWordRangeAtPosition(position, /[A-Za-z_][A-Za-z0-9_]*/);
 		if (!wordRange) return;
-		if (!isCall(wordRange, document) && !isReference(wordRange, document)) return;
 
-		const word = document.getText(wordRange);
-		const def = await getDef(word, document, stores);
+		const instances = await stores.gsc.getFile(document).getCallableInstances();
 		if (token.isCancellationRequested) return;
+		const instance = instances.byOffset.get(document.offsetAt(wordRange.start));
+		const def = instance?.def;
 		if (!def) return;
 
 		const concise = settings.intelliSense.conciseMode.value;

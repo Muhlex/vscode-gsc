@@ -1,11 +1,11 @@
 import * as vscode from "vscode";
 
 import type { Settings } from "../settings";
-import type { CallableDefsEngine, CallableDefGame } from "../types/Defs";
+import type { CallableDefsEngine, CallableDefGame } from "../models/Def";
 
 export class StaticStore {
-	keywords: string[];
-	callables: Map<string, CallableDefGame>;
+	keywords: readonly string[];
+	callables: ReadonlyMap<string, CallableDefGame>;
 
 	constructor(context: vscode.ExtensionContext, settings: Settings, engine: string) {
 		this.keywords = [];

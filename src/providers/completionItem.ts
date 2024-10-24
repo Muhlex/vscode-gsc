@@ -2,10 +2,10 @@ import * as vscode from "vscode";
 
 import type { Stores } from "../stores";
 import type { Settings } from "../settings";
-import type { CallableDef } from "../types/Defs";
+import type { CallableDef } from "../models/Def";
 
 import { getVariableString, createDocumentation } from "./shared";
-import { getIsPosInsideParsedBlocks } from "../parse";
+import { hasFragmentAtPos } from "../models/Fragment";
 import { removeFileExtension } from "../util";
 
 export const createCompletionItemProvider = (
@@ -15,9 +15,9 @@ export const createCompletionItemProvider = (
 	async provideCompletionItems(document, position, token, context) {
 		const file = stores.gsc.getFile(document);
 		if (context.triggerCharacter) {
-			const ignoredBlocks = await file.getIgnoredBlocks();
+			const ignoredFragments = await file.getIgnoredFragments();
 			if (token.isCancellationRequested) return;
-			if (getIsPosInsideParsedBlocks(ignoredBlocks, position)) return;
+			if (hasFragmentAtPos(ignoredFragments, position)) return;
 		}
 
 		const getItems = async () => {
@@ -64,7 +64,7 @@ export const createCompletionItemProvider = (
 			}
 
 			if (intelliSense.enable.callablesScript.value) {
-				const defs = await file.getCallableDefsInScope();
+				const defs = await file.getCallableDefsScope();
 				if (token.isCancellationRequested) return items;
 				for (const [, def] of defs) {
 					items.push(createCallableCompletionItem(def, def.file === file));

@@ -1,39 +1,50 @@
-import * as vscode from "vscode";
+import type * as vscode from "vscode";
 
-import type { GscStore } from ".";
+import type { Stores } from "..";
 import type { GscScript } from "./GscScript";
-import type { CallableDefScript } from "../../types/Defs";
-import type { CallableInstance, CallableInstanceWithDef } from "../../types/Instances";
+import type { CallableDef, CallableDefScript } from "../../models/Def";
+import type { CallableInstanceRaw, CallableInstance } from "../../models/Instance";
 
+import { AsyncDocumentCache } from "../../cache/AsyncDocumentCache";
+
+import { type Fragment, invertFragments } from "../../models/Fragment";
 import {
+	parseIgnoredFragments,
+	parseGlobalFragments,
+	parseIncludes,
 	parseCallableDefs,
 	parseCallableInstances,
-	parseIgnoredBlocks,
-	parseIncludes,
-	parseTopLevelBlocks,
-	type ParsedBlock,
 } from "../../parse";
 
-type Cache = {
-	ignoredBlocks?: ParsedBlock[];
-	topLevelBlocks?: ParsedBlock[];
-	includes?: string[];
-	callableDefs?: Map<string, CallableDefScript>;
-	callableInstances?: CallableInstance[];
-};
-
 export class GscFile {
-	store: GscStore;
 	uri: vscode.Uri;
 	script?: GscScript;
 
-	private cache: Cache;
+	private stores: Stores;
+	private cache: AsyncDocumentCache<{
+		ignoredFragments: readonly Fragment[];
+		globalFragments: readonly Fragment[];
+		bodyFragments: readonly Fragment[];
+		includedPaths: readonly string[];
+		includedFiles: ReadonlySet<GscFile>;
+		callableDefs: ReadonlyMap<string, CallableDefScript>;
+		callableDefsScope: ReadonlyMap<string, CallableDefScript>;
+		callableInstancesRaw: Readonly<{
+			referencedPaths: ReadonlySet<string>;
+			list: readonly CallableInstanceRaw[];
+		}>;
+		callableInstances: Readonly<{
+			referencedFiles: ReadonlySet<GscFile>;
+			list: readonly CallableInstance[]; // TODO: do we need this?
+			byOffset: ReadonlyMap<number, CallableInstance>;
+		}>;
+	}>;
 
-	constructor(store: GscStore, uri: vscode.Uri, script?: GscScript) {
-		this.store = store;
+	constructor(stores: Stores, uri: vscode.Uri, script?: GscScript) {
 		this.uri = uri;
 		this.script = script;
-		this.cache = {};
+		this.stores = stores;
+		this.cache = new AsyncDocumentCache(uri);
 	}
 
 	get filename() {
@@ -43,92 +54,161 @@ export class GscFile {
 		return path.slice(lastSlashIndex + 1);
 	}
 
-	clearCache() {
-		this.cache = {};
+	// TODO: Use CancellationTokens?
+	// TODO: Perf: Potentially add range limits (probably only possible for callable instances).
+
+	getIgnoredFragments() {
+		return this.cache.getWithDocument("ignoredFragments", async (doc) =>
+			parseIgnoredFragments(doc),
+		);
 	}
 
-	private async getCached<K extends keyof Cache>(
-		key: K,
-		parseFn: (document: vscode.TextDocument) => Promise<NonNullable<Cache[K]>>,
-	): Promise<NonNullable<Cache[K]>> {
-		const cached = this.cache[key];
-		if (cached) return cached;
-
-		const openDocument = await vscode.workspace.openTextDocument(this.uri);
-		const result = await parseFn(openDocument);
-		this.cache[key] = result;
-		return result;
+	getGlobalFragments() {
+		return this.cache.getWithDocument("globalFragments", async (doc) => {
+			const nonIgnoredFragments = invertFragments(doc, await this.getIgnoredFragments());
+			return parseGlobalFragments(doc, nonIgnoredFragments);
+		});
 	}
 
-	getIgnoredBlocks() {
-		return this.getCached("ignoredBlocks", async (doc) => parseIgnoredBlocks(doc));
-	}
-
-	getTopLevelBlocks() {
-		return this.getCached("topLevelBlocks", async (doc) => {
-			return parseTopLevelBlocks(doc, await this.getIgnoredBlocks());
+	getBodyFragments() {
+		return this.cache.getWithDocument("bodyFragments", async (doc) => {
+			return invertFragments(doc, await this.getGlobalFragments());
 		});
 	}
 
 	getIncludes() {
-		return this.getCached("includes", async (doc) => {
-			return parseIncludes(doc, await this.getTopLevelBlocks(), await this.getIgnoredBlocks());
+		return this.cache.get("includedFiles", async () => {
+			const paths = await this.cache.getWithDocument("includedPaths", async (doc) => {
+				return parseIncludes(
+					doc,
+					await this.getGlobalFragments(),
+					await this.getIgnoredFragments(),
+				);
+			});
+
+			const files = new Set<GscFile>();
+			for (const path of paths) {
+				const file = this.stores.gsc.getScript(path)?.getFile();
+				if (!file) continue;
+				if (files.has(file)) files.delete(file); // prioritize last file
+				files.add(file);
+			}
+			return files;
 		});
 	}
 
 	getCallableDefs() {
-		return this.getCached("callableDefs", async (doc) => {
+		return this.cache.getWithDocument("callableDefs", async (doc) => {
 			return parseCallableDefs(
 				doc,
+				await this.getGlobalFragments(),
+				await this.getIgnoredFragments(),
 				this,
-				await this.getTopLevelBlocks(),
-				await this.getIgnoredBlocks(),
 			);
 		});
 	}
 
-	async getCallableDefsInScope() {
-		const defs = new Map<string, CallableDefScript>();
-
-		const addDefs = async (file: GscFile) => {
-			for (const [name, def] of await file.getCallableDefs()) {
-				if (defs.has(name)) continue;
-				defs.set(name, def);
+	getCallableDefsScope() {
+		return this.cache.get("callableDefsScope", async () => {
+			const defs = new Map<string, CallableDefScript>();
+			const includes = await this.getIncludes();
+			const files = [...includes.values(), this];
+			const defsPerFile = await Promise.all(files.map(async (file) => file.getCallableDefs()));
+			for (const fileDefs of defsPerFile) {
+				for (const [name, def] of fileDefs) defs.set(name, def);
 			}
-		};
-
-		await addDefs(this);
-
-		for (const includePath of await this.getIncludes()) {
-			const includedScript = this.store.getScript(includePath);
-			const includedFile = includedScript?.getFile();
-			if (!includedFile) continue;
-
-			await addDefs(includedFile);
-		}
-
-		return defs;
+			return defs;
+		});
 	}
 
 	getCallableInstances() {
-		return this.getCached("callableInstances", async (doc) => {
-			return parseCallableInstances(
-				doc,
-				await this.getTopLevelBlocks(),
-				await this.getIgnoredBlocks(),
+		return this.cache.getWithDocument("callableInstances", async (doc) => {
+			const { list: instancesRaw } = await this.cache.getWithDocument(
+				"callableInstancesRaw",
+				async (doc) => {
+					const instancesRaw = parseCallableInstances(
+						doc,
+						invertFragments(doc, await this.getGlobalFragments()),
+						await this.getIgnoredFragments(),
+					);
+					const referencedPaths = new Set<string>();
+					for (const { path } of instancesRaw) {
+						if (!path) continue;
+						referencedPaths.add(path);
+					}
+					return { referencedPaths, list: instancesRaw };
+				},
 			);
+			const referencedFiles = new Set<GscFile>();
+
+			const defsGame = this.stores.static.callables;
+			const defsScope = await this.getCallableDefsScope();
+
+			const getDef = async (instanceRaw: CallableInstanceRaw): Promise<CallableDef | undefined> => {
+				const identLc = instanceRaw.ident.name.toLowerCase();
+				const { path } = instanceRaw;
+				if (!path) return defsGame.get(identLc) ?? defsScope.get(identLc);
+
+				const file = this.stores.gsc.getScript(path)?.getFile();
+				if (!file) return undefined;
+				referencedFiles.add(file);
+				const defsFile = await file.getCallableDefs();
+				return defsFile?.get(identLc);
+			};
+
+			const attachDef = async (instanceRaw: CallableInstanceRaw): Promise<CallableInstance> => {
+				const def = await getDef(instanceRaw);
+				if (!def) return instanceRaw;
+
+				const instance: CallableInstance = instanceRaw;
+				instance.def = def;
+				return instance;
+			};
+
+			const instances = await Promise.all(instancesRaw.map(attachDef));
+			const byOffset = new Map<number, CallableInstance>();
+			for (const instance of instances) {
+				byOffset.set(doc.offsetAt(instance.ident.range.start), instance);
+			}
+
+			return { referencedFiles, list: instances, byOffset };
 		});
 	}
 
-	async getCallableInstancesDefined() {
-		const instances: CallableInstanceWithDef[] = await this.getCallableInstances();
-		const defsGame = this.store.staticStore.callables;
-		const defsScript = await this.getCallableDefsInScope();
-		for (const instance of instances) {
-			const identLc = instance.ident.name.toLowerCase();
-			const def = defsGame.get(identLc) ?? defsScript.get(identLc);
-			if (def) instance.def = def;
+	onChange() {
+		this.cache.clear();
+	}
+
+	onOtherFileCreate(otherFile: GscFile) {
+		const { cache } = this;
+		const path = otherFile.script?.path;
+		if (!path) return;
+
+		if (cache.getCached("includedPaths")?.includes(path)) {
+			cache.clear("includedFiles");
+			cache.clear("callableDefsScope");
+			cache.clear("callableInstances");
+		} else if (cache.getCached("callableInstancesRaw")?.referencedPaths.has(path)) {
+			cache.clear("callableInstances");
 		}
-		return instances;
+	}
+	onOtherFileChange(otherFile: GscFile) {
+		const { cache } = this;
+		if (cache.getCached("includedFiles")?.has(otherFile)) {
+			cache.clear("callableDefsScope");
+			cache.clear("callableInstances");
+		} else if (cache.getCached("callableInstances")?.referencedFiles.has(otherFile)) {
+			cache.clear("callableInstances");
+		}
+	}
+	onOtherFileRemove(otherFile: GscFile) {
+		const { cache } = this;
+		if (cache.getCached("includedFiles")?.has(otherFile)) {
+			cache.clear("includedFiles");
+			cache.clear("callableDefsScope");
+			cache.clear("callableInstances");
+		} else if (cache.getCached("callableInstances")?.referencedFiles.has(otherFile)) {
+			cache.clear("callableInstances");
+		}
 	}
 }
