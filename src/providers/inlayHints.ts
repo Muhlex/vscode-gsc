@@ -8,21 +8,24 @@ export const createInlayHintsProvider = (stores: Stores): vscode.InlayHintsProvi
 		const instances = await stores.gsc.getFile(document).getCallableInstances();
 		if (token.isCancellationRequested) return;
 
-		for (const instance of instances.list) {
+		for (const { range, value: instance } of instances.tree) {
 			const def = instance.def;
 			if (!def || !def.params) continue;
-			if (!instance.params || instance.params.length < 1) continue;
-			if (range.start.isAfter(instance.params[instance.params.length - 1].range.start)) continue;
-			if (range.end.isBefore(instance.params[0].range.start)) break;
+			if (instance.kind !== "call") continue;
+			if (range.start.isAfter(instance.paramList.range.start)) continue;
+			if (range.end.isBefore(instance.paramList.range.start)) break;
 
-			for (const [i, param] of instance.params.entries()) {
+			for (let i = 0; i < instance.params.length; i++) {
 				if (!def.params[i]) break;
+				const contentRange = instance.params.atIndex(i)!.value.contentRange;
+				if (!contentRange) continue;
 				result.push({
-					position: param.range.start,
+					position: contentRange.start,
 					label: `${def.params[i].name}:`,
 					kind: vscode.InlayHintKind.Parameter,
 					paddingRight: true,
 				});
+				i++;
 			}
 		}
 

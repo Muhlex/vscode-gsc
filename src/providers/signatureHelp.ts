@@ -3,9 +3,7 @@ import * as vscode from "vscode";
 import type { Stores } from "../stores";
 import type { CallableDef } from "../models/Def";
 
-import { getRangesAtPos, getRangeIndicesAtPos } from "../ranges";
 import { getVariableString } from "./shared";
-import { rangeEnclosesPosition } from "../util";
 
 export const createSignatureHelpProvider = (stores: Stores): vscode.SignatureHelpProvider => ({
 	async provideSignatureHelp(document, position, token, _context) {
@@ -13,38 +11,20 @@ export const createSignatureHelpProvider = (stores: Stores): vscode.SignatureHel
 		const callableInstances = await file.getCallableInstances();
 		if (token.isCancellationRequested) return;
 
-		const instancesAtPos = getRangesAtPos(
-			callableInstances.list,
-			position,
-			(instance) => instance.range,
-		);
-		// Math.floor(Math.ceil(123));
-		console.log(
-			instancesAtPos.map((i) => ({
-				text: document.getText(i.range),
-				range: i.range,
-				encloses: rangeEnclosesPosition(i.range, position)
-			})),
-		);
-
+		const instancesAtPos = callableInstances.tree.get(position);
 		for (let i = instancesAtPos.length - 1; i >= 0; i--) {
-			const instance = instancesAtPos[i];
-			if (!instance?.params) continue;
+			const instance = instancesAtPos[i].value;
+			if (instance.kind !== "call") continue;
 
-			const activeParameter = getRangeIndicesAtPos(
-				instance.params,
-				position,
-				(param) => param.range,
-				false,
-			)[0];
-			if (activeParameter === undefined) continue;
+			const activeParameterIndex = instance.params.getIndex(position, true);
+			if (activeParameterIndex === -1) continue;
 
-			const def = instance?.def;
+			const def = instance.def;
 			if (!def) return;
 			return {
 				signatures: createSignatures(def),
 				activeSignature: 0,
-				activeParameter,
+				activeParameter: activeParameterIndex,
 			};
 		}
 	},

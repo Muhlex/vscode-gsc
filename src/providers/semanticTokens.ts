@@ -2,7 +2,6 @@ import * as vscode from "vscode";
 
 import type { Stores } from "../stores";
 
-import { hasFragmentAtPos } from "../models/Fragment";
 import { escapeRegExp } from "../util";
 
 export const createSemanticTokensProvider = (
@@ -35,7 +34,7 @@ const provideSemanticTokens = async (
 ) => {
 	const builder = new vscode.SemanticTokensBuilder();
 	const file = stores.gsc.getFile(document);
-	const ignoredFragments = await file.getIgnoredFragments();
+	const ignoredFragments = await file.getIgnoredSegments();
 	if (token.isCancellationRequested) return;
 
 	const provideFromGame = () => {
@@ -51,7 +50,7 @@ const provideSemanticTokens = async (
 			const index = (match.indices![1] || match.indices![2])[0];
 			const startPos = document.positionAt(index + offset);
 
-			if (hasFragmentAtPos(ignoredFragments, startPos)) continue;
+			if (ignoredFragments.has(startPos)) continue;
 
 			const type = def.receiver ? 1 : 0;
 			const modifiers = def.deprecated ? 0b110 : 0b010;
@@ -92,7 +91,7 @@ const provideSemanticTokens = async (
 				const matches = extBody.text.matchAll(regExp);
 				for (const match of matches) {
 					const startPos = document.positionAt(extBody.offset + match.index);
-					if (hasFragmentAtPos(ignoredFragments, startPos)) continue;
+					if (ignoredFragments.has(startPos)) continue;
 					builder.push(startPos.line, startPos.character, param.name.length, 2);
 				}
 			}

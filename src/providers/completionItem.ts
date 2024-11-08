@@ -5,7 +5,6 @@ import type { Settings } from "../settings";
 import type { CallableDef } from "../models/Def";
 
 import { getVariableString, createDocumentation } from "./shared";
-import { hasFragmentAtPos } from "../models/Fragment";
 import { removeFileExtension } from "../util";
 
 export const createCompletionItemProvider = (
@@ -15,9 +14,9 @@ export const createCompletionItemProvider = (
 	async provideCompletionItems(document, position, token, context) {
 		const file = stores.gsc.getFile(document);
 		if (context.triggerCharacter) {
-			const ignoredFragments = await file.getIgnoredFragments();
+			const ignoredFragments = await file.getIgnoredSegments();
 			if (token.isCancellationRequested) return;
-			if (hasFragmentAtPos(ignoredFragments, position)) return;
+			if (ignoredFragments.has(position)) return;
 		}
 
 		const getItems = async () => {

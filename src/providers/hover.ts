@@ -12,7 +12,7 @@ export const createHoverProvider = (stores: Stores, settings: Settings): vscode.
 
 		const instances = await stores.gsc.getFile(document).getCallableInstances();
 		if (token.isCancellationRequested) return;
-		const instance = instances.byOffset.get(document.offsetAt(wordRange.start));
+		const instance = instances.byIdentOffset.get(document.offsetAt(wordRange.start));
 		const def = instance?.def;
 		if (!def) return;
 

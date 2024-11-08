@@ -3,8 +3,6 @@ import * as vscode from "vscode";
 import type { Stores } from "../stores";
 import type { Settings } from "../settings";
 
-import { hasFragmentAtPos } from "../models/Fragment";
-
 export const createColorProvider = (
 	stores: Stores,
 	settings: Settings,
@@ -23,7 +21,7 @@ export const createColorProvider = (
 	async provideDocumentColors(document, token) {
 		if (settings.colors.enable.value === "off") return;
 
-		const ignoredFragments = await stores.gsc.getFile(document).getIgnoredFragments();
+		const ignoredFragments = await stores.gsc.getFile(document).getIgnoredSegments();
 		if (token.isCancellationRequested) return;
 
 		const regExp =
@@ -49,7 +47,7 @@ export const createColorProvider = (
 			const startIndex = match.indices![0][0];
 			const endIndex = match.indices![0][1];
 			const startPos = document.positionAt(startIndex);
-			if (hasFragmentAtPos(ignoredFragments, startPos)) continue;
+			if (ignoredFragments.has(startPos)) continue;
 
 			const range = new vscode.Range(startPos, document.positionAt(endIndex));
 
