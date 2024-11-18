@@ -53,7 +53,7 @@ export class SegmentBuilderLinear<T = void> {
 	private builder = new SegmentBuilder<T>();
 	private endStack: { end: Position; value: T }[] = [];
 
-	next(range: Range, value: T) {
+	push(range: Range, value: T) {
 		while (this.endStack.length > 0) {
 			const parent = this.endStack.at(-1)!;
 			if (range.end.isBeforeOrEqual(parent.end)) break;

@@ -47,7 +47,7 @@ export const createColorProvider = (
 			const startIndex = match.indices![0][0];
 			const endIndex = match.indices![0][1];
 			const startPos = document.positionAt(startIndex);
-			if (ignoredFragments.has(startPos)) continue;
+			if (ignoredFragments.hasAt(startPos)) continue;
 
 			const range = new vscode.Range(startPos, document.positionAt(endIndex));
 

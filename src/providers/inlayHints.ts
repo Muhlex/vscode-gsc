@@ -8,7 +8,7 @@ export const createInlayHintsProvider = (stores: Stores): vscode.InlayHintsProvi
 		const instances = await stores.gsc.getFile(document).getCallableInstances();
 		if (token.isCancellationRequested) return;
 
-		for (const { range, value: instance } of instances.tree) {
+		for (const { range, value: instance } of instances.byRange) {
 			const def = instance.def;
 			if (!def || !def.params) continue;
 			if (instance.kind !== "call") continue;
@@ -17,7 +17,7 @@ export const createInlayHintsProvider = (stores: Stores): vscode.InlayHintsProvi
 
 			for (let i = 0; i < instance.params.length; i++) {
 				if (!def.params[i]) break;
-				const contentRange = instance.params.atIndex(i)!.value.contentRange;
+				const contentRange = instance.params.getByIndex(i)!.value.contentRange;
 				if (!contentRange) continue;
 				result.push({
 					position: contentRange.start,

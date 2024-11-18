@@ -14,7 +14,7 @@ import { createColorProvider } from "./color";
 
 export class Providers {
 	private readonly context: vscode.ExtensionContext;
-	private readonly languageID: string;
+	private readonly languageId: string;
 	private providers;
 
 	constructor(
@@ -24,7 +24,7 @@ export class Providers {
 		stores: { static: StaticStore; gsc: GscStore },
 	) {
 		this.context = context;
-		this.languageID = languageID;
+		this.languageId = languageID;
 		this.providers = {
 			completionItem: createCompletionItemProvider(stores, settings),
 			signatureHelp: createSignatureHelpProvider(stores),
@@ -38,22 +38,22 @@ export class Providers {
 
 	register() {
 		const l = vscode.languages;
+		const lId = this.languageId;
 		const p = this.providers;
-		const langId = this.languageID;
 		const disposables = [
-			l.registerCompletionItemProvider(langId, p.completionItem, "\\"),
-			l.registerSignatureHelpProvider(langId, p.signatureHelp, "(", ","),
+			l.registerCompletionItemProvider(lId, p.completionItem, "\\"),
+			l.registerSignatureHelpProvider(lId, p.signatureHelp, "(", ","),
 			/**
 			 * When registering both a whole document and a range SemanticTokensProvider, the former
 			 * takes precedence after initial load. However it is slower. As long as we don't need the
 			 * full document for our semantics, don't even provide the slower (full document) version.
 			 * Official TS support currently does the same.
 			 **/
-			l.registerDocumentRangeSemanticTokensProvider(langId, p.semanticTokens, semanticTokensLegend),
-			l.registerHoverProvider(langId, p.hover),
-			l.registerDefinitionProvider(langId, p.definition),
-			l.registerInlayHintsProvider(langId, p.inlayHints),
-			l.registerColorProvider(langId, p.color),
+			l.registerDocumentRangeSemanticTokensProvider(lId, p.semanticTokens, semanticTokensLegend),
+			l.registerHoverProvider(lId, p.hover),
+			l.registerDefinitionProvider(lId, p.definition),
+			l.registerInlayHintsProvider(lId, p.inlayHints),
+			l.registerColorProvider(lId, p.color),
 		];
 		this.context.subscriptions.push(...disposables);
 	}

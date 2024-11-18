@@ -1,4 +1,5 @@
 import type { Range } from "vscode";
+import type { SegmentMap } from "./Segment";
 import type { GscFile } from "../stores/GscStore/GscFile";
 
 export type VariableDef = {
@@ -34,7 +35,7 @@ export type CallableDefScript = CallableDefCommon & {
 	origin: "script";
 	ident: CallableDefCommon["ident"] & { range: Range };
 	params: (ParamDef & { range: Range })[];
-	body: { range: Range };
+	body: { range: Range, variables: { params: SegmentMap<{ index: number }> } };
 	file: GscFile;
 };
 

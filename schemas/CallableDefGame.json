@@ -1,118 +1,115 @@
 {
-  "$ref": "#/definitions/CallableDefGame",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "definitions": {
-    "CallableDefGame": {
-      "additionalProperties": false,
-      "properties": {
-        "deprecated": {
-          "type": "boolean"
-        },
-        "description": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "devOnly": {
-          "type": "boolean"
-        },
-        "example": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "params": {
-          "items": {
-            "$ref": "#/definitions/ParamDef"
-          },
-          "type": "array"
-        },
-        "paramsRepeatable": {
-          "enum": [
-            "last",
-            "all"
-          ],
-          "type": "string"
-        },
-        "priority": {
-          "type": "number"
-        },
-        "receiver": {
-          "$ref": "#/definitions/VariableDef"
-        },
-        "return": {
-          "additionalProperties": false,
-          "properties": {
-            "description": {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "name": {
-              "type": "string"
-            },
-            "types": {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            }
-          },
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "ParamDef": {
-      "additionalProperties": false,
-      "properties": {
-        "description": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "name": {
-          "type": "string"
-        },
-        "optional": {
-          "type": "boolean"
-        },
-        "types": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "VariableDef": {
-      "additionalProperties": false,
-      "properties": {
-        "description": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "name": {
-          "type": "string"
-        },
-        "optional": {
-          "type": "boolean"
-        },
-        "types": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    }
-  }
+	"$ref": "#/definitions/CallableDefGame",
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"definitions": {
+		"CallableDefGame": {
+			"additionalProperties": false,
+			"properties": {
+				"deprecated": {
+					"type": "boolean"
+				},
+				"description": {
+					"items": {
+						"type": "string"
+					},
+					"type": "array"
+				},
+				"devOnly": {
+					"type": "boolean"
+				},
+				"example": {
+					"items": {
+						"type": "string"
+					},
+					"type": "array"
+				},
+				"params": {
+					"items": {
+						"$ref": "#/definitions/ParamDef"
+					},
+					"type": "array"
+				},
+				"paramsRepeatable": {
+					"enum": ["last", "all"],
+					"type": "string"
+				},
+				"priority": {
+					"type": "number"
+				},
+				"receiver": {
+					"$ref": "#/definitions/VariableDef"
+				},
+				"return": {
+					"additionalProperties": false,
+					"properties": {
+						"description": {
+							"items": {
+								"type": "string"
+							},
+							"type": "array"
+						},
+						"name": {
+							"type": "string"
+						},
+						"types": {
+							"items": {
+								"type": "string"
+							},
+							"type": "array"
+						}
+					},
+					"type": "object"
+				}
+			},
+			"type": "object"
+		},
+		"ParamDef": {
+			"additionalProperties": false,
+			"properties": {
+				"description": {
+					"items": {
+						"type": "string"
+					},
+					"type": "array"
+				},
+				"name": {
+					"type": "string"
+				},
+				"optional": {
+					"type": "boolean"
+				},
+				"types": {
+					"items": {
+						"type": "string"
+					},
+					"type": "array"
+				}
+			},
+			"type": "object"
+		},
+		"VariableDef": {
+			"additionalProperties": false,
+			"properties": {
+				"description": {
+					"items": {
+						"type": "string"
+					},
+					"type": "array"
+				},
+				"name": {
+					"type": "string"
+				},
+				"optional": {
+					"type": "boolean"
+				},
+				"types": {
+					"items": {
+						"type": "string"
+					},
+					"type": "array"
+				}
+			},
+			"type": "object"
+		}
+	}
 }

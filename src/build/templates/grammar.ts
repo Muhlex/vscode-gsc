@@ -10,8 +10,9 @@ export default (options: { engine: string; keywords: string[] }) => {
 			{ include: "#comment" },
 			{ include: "#string" },
 			{ include: "#block" },
+			{ include: "#variable-call" },
 			{ include: "#brace" },
-			{ include: "#preprocessor" },
+			{ include: "#directive" },
 			{ include: "#keyword-control" },
 			{ include: "#variable-animation" },
 			{ include: "#keyword-operator" },
@@ -19,7 +20,6 @@ export default (options: { engine: string; keywords: string[] }) => {
 			{ include: "#special" },
 			{ include: "#path" },
 			{ include: "#function" },
-			{ include: "#expression-evaluation" },
 			{ include: "#punctuation" },
 			{ include: "#variable" },
 		],
@@ -61,12 +61,18 @@ export default (options: { engine: string; keywords: string[] }) => {
 			block: {
 				name: "meta.block.gsc",
 				begin: "{",
-				beginCaptures: {
+				end: "}",
+				captures: {
 					"0": { name: "punctuation.definition.block.gsc" },
 				},
-				end: "}",
-				endCaptures: {
-					"0": { name: "punctuation.definition.block.gsc" },
+				patterns: [{ include: "$self" }],
+			},
+			"variable-call": {
+				begin: raw`\[\[`,
+				end: raw`\]\]`,
+				name: "meta.variable-call.gsc",
+				captures: {
+					"0": { name: "punctuation.definition.variable-call.gsc" },
 				},
 				patterns: [{ include: "$self" }],
 			},
@@ -82,7 +88,10 @@ export default (options: { engine: string; keywords: string[] }) => {
 					},
 				],
 			},
-			preprocessor: {
+			// TODO: remove the one meta.preprocessor w/o gsc
+			// punctuation.definition.directive.cpp (for #)
+			// keyword.control.directive.include.cpp for (include)
+			directive: {
 				name: "meta.preprocessor.gsc",
 				patterns: [
 					{
@@ -96,7 +105,8 @@ export default (options: { engine: string; keywords: string[] }) => {
 								patterns: [{ include: "$self" }],
 							},
 							"3": {
-								patterns: [{ include: "#path" }],
+								name: "entity.name.scope-resolution.gsc",
+								patterns: [{ match: raw`.*\/.*`, name: "invalid.illegal.import.path.gsc" }],
 							},
 						},
 					},
@@ -172,53 +182,38 @@ export default (options: { engine: string; keywords: string[] }) => {
 					},
 					{
 						match: "::",
-						name: "storage.modifier.import.seperator.gsc",
+						name: "punctuation.separator.scope-resolution.gsc",
 					},
 				],
 			},
 			path: {
-				patterns: [
-					{
-						match: raw`\w+(?:(?=\s*::)|(?:[\\/]\w*)+)`,
-						name: "storage.modifier.import.path.gsc",
-						captures: {
-							"0": {
-								patterns: [{ match: raw`.*\/.*`, name: "invalid.illegal.import.path.gsc" }],
-							},
-						},
+				match: raw`\w+(?:(?=\s*::)|(?:[\\/]\w*)+)`,
+				name: "entity.name.scope-resolution.gsc",
+				captures: {
+					"0": {
+						patterns: [{ match: raw`.*\/.*`, name: "invalid.illegal.import.path.gsc" }],
 					},
-				],
+				},
 			},
 			function: {
-				// TODO: highlight braces, remove paths and :: (and make include work again)
 				patterns: [
 					{
-						begin: raw`\b(?:([\w\\/]*)\s*(::)\s*)?\b([A-Za-z_][\w]*)\b\s*\(`,
+						begin: raw`([A-Za-z_][\w]*)\s*(\()`,
 						end: raw`\)`,
-						name: "meta.function.gsc",
 						beginCaptures: {
-							"1": { patterns: [{ include: "#path" }] },
-							"2": { name: "keyword.control.function.gsc" },
-							"3": { name: "entity.name.function.gsc" },
+							"1": { name: "entity.name.function.gsc" },
+							"2": { name: "meta.brace.round.gsc" },
+						},
+						endCaptures: {
+							"0": { name: "meta.brace.round.gsc" },
 						},
 						patterns: [{ include: "$self" }],
 					},
 					{
-						match: raw`(\b[\w\\/]*)?\s*(::)\s*\b([A-Za-z_][\w]*)\b\s*(?!\()`,
-						name: "meta.function-reference.gsc",
-						captures: {
-							"1": { patterns: [{ include: "#path" }] },
-							"2": { name: "keyword.control.function.gsc" },
-							"3": { name: "entity.name.function.gsc" },
-						},
+						match: raw`(?<=::\s*)[A-Za-z_][\w]*`,
+						name: "entity.name.function.gsc",
 					},
 				],
-			},
-			"expression-evaluation": {
-				begin: raw`\[\[`,
-				end: raw`\]\]`,
-				patterns: [{ include: "$self" }],
-				name: "meta.expression-evaluation.gsc",
 			},
 			punctuation: {
 				patterns: [

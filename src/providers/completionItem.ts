@@ -16,7 +16,7 @@ export const createCompletionItemProvider = (
 		if (context.triggerCharacter) {
 			const ignoredFragments = await file.getIgnoredSegments();
 			if (token.isCancellationRequested) return;
-			if (ignoredFragments.has(position)) return;
+			if (ignoredFragments.hasAt(position)) return;
 		}
 
 		const getItems = async () => {

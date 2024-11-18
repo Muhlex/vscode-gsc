@@ -34,72 +34,37 @@ const provideSemanticTokens = async (
 ) => {
 	const builder = new vscode.SemanticTokensBuilder();
 	const file = stores.gsc.getFile(document);
-	const ignoredFragments = await file.getIgnoredSegments();
+
+	const defs = await file.getCallableDefs();
+	if (token.isCancellationRequested) return;
+	const instances = await file.getCallableInstances();
 	if (token.isCancellationRequested) return;
 
-	const provideFromGame = () => {
-		const text = document.getText(range);
-		const callOrRef = /::\s*\b([A-Za-z_][A-Za-z0-9_]*)\b|\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\(/dg;
+	const defsIterable = range ? defs.byRange.getIn(range, true) : defs.byRange;
+	for (const { value: def } of defsIterable) {
+		const { ident, params, body } = def;
+		builder.push(ident.range.start.line, ident.range.start.character, ident.name.length, 0, 0b1);
+		for (const { range, name } of params) {
+			builder.push(range.start.line, range.start.character, name.length, 2, 0b1);
+		}
+		for (const { range } of body.variables.params) {
+			const length = document.offsetAt(range.end) - document.offsetAt(range.start);
+			builder.push(range.start.line, range.start.character, length, 2);
+		}
+	}
 
-		for (const match of text.matchAll(callOrRef)) {
-			const ident = match[1] || match[2];
-			const def = stores.static.callables.get(ident.toLowerCase());
-			if (!def) continue;
-
-			const offset = range ? document.offsetAt(range.start) : 0;
-			const index = (match.indices![1] || match.indices![2])[0];
-			const startPos = document.positionAt(index + offset);
-
-			if (ignoredFragments.has(startPos)) continue;
-
+	const instancesIterable = range ? instances.byRange.getIn(range) : instances.byRange;
+	for (const { value: instance } of instancesIterable) {
+		const def = instance.def;
+		if (!def) continue;
+		if (def.origin === "game") {
+			const start = instance.ident.range.start;
+			const length = instance.ident.name.length;
 			const type = def.receiver ? 1 : 0;
 			const modifiers = def.deprecated ? 0b110 : 0b010;
-			builder.push(startPos.line, startPos.character, ident.length, type, modifiers);
+			builder.push(start.line, start.character, length, type, modifiers);
 		}
-	};
-
-	const provideFromScript = async () => {
-		const defs = await file.getCallableDefs();
-		if (token.isCancellationRequested) return;
-
-		for (const [, { ident, params, body }] of defs) {
-			if (range && range.end.compareTo(ident.range.start) < 0) break;
-			builder.push(ident.range.start.line, ident.range.start.character, ident.name.length, 0, 0b1);
-
-			for (const param of params) {
-				builder.push(
-					param.range.start.line,
-					param.range.start.character,
-					param.name.length,
-					2,
-					0b1,
-				);
-
-				// Only respect the requested range for the function body as otherwise the checks
-				// would be more expensive than just providing the semantic tokens out of range:
-				if (range && !range.intersection(body.range)) continue;
-
-				const extBody = {
-					...body,
-					text: document.getText(body.range),
-					offset: document.offsetAt(body.range.start),
-				};
-
-				// Params in body
-				// TODO: Parse these centrally to allow refactoring?
-				const regExp = new RegExp(String.raw`\b(?<!\.)${escapeRegExp(param.name)}(?!\s*\()\b`, "g");
-				const matches = extBody.text.matchAll(regExp);
-				for (const match of matches) {
-					const startPos = document.positionAt(extBody.offset + match.index);
-					if (ignoredFragments.has(startPos)) continue;
-					builder.push(startPos.line, startPos.character, param.name.length, 2);
-				}
-			}
-		}
-	};
-
-	provideFromGame();
-	await provideFromScript();
+	}
 
 	return builder.build();
 };

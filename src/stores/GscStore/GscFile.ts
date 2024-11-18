@@ -25,19 +25,21 @@ export class GscFile {
 	private cache: AsyncDocumentCache<{
 		ignoredSegments: SegmentMap<Ignored>;
 		globalSegments: SegmentMap;
-		bodySegments: SegmentMap;
 		includedPaths: readonly string[];
 		includedFiles: ReadonlySet<GscFile>;
-		callableDefs: ReadonlyMap<string, CallableDefScript>;
+		callableDefs: Readonly<{
+			byRange: SegmentMap<CallableDefScript>;
+			byName: ReadonlyMap<string, CallableDefScript>;
+		}>
 		callableDefsScope: ReadonlyMap<string, CallableDefScript>;
 		callableInstancesRaw: Readonly<{
 			referencedPaths: ReadonlySet<string>;
-			tree: SegmentTree<CallableInstanceRaw>;
+			byRange: SegmentTree<CallableInstanceRaw>;
 		}>;
 		callableInstances: Readonly<{
 			referencedFiles: ReadonlySet<GscFile>;
-			tree: SegmentTree<CallableInstance>;
-			byIdentOffset: Map<number, CallableInstance>;
+			byRange: SegmentTree<CallableInstance>;
+			byOffset: Map<number, CallableInstance>;
 		}>;
 	}>;
 
@@ -65,13 +67,7 @@ export class GscFile {
 	getGlobalSegments() {
 		return this.cache.getWithDocument("globalSegments", async (doc) => {
 			const ignoredFragments = await this.getIgnoredSegments();
-			return parseGlobalSegments(doc, ignoredFragments.invert(doc));
-		});
-	}
-
-	getBodySegments() {
-		return this.cache.getWithDocument("bodySegments", async (doc) => {
-			return (await this.getGlobalSegments()).invert(doc);
+			return parseGlobalSegments(doc, ignoredFragments);
 		});
 	}
 
@@ -94,12 +90,22 @@ export class GscFile {
 
 	getCallableDefs() {
 		return this.cache.getWithDocument("callableDefs", async (doc) => {
-			return parseCallableDefs(
+			const defs = parseCallableDefs(
 				doc,
 				await this.getGlobalSegments(),
 				await this.getIgnoredSegments(),
 				this,
 			);
+
+			const byName = new Map<string, CallableDefScript>();
+			for (const { value: def } of defs) {
+				byName.set(def.ident.name.toLowerCase(), def);
+			}
+
+			return {
+				byRange: defs,
+				byName,
+			}
 		});
 	}
 
@@ -110,7 +116,7 @@ export class GscFile {
 			const files = [...includes.values(), this];
 			const defsPerFile = await Promise.all(files.map(async (file) => file.getCallableDefs()));
 			for (const fileDefs of defsPerFile) {
-				for (const [name, def] of fileDefs) defs.set(name, def);
+				for (const [name, def] of fileDefs.byName) defs.set(name, def);
 			}
 			return defs;
 		});
@@ -118,12 +124,12 @@ export class GscFile {
 
 	getCallableInstances() {
 		return this.cache.getWithDocument("callableInstances", async (doc) => {
-			const { tree: instancesRaw } = await this.cache.getWithDocument(
+			const { byRange: instancesRaw } = await this.cache.getWithDocument(
 				"callableInstancesRaw",
 				async (doc) => {
 					const instancesRaw = parseCallableInstances(
 						doc,
-						await this.getBodySegments(),
+						await this.getGlobalSegments(),
 						await this.getIgnoredSegments(),
 					);
 					const referencedPaths = new Set<string>();
@@ -131,7 +137,7 @@ export class GscFile {
 						if (!instance.path) continue;
 						referencedPaths.add(instance.path);
 					}
-					return { referencedPaths, tree: instancesRaw };
+					return { referencedPaths, byRange: instancesRaw };
 				},
 			);
 			const referencedFiles = new Set<GscFile>();
@@ -148,7 +154,7 @@ export class GscFile {
 				if (!file) return undefined;
 				referencedFiles.add(file);
 				const defsFile = await file.getCallableDefs();
-				return defsFile?.get(identLc);
+				return defsFile?.byName.get(identLc);
 			};
 
 			const attachDef = async (instanceRaw: CallableInstanceRaw): Promise<void> => {
@@ -170,12 +176,12 @@ export class GscFile {
 
 			const instances = await attachDefs();
 
-			const byIdentOffset = new Map<number, CallableInstance>();
+			const byOffset = new Map<number, CallableInstance>();
 			for (const { value: instance } of instances) {
-				byIdentOffset.set(doc.offsetAt(instance.ident.range.start), instance);
+				byOffset.set(doc.offsetAt(instance.ident.range.start), instance);
 			}
 
-			return { referencedFiles, tree: instances, byIdentOffset };
+			return { referencedFiles, byRange: instances, byOffset };
 		});
 	}
 

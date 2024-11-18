@@ -12,7 +12,7 @@ export function removeFileExtension(filename: string) {
 	return filename.slice(0, extensionDotIndex);
 }
 
-export function getNextSubstring( // TODO use this wherever
+export function getNextSubstring(
 	input: string,
 	substrings: string[],
 	position?: number,

@@ -1,6 +1,6 @@
 import { Position, Range, type TextDocument } from "vscode";
 import { type Segment, SegmentBuilder } from ".";
-import { getSegmentIndex } from "./shared";
+import { getSegmentIndexAtPos, getSegmentIndicesInRange } from "./shared";
 
 export class SegmentMap<T = void> {
 	private segments: Segment<T>[];
@@ -9,57 +9,63 @@ export class SegmentMap<T = void> {
 		this.segments = segments;
 	}
 
-	get length() {
+	get length(): number {
 		return this.segments.length;
 	}
 
-	has(position: Position, matchEnd = false) {
-		return getSegmentIndex(this.segments, position, matchEnd) !== -1;
+	indexAt(position: Position, matchEnd = false): number {
+		return getSegmentIndexAtPos(this.segments, position, matchEnd);
 	}
 
-	getIndex(position: Position, matchEnd = false): number {
-		return getSegmentIndex(this.segments, position, matchEnd);
+	hasAt(position: Position, matchEnd = false): boolean {
+		return this.indexAt(position, matchEnd) !== -1;
 	}
 
-	get(position: Position, matchEnd = false): Segment<T> | undefined {
-		return this.atIndex(this.getIndex(position, matchEnd));
+	getAt(position: Position, matchEnd = false): Segment<T> | undefined {
+		return this.getByIndex(this.indexAt(position, matchEnd));
 	}
 
-	atIndex(index: number): Segment<T> | undefined {
+	getIn(range: Range, matchIntersect = false): Segment<T>[] {
+		const result: Segment<T>[] = [];
+		const indices = getSegmentIndicesInRange(this.segments, range, matchIntersect);
+		for (const index of indices) result.push(this.segments[index]);
+		return result;
+	}
+
+	getByIndex(index: number): Segment<T> | undefined {
 		return this.segments[index];
-	}
-
-	invert(document: TextDocument): SegmentMap {
-		const bofPos = new Position(0, 0);
-		const eofPos = document.lineAt(document.lineCount - 1).range.end;
-
-		if (this.segments.length < 1) {
-			return new SegmentMap([{ range: new Range(bofPos, eofPos), value: undefined }]);
-		}
-
-		const builder = new SegmentBuilder();
-		const firstSegment = this.segments[0];
-		const lastSegment = this.segments[this.segments.length - 1];
-
-		if (!firstSegment.range.start.isEqual(bofPos)) {
-			builder.set(new Range(bofPos, firstSegment.range.start));
-		}
-		for (let i = 0; i < this.segments.length - 1; i++) {
-			const segment = this.segments[i];
-			const start = segment.range.end;
-			const end = this.segments[i + 1]?.range.start ?? eofPos;
-			builder.set(new Range(start, end));
-		}
-		if (!lastSegment.range.end.isEqual(eofPos)) {
-			builder.set(new Range(lastSegment.range.end, eofPos));
-		}
-
-		return builder.toMap();
 	}
 
 	*[Symbol.iterator]() {
 		for (const segment of this.segments) {
 			yield segment;
+		}
+	}
+
+	*inverted(document: TextDocument): Generator<Range> {
+		const bofPos = new Position(0, 0);
+		const eofPos = document.lineAt(document.lineCount - 1).range.end;
+
+		if (this.segments.length === 0) {
+			yield new Range(bofPos, eofPos);
+			return;
+		}
+
+		const firstSegment = this.segments[0];
+		if (!firstSegment.range.start.isEqual(bofPos)) {
+			yield new Range(bofPos, firstSegment.range.start);
+		}
+
+		for (let i = 0; i < this.segments.length - 1; i++) {
+			const segment = this.segments[i];
+			const start = segment.range.end;
+			const end = this.segments[i + 1].range.start;
+			yield new Range(start, end);
+		}
+
+		const lastSegment = this.segments[this.segments.length - 1];
+		if (!lastSegment.range.end.isEqual(eofPos)) {
+			yield new Range(lastSegment.range.end, eofPos);
 		}
 	}
 }

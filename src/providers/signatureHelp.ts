@@ -11,12 +11,12 @@ export const createSignatureHelpProvider = (stores: Stores): vscode.SignatureHel
 		const callableInstances = await file.getCallableInstances();
 		if (token.isCancellationRequested) return;
 
-		const instancesAtPos = callableInstances.tree.get(position);
+		const instancesAtPos = callableInstances.byRange.getAt(position);
 		for (let i = instancesAtPos.length - 1; i >= 0; i--) {
 			const instance = instancesAtPos[i].value;
 			if (instance.kind !== "call") continue;
 
-			const activeParameterIndex = instance.params.getIndex(position, true);
+			const activeParameterIndex = instance.params.indexAt(position, true);
 			if (activeParameterIndex === -1) continue;
 
 			const def = instance.def;

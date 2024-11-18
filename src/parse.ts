@@ -9,6 +9,7 @@ import type { Ignored } from "./models/Ignored";
 import type { CallableDefScript } from "./models/Def";
 import type { CallableInstanceRaw } from "./models/Instance";
 import type { GscFile } from "./stores/GscStore/GscFile";
+import { escapeRegExp, getNextSubstring } from "./util";
 
 export const parseIgnoredSegments = (
 	document: vscode.TextDocument,
@@ -35,14 +36,14 @@ export const parseIgnoredSegments = (
 
 export const parseGlobalSegments = (
 	document: vscode.TextDocument,
-	nonIgnoredSegments: SegmentMap,
+	ignoredSegments: SegmentMap<Ignored>,
 ): SegmentMap => {
 	const eofPos = document.lineAt(document.lineCount - 1).range.end;
 
 	const builder = new SegmentBuilder();
 	let level = 0;
 	let offset = 0;
-	for (const { range } of nonIgnoredSegments) {
+	for (const range of ignoredSegments.inverted(document)) {
 		const text = document.getText(range);
 		let i = 0;
 		while (true) {
@@ -84,69 +85,97 @@ export const parseCallableDefs = (
 	globalSegments: SegmentMap,
 	ignoredSegments: SegmentMap<Ignored>,
 	file: GscFile,
-): Map<string, CallableDefScript> => {
+): SegmentMap<CallableDefScript> => {
 	// No global flag as there is at most one definition per global segment:
 	const regExp = /\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\(([^)]*?)\)\s*$/d;
-	const result = new Map<string, CallableDefScript>();
+	const builder = new SegmentBuilder<CallableDefScript>();
 
 	for (let i = 0; i < globalSegments.length; i++) {
-		const { range } = globalSegments.atIndex(i)!;
-		const segmentOffset = document.offsetAt(range.start);
-		const text = document.getText(range);
+		const { range: globalRange } = globalSegments.getByIndex(i)!;
+		const segmentOffset = document.offsetAt(globalRange.start);
+		const text = document.getText(globalRange);
 		const match = text.match(regExp);
 		if (match === null) continue;
 
 		const offset = segmentOffset + match.indices![1][0];
 		const position = document.positionAt(offset);
-		if (ignoredSegments.has(position)) continue;
+		if (ignoredSegments.hasAt(position)) continue;
+
+		const name = match[1];
+		const ident = {
+			name,
+			range: new vscode.Range(position, document.positionAt(offset + name.length)),
+		};
+
+		const params = (() => {
+			const text = match[2];
+			const offset = segmentOffset + match.indices![2][0];
+			const regExp = /\b([A-Za-z_][A-Za-z0-9_]*)\b\s*(?:,|$)/g;
+			const matches = [...text.matchAll(regExp)];
+			if (matches.length === 0) return [];
+
+			return matches.map(({ index, 1: name }) => ({
+				name,
+				range: new vscode.Range(
+					document.positionAt(offset + index),
+					document.positionAt(offset + index + name.length),
+				),
+			}));
+		})();
+
+		const body = (() => {
+			const range = new vscode.Range(
+				globalRange.end,
+				globalSegments.getByIndex(i + 1)?.range.start ??
+					document.lineAt(document.lineCount - 1).range.end,
+			);
+			const offset = document.offsetAt(range.start);
+			const text = document.getText(range);
+			const paramsBuilder = new SegmentBuilder<{ index: number }>();
+
+			for (const [index, param] of params.entries()) {
+				const regExp = new RegExp(String.raw`\b(?<!\.)${escapeRegExp(param.name)}(?!\s*\()\b`, "g");
+				const matches = text.matchAll(regExp);
+				for (const match of matches) {
+					const start = document.positionAt(offset + match.index);
+					if (ignoredSegments.hasAt(start)) continue;
+					const end = document.positionAt(offset + match.index + match[0].length);
+					paramsBuilder.set(new vscode.Range(start, end), { index });
+				}
+			}
+
+			return {
+				range,
+				variables: {
+					params: paramsBuilder.toMap(),
+				},
+			};
+		})();
 
 		const entry: CallableDefScript = {
 			origin: "script",
-			ident: {
-				name: match[1],
-				range: new vscode.Range(position, document.positionAt(offset + match[1].length)),
-			},
-			params: (() => {
-				const text = match[2];
-				const offset = segmentOffset + match.indices![2][0];
-				const regExp = /\b([A-Za-z_][A-Za-z0-9_]*)\b\s*(?:,|$)/g;
-				const matches = [...text.matchAll(regExp)];
-				if (matches.length === 0) return [];
-
-				return matches.map(({ index, 1: name }) => ({
-					name,
-					range: new vscode.Range(
-						document.positionAt(offset + index),
-						document.positionAt(offset + index + name.length),
-					),
-				}));
-			})(),
-			body: {
-				range: new vscode.Range(
-					range.end,
-					globalSegments.atIndex(i + 1)?.range.start ??
-						document.lineAt(document.lineCount - 1).range.end,
-				),
-			},
+			ident,
+			params,
+			body,
 			file,
 		};
 
-		result.set(entry.ident.name.toLowerCase(), entry);
+		builder.set(new vscode.Range(ident.range.start, body.range.end), entry);
 	}
 
-	return result;
+	return builder.toMap();
 };
 
 export const parseCallableInstances = (
 	document: vscode.TextDocument,
-	bodySegments: SegmentMap,
+	globalSegments: SegmentMap,
 	ignoredSegments: SegmentMap<Ignored>,
 ): SegmentTree<CallableInstanceRaw> => {
 	const regExp =
 		/(?:\b(?<path>[A-Za-z0-9_\\]+)\s*::\s*)?(?:\b(?<call>[A-Za-z_][A-Za-z0-9_]*)\b\s*\(|(?<=::\s*)\b(?<reference>[A-Za-z_][A-Za-z0-9_]*)\b)/dg;
 	const builder = new SegmentBuilderLinear<CallableInstanceRaw>();
 
-	for (const { range } of bodySegments) {
+	for (const range of globalSegments.inverted(document)) {
 		const bodyOffset = document.offsetAt(range.start);
 		const text = document.getText(range);
 
@@ -157,7 +186,7 @@ export const parseCallableInstances = (
 
 			const [identStartOffset, identEndOffset] = match.indices!.groups![kind];
 			const identStart = document.positionAt(bodyOffset + identStartOffset);
-			if (ignoredSegments.has(identStart)) continue;
+			if (ignoredSegments.hasAt(identStart)) continue;
 			const identEnd = document.positionAt(bodyOffset + identEndOffset);
 			const ident = { name, range: new vscode.Range(identStart, identEnd) };
 
@@ -167,7 +196,7 @@ export const parseCallableInstances = (
 			);
 
 			if (kind === "reference") {
-				builder.next(range, {
+				builder.push(range, {
 					kind,
 					ident,
 					path: path || undefined,
@@ -183,22 +212,18 @@ export const parseCallableInstances = (
 			let i = startIndex;
 			parseParams: while (true) {
 				const chars = level === 1 ? ["(", ")", ";", ","] : ["(", ")", ";"];
-				const next = chars
-					.map((char) => ({ char, index: text.indexOf(char, i) }))
-					.filter(({ index }) => index !== -1)
-					.sort((a, b) => a.index - b.index)
-					.at(0);
+				const next = getNextSubstring(text, chars, i);
 				if (!next) break;
 
 				const nextPosition = document.positionAt(bodyOffset + next.index);
-				const ignoredSegmentAtPos = ignoredSegments.get(nextPosition);
+				const ignoredSegmentAtPos = ignoredSegments.getAt(nextPosition);
 				if (ignoredSegmentAtPos) {
 					i = document.offsetAt(ignoredSegmentAtPos.range.end) - bodyOffset;
 					continue;
 				}
 
 				i = next.index + 1;
-				switch (next.char) {
+				switch (next.substring) {
 					case ",":
 						paramIndices.push(i);
 						break;
@@ -243,7 +268,7 @@ export const parseCallableInstances = (
 			}
 			addParam(paramIndices[paramIndices.length - 1], closingIndex);
 
-			builder.next(range.with(undefined, document.positionAt(bodyOffset + closingIndex + 1)), {
+			builder.push(range.with(undefined, document.positionAt(bodyOffset + closingIndex + 1)), {
 				kind,
 				ident,
 				path: path || undefined,
@@ -267,12 +292,12 @@ export const parseIncludes = (
 	ignoredSegments: SegmentMap<Ignored>,
 ) => {
 	const regExp = /#include\s*(\b[A-Za-z0-9_\\]+)/g;
-	const text = document.getText(globalSegments.atIndex(0)?.range);
+	const text = document.getText(globalSegments.getByIndex(0)?.range);
 	const paths = new Set<string>();
 
 	for (const match of text.matchAll(regExp)) {
 		const position = document.positionAt(match.index);
-		if (ignoredSegments.has(position)) continue;
+		if (ignoredSegments.hasAt(position)) continue;
 		paths.add(match[1]);
 	}
 

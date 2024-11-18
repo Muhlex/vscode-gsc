@@ -12,7 +12,7 @@ export const createDefinitionProvider = (stores: Stores): vscode.DefinitionProvi
 		const instances = await file.getCallableInstances();
 		if (token.isCancellationRequested) return;
 
-		const def = instances.byIdentOffset.get(document.offsetAt(wordRange.start))?.def;
+		const def = instances.byOffset.get(document.offsetAt(wordRange.start))?.def;
 		if (!def || def.origin !== "script") return;
 
 		return new vscode.Location(def.file.uri, def.ident.range);
