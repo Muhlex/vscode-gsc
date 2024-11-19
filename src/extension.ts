@@ -16,5 +16,3 @@ export async function activate(context: vscode.ExtensionContext) {
 		providers.register();
 	}
 }
-
-// TODO: Update typescript and remove some casts in providers (done?)
