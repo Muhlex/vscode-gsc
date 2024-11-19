@@ -60,8 +60,8 @@ export default (options: { engine: string; keywords: string[] }) => {
 			},
 			block: {
 				name: "meta.block.gsc",
-				begin: "{",
-				end: "}",
+				begin: raw`{`,
+				end: raw`}`,
 				captures: {
 					"0": { name: "punctuation.definition.block.gsc" },
 				},
@@ -88,27 +88,28 @@ export default (options: { engine: string; keywords: string[] }) => {
 					},
 				],
 			},
-			// TODO: remove the one meta.preprocessor w/o gsc
-			// punctuation.definition.directive.cpp (for #)
-			// keyword.control.directive.include.cpp for (include)
 			directive: {
-				name: "meta.preprocessor.gsc",
+				name: "meta.directive.gsc",
 				patterns: [
 					{
-						match: raw`^\s*(#[a-z_]*)\b\s*(?:(?:\((.*)\))|(.*?));*\n`,
-						name: "meta.preprocessor",
+						match: raw`^\s*(#)([a-z_]+)(?:\s+(\w[\w\\/]*))?`,
 						captures: {
-							"1": {
-								name: "keyword.control.preprocessor.gsc",
-							},
-							"2": {
-								patterns: [{ include: "$self" }],
-							},
+							"1": { name: "punctuation.definition.directive.gsc" },
+							"2": { name: "keyword.control.directive.gsc" },
 							"3": {
 								name: "entity.name.scope-resolution.gsc",
 								patterns: [{ match: raw`.*\/.*`, name: "invalid.illegal.import.path.gsc" }],
 							},
 						},
+					},
+					{
+						begin: raw`^\s*(#)([a-z_]*)\s*\(`,
+						end: raw`\)`,
+						beginCaptures: {
+							"1": { name: "punctuation.definition.directive.gsc" },
+							"2": { name: "keyword.control.directive.gsc" },
+						},
+						patterns: [{ include: "$self" }],
 					},
 				],
 			},
