@@ -41,7 +41,7 @@ export class Providers {
 		const lId = this.languageId;
 		const p = this.providers;
 		const disposables = [
-			l.registerCompletionItemProvider(lId, p.completionItem, "\\"),
+			l.registerCompletionItemProvider(lId, p.completionItem, "\\", ":"),
 			l.registerSignatureHelpProvider(lId, p.signatureHelp, "(", ","),
 			/**
 			 * When registering both a whole document and a range SemanticTokensProvider, the former

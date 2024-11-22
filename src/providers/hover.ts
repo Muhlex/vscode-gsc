@@ -7,7 +7,7 @@ import { createDocumentation } from "./shared";
 
 export const createHoverProvider = (stores: Stores, settings: Settings): vscode.HoverProvider => ({
 	async provideHover(document, position, token) {
-		const wordRange = document.getWordRangeAtPosition(position, /[A-Za-z_][A-Za-z0-9_]*/);
+		const wordRange = document.getWordRangeAtPosition(position, /[A-Za-z_][\w]*/);
 		if (!wordRange) return;
 
 		const instances = await stores.gsc.getFile(document).getCallableInstances();

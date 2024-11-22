@@ -87,7 +87,7 @@ export const parseCallableDefs = (
 	file: GscFile,
 ): SegmentMap<CallableDefScript> => {
 	// No global flag as there is at most one definition per global segment:
-	const regExp = /\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\(([^)]*?)\)\s*$/d;
+	const regExp = /\b([A-Za-z_][\w]*)\b\s*\(([^)]*?)\)\s*$/d;
 	const builder = new SegmentBuilder<CallableDefScript>();
 
 	for (let i = 0; i < globalSegments.length; i++) {
@@ -110,7 +110,7 @@ export const parseCallableDefs = (
 		const params = (() => {
 			const text = match[2];
 			const offset = segmentOffset + match.indices![2][0];
-			const regExp = /\b([A-Za-z_][A-Za-z0-9_]*)\b\s*(?:,|$)/g;
+			const regExp = /\b([A-Za-z_][\w]*)\b\s*(?:,|$)/g;
 			const matches = [...text.matchAll(regExp)];
 			if (matches.length === 0) return [];
 
@@ -172,7 +172,7 @@ export const parseCallableInstances = (
 	ignoredSegments: SegmentMap<Ignored>,
 ): SegmentTree<CallableInstanceRaw> => {
 	const regExp =
-		/(?:\b(?<path>[A-Za-z0-9_\\]+)\s*::\s*)?(?:\b(?<call>[A-Za-z_][A-Za-z0-9_]*)\b\s*\(|(?<=::\s*)\b(?<reference>[A-Za-z_][A-Za-z0-9_]*)\b)/dg;
+		/(?:\b(?<path>[\w\\]+)\s*::\s*)?(?:\b(?<call>[A-Za-z_][\w]*)\b\s*\(|(?<=::\s*)\b(?<reference>[A-Za-z_][\w]*)\b)/dg;
 	const builder = new SegmentBuilderLinear<CallableInstanceRaw>();
 
 	for (const range of globalSegments.inverted(document)) {
@@ -291,7 +291,7 @@ export const parseIncludes = (
 	globalSegments: SegmentMap,
 	ignoredSegments: SegmentMap<Ignored>,
 ) => {
-	const regExp = /#include\s*(\b[A-Za-z0-9_\\]+)/g;
+	const regExp = /#include\s*(\b[\w\\]+)/g;
 	const text = document.getText(globalSegments.getByIndex(0)?.range);
 	const paths = new Set<string>();
 

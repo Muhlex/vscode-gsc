@@ -6,7 +6,7 @@ export const createDefinitionProvider = (stores: Stores): vscode.DefinitionProvi
 	async provideDefinition(document, position, token) {
 		const file = stores.gsc.getFile(document);
 
-		const wordRange = document.getWordRangeAtPosition(position, /[A-Za-z_][A-Za-z0-9_]*/);
+		const wordRange = document.getWordRangeAtPosition(position, /[A-Za-z_][\w]*/);
 		if (!wordRange) return;
 
 		const instances = await file.getCallableInstances();
