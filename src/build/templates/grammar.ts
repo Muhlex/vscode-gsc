@@ -182,7 +182,7 @@ export default (options: { engine: string; keywords: string[] }) => {
 						name: "support.constant.gsc",
 					},
 					{
-						match: "::",
+						match: raw`::`,
 						name: "punctuation.separator.scope-resolution.gsc",
 					},
 				],
@@ -223,11 +223,11 @@ export default (options: { engine: string; keywords: string[] }) => {
 						captures: { 1: { name: "punctuation.accessor.gsc" } },
 					},
 					{
-						match: ",",
+						match: raw`,`,
 						name: "punctuation.separator.comma.gsc",
 					},
 					{
-						match: ";",
+						match: raw`;`,
 						name: "punctuation.terminator.statement.gsc",
 					},
 				],

@@ -2,7 +2,8 @@ import * as vscode from "vscode";
 
 import type { Stores } from "../stores";
 import type { Settings } from "../settings";
-import type { CallableDef } from "../models/Def";
+import type { CallableDef, CallableDefScript } from "../models/Def";
+import type { GscScriptDir } from "../stores/GscStore/GscScriptDir";
 
 import { getVariableString, createDocumentation } from "./shared";
 import { removeFileExtension } from "../util";
@@ -14,6 +15,13 @@ export const createCompletionItemProvider = (
 	async provideCompletionItems(document, position, token, context) {
 		const file = stores.gsc.getFile(document);
 		if (context.triggerCharacter) {
+			if (context.triggerCharacter === ":") {
+				// only trigger on double colon
+				if (position.character < 2) return;
+				const withPrev = document.getText(new vscode.Range(position.translate(0, -2), position));
+				if (withPrev !== "::") return;
+			}
+
 			const ignoredFragments = await file.getIgnoredSegments();
 			if (token.isCancellationRequested) return;
 			if (ignoredFragments.hasAt(position)) return;
@@ -23,53 +31,108 @@ export const createCompletionItemProvider = (
 			const intelliSense = settings.intelliSense;
 			const items: vscode.CompletionItem[] = [];
 
-			const linePreCursorText = document.lineAt(position).text.slice(0, position.character);
-			const partialScriptPath = linePreCursorText.match(/[A-Za-z0-9_]+\\[A-Za-z0-9_\\]*$/)?.[0];
-			const parentScriptPath = partialScriptPath
-				? partialScriptPath.slice(0, partialScriptPath.lastIndexOf("\\"))
-				: "";
+			const createKeywords = () => {
+				if (intelliSense.enable.keywords.value) {
+					for (const keyword of stores.static.keywords) {
+						items.push(createKeywordCompletionItem(keyword));
+					}
+				}
+			};
 
-			const scriptDir = stores.gsc.getScriptDir(parentScriptPath);
-			if (scriptDir) {
+			const createCallablesGame = () => {
+				const enableCallablesGame = intelliSense.enable.callablesGame.value;
+				if (enableCallablesGame !== "off") {
+					for (const [, def] of stores.static.callables) {
+						if (def.deprecated && enableCallablesGame === "non-deprecated") continue;
+						const documentation = createDocumentation(def, document.languageId, {
+							concise: intelliSense.conciseMode.value,
+						});
+						items.push(createCallableCompletionItem(def, false, documentation));
+					}
+				}
+			};
+
+			const createCallablesScript = (defs: Iterable<CallableDefScript>) => {
+				if (intelliSense.enable.callablesScript.value) {
+					for (const def of defs) {
+						items.push(createCallableCompletionItem(def, def.file === file));
+					}
+				}
+			};
+
+			const createCallablesScope = async () => {
+				const defsScope = await file.getCallableDefsScope();
+				if (token.isCancellationRequested) return;
+				createCallablesGame();
+				createCallablesScript(defsScope.values());
+			};
+
+			const createGscScripts = (scriptDir: GscScriptDir, isDirective = false) => {
 				const foldersToTop = intelliSense.foldersSorting.value === "top";
+				const filesToTop = intelliSense.foldersSorting.value === "bottom";
 				for (const [foldername] of scriptDir.children) {
 					items.push(createFolderCompletionItem(foldername, foldersToTop));
 				}
-				const filesToTop = intelliSense.foldersSorting.value === "bottom";
 				for (const [, script] of scriptDir.scripts) {
 					const file = script.getFile();
 					if (!file) continue;
-					items.push(createFileCompletionItem(file.filename, filesToTop));
+					items.push(createFileCompletionItem(file.filename, filesToTop, !isDirective));
 				}
-			}
+			};
 
-			if (partialScriptPath) return items;
+			const createWhitespaceLinesReader = (startLineIndex: number) => {
+				let line = document.lineAt(startLineIndex);
+				let text = line.text;
+				return (offset: number) => {
+					text = text.slice(0, offset);
+					if (!/^\s*$/.test(text)) return text;
+					while (line.lineNumber > 0) {
+						line = document.lineAt(line.lineNumber - 1);
+						text = `${line.text}\n${text}`;
+						if (!line.isEmptyOrWhitespace) break;
+					}
+					return text;
+				};
+			};
 
-			if (intelliSense.enable.keywords.value) {
-				for (const keyword of stores.static.keywords) {
-					items.push(createKeywordCompletionItem(keyword));
+			const readLines = createWhitespaceLinesReader(position.line);
+			const preCursorText = readLines(position.character);
+
+			// scope resolution (::)
+			const scopeResSeparatorMatch = preCursorText.match(/::\s*$/);
+			if (scopeResSeparatorMatch) {
+				const preSeparatorText = readLines(scopeResSeparatorMatch.index!);
+				const scriptPath = preSeparatorText.match(/([\w\\]*\w)\s*$/)?.[1] ?? "";
+				if (!scriptPath) {
+					await createCallablesScope();
+					return items;
 				}
-			}
-
-			const enableCallablesGame = intelliSense.enable.callablesGame.value;
-			if (enableCallablesGame !== "off") {
-				for (const [, def] of stores.static.callables) {
-					if (def.deprecated && enableCallablesGame === "non-deprecated") continue;
-					const documentation = createDocumentation(def, document.languageId, {
-						concise: intelliSense.conciseMode.value,
-					});
-					items.push(createCallableCompletionItem(def, false, documentation));
-				}
-			}
-
-			if (intelliSense.enable.callablesScript.value) {
-				const defs = await file.getCallableDefsScope();
+				const file = stores.gsc.getScript(scriptPath)?.getFile();
+				if (!file) return items;
+				const defs = await file.getCallableDefs();
 				if (token.isCancellationRequested) return items;
-				for (const [, def] of defs) {
-					items.push(createCallableCompletionItem(def, def.file === file));
-				}
+				createCallablesScript(defs.byName.values());
+				return items;
 			}
 
+			// scope script paths
+			const partialScriptMatch = preCursorText.match(/\w[\w\\]*$/);
+			const partialScriptPath = partialScriptMatch?.[0] ?? "";
+			const lastSlashIndex = partialScriptPath.lastIndexOf("\\");
+			const parentScriptPath =
+				lastSlashIndex !== -1 ? partialScriptPath.slice(0, lastSlashIndex) : "";
+
+			const scriptDir = stores.gsc.getScriptDir(parentScriptPath);
+			if (!scriptDir) return items;
+			const preScriptPathText = partialScriptMatch
+				? readLines(partialScriptMatch.index!)
+				: preCursorText;
+			const isDirective = /#[a-z_]+\s+/.test(preScriptPathText);
+			createGscScripts(scriptDir, isDirective);
+			if (scriptDir.parent || isDirective) return items;
+
+			createKeywords();
+			await createCallablesScope();
 			return items;
 		};
 
@@ -128,11 +191,18 @@ const createFolderCompletionItem = (
 	};
 };
 
-const createFileCompletionItem = (filename: string, sortToTop = false): vscode.CompletionItem => {
+const createFileCompletionItem = (
+	filename: string,
+	sortToTop = false,
+	addSeparator = true,
+): vscode.CompletionItem => {
 	return {
 		label: filename,
 		sortText: sortToTop ? `\u0000${filename}` : undefined,
-		insertText: `${removeFileExtension(filename)}::`, // TODO: Remove :: when it's an include
+		insertText: `${removeFileExtension(filename)}${addSeparator ? "::" : ""}`,
+		command: addSeparator
+			? { command: "editor.action.triggerSuggest", title: "Retrigger Suggest" }
+			: undefined,
 		filterText: `\\${filename}`,
 		kind: vscode.CompletionItemKind.File,
 	};
