@@ -1,7 +1,7 @@
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M16 14L19 5L22 14H31L23.5 19L26.5 28L19 23L11.5 28L14.5 19L7 14H16Z" fill="#4AB92E"/>
-<path d="M22 14L19 5V17.5L31 14H22Z" fill="white" fill-opacity="0.2"/>
-<path d="M14.5 19L7 14L19 17.5L11.5 28L14.5 19Z" fill="black" fill-opacity="0.1"/>
-<path d="M23.5 19L31 14L19 17.5L26.5 28L23.5 19Z" fill="white" fill-opacity="0.1"/>
-<path d="M19 17.5L11.5 28L19 23L26.5 28L19 17.5Z" fill="black" fill-opacity="0.2"/>
+<path d="M16 1.5L19.305 12L30 12.003L21.3475 18.3768L24.6525 28.6899L16 22.3161L7.34752 28.6899L10.6525 18.3768L2 11.9999L12.695 12L16 1.5Z" fill="#4AB92E"/>
+<path d="M15.9999 16L24.6524 28.69L15.9999 22.3162L7.34741 28.69L15.9999 16Z" fill="black" fill-opacity="0.2"/>
+<path d="M2 12L16 15.9999L7.34759 28.6898L10.6525 18.3767L2 12Z" fill="black" fill-opacity="0.1"/>
+<path d="M16.0001 16L30 12.0029L21.3475 18.3768L24.6525 28.6898L16.0001 16Z" fill="white" fill-opacity="0.1"/>
+<path d="M16.0001 1.5L19.3051 12L30.0001 12.003L16 16L16.0001 1.5Z" fill="white" fill-opacity="0.2"/>
 </svg>
