@@ -168,11 +168,11 @@ export default (options: { engine: string; keywords: string[] }) => {
 						name: "constant.language.gsc",
 					},
 					{
-						match: raw`\b(?<=\.)size\b`,
+						match: raw`(?<=\.)size\b`,
 						name: "support.constant.property.gsc",
 					},
 					{
-						match: raw`\b\.(self|level|game|anim)\b`,
+						match: raw`(?<=\.)(self|level|game|anim)\b`,
 						captures: {
 							"1": { name: "invalid.illegal.field.gsc" },
 						},
@@ -219,8 +219,8 @@ export default (options: { engine: string; keywords: string[] }) => {
 			punctuation: {
 				patterns: [
 					{
-						match: raw`\b(\.)\b`,
-						captures: { 1: { name: "punctuation.accessor.gsc" } },
+						match: raw`\.`,
+						name: "punctuation.accessor.gsc",
 					},
 					{
 						match: raw`,`,
