@@ -1,0 +1,12 @@
+{
+	"description": ["Get whether a value is defined (not `undefined`)."],
+	"params": [
+		{
+			"name": "value",
+			"types": ["any"]
+		}
+	],
+	"return": {
+		"types": ["bool"]
+	}
+}

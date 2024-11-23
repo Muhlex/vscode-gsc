@@ -1,0 +1,14 @@
+{
+	"description": ["Write a line of text to the bottom left output (shared with e. g. obituaries)."],
+	"params": [
+		{
+			"name": "text",
+			"types": ["string", "int", "float", "vector"]
+		}
+	],
+	"paramsRepeatable": "last",
+	"receiver": {
+		"types": ["world", "player"],
+		"description": ["If called on a player, only they will see the line."]
+	}
+}

@@ -5,7 +5,7 @@ import type { Settings } from "../settings";
 import type { CallableDef, CallableDefScript } from "../models/Def";
 import type { GscScriptDir } from "../stores/GscStore/GscScriptDir";
 
-import { getVariableString, createDocumentation } from "./shared";
+import { createDocumentation, createUsage } from "./shared";
 import { removeFileExtension } from "../util";
 
 export const createCompletionItemProvider = (
@@ -152,14 +152,6 @@ const createCallableCompletionItem = (
 	isLocal = false,
 	documentation?: vscode.MarkdownString,
 ): vscode.CompletionItem => {
-	const getUsage = () => {
-		return `${def.receiver ? `<${getVariableString(def.receiver)}> ` : ""}${def.ident.name}(${
-			def.params
-				?.map((p) => `${p.optional ? "[" : "<"}${getVariableString(p)}${p.optional ? "]" : ">"}`)
-				.join(", ") || ""
-		})`;
-	};
-
 	const isGame = def.origin === "game";
 	return {
 		label: {
@@ -170,7 +162,7 @@ const createCallableCompletionItem = (
 					? `${def.module} (${def.featureset})`
 					: def.file.script?.path,
 		},
-		detail: getUsage(),
+		detail: createUsage(def),
 		documentation: documentation || def.description?.join("\n"),
 		kind: def.receiver ? vscode.CompletionItemKind.Method : vscode.CompletionItemKind.Function,
 		commitCharacters: [

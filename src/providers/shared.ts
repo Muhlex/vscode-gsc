@@ -1,8 +1,25 @@
 import * as vscode from "vscode";
-import type { VariableDef, CallableDef } from "../models/Def";
+import type { VariableDef, ParamDef, CallableDef } from "../models/Def";
 
 export const getTypesString = (types?: string[]) => (types?.length ? types.join("/") : "");
 export const getVariableString = (v: VariableDef) => v.name || getTypesString(v.types) || "unknown";
+
+export const createParamsUsage = (def: CallableDef) => {
+	const createParam = (p: ParamDef) =>
+		`${p.optional ? "[" : "<"}${getVariableString(p)}${p.optional ? "]" : ">"}`;
+	const params = def.params?.map(createParam) ?? [];
+	if (def.paramsRepeatable === "all") params.push("...");
+	else if (def.paramsRepeatable === "last" && params.length > 0) {
+		params[params.length - 1] += "...";
+	}
+	return params;
+};
+export const createUsage = (def: CallableDef) => {
+	const receiver = def.receiver ? `<${getVariableString(def.receiver)}> ` : "";
+	const ident = def.ident.name;
+	const params = createParamsUsage(def).join(", ");
+	return `${receiver}${ident}(${params})`;
+};
 
 export const createDocumentation = (
 	def: CallableDef,
