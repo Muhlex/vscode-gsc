@@ -1,0 +1,12 @@
+{
+	"description": ["Cast a float or string to an integer."],
+	"params": [
+		{
+			"name": "value",
+			"types": ["float", "string", "int"]
+		}
+	],
+	"return": {
+		"types": ["int"]
+	}
+}

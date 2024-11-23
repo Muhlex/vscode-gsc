@@ -3,7 +3,7 @@ import * as vscode from "vscode";
 import type { Stores } from "../stores";
 import type { CallableDef } from "../models/Def";
 
-import { getVariableString } from "./shared";
+import { createParamsUsage } from "./shared";
 
 export const createSignatureHelpProvider = (stores: Stores): vscode.SignatureHelpProvider => ({
 	async provideSignatureHelp(document, position, token, _context) {
@@ -16,11 +16,16 @@ export const createSignatureHelpProvider = (stores: Stores): vscode.SignatureHel
 			const instance = instancesAtPos[i].value;
 			if (instance.kind !== "call") continue;
 
-			const activeParameterIndex = instance.params.indexAt(position, true);
-			if (activeParameterIndex === -1) continue;
-
 			const def = instance.def;
-			if (!def) return;
+			if (!def?.params) return;
+
+			let activeParameterIndex = instance.params.indexAt(position, true);
+			if (def.paramsRepeatable === "last" && activeParameterIndex >= def.params.length) {
+				activeParameterIndex = def.params.length - 1;
+			} else if (def.paramsRepeatable === "all") {
+				activeParameterIndex %= def.params.length;
+			}
+
 			return {
 				signatures: createSignatures(def),
 				activeSignature: 0,
@@ -32,9 +37,10 @@ export const createSignatureHelpProvider = (stores: Stores): vscode.SignatureHel
 
 const createSignatures = (def: CallableDef): vscode.SignatureInformation[] => {
 	if (!def.params) return [];
-	const parameters = def.params.map((p) => ({
-		label: `${p.optional ? "[" : "<"}${getVariableString(p)}${p.optional ? "]" : ">"}`,
-		documentation: new vscode.MarkdownString(p.description?.join("\n") || ""),
+	const paramsUsage = createParamsUsage(def);
+	const parameters = paramsUsage.map((usage, i) => ({
+		label: usage,
+		documentation: new vscode.MarkdownString(def.params![i]?.description?.join("\n") ?? undefined),
 	}));
 	return [
 		{
