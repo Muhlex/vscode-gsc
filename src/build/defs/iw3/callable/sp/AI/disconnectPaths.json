@@ -1,9 +1,0 @@
-{
-	"usage": "<entity> disconnectPaths()",
-	"description": [
-		"Disconnects the paths that intersect with the entity. If the entity is a script_brushmodel then it must have DYNAMICPATH set to disconnect paths."
-	],
-	"example": [
-		"level.armoredCar disconnectPaths()"
-	]
-}

@@ -1,9 +1,0 @@
-{
-	"usage": "<entity> startEngineSound()",
-	"description": [
-		"Start the engine sound for this vehicle."
-	],
-	"example": [
-		"truck startEngineSound();"
-	]
-}

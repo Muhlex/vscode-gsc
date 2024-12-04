@@ -1,9 +1,0 @@
-{
-	"usage": "<actor> endPrediction()",
-	"description": [
-		"End actor physics prediction."
-	],
-	"example": [
-		"self endPrediction();"
-	]
-}

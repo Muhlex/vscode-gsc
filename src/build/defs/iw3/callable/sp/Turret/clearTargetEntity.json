@@ -1,9 +1,0 @@
-{
-	"usage": "<entity> clearTargetEntity()",
-	"description": [
-		"Clears the current target for this turret."
-	],
-	"example": [
-		"roofMg42 clearTargetEntity();"
-	]
-}

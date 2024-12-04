@@ -1,9 +1,0 @@
-{
-	"usage": "<entity> enableGrenadeTouchDamage()",
-	"description": [
-		"Enable grenade damage for damage triggers."
-	],
-	"example": [
-		"self enableGrenadeTouchDamage();"
-	]
-}

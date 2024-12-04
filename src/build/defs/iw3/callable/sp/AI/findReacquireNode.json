@@ -1,9 +1,0 @@
-{
-	"usage": "<actor> findReacquireNode()",
-	"description": [
-		"Finds a reacquire node when exposed."
-	],
-	"example": [
-		"self findReacquireNode();"
-	]
-}

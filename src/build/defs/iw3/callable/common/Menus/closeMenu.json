@@ -1,9 +1,0 @@
-{
-	"usage": "<player> closeMenu()",
-	"description": [
-		"Close the current player menu."
-	],
-	"example": [
-		"player closeMenu();"
-	]
-}

@@ -1,13 +1,14 @@
 import type * as vscode from "vscode";
 
-import type { Stores } from "..";
+import type { StaticStore } from "../../stores/StaticStore";
+import type { GscStore } from "../../stores/GscStore";
 import type { GscScript } from "./GscScript";
 import type { Ignored } from "../../models/Ignored";
 import type { CallableDef, CallableDefScript } from "../../models/Def";
 import type { CallableInstanceRaw, CallableInstance } from "../../models/Instance";
 import type { SegmentMap, SegmentTree } from "../../models/Segment";
 
-import { AsyncDocumentCache } from "../../cache/AsyncDocumentCache";
+import { AsyncDocumentCache } from "../../models/Cache/AsyncDocumentCache";
 
 import {
 	parseIgnoredSegments,
@@ -21,8 +22,8 @@ export class GscFile {
 	uri: vscode.Uri;
 	script?: GscScript;
 
-	private stores: Stores;
-	private cache: AsyncDocumentCache<{
+	private readonly stores;
+	private readonly cache: AsyncDocumentCache<{
 		ignoredSegments: SegmentMap<Ignored>;
 		globalSegments: SegmentMap;
 		includedPaths: readonly string[];
@@ -30,7 +31,7 @@ export class GscFile {
 		callableDefs: Readonly<{
 			byRange: SegmentMap<CallableDefScript>;
 			byName: ReadonlyMap<string, CallableDefScript>;
-		}>
+		}>;
 		callableDefsScope: ReadonlyMap<string, CallableDefScript>;
 		callableInstancesRaw: Readonly<{
 			referencedPaths: ReadonlySet<string>;
@@ -43,7 +44,7 @@ export class GscFile {
 		}>;
 	}>;
 
-	constructor(stores: Stores, uri: vscode.Uri, script?: GscScript) {
+	constructor(stores: { static: StaticStore; gsc: GscStore }, uri: vscode.Uri, script?: GscScript) {
 		this.uri = uri;
 		this.script = script;
 		this.stores = stores;
@@ -105,7 +106,7 @@ export class GscFile {
 			return {
 				byRange: defs,
 				byName,
-			}
+			};
 		});
 	}
 

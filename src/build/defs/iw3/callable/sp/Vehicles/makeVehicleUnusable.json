@@ -1,9 +1,0 @@
-{
-	"usage": "<entity> makeVehicleUnusable()",
-	"description": [
-		"Sets this vehicle to be not usable by the player."
-	],
-	"example": [
-		"car makeVehicleUnusable();"
-	]
-}

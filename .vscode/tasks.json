@@ -7,7 +7,7 @@
 			"problemMatcher": "$tsc",
 			"label": "npm: build",
 			"presentation": {
-				"close": false
+				"close": false,
 			},
 			"group": "build"
 		},

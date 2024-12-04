@@ -1,9 +1,0 @@
-{
-	"usage": "<entity> dumpAnims()",
-	"description": [
-		"Writes the anim tree out to the console."
-	],
-	"example": [
-		"self dumpAnims();"
-	]
-}

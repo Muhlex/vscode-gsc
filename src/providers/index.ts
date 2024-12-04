@@ -1,8 +1,8 @@
 import * as vscode from "vscode";
 
 import type { Settings } from "../settings";
-import type { StaticStore } from "../stores/StaticStore";
-import type { GscStore } from "../stores/GscStore";
+import type { Engine } from "../models/Engine";
+import type { Stores } from "../stores";
 
 import { createCompletionItemProvider } from "./completionItem";
 import { createSignatureHelpProvider } from "./signatureHelp";
@@ -19,12 +19,12 @@ export class Providers {
 
 	constructor(
 		context: vscode.ExtensionContext,
+		engine: Engine,
 		settings: Settings,
-		languageID: string,
-		stores: { static: StaticStore; gsc: GscStore },
+		stores: Stores,
 	) {
 		this.context = context;
-		this.languageId = languageID;
+		this.languageId = engine.languageId;
 		this.providers = {
 			completionItem: createCompletionItemProvider(stores, settings),
 			signatureHelp: createSignatureHelpProvider(stores),

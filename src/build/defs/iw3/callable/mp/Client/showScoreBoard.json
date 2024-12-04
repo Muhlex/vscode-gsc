@@ -1,9 +1,0 @@
-{
-	"usage": "<player> showScoreBoard()",
-	"description": [
-		"Updates the scoreboard data on a given client if they are looking at it."
-	],
-	"example": [
-		"self showScoreBoard();"
-	]
-}

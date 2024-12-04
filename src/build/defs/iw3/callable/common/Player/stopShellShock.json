@@ -1,9 +1,0 @@
-{
-	"usage": "<player> stopShellShock()",
-	"description": [
-		"Stop a shell shock sequence for the player."
-	],
-	"example": [
-		"self stopShellShock();"
-	]
-}

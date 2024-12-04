@@ -1,8 +1,0 @@
-{
-	"description": ["Disable and stow a player's weapons."],
-	"params": [
-		{
-			"types": ["player"]
-		}
-	]
-}

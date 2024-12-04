@@ -1,9 +1,0 @@
-{
-	"usage": "<entity> notSolid()",
-	"description": [
-		"Unsets the solid flag, so that this object is no longer collidable."
-	],
-	"example": [
-		"self notSolid();"
-	]
-}

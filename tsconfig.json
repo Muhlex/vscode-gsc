@@ -3,13 +3,13 @@
 	"compilerOptions": {
 		"module": "commonjs",
 		"target": "ES2023",
-		"outDir": "out",
+		"outDir": "dist",
 		"lib": ["ES2023"],
 		"rootDir": "src",
 		"sourceMap": true,
 		"strict": true,
 		"resolveJsonModule": true
 	},
-	"files": ["./src/extension.ts"],
+	"files": ["src/index.ts"],
 	"exclude": ["node_modules", ".vscode-test"]
 }

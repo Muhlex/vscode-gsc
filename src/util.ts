@@ -1,5 +1,17 @@
+import * as vscode from "vscode";
+
 export function wait(ms: number): Promise<void> {
 	return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export async function readJSON(uri: vscode.Uri) {
+	const data = await vscode.workspace.fs.readFile(uri);
+	return JSON.parse(data.toString());
+}
+
+export async function readDirectories(uri: vscode.Uri) {
+	const dirEntries = await vscode.workspace.fs.readDirectory(uri);
+	return dirEntries.filter(([, type]) => type === vscode.FileType.Directory).map(([name]) => name);
 }
 
 export function escapeRegExp(string: string) {

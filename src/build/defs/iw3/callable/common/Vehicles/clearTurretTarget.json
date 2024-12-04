@@ -1,9 +1,0 @@
-{
-	"usage": "<entity> clearTurretTarget()",
-	"description": [
-		"Clear the target for the vehicle turret."
-	],
-	"example": [
-		"eTank clearTurretTarget();"
-	]
-}
