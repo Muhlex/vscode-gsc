@@ -1,254 +1,35 @@
 {
 	"name": "vscode-gsc",
-	"displayName": "GSC (Call of Duty)",
-	"description": "Language support for different GSC (game script) versions",
 	"version": "0.0.1",
-	"repository": "github:Muhlex/vscode-gsc",
-	"engines": {
-		"vscode": "^1.75.0"
+	"author": {
+		"name": "murlis"
 	},
+	"license": "MIT",
+	"repository": "github:Muhlex/vscode-gsc",
+	"displayName": "GSC (Call of Duty)",
+	"description": "Language support for different GSC (game script) versions.",
 	"categories": [
 		"Programming Languages",
 		"Snippets"
 	],
+	"engines": {
+		"vscode": "^1.75.0"
+	},
+	"type": "module",
 	"scripts": {
 		"vscode:prepublish": "npm run build && npm run compile",
-		"build": "ts-node src/build/index.ts",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"check": "biome check ./"
+		"build": "tsx build/ --api https://muhlex.github.io/gsc-doc/ --engine iw3 --engine iw4",
+		"compile": "tsc -p .",
+		"watch": "tsc -watch -p .",
+		"check": "biome check",
+		"fix": "biome check --write"
 	},
-	"main": "./out/extension",
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
 		"@types/glob": "^8.1.0",
 		"@types/node": "^22.9.0",
 		"@types/vscode": "^1.95.0",
-		"ts-node": "^10.9.2",
+		"tsx": "^4.19.2",
 		"typescript": "^5.6.3"
-	},
-	"contributes": {
-		"languages": [
-			{
-				"id": "gsc-iw3",
-				"aliases": [
-					"Game Script (IW3)",
-					"GSC (IW3)"
-				],
-				"extensions": [
-					".gsc",
-					".csc"
-				],
-				"configuration": "./static/language-configuration.json",
-				"icon": {
-					"light": "./static/icons/gsc-iw3.svg",
-					"dark": "./static/icons/gsc-iw3.svg"
-				}
-			},
-			{
-				"id": "gsc-iw4",
-				"aliases": [
-					"Game Script (IW4)",
-					"GSC (IW4)"
-				],
-				"extensions": [
-					".gsc",
-					".csc"
-				],
-				"configuration": "./static/language-configuration.json",
-				"icon": {
-					"light": "./static/icons/gsc-iw4.svg",
-					"dark": "./static/icons/gsc-iw4.svg"
-				}
-			}
-		],
-		"grammars": [
-			{
-				"language": "gsc-iw3",
-				"scopeName": "source.gsc.iw3",
-				"path": "./out/grammars/gsc-iw3.json"
-			},
-			{
-				"language": "gsc-iw4",
-				"scopeName": "source.gsc.iw4",
-				"path": "./out/grammars/gsc-iw4.json"
-			}
-		],
-		"snippets": [
-			{
-				"language": "gsc-iw3",
-				"path": "./out/snippets/gsc-iw3.json"
-			},
-			{
-				"language": "gsc-iw4",
-				"path": "./out/snippets/gsc-iw4.json"
-			}
-		],
-		"configuration": {
-			"title": "GSC (Call of Duty)",
-			"properties": {
-				"GSC.intelliSense.enable.keywords": {
-					"markdownDescription": "Auto complete keywords (if, for, switch, ...) with IntelliSense.",
-					"scope": "language-overridable",
-					"type": "boolean",
-					"default": true
-				},
-				"GSC.intelliSense.enable.callablesGame": {
-					"markdownDescription": "Auto complete inbuilt (engine) functions and methods with IntelliSense.",
-					"scope": "language-overridable",
-					"type": "string",
-					"default": "non-deprecated",
-					"enum": [
-						"off",
-						"non-deprecated",
-						"all"
-					],
-					"enumDescriptions": [
-						"Don't auto complete inbuilt functions and methods.",
-						"Only auto complete inbuilt functions and methods not marked as deprecated (these are usually non-functioning).",
-						"Auto complete all inbuilt functions and methods."
-					]
-				},
-				"GSC.intelliSense.enable.callablesScript": {
-					"markdownDescription": "Auto complete script-defined functions and methods with IntelliSense.",
-					"scope": "language-overridable",
-					"type": "boolean",
-					"default": true
-				},
-				"GSC.intelliSense.conciseMode": {
-					"markdownDescription": "Make documentation entries more concise (e. g. replacing tags such as *@param* or *@return* with concise emoji versions ✴️✳️ or ↩️).",
-					"scope": "language-overridable",
-					"type": "boolean",
-					"default": false
-				},
-				"GSC.intelliSense.foldersSorting": {
-					"markdownDescription": "Determine how to sort folders when auto completing file paths with IntelliSense.",
-					"scope": "language-overridable",
-					"type": "string",
-					"default": "inline",
-					"enum": [
-						"top",
-						"bottom",
-						"inline"
-					],
-					"enumItemLabels": [
-						"Folders before files",
-						"Folders after files",
-						"Alphabetical sorting"
-					],
-					"enumDescriptions": [
-						"Sort folders to the beginning of the list.",
-						"Sort folders to the end of the list (files first).",
-						"Always sort alphabetically (mix files and folders)"
-					]
-				},
-				"GSC.colors.enable": {
-					"markdownDescription": "Display color picker on vector literals with components 0 ≤ x ≤ 1.",
-					"scope": "language-overridable",
-					"type": "string",
-					"default": "quotients",
-					"enum": [
-						"off",
-						"quotients",
-						"all"
-					],
-					"enumDescriptions": [
-						"Don't show color picker.",
-						"Only show color picker when all components are quotients (e.g. 🟩 (0/255, 255/255, 20/255)).",
-						"Always show color picker on applicable vectors. (This can identify vectors as colors which are not intended as such.)"
-					]
-				},
-				"GSC.featureSets.IW3": {
-					"markdownDescription": "Define sets of engine features to be used (by IntelliSense and semantic highlighting) for **Call of Duty 4: Modern Warfare**.",
-					"scope": "resource",
-					"type": "object",
-					"properties": {
-						"common": {
-							"type": "boolean",
-							"description": "Base game features shared between SP & MP."
-						},
-						"sp": {
-							"type": "boolean",
-							"description": "Base game singleplayer-only features."
-						},
-						"mp": {
-							"type": "boolean",
-							"description": "Base game multiplayer-only features."
-						},
-						"unleashed": {
-							"type": "boolean",
-							"description": "Features available when targeting the CoD4: Unleashed Server mod."
-						}
-					},
-					"additionalProperties": false,
-					"default": {
-						"common": true,
-						"sp": false,
-						"mp": true,
-						"unleashed": false
-					}
-				},
-				"GSC.featureSets.IW4": {
-					"markdownDescription": "Define sets of engine features to be used (by IntelliSense and semantic highlighting) for **Call of Duty: Modern Warfare 2**.",
-					"scope": "resource",
-					"type": "object",
-					"properties": {
-						"common": {
-							"type": "boolean",
-							"description": "Base game features shared between SP & MP."
-						},
-						"sp": {
-							"type": "boolean",
-							"description": "Base game singleplayer-only features."
-						},
-						"mp": {
-							"type": "boolean",
-							"description": "Base game multiplayer-only features."
-						},
-						"iw4x": {
-							"type": "boolean",
-							"description": "Features available when targeting the IW4X client."
-						}
-					},
-					"additionalProperties": false,
-					"default": {
-						"common": true,
-						"sp": false,
-						"mp": true,
-						"iw4x": false
-					}
-				},
-				"GSC.rootDirectories.IW3": {
-					"markdownDescription": "Root directory paths where stock or custom GSC files are found for **Call of Duty 4: Modern Warfare**. When a file exists in multiple paths, later paths takes precedence.\n\nE. g. `C:\\games\\iw3\\raw`",
-					"scope": "machine-overridable",
-					"type": "array",
-					"uniqueItems": true,
-					"items": {
-						"type": "string",
-						"format": "uri"
-					},
-					"default": []
-				},
-				"GSC.rootDirectories.IW4": {
-					"markdownDescription": "Root directory paths where stock or custom GSC files are found for **Call of Duty: Modern Warfare 2**. When a file exists in multiple paths, later paths takes precedence.\n\nE. g. `C:\\games\\iw4\\userraw`",
-					"scope": "machine-overridable",
-					"type": "array",
-					"uniqueItems": true,
-					"items": {
-						"type": "string",
-						"format": "uri"
-					},
-					"default": []
-				}
-			}
-		},
-		"configurationDefaults": {
-			"[gsc-iw3]": {
-				"files.encoding": "windows1252"
-			},
-			"[gsc-iw4]": {
-				"files.encoding": "windows1252"
-			}
-		}
 	}
 }

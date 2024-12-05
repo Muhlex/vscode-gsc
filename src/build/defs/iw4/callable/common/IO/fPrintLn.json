@@ -1,5 +1,0 @@
-{
-	"deprecated": true,
-	"description": ["No effect. In CoD 4, wrote a line to a file opened via `openFile`."],
-	"devOnly": true
-}

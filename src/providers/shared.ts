@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import type { VariableDef, ParamDef, CallableDef } from "../models/Def";
+import type { CallableDef, ParamDef, VariableDef } from "../models/Def";
 
 export const getTypesString = (types?: string[]) => (types?.length ? types.join("/") : "");
 export const getVariableString = (v: VariableDef) => v.name || getTypesString(v.types) || "unknown";

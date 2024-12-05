@@ -1,9 +1,0 @@
-{
-	"usage": "<entity> clearPotentialThreat()",
-	"description": [
-		"Clear the potential threat direction. See setPotentialThreat for more info on potential threats."
-	],
-	"example": [
-		"self clearPotentialThreat()"
-	]
-}

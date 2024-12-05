@@ -1,6 +1,0 @@
-{
-	"description": ["Delete an entity from the world."],
-	"receiver": {
-		"types": ["entity"]
-	}
-}

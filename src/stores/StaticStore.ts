@@ -1,29 +1,46 @@
 import * as vscode from "vscode";
 
+import type { CallableDefGame, CallableDefsEngine } from "../models/Def";
+import type { Engine } from "../models/Engine";
 import type { Settings } from "../settings";
-import type { CallableDefsEngine, CallableDefGame } from "../models/Def";
+
+import { readJSON } from "../util";
 
 export class StaticStore {
+	private readonly context: vscode.ExtensionContext;
+	private readonly engine: Engine;
+	private readonly settings: Settings;
+
 	keywords: readonly string[];
 	callables: ReadonlyMap<string, CallableDefGame>;
 
-	constructor(context: vscode.ExtensionContext, settings: Settings, engine: string) {
+	constructor(context: vscode.ExtensionContext, engine: Engine, settings: Settings) {
+		this.context = context;
+		this.engine = engine;
+		this.settings = settings;
+
 		this.keywords = [];
 		this.callables = new Map();
+	}
 
-		const defsUri = vscode.Uri.joinPath(context.extensionUri, "out", "defs", engine);
+	public init() {
+		const { context, engine, settings } = this;
+		const engineDataUri = vscode.Uri.joinPath(context.extensionUri, "data", engine.id);
+		const promises = [];
 
-		this.initKeywords(defsUri);
+		promises.push(this.initKeywords(engineDataUri));
 
-		const featuresetsSetting = settings.engines[engine].featuresets;
+		const featuresetsSetting = settings.engines[engine.id].featuresets;
 		let cancellationTokenSource = new vscode.CancellationTokenSource();
-		this.initCallables(defsUri, featuresetsSetting.value, cancellationTokenSource.token);
+		promises.push(
+			this.initCallables(engineDataUri, featuresetsSetting.value, cancellationTokenSource.token),
+		);
 
 		const onFeaturesetsChange = (featuresets: { [featureset: string]: boolean }) => {
 			cancellationTokenSource.cancel();
 			cancellationTokenSource.dispose();
 			cancellationTokenSource = new vscode.CancellationTokenSource();
-			this.initCallables(defsUri, featuresets, cancellationTokenSource.token);
+			this.initCallables(engineDataUri, featuresets, cancellationTokenSource.token);
 		};
 		featuresetsSetting.subscribe(onFeaturesetsChange);
 
@@ -33,41 +50,36 @@ export class StaticStore {
 				cancellationTokenSource.dispose();
 			}),
 		);
+
+		return Promise.all(promises);
 	}
 
-	private async initKeywords(defsUri: vscode.Uri) {
-		const uri = vscode.Uri.joinPath(defsUri, "keyword.json");
-		const data = await vscode.workspace.fs.readFile(uri);
-		this.keywords = JSON.parse(data.toString());
+	private async initKeywords(engineDataUri: vscode.Uri) {
+		const uri = vscode.Uri.joinPath(engineDataUri, "keyword.json");
+		this.keywords = await readJSON(uri);
 	}
 
 	private async initCallables(
-		defsUri: vscode.Uri,
+		engineDataUri: vscode.Uri,
 		featuresets: { [featureset: string]: boolean },
 		token: vscode.CancellationToken,
 	) {
-		const uri = vscode.Uri.joinPath(defsUri, "callable.json");
-		const data = await vscode.workspace.fs.readFile(uri);
+		const uri = vscode.Uri.joinPath(engineDataUri, "callable.json");
+		const callableDefsEngine: CallableDefsEngine = await readJSON(uri);
 		if (token.isCancellationRequested) return;
-		const callableDefsEngine: CallableDefsEngine = JSON.parse(data.toString());
-
-		const callableDefsEngineEnabled: CallableDefsEngine = {};
-
-		for (const featureset in featuresets) {
-			const enabled = featuresets[featureset];
-			if (!enabled) continue;
-			callableDefsEngineEnabled[featureset] = callableDefsEngine[featureset];
-		}
 
 		const callableDefs: Map<string, CallableDefGame> = new Map();
-
-		for (const featureset in callableDefsEngineEnabled) {
-			const callableDefsFeatureset = callableDefsEngineEnabled[featureset];
+		for (const [featureset, enabled] of Object.entries(featuresets)) {
+			if (!enabled) continue;
+			const callableDefsFeatureset = callableDefsEngine[featureset];
 			for (const module in callableDefsFeatureset) {
 				const callableDefsModule = callableDefsFeatureset[module];
 				for (const ident in callableDefsModule) {
 					const callableDef = callableDefsModule[ident];
 					callableDef.origin = "game";
+					callableDef.ident = { name: ident };
+					callableDef.module = module;
+					callableDef.featureset = featureset;
 
 					const identLc = ident.toLowerCase();
 					const existingDef = callableDefs.get(identLc);

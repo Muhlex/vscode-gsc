@@ -1,16 +1,16 @@
 import * as vscode from "vscode";
 
+import type { Engine } from "../models/Engine";
 import type { Settings } from "../settings";
-import type { StaticStore } from "../stores/StaticStore";
-import type { GscStore } from "../stores/GscStore";
+import type { Stores } from "../stores";
 
-import { createCompletionItemProvider } from "./completionItem";
-import { createSignatureHelpProvider } from "./signatureHelp";
-import { createRangeSemanticTokensProvider, semanticTokensLegend } from "./semanticTokens";
-import { createHoverProvider } from "./hover";
-import { createDefinitionProvider } from "./definition";
-import { createInlayHintsProvider } from "./inlayHints";
 import { createColorProvider } from "./color";
+import { createCompletionItemProvider } from "./completionItem";
+import { createDefinitionProvider } from "./definition";
+import { createHoverProvider } from "./hover";
+import { createInlayHintsProvider } from "./inlayHints";
+import { createRangeSemanticTokensProvider, semanticTokensLegend } from "./semanticTokens";
+import { createSignatureHelpProvider } from "./signatureHelp";
 
 export class Providers {
 	private readonly context: vscode.ExtensionContext;
@@ -19,12 +19,12 @@ export class Providers {
 
 	constructor(
 		context: vscode.ExtensionContext,
+		engine: Engine,
 		settings: Settings,
-		languageID: string,
-		stores: { static: StaticStore; gsc: GscStore },
+		stores: Stores,
 	) {
 		this.context = context;
-		this.languageId = languageID;
+		this.languageId = engine.languageId;
 		this.providers = {
 			completionItem: createCompletionItemProvider(stores, settings),
 			signatureHelp: createSignatureHelpProvider(stores),

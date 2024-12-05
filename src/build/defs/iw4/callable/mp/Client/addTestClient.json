@@ -1,7 +1,0 @@
-{
-	"description": ["Connects a test client (bot) to the server."],
-	"return": {
-		"types": ["player"],
-		"description": ["The test client entity."]
-	}
-}

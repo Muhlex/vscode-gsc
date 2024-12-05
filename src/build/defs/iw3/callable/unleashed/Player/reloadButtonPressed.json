@@ -1,8 +1,0 @@
-{
-	"usage": "<player> reloadButtonPressed()",
-	"description": ["Checks if a player is pressing the reload button."],
-	"return": {
-		"types": ["bool"]
-	},
-	"example": ["if (self reloadButtonPressed()) {", "  // Code", "}"]
-}

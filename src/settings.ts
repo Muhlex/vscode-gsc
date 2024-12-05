@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import type { Engine } from "./models/Engine";
 
 type SettingUpdater<T> = (
 	config: vscode.WorkspaceConfiguration,
@@ -48,11 +49,7 @@ export class Setting<T> {
 
 export type Settings = ReturnType<typeof createSettings>;
 
-export const createSettings = (context: vscode.ExtensionContext, engines: string[]) => {
-	const configEngineNames = Object.fromEntries(
-		engines.map((engine) => [engine, engine.toUpperCase()]),
-	);
-
+export const createSettings = (context: vscode.ExtensionContext, enginesMeta: Engine[]) => {
 	const settings: Setting<any>[] = [];
 
 	const createSetting = <T>(section: string, defaultValue: T, updater?: SettingUpdater<T>) => {
@@ -83,13 +80,13 @@ export const createSettings = (context: vscode.ExtensionContext, engines: string
 		},
 	});
 
-	const createEngineSettings = (engine: string) => ({
+	const createEngineSettings = (meta: Engine) => ({
 		featuresets: createSetting<{ [featureset: string]: boolean }>(
-			`featureSets.${configEngineNames[engine]}`,
+			`featureSets.${meta.displayName}`,
 			{},
 		),
 		rootDirs: createSetting<vscode.Uri[]>(
-			`rootDirectories.${configEngineNames[engine]}`,
+			`rootDirectories.${meta.displayName}`,
 			[],
 			async (config, section) => {
 				const paths: string[] = config.get(section, []);
@@ -101,7 +98,7 @@ export const createSettings = (context: vscode.ExtensionContext, engines: string
 							return uri;
 						} catch {
 							vscode.window.showWarningMessage(
-								`Invalid ${engine.toUpperCase()} GSC root directory: "${path}" \
+								`Invalid ${meta.displayName} GSC root directory: "${path}" \
 								Review your extension settings.`,
 							);
 						}
@@ -124,6 +121,6 @@ export const createSettings = (context: vscode.ExtensionContext, engines: string
 
 	return {
 		...createGlobalSettings(),
-		engines: Object.fromEntries(engines.map((engine) => [engine, createEngineSettings(engine)])),
+		engines: Object.fromEntries(enginesMeta.map((meta) => [meta.id, createEngineSettings(meta)])),
 	};
 };

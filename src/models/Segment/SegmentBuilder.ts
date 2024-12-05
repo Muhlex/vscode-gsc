@@ -1,5 +1,5 @@
-import { Range, type Position } from "vscode";
-import { type SegmentNode, SegmentMap, SegmentTree } from ".";
+import { type Position, Range } from "vscode";
+import { SegmentMap, type SegmentNode, SegmentTree } from ".";
 
 interface SegmentNodeStart<T> {
 	position: Position;

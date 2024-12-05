@@ -1,8 +1,0 @@
-{
-	"usage": "getRealTime()",
-	"description": ["Gets the current time in seconds since 01/01/2012 UTC."],
-	"return": {
-		"types": ["int"]
-	},
-	"example": ["time = getRealTime();"]
-}

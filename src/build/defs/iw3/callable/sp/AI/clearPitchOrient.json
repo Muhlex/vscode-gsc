@@ -1,9 +1,0 @@
-{
-	"usage": "<actor> clearPitchOrient()",
-	"description": [
-		"Clear pitch orientation."
-	],
-	"example": [
-		"self clearPitchOrient()"
-	]
-}

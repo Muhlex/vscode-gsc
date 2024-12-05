@@ -1,5 +1,5 @@
 import type { Position, Range } from "vscode";
-import { type Segment, type SegmentNode, SegmentMap } from ".";
+import { type Segment, SegmentMap, type SegmentNode } from ".";
 import { getSegmentIndexAtPos, getSegmentIndicesInRange } from "./shared";
 
 export class SegmentTree<T = void> {

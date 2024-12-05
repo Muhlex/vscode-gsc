@@ -1,5 +1,5 @@
-import type { GscScriptDir } from "./GscScriptDir";
 import type { GscFile } from "./GscFile";
+import type { GscScriptDir } from "./GscScriptDir";
 
 export class GscScript {
 	name: string;

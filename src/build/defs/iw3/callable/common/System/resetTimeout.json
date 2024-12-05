@@ -1,9 +1,0 @@
-{
-	"usage": "resetTimeout()",
-	"description": [
-		"Resets the infinite loop check timer, to prevent an incorrect infinite loop error when a lot of script must be run."
-	],
-	"example": [
-		"resetTimeout();"
-	]
-}

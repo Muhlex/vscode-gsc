@@ -1,8 +1,0 @@
-{
-	"description": ["Enable a player's weapons and raise the most recently used one."],
-	"params": [
-		{
-			"types": ["player"]
-		}
-	]
-}

@@ -34,7 +34,6 @@
 	},
 	"javascript": {
 		"formatter": {
-			"bracketSpacing": true,
 			"semicolons": "always",
 			"trailingCommas": "all"
 		}

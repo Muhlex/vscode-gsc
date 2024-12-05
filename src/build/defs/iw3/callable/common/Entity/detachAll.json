@@ -1,9 +1,0 @@
-{
-	"usage": "<entity> detachAll()",
-	"description": [
-		"Detaches all attached models from an entity."
-	],
-	"example": [
-		"self detachAll();"
-	]
-}

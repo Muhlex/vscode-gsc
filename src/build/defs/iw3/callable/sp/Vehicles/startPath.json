@@ -1,9 +1,0 @@
-{
-	"usage": "<entity> startPath()",
-	"description": [
-		"Starts the vehicle following this path."
-	],
-	"example": [
-		"bomber startPath();"
-	]
-}

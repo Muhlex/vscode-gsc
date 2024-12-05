@@ -1,9 +1,0 @@
-{
-	"usage": "<player> hideViewModel()",
-	"description": [
-		"Hide the player's current view modeL."
-	],
-	"example": [
-		"level.player hideViewModel();"
-	]
-}

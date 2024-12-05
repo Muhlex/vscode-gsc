@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 
-import type { Stores } from "../stores";
 import type { Settings } from "../settings";
+import type { Stores } from "../stores";
 
 import { createDocumentation, createUsage } from "./shared";
 

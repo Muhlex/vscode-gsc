@@ -1,28 +1,30 @@
 import type * as vscode from "vscode";
 
-import type { Stores } from "..";
-import type { GscScript } from "./GscScript";
-import type { Ignored } from "../../models/Ignored";
 import type { CallableDef, CallableDefScript } from "../../models/Def";
-import type { CallableInstanceRaw, CallableInstance } from "../../models/Instance";
+import type { Ignored } from "../../models/Ignored";
+import type { CallableInstance, CallableInstanceRaw } from "../../models/Instance";
 import type { SegmentMap, SegmentTree } from "../../models/Segment";
 
-import { AsyncDocumentCache } from "../../cache/AsyncDocumentCache";
+import type { GscStore } from "../../stores/GscStore";
+import type { StaticStore } from "../../stores/StaticStore";
+import type { GscScript } from "./GscScript";
+
+import { AsyncDocumentCache } from "../../models/Cache/AsyncDocumentCache";
 
 import {
-	parseIgnoredSegments,
-	parseGlobalSegments,
-	parseIncludes,
 	parseCallableDefs,
 	parseCallableInstances,
+	parseGlobalSegments,
+	parseIgnoredSegments,
+	parseIncludes,
 } from "../../parse";
 
 export class GscFile {
 	uri: vscode.Uri;
 	script?: GscScript;
 
-	private stores: Stores;
-	private cache: AsyncDocumentCache<{
+	private readonly stores;
+	private readonly cache: AsyncDocumentCache<{
 		ignoredSegments: SegmentMap<Ignored>;
 		globalSegments: SegmentMap;
 		includedPaths: readonly string[];
@@ -30,7 +32,7 @@ export class GscFile {
 		callableDefs: Readonly<{
 			byRange: SegmentMap<CallableDefScript>;
 			byName: ReadonlyMap<string, CallableDefScript>;
-		}>
+		}>;
 		callableDefsScope: ReadonlyMap<string, CallableDefScript>;
 		callableInstancesRaw: Readonly<{
 			referencedPaths: ReadonlySet<string>;
@@ -43,7 +45,7 @@ export class GscFile {
 		}>;
 	}>;
 
-	constructor(stores: Stores, uri: vscode.Uri, script?: GscScript) {
+	constructor(stores: { static: StaticStore; gsc: GscStore }, uri: vscode.Uri, script?: GscScript) {
 		this.uri = uri;
 		this.script = script;
 		this.stores = stores;
@@ -58,7 +60,8 @@ export class GscFile {
 	}
 
 	// TODO: Use CancellationTokens?
-	// TODO: Perf: Potentially add range limits (probably only possible for callable instances).
+	// TODO: Perf: Parse only segments in a provided range?
+	// TODO: Consider using a worker thread for parsing.
 
 	getIgnoredSegments() {
 		return this.cache.getWithDocument("ignoredSegments", async (doc) => parseIgnoredSegments(doc));
@@ -105,7 +108,7 @@ export class GscFile {
 			return {
 				byRange: defs,
 				byName,
-			}
+			};
 		});
 	}
 

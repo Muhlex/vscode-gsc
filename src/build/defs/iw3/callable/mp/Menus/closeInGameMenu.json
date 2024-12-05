@@ -1,9 +1,0 @@
-{
-	"usage": "<player> closeInGameMenu()",
-	"description": [
-		"Close the in game menu for this client."
-	],
-	"example": [
-		"player closeInGameMenu();"
-	]
-}

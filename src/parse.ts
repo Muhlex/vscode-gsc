@@ -1,15 +1,16 @@
 import * as vscode from "vscode";
+import { escapeRegExp, getNextSubstring } from "./util";
+
+import type { CallableDefScript } from "./models/Def";
+import type { Ignored } from "./models/Ignored";
+import type { CallableInstanceRaw } from "./models/Instance";
 import {
-	type SegmentMap,
-	type SegmentTree,
 	SegmentBuilder,
 	SegmentBuilderLinear,
+	type SegmentMap,
+	type SegmentTree,
 } from "./models/Segment";
-import type { Ignored } from "./models/Ignored";
-import type { CallableDefScript } from "./models/Def";
-import type { CallableInstanceRaw } from "./models/Instance";
 import type { GscFile } from "./stores/GscStore/GscFile";
-import { escapeRegExp, getNextSubstring } from "./util";
 
 export const parseIgnoredSegments = (
 	document: vscode.TextDocument,

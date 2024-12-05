@@ -1,9 +1,0 @@
-{
-	"usage": "<entity> stopAnimScripted()",
-	"description": [
-		"Halts animscript on this entity."
-	],
-	"example": [
-		"self stopAnimScripted();"
-	]
-}

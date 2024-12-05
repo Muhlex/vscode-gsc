@@ -1,20 +1,21 @@
 import type * as vscode from "vscode";
+
+import type { Engine } from "../models/Engine";
 import type { Settings } from "../settings";
 
-import { StaticStore } from "./StaticStore";
 import { GscStore } from "./GscStore";
+import { StaticStore } from "./StaticStore";
 
-export const createStores = (
-	context: vscode.ExtensionContext,
-	settings: Settings,
-	engine: string,
-	languageId: string,
-) => {
-	const staticStore = new StaticStore(context, settings, engine);
-	return {
-		static: staticStore,
-		gsc: new GscStore(context, settings, engine, languageId, staticStore),
-	};
-};
+export class Stores {
+	readonly static: StaticStore;
+	readonly gsc: GscStore;
 
-export type Stores = ReturnType<typeof createStores>;
+	constructor(context: vscode.ExtensionContext, engine: Engine, settings: Settings) {
+		this.static = new StaticStore(context, engine, settings);
+		this.gsc = new GscStore(context, engine, settings, this.static);
+	}
+
+	async init() {
+		await Promise.all([this.static.init(), this.gsc.init()]);
+	}
+}

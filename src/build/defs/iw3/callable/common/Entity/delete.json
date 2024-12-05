@@ -1,9 +1,0 @@
-{
-	"usage": "<entity> delete()",
-	"description": [
-		"Removes an entity from the game."
-	],
-	"example": [
-		"thing delete();"
-	]
-}

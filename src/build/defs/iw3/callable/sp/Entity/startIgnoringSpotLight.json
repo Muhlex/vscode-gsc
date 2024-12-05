@@ -1,9 +1,0 @@
-{
-	"usage": "<entity> startIgnoringSpotLight()",
-	"description": [
-		"Prevent spot light from affecting this entity."
-	],
-	"example": [
-		"self startIgnoringSpotLight()"
-	]
-}

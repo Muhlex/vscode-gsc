@@ -1,8 +1,0 @@
-{
-	"usage": "<player> jumpButtonPressed()",
-	"description": ["Checks if a player is pressing the jump button."],
-	"return": {
-		"types": ["bool"]
-	},
-	"example": ["if (self jumpButtonPressed()) {", "  // Code", "}"]
-}

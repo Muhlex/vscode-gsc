@@ -1,9 +1,0 @@
-{
-	"usage": "<entity> releaseClaimedTrigger()",
-	"description": [
-		"Release a currently claimed trigger."
-	],
-	"example": [
-		"trigger releaseClaimedTrigger();"
-	]
-}

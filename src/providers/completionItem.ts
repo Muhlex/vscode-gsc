@@ -1,12 +1,12 @@
 import * as vscode from "vscode";
 
-import type { Stores } from "../stores";
-import type { Settings } from "../settings";
 import type { CallableDef, CallableDefScript } from "../models/Def";
+import type { Settings } from "../settings";
+import type { Stores } from "../stores";
 import type { GscScriptDir } from "../stores/GscStore/GscScriptDir";
 
-import { createDocumentation, createUsage } from "./shared";
 import { removeFileExtension } from "../util";
+import { createDocumentation, createUsage } from "./shared";
 
 export const createCompletionItemProvider = (
 	stores: Stores,

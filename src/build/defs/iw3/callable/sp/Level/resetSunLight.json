@@ -1,9 +1,0 @@
-{
-	"usage": "resetSunLight()",
-	"description": [
-		"Restores the map's default sunlight values."
-	],
-	"example": [
-		"resetSunLight();"
-	]
-}

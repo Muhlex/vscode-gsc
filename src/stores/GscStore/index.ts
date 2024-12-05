@@ -1,33 +1,42 @@
-import * as vscode from "vscode";
 import * as path from "node:path";
+import * as vscode from "vscode";
 
+import type { Engine } from "../../models/Engine";
 import type { Settings } from "../../settings";
-import type { Stores } from "..";
 import type { StaticStore } from "../StaticStore";
-import { GscScriptDir } from "./GscScriptDir";
-import { GscScript } from "./GscScript";
 import { GscFile } from "./GscFile";
+import { GscScript } from "./GscScript";
+import { GscScriptDir } from "./GscScriptDir";
 
 export class GscStore {
-	readonly stores: Stores;
-	private scripts: GscScriptDir;
-	private files: Map<vscode.Uri["path"], GscFile>;
+	private readonly context: vscode.ExtensionContext;
+	private readonly engine: Engine;
+	private readonly settings: Settings;
+
+	private readonly stores: { static: StaticStore; gsc: GscStore };
+	private readonly scripts: GscScriptDir;
+	private readonly files: Map<vscode.Uri["path"], GscFile>;
 
 	constructor(
 		context: vscode.ExtensionContext,
+		engine: Engine,
 		settings: Settings,
-		engine: string,
-		languageId: string,
 		staticStore: StaticStore,
 	) {
+		this.context = context;
+		this.engine = engine;
+		this.settings = settings;
+
 		this.stores = { static: staticStore, gsc: this };
 		this.scripts = new GscScriptDir("");
 		this.files = new Map();
+	}
 
+	init() {
 		// Track changes when editing files:
-		context.subscriptions.push(
+		this.context.subscriptions.push(
 			vscode.workspace.onDidChangeTextDocument(({ document }) => {
-				if (document.languageId !== languageId) return;
+				if (document.languageId !== this.engine.languageId) return;
 
 				const file = this.getFile(document);
 				if (!document.isDirty && file.script) {
@@ -38,7 +47,7 @@ export class GscStore {
 		);
 
 		// Forget files that are not part of configured directories on close:
-		context.subscriptions.push(
+		this.context.subscriptions.push(
 			vscode.workspace.onDidCloseTextDocument((document) => {
 				const file = this.getFile(document.uri);
 				if (!file || file.script) return;
@@ -76,11 +85,11 @@ export class GscStore {
 			}
 		};
 
-		const rootDirectoriesSetting = settings.engines[engine].rootDirs;
+		const rootDirectoriesSetting = this.settings.engines[this.engine.id].rootDirs;
 		initRootDirectories(rootDirectoriesSetting.value);
 		rootDirectoriesSetting.subscribe(initRootDirectories);
 
-		context.subscriptions.push(
+		this.context.subscriptions.push(
 			new vscode.Disposable(() => {
 				rootDirectoriesSetting.unsubscribe(initRootDirectories);
 				disposeFileSystemWatchers();

@@ -1,9 +1,0 @@
-{
-	"usage": "<actor> clearEntityTarget()",
-	"description": [
-		"Clears an AI's entity target."
-	],
-	"example": [
-		"self clearEntityTarget()"
-	]
-}
