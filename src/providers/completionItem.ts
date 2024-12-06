@@ -44,10 +44,11 @@ export const createCompletionItemProvider = (
 				if (enableCallablesGame !== "off") {
 					for (const [, def] of stores.static.callables) {
 						if (def.deprecated && enableCallablesGame === "non-deprecated") continue;
-						const documentation = createDocumentation(def, document.languageId, {
-							concise: intelliSense.conciseMode.value,
-						});
-						items.push(createCallableCompletionItem(def, false, documentation));
+						items.push(
+							createCallableCompletionItem(def, document.languageId, {
+								concise: intelliSense.conciseMode.value,
+							}),
+						);
 					}
 				}
 			};
@@ -55,7 +56,12 @@ export const createCompletionItemProvider = (
 			const createCallablesScript = (defs: Iterable<CallableDefScript>) => {
 				if (intelliSense.enable.callablesScript.value) {
 					for (const def of defs) {
-						items.push(createCallableCompletionItem(def, def.file === file));
+						items.push(
+							createCallableCompletionItem(def, document.languageId, {
+								concise: intelliSense.conciseMode.value,
+								local: def.file === file,
+							}),
+						);
 					}
 				}
 			};
@@ -99,7 +105,7 @@ export const createCompletionItemProvider = (
 			const preCursorText = readLines(position.character);
 
 			// scope resolution (::)
-			const scopeResSeparatorMatch = preCursorText.match(/::\s*$/);
+			const scopeResSeparatorMatch = preCursorText.match(/::\s*([A-Za-z_][\w]*)?$/);
 			if (scopeResSeparatorMatch) {
 				const preSeparatorText = readLines(scopeResSeparatorMatch.index!);
 				const scriptPath = preSeparatorText.match(/([\w\\]*\w)\s*$/)?.[1] ?? "";
@@ -149,21 +155,24 @@ const createKeywordCompletionItem = (keyword: string): vscode.CompletionItem => 
 
 const createCallableCompletionItem = (
 	def: CallableDef,
-	isLocal = false,
-	documentation?: vscode.MarkdownString,
+	languageId: string,
+	options: {
+		local?: boolean;
+		concise?: boolean;
+	},
 ): vscode.CompletionItem => {
 	const isGame = def.origin === "game";
 	return {
 		label: {
 			label: def.ident.name,
-			description: isLocal
+			description: options.local
 				? undefined
 				: isGame
 					? `${def.module} (${def.featureset})`
 					: def.file.script?.path,
 		},
 		detail: createUsage(def),
-		documentation: documentation || def.description?.join("\n"),
+		documentation: createDocumentation(def, languageId, { concise: options.concise }),
 		kind: def.receiver ? vscode.CompletionItemKind.Method : vscode.CompletionItemKind.Function,
 		commitCharacters: [
 			/* "(" */

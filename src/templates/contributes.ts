@@ -25,27 +25,27 @@ export default (enginesMeta: Engine[]) => {
 			title: "GSC (Call of Duty)",
 			properties: {
 				"GSC.intelliSense.enable.keywords": {
-					markdownDescription: "Auto complete keywords (if, for, switch, ...) with IntelliSense.",
+					markdownDescription: "Suggest keywords (if, for, switch, ...) with IntelliSense.",
 					scope: "language-overridable",
 					type: "boolean",
 					default: true,
 				},
 				"GSC.intelliSense.enable.callablesGame": {
 					markdownDescription:
-						"Auto complete inbuilt (engine) functions and methods with IntelliSense.",
+						"Suggest inbuilt (engine) functions and methods with IntelliSense.",
 					scope: "language-overridable",
 					type: "string",
 					default: "non-deprecated",
 					enum: ["off", "non-deprecated", "all"],
 					enumDescriptions: [
-						"Don't auto complete inbuilt functions and methods.",
-						"Only auto complete inbuilt functions and methods not marked as deprecated (these are often non-functioning).",
-						"Auto complete all inbuilt functions and methods.",
+						"Don't suggest inbuilt functions and methods.",
+						"Only suggest inbuilt functions and methods not marked as deprecated (these are often non-functioning).",
+						"Suggest all inbuilt functions and methods.",
 					],
 				},
 				"GSC.intelliSense.enable.callablesScript": {
 					markdownDescription:
-						"Auto complete script-defined functions and methods with IntelliSense.",
+						"Suggest script-defined functions and methods with IntelliSense.",
 					scope: "language-overridable",
 					type: "boolean",
 					default: true,
@@ -59,7 +59,7 @@ export default (enginesMeta: Engine[]) => {
 				},
 				"GSC.intelliSense.foldersSorting": {
 					markdownDescription:
-						"Determine how to sort folders when auto completing file paths with IntelliSense.",
+						"Configure how to sort folders when suggesting file paths with IntelliSense.",
 					scope: "language-overridable",
 					type: "string",
 					default: "inline",

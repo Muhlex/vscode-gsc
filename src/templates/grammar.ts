@@ -1,9 +1,9 @@
-import type { EngineMeta } from "../models/EngineMeta";
+import type { Engine } from "../models/Engine";
 
 const raw = String.raw;
 
-export default (engineMeta: EngineMeta, keywords: string[]) => {
-	const { id, displayName } = engineMeta;
+export default (engine: Engine, keywords: string[]) => {
+	const { id, displayName } = engine;
 
 	return {
 		name: `Game Script (${displayName})`,

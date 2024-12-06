@@ -44,8 +44,9 @@ const provideSemanticTokens = async (
 	for (const { value: def } of defsIterable) {
 		const { ident, params, body } = def;
 		builder.push(ident.range.start.line, ident.range.start.character, ident.name.length, 0, 0b1);
-		for (const { range, name } of params) {
-			builder.push(range.start.line, range.start.character, name.length, 2, 0b1);
+		for (const { range } of params) {
+			const length = document.offsetAt(range.end) - document.offsetAt(range.start);
+			builder.push(range.start.line, range.start.character, length, 2, 0b1);
 		}
 		for (const { range } of body.variables.params) {
 			const length = document.offsetAt(range.end) - document.offsetAt(range.start);

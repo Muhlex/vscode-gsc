@@ -11,13 +11,11 @@ import type { GscScript } from "./GscScript";
 
 import { AsyncDocumentCache } from "../../models/Cache/AsyncDocumentCache";
 
-import {
-	parseCallableDefs,
-	parseCallableInstances,
-	parseGlobalSegments,
-	parseIgnoredSegments,
-	parseIncludes,
-} from "../../parse";
+import { parseCallableDefs } from "../../parse/callableDefs";
+import { parseCallableInstances } from "../../parse/callableInstances";
+import { parseGlobalSegments } from "../../parse/globalSegments";
+import { parseIgnoredSegments } from "../../parse/ignoredSegments";
+import { parseIncludes } from "../../parse/includes";
 
 export class GscFile {
 	uri: vscode.Uri;
