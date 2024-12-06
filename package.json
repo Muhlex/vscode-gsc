@@ -5,7 +5,10 @@
 		"name": "murlis"
 	},
 	"license": "MIT",
-	"repository": "github:Muhlex/vscode-gsc",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Muhlex/vscode-gsc"
+	},
 	"displayName": "GSC (Call of Duty)",
 	"description": "Language support for different GSC (game script) versions.",
 	"categories": [
