@@ -54,18 +54,19 @@ export class SegmentBuilderLinear<T = void> {
 	private endStack: { end: Position; value: T }[] = [];
 
 	push(range: Range, value: T) {
-		while (this.endStack.length > 0) {
-			const parent = this.endStack.at(-1)!;
-			if (range.end.isBeforeOrEqual(parent.end)) break;
-			this.endStack.pop();
-			this.builder.end(parent.end, parent.value);
+		for (let i = this.endStack.length - 1; i >= 0; i--) {
+			const parentCandidate = this.endStack[i];
+			if (range.end.isBeforeOrEqual(parentCandidate.end)) break;
+			this.endStack.splice(i, 1);
+			this.builder.end(parentCandidate.end, parentCandidate.value);
 		}
 		this.builder.start(range.start);
 		this.endStack.push({ end: range.end, value });
 	}
 
 	private finalize() {
-		for (const segment of this.endStack) {
+		for (let i = this.endStack.length - 1; i >= 0; i--) {
+			const segment = this.endStack[i];
 			this.builder.end(segment.end, segment.value);
 		}
 	}

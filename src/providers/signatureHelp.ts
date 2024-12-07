@@ -16,10 +16,12 @@ export const createSignatureHelpProvider = (stores: Stores): vscode.SignatureHel
 			const instance = instancesAtPos[i].value;
 			if (instance.kind !== "call") continue;
 
+			let activeParameterIndex = instance.params.indexAt(position, true);
+			if (activeParameterIndex === -1) continue; // not inside parameter list
+
 			const def = instance.def;
 			if (!def?.params) return;
 
-			let activeParameterIndex = instance.params.indexAt(position, true);
 			if (def.paramsRepeatable === "last" && activeParameterIndex >= def.params.length) {
 				activeParameterIndex = def.params.length - 1;
 			} else if (def.paramsRepeatable === "all") {
