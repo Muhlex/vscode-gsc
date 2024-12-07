@@ -189,11 +189,11 @@ export default (engine: Engine, keywords: string[]) => {
 				],
 			},
 			path: {
-				match: raw`\w+(?:(?=\s*::)|(?:[\\/]\w*)+)`,
+				match: raw`\b(\w+[\w\\/]*)(?=\s*::)|(\w+\\[\w\\]*)`,
 				name: "entity.name.scope-resolution.gsc",
 				captures: {
-					"0": {
-						patterns: [{ match: raw`.*\/.*`, name: "invalid.illegal.import.path.gsc" }],
+					"1": {
+						patterns: [{ match: raw`.*/.*`, name: "invalid.illegal.import.path.gsc" }],
 					},
 				},
 			},
