@@ -1,6 +1,6 @@
 import type { Range } from "vscode";
-import type { GscFile } from "../stores/GscStore/GscFile";
-import type { SegmentMap } from "./Segment";
+import type { FeaturesetsScope, ScopesLookup } from "../Scope";
+import type { SegmentMap } from "../Segment";
 
 export type VariableDef = {
 	name?: string;
@@ -22,11 +22,10 @@ type CallableDefCommon = {
 
 export type CallableDefGame = CallableDefCommon & {
 	origin: "game";
-	featureset: string;
 	module: string;
-	priority?: number;
 	deprecated?: boolean;
 	devOnly?: boolean;
+	scopes: ScopesLookup;
 };
 
 export type CallableDefScript = CallableDefCommon & {
@@ -34,11 +33,14 @@ export type CallableDefScript = CallableDefCommon & {
 	ident: CallableDefCommon["ident"] & { range: Range };
 	params: (ParamDef & { range: Range })[];
 	body: { range: Range; variables: { params: SegmentMap<{ index: number }> } };
-	file: GscFile;
 };
 
 export type CallableDef = CallableDefGame | CallableDefScript;
 
-export type CallableDefsEngine = {
-	[featureset: string]: { [module: string]: { [ident: string]: CallableDefGame } };
+export type CallableDefGameRaw = Omit<
+	CallableDefGame,
+	"ident" | "origin" | "featuresets" | "scopes"
+> & {
+	scopes: FeaturesetsScope[];
 };
+export type CallableDefsGameRaw = { [name: string]: CallableDefGameRaw[] };

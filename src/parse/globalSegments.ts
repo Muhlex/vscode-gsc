@@ -1,18 +1,18 @@
 import { Range, type TextDocument } from "vscode";
 
-import type { Ignored } from "../models/Ignored";
+import type { TextSegment } from "../models/SegmentTypes";
 import { SegmentBuilder, type SegmentMap } from "../models/Segment";
 
 export const parseGlobalSegments = (
 	document: TextDocument,
-	ignoredSegments: SegmentMap<Ignored>,
+	textSegments: SegmentMap<TextSegment>,
 ): SegmentMap => {
 	const eofPos = document.lineAt(document.lineCount - 1).range.end;
 
 	const builder = new SegmentBuilder();
 	let level = 0;
 	let offset = 0;
-	for (const range of ignoredSegments.inverted(document)) {
+	for (const range of textSegments.inverted(document)) {
 		const text = document.getText(range);
 		let i = 0;
 		while (true) {

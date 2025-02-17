@@ -1,5 +1,5 @@
 import { Position, Range, type TextDocument } from "vscode";
-import { type Segment, SegmentBuilder } from ".";
+import type { Segment } from ".";
 import { getSegmentIndexAtPos, getSegmentIndicesInRange } from "./shared";
 
 export class SegmentMap<T = void> {

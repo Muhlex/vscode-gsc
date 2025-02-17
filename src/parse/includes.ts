@@ -1,11 +1,11 @@
 import type { TextDocument } from "vscode";
-import type { Ignored } from "../models/Ignored";
+import type { TextSegment } from "../models/SegmentTypes";
 import type { SegmentMap } from "../models/Segment";
 
 export const parseIncludes = (
 	document: TextDocument,
 	globalSegments: SegmentMap,
-	ignoredSegments: SegmentMap<Ignored>,
+	textSegments: SegmentMap<TextSegment>,
 ) => {
 	const regExp = /#include\s*(\b[\w\\]+)/g;
 	const text = document.getText(globalSegments.getByIndex(0)?.range);
@@ -13,7 +13,7 @@ export const parseIncludes = (
 
 	for (const match of text.matchAll(regExp)) {
 		const position = document.positionAt(match.index);
-		if (ignoredSegments.hasAt(position)) continue;
+		if (textSegments.hasAt(position)) continue;
 		paths.add(match[1]);
 	}
 

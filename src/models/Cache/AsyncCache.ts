@@ -1,3 +1,5 @@
+// TODO: del
+
 export class AsyncCache<T extends object> {
 	private data: Partial<T> = {};
 	private promises: {

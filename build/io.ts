@@ -22,7 +22,7 @@ export async function createDir(path: string | URL) {
 	}
 }
 
-export async function copyDir(source: string | URL, destination: string | URL) {
+export async function copy(source: string | URL, destination: string | URL) {
 	await cp(source, destination, { recursive: true });
 }
 
@@ -39,5 +39,5 @@ export async function getJSON(input: string | URL) {
 export async function writeJSON(path: string | URL, data: any) {
 	const pathString = typeof path === "string" ? path : fileURLToPath(path);
 	await createDir(dirname(pathString));
-	await writeFile(path, JSON.stringify(data, undefined, "\t"));
+	await writeFile(path, JSON.stringify(data));
 }

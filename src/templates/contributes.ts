@@ -1,25 +1,25 @@
 import type { Engine } from "../models/Engine";
 
-export default (enginesMeta: Engine[]) => {
+export default (engines: Engine[]) => {
 	return {
-		languages: enginesMeta.map((meta) => {
-			const icon = `./static/icons/language/${meta.id}.svg`;
+		languages: engines.map((engine) => {
+			const icon = `./static/icons/language/${engine.id}.svg`;
 			return {
-				id: meta.languageId,
-				aliases: [`Game Script (${meta.displayName})`, `GSC (${meta.displayName})`],
+				id: engine.languageId,
+				aliases: [`Game Script (${engine.displayName})`, `GSC (${engine.displayName})`],
 				extensions: [".gsc", ".csc"],
 				configuration: "./static/language-configuration.json",
 				icon: { light: icon, dark: icon },
 			};
 		}),
-		grammars: enginesMeta.map((meta) => ({
-			language: meta.languageId,
-			scopeName: `source.gsc.${meta.id}`,
-			path: `./data/${meta.id}/grammar.json`,
+		grammars: engines.map((engine) => ({
+			language: engine.languageId,
+			scopeName: `source.gsc.${engine.id}`,
+			path: `./data/${engine.id}/grammar.json`,
 		})),
-		snippets: enginesMeta.map((meta) => ({
-			language: meta.languageId,
-			path: `./data/${meta.id}/snippets.json`,
+		snippets: engines.map((engine) => ({
+			language: engine.languageId,
+			path: `./data/${engine.id}/snippets.json`,
 		})),
 		configuration: {
 			title: "GSC (Call of Duty)",
@@ -31,8 +31,7 @@ export default (enginesMeta: Engine[]) => {
 					default: true,
 				},
 				"GSC.intelliSense.enable.callablesGame": {
-					markdownDescription:
-						"Suggest inbuilt (engine) functions and methods with IntelliSense.",
+					markdownDescription: "Suggest inbuilt (engine) functions and methods with IntelliSense.",
 					scope: "language-overridable",
 					type: "string",
 					default: "non-deprecated",
@@ -44,8 +43,7 @@ export default (enginesMeta: Engine[]) => {
 					],
 				},
 				"GSC.intelliSense.enable.callablesScript": {
-					markdownDescription:
-						"Suggest script-defined functions and methods with IntelliSense.",
+					markdownDescription: "Suggest script-defined functions and methods with IntelliSense.",
 					scope: "language-overridable",
 					type: "boolean",
 					default: true,
@@ -84,14 +82,14 @@ export default (enginesMeta: Engine[]) => {
 					],
 				},
 				...Object.fromEntries(
-					enginesMeta.map((meta) => [
-						`GSC.featureSets.${meta.displayName}`,
+					engines.map((engine) => [
+						`GSC.featureSets.${engine.displayName}`,
 						{
-							markdownDescription: `Define sets of engine features to be used (by IntelliSense and semantic highlighting) for **${meta.gameTitle}**.`,
+							markdownDescription: `Define sets of engine features to be used (by IntelliSense and semantic highlighting) for **${engine.gameTitle}**.`,
 							scope: "resource",
 							type: "object",
 							properties: Object.fromEntries(
-								meta.featuresets.map((featureset) => [
+								engine.featuresets.map((featureset) => [
 									featureset.id,
 									{
 										type: "boolean",
@@ -101,17 +99,17 @@ export default (enginesMeta: Engine[]) => {
 							),
 							additionalProperties: false,
 							default: Object.fromEntries(
-								meta.featuresets.map((featureset) => [featureset.id, featureset.enabledByDefault]),
+								engine.featuresets.map((featureset) => [featureset.id, featureset.enabledByDefault]),
 							),
 						},
 					]),
 				),
 				...Object.fromEntries(
-					enginesMeta.map((meta) => [
-						`GSC.rootDirectories.${meta.displayName}`,
+					engines.map((engine) => [
+						`GSC.rootDirectories.${engine.displayName}`,
 						{
-							markdownDescription: `Root directory paths where stock or custom GSC files are found for **${meta.gameTitle}**. When a file exists in multiple paths, later paths takes precedence.\n\nE. g. \`C:\\games\\${meta.id}\\raw\``,
-							scope: "machine-overridable",
+							markdownDescription: `Root directory paths where stock or custom GSC files are found for **${engine.gameTitle}**. When a file exists in multiple paths, later paths takes precedence.\n\nE. g. \`C:\\games\\${engine.id}\\raw\``,
+							scope: "window",
 							type: "array",
 							uniqueItems: true,
 							items: {
@@ -125,12 +123,7 @@ export default (enginesMeta: Engine[]) => {
 			},
 		},
 		configurationDefaults: Object.fromEntries(
-			enginesMeta.map((meta) => [
-				`[${meta.languageId}]`,
-				{
-					"files.encoding": "windows1252",
-				},
-			]),
+			engines.map((engine) => [`[${engine.languageId}]`, { "files.encoding": "windows1252" }]),
 		),
 	};
 };

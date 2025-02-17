@@ -1,8 +1,8 @@
 import { Range, type TextDocument } from "vscode";
 import { getNextSubstring } from "../util";
 
-import type { Ignored } from "../models/Ignored";
-import type { CallableInstanceRaw } from "../models/Instance";
+import type { TextSegment } from "../models/SegmentTypes";
+import type { CallableInstance } from "../models/Callable";
 import {
 	SegmentBuilder,
 	SegmentBuilderLinear,
@@ -13,11 +13,11 @@ import {
 export const parseCallableInstances = (
 	document: TextDocument,
 	globalSegments: SegmentMap,
-	ignoredSegments: SegmentMap<Ignored>,
-): SegmentTree<CallableInstanceRaw> => {
+	textSegments: SegmentMap<TextSegment>,
+): SegmentTree<CallableInstance> => {
 	const regExp =
 		/(?:\b(?<path>[\w\\]+)\s*::\s*)?(?:\b(?<call>[A-Za-z_][\w]*)\b\s*\(|(?<=::\s*)\b(?<reference>[A-Za-z_][\w]*)\b)/dg;
-	const builder = new SegmentBuilderLinear<CallableInstanceRaw>();
+	const builder = new SegmentBuilderLinear<CallableInstance>();
 
 	for (const range of globalSegments.inverted(document)) {
 		const bodyOffset = document.offsetAt(range.start);
@@ -30,7 +30,7 @@ export const parseCallableInstances = (
 
 			const [identStartOffset, identEndOffset] = match.indices!.groups![kind];
 			const identStart = document.positionAt(bodyOffset + identStartOffset);
-			if (ignoredSegments.hasAt(identStart)) continue;
+			if (textSegments.hasAt(identStart)) continue;
 			const identEnd = document.positionAt(bodyOffset + identEndOffset);
 			const ident = { name, range: new Range(identStart, identEnd) };
 
@@ -60,9 +60,9 @@ export const parseCallableInstances = (
 				if (!next) break;
 
 				const nextPosition = document.positionAt(bodyOffset + next.index);
-				const ignoredSegmentAtPos = ignoredSegments.getAt(nextPosition);
-				if (ignoredSegmentAtPos) {
-					i = document.offsetAt(ignoredSegmentAtPos.range.end) - bodyOffset;
+				const textSegmentAtPos = textSegments.getAt(nextPosition);
+				if (textSegmentAtPos) {
+					i = document.offsetAt(textSegmentAtPos.range.end) - bodyOffset;
 					continue;
 				}
 

@@ -1,19 +1,18 @@
 import * as vscode from "vscode";
 
-import type { CallableDef, CallableDefScript } from "../models/Def";
-import type { Settings } from "../settings";
-import type { Stores } from "../stores";
-import type { GscScriptDir } from "../stores/GscStore/GscScriptDir";
+import type { ExtensionSettings } from "../settings";
+import type { Stores, ScriptDir } from "../models/Store";
+import type { CallableDef, CallableDefScript } from "../models/Callable";
 
 import { removeFileExtension } from "../util";
 import { createDocumentation, createUsage } from "./shared";
 
 export const createCompletionItemProvider = (
 	stores: Stores,
-	settings: Settings,
+	settings: ExtensionSettings,
 ): vscode.CompletionItemProvider => ({
 	async provideCompletionItems(document, position, token, context) {
-		const file = stores.gsc.getFile(document);
+		const file = stores.gsc.ensureFile(document);
 		if (context.triggerCharacter) {
 			if (context.triggerCharacter === ":") {
 				// only trigger on double colon
@@ -21,18 +20,18 @@ export const createCompletionItemProvider = (
 				const withPrev = document.getText(new vscode.Range(position.translate(0, -2), position));
 				if (withPrev !== "::") return;
 			}
-
-			const ignoredFragments = await file.getIgnoredSegments();
-			if (token.isCancellationRequested) return;
-			if (ignoredFragments.hasAt(position)) return;
 		}
+
+		const textSegments = await file.getTextSegments();
+		if (token.isCancellationRequested) return;
+		if (textSegments.hasAt(position)) return;
 
 		const getItems = async () => {
 			const intelliSense = settings.intelliSense;
 			const items: vscode.CompletionItem[] = [];
 
 			const createKeywords = () => {
-				if (intelliSense.enable.keywords.value) {
+				if (intelliSense.enable.keywords.get(document)) {
 					for (const keyword of stores.static.keywords) {
 						items.push(createKeywordCompletionItem(keyword));
 					}

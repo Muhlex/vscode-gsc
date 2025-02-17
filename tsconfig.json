@@ -4,12 +4,12 @@
 		"module": "commonjs",
 		"target": "ES2023",
 		"outDir": "dist",
-		"lib": ["ES2023"],
+		"lib": ["es2023"],
 		"rootDir": "src",
 		"sourceMap": true,
 		"strict": true,
 		"resolveJsonModule": true
 	},
-	"files": ["src/index.ts"],
+	"include": ["src/**/*.ts"],
 	"exclude": ["node_modules", ".vscode-test"]
 }

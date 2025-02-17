@@ -7,10 +7,19 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Muhlex/vscode-gsc"
+		"url": "https://github.com/Muhlex/vscode-gsc.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Muhlex/vscode-gsc/issues"
 	},
 	"displayName": "GSC (Call of Duty)",
-	"description": "Language support for different GSC (game script) versions.",
+	"description": "Language support for different Call of Duty GSC (game script) versions.",
+	"keywords": ["Game Script", "Call of Duty", "GSC", "CoD"],
+	"icon": "./static/icons/extension.png",
+	"galleryBanner": {
+		"color": "#348220",
+		"theme": "dark"
+	},
 	"categories": [
 		"Programming Languages",
 		"Snippets"

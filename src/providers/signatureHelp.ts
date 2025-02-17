@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 
-import type { CallableDef } from "../models/Def";
+import type { CallableDef } from "../models/Callable";
 import type { Stores } from "../stores";
 
 import { createParamsUsage } from "./shared";

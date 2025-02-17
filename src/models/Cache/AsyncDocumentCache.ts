@@ -1,3 +1,5 @@
+// TODO: del
+
 import * as vscode from "vscode";
 import { AsyncCache } from "./AsyncCache";
 
@@ -14,8 +16,8 @@ export class AsyncDocumentCache<T extends object> extends AsyncCache<T> {
 		getFunc: (document: vscode.TextDocument) => Promise<NonNullable<T[K]>>,
 	): Promise<NonNullable<T[K]>> {
 		return this.get(key, async () => {
-			const openDocument = await vscode.workspace.openTextDocument(this.uri);
-			return getFunc(openDocument);
+			const document = await vscode.workspace.openTextDocument(this.uri);
+			return getFunc(document);
 		});
 	}
 }

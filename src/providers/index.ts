@@ -1,8 +1,8 @@
 import * as vscode from "vscode";
 
 import type { Engine } from "../models/Engine";
-import type { Settings } from "../settings";
-import type { Stores } from "../stores";
+import type { ExtensionSettings } from "../settings";
+import type { Stores } from "../models/Store";
 
 import { createColorProvider } from "./color";
 import { createCompletionItemProvider } from "./completionItem";
@@ -13,17 +13,11 @@ import { createRangeSemanticTokensProvider, semanticTokensLegend } from "./seman
 import { createSignatureHelpProvider } from "./signatureHelp";
 
 export class Providers {
-	private readonly context: vscode.ExtensionContext;
 	private readonly languageId: string;
 	private providers;
+	private readonly disposables: vscode.Disposable[] = [];
 
-	constructor(
-		context: vscode.ExtensionContext,
-		engine: Engine,
-		settings: Settings,
-		stores: Stores,
-	) {
-		this.context = context;
+	constructor(engine: Engine, settings: ExtensionSettings, stores: Stores) {
 		this.languageId = engine.languageId;
 		this.providers = {
 			completionItem: createCompletionItemProvider(stores, settings),
@@ -55,6 +49,10 @@ export class Providers {
 			l.registerInlayHintsProvider(lId, p.inlayHints),
 			l.registerColorProvider(lId, p.color),
 		];
-		this.context.subscriptions.push(...disposables);
+		this.disposables.push(...disposables);
+	}
+
+	dispose() {
+		for (const disposable of this.disposables) disposable.dispose();
 	}
 }

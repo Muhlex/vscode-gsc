@@ -1,7 +1,8 @@
 import { parseArgs } from "node:util";
-import { copyDir, getJSON, removeDir, writeJSON } from "./io";
+import { copy, getJSON, removeDir, writeJSON } from "./io";
 
 import type { Engine } from "../src/models/Engine";
+import type { EngineScope } from "../src/models/Scope";
 
 import createContributes from "../src/templates/contributes";
 import createGrammar from "../src/templates/grammar";
@@ -28,74 +29,78 @@ if (!args.api) throw new Error("Missing required --api argument.");
 const apiUrl = new URL(args.api);
 
 const index = await getJSON(new URL("./index.json", apiUrl));
-const enginesData = await Promise.all(
-	args.engine.map(async (id) => {
-		if (!index.engines[id]) throw new Error(`Engine '${id}' is not documented in ${apiUrl}.`);
-		const { meta, keyword: keywordUrl, callable: callableUrl } = index.engines[id];
+const urls: { engines: string; keywords: string; callables: string } = index.urls;
 
-		const keywords: string[] = await getJSON(keywordUrl);
+const enginesDocs: {
+	id: string;
+	displayName: string;
+	gameTitle: string;
+	featuresets: { id: string; displayName: string; description: string }[];
+}[] = await getJSON(urls.engines);
+const enginesDocsById = new Map(enginesDocs.map((engine) => [engine.id, engine]));
 
-		const callablesJSON = await getJSON(callableUrl);
-		const pickKeys = <T extends object>(object: T, keys: (keyof T)[], depth = 0) => {
-			if (depth === keys.length) return object;
-			const key = keys[depth];
-			return Object.fromEntries(
-				Object.entries(object).map(([k, v]) => [k, pickKeys(v[key], keys, depth + 1)]),
-			);
-		};
-		const callables = pickKeys(callablesJSON.featuresets, ["modules", "callables"]);
+const engines: Engine[] = args.engine.map((id) => {
+	const docs = enginesDocsById.get(id);
+	if (!docs) throw new Error(`Engine '${id}' is not documented in ${urls.engines}.`);
 
-		const engine: Engine = {
+	return {
+		id,
+		languageId: `gsc-${id}`,
+		displayName: docs.displayName,
+		gameTitle: docs.gameTitle,
+		featuresets: docs.featuresets.map(({ id, displayName, description }) => ({
 			id,
-			languageId: `gsc-${id}`,
-			displayName: meta.displayName,
-			gameTitle: meta.gameTitle,
-			featuresets: Object.entries(callablesJSON.featuresets)
-				.map(([id, data]) => {
-					const { meta } = data as any;
-					return {
-						id,
-						description: meta.description,
-						enabledByDefault: ["common", "mp"].includes(id),
-					};
-				})
-				.sort((a, b) => {
-					const order = ["common", "sp", "mp"];
-					const aIndex = order.indexOf(a.id);
-					const bIndex = order.indexOf(b.id);
-					if (aIndex === -1 && bIndex === -1) return a < b ? -1 : 1;
-					if (aIndex === -1) return 1;
-					if (bIndex === -1) return -1;
-					return aIndex - bIndex;
-				}),
-		};
+			displayName,
+			description,
+			enabledByDefault: ["common", "mp"].includes(id),
+		})),
+	};
+});
 
-		return { engine, keywords, callables };
-	}),
-);
+const keywords = await getJSON(urls.keywords);
+const keywordsByEngineId = (() => {
+	const result = new Map<string, string[]>();
+	for (const name in keywords) {
+		const scopes: EngineScope[] = keywords[name].scopes;
+		for (const scope of scopes) {
+			let engineKeywords = result.get(scope.engine);
+			if (!engineKeywords) {
+				engineKeywords = [];
+				result.set(scope.engine, engineKeywords);
+			}
+			engineKeywords.push(name);
+		}
+	}
+	return result;
+})();
 
+const callables = await getJSON(urls.callables);
+
+const writePromises: Promise<void>[] = [];
 const projectDir = new URL("../", import.meta.url);
 const outDir = new URL(`${compilerOptions.outDir}/`, projectDir);
 const outDataDir = new URL("data/", outDir);
-const staticDir = new URL("static/", projectDir);
-const writePromises: Promise<void>[] = [];
 
 if (await removeDir(outDir)) console.log("Removed out directory.");
-writePromises.push(copyDir(staticDir, new URL("static/", outDir)));
+writePromises.push(copy(new URL("README.md", projectDir), new URL("README.md", outDir)));
+writePromises.push(copy(new URL("CHANGELOG.md", projectDir), new URL("CHANGELOG.md", outDir)));
+writePromises.push(copy(new URL("LICENSE", projectDir), new URL("LICENSE", outDir)));
+writePromises.push(copy(new URL("static/", projectDir), new URL("static/", outDir)));
 
-for (const { engine, keywords, callables } of enginesData) {
+writePromises.push(writeJSON(new URL("callables.json", outDir), callables));
+
+for (const engine of engines) {
 	const outEngineDir = new URL(`${engine.id}/`, outDataDir);
 
-	writePromises.push(writeJSON(new URL("meta.json", outEngineDir), engine));
-	writePromises.push(writeJSON(new URL("keyword.json", outEngineDir), keywords));
-	writePromises.push(writeJSON(new URL("callable.json", outEngineDir), callables));
-	const grammar = createGrammar(engine, keywords);
+	writePromises.push(writeJSON(new URL("engine.json", outEngineDir), engine));
+	const engineKeywords = keywordsByEngineId.get(engine.id) ?? [];
+	const grammar = createGrammar(engine, engineKeywords);
 	writePromises.push(writeJSON(new URL("grammar.json", outEngineDir), grammar));
-	const snippets = createSnippets(keywords);
+	const snippets = createSnippets(engineKeywords);
 	writePromises.push(writeJSON(new URL("snippets.json", outEngineDir), snippets));
 }
 
-const contributes = createContributes(enginesData.map((data) => data.engine));
+const contributes = createContributes(engines);
 writePromises.push(
 	writeJSON(new URL("package.json", outDir), {
 		...packageJson,

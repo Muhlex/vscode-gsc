@@ -1,11 +1,11 @@
 import * as vscode from "vscode";
 
-import type { Settings } from "../settings";
-import type { Stores } from "../stores";
+import type { ExtensionSettings } from "../settings";
+import type { Stores } from "../models/Store";
 
 export const createColorProvider = (
 	stores: Stores,
-	settings: Settings,
+	settings: ExtensionSettings,
 ): vscode.DocumentColorProvider => ({
 	provideColorPresentations(color, context, _token) {
 		const toBase = (value: number, base = 255) => `${Math.round(value * base)}/${base}`;
@@ -19,9 +19,10 @@ export const createColorProvider = (
 		}));
 	},
 	async provideDocumentColors(document, token) {
-		if (settings.colors.enable.value === "off") return;
+		const colorsEnabled = settings.colors.enable.get(document);
+		if (colorsEnabled === "off") return;
 
-		const ignoredFragments = await stores.gsc.getFile(document).getIgnoredSegments();
+		const textSegments = await stores.gsc.ensureFile(document).getTextSegments();
 		if (token.isCancellationRequested) return;
 
 		const regExp =
@@ -30,7 +31,7 @@ export const createColorProvider = (
 
 		for (const match of document.getText().matchAll(regExp)) {
 			const { r, rb, g, gb, b, bb } = match.groups!;
-			if (settings.colors.enable.value === "quotients") {
+			if (colorsEnabled === "quotients") {
 				if ([rb, gb, bb].some((c) => c === undefined)) continue;
 			}
 			const getComponent = (value: string, base?: string) =>
@@ -47,7 +48,7 @@ export const createColorProvider = (
 			const startIndex = match.indices![0][0];
 			const endIndex = match.indices![0][1];
 			const startPos = document.positionAt(startIndex);
-			if (ignoredFragments.hasAt(startPos)) continue;
+			if (textSegments.hasAt(startPos)) continue;
 
 			const range = new vscode.Range(startPos, document.positionAt(endIndex));
 

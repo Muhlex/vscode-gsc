@@ -1,17 +1,14 @@
 import { Range, type TextDocument } from "vscode";
 
-import type { Ignored } from "../models/Ignored";
+import type { TextSegment } from "../models/SegmentTypes";
 import { SegmentBuilder, type SegmentMap } from "../models/Segment";
 
-export const parseIgnoredSegments = (
-	document: TextDocument,
-	range?: Range,
-): SegmentMap<Ignored> => {
+export const parseTextSegments = (document: TextDocument): SegmentMap<TextSegment> => {
 	const regExp =
 		/(?<block>\/\*.*?(?:\*\/|$))|(?<line>\/\/.*?(?=$|[\r\n]))|(?<string>"[^"\\]*(?:\\.[^"\\]*)*(?:"|$))/gs;
-	const builder = new SegmentBuilder<Ignored>();
+	const builder = new SegmentBuilder<TextSegment>();
 
-	for (const match of document.getText(range).matchAll(regExp)) {
+	for (const match of document.getText().matchAll(regExp)) {
 		const text = match[0];
 		const { block, line, string } = match.groups!;
 		const startPos = document.positionAt(match.index);

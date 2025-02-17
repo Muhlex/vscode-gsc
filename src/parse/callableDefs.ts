@@ -1,10 +1,9 @@
 import { Range, type TextDocument } from "vscode";
 import { escapeRegExp } from "../util";
 
-import type { CallableDefScript } from "../models/Def";
-import type { Ignored } from "../models/Ignored";
+import type { CallableDefScript } from "../models/Callable";
+import type { TextSegment } from "../models/SegmentTypes";
 import { SegmentBuilder, type SegmentMap } from "../models/Segment";
-import type { GscFile } from "../stores/GscStore/GscFile";
 
 type DocComment = {
 	description?: string[];
@@ -69,8 +68,7 @@ const parseDocComment = (text: string): DocComment | undefined => {
 export const parseCallableDefs = (
 	document: TextDocument,
 	globalSegments: SegmentMap,
-	ignoredSegments: SegmentMap<Ignored>,
-	file: GscFile,
+	textSegments: SegmentMap<TextSegment>,
 ): SegmentMap<CallableDefScript> => {
 	// No global flag as there is at most one definition per global segment:
 	const regExp = /\b([A-Za-z_][\w]*)\b\s*\(([^)]*?)\)\s*$/d;
@@ -85,7 +83,7 @@ export const parseCallableDefs = (
 
 		const offset = segmentOffset + match.indices![1][0];
 		const position = document.positionAt(offset);
-		if (ignoredSegments.hasAt(position)) continue;
+		if (textSegments.hasAt(position)) continue;
 
 		const name = match[1];
 		const ident = {
@@ -124,7 +122,7 @@ export const parseCallableDefs = (
 				const matches = text.matchAll(regExp);
 				for (const match of matches) {
 					const start = document.positionAt(offset + match.index);
-					if (ignoredSegments.hasAt(start)) continue;
+					if (textSegments.hasAt(start)) continue;
 					const end = document.positionAt(offset + match.index + match[0].length);
 					paramsBuilder.set(new Range(start, end), { index });
 				}
@@ -138,7 +136,7 @@ export const parseCallableDefs = (
 			};
 		})();
 
-		const comment = ignoredSegments
+		const comment = textSegments
 			.getIn(globalRange)
 			.findLast(({ value }) => value.kind === "comment-block");
 		const doc = comment ? parseDocComment(document.getText(comment.range)) : undefined;
@@ -158,7 +156,6 @@ export const parseCallableDefs = (
 			example: doc?.example,
 			receiver: doc?.receiver,
 			body,
-			file,
 		};
 
 		builder.set(new Range(ident.range.start, body.range.end), entry);

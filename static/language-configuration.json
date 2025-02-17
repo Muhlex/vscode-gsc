@@ -14,8 +14,8 @@
 	"surroundingPairs": [["{", "}"], ["[", "]"], ["(", ")"], ["\"", "\""]],
 	"folding": {
 		"markers": {
-			"start": "^\\s*\\s*/#",
-			"end": "^\\s*\\s*#/"
+			"start": "^\\s*/#",
+			"end": "^\\s*#/"
 		}
 	},
 	"indentationRules": {
