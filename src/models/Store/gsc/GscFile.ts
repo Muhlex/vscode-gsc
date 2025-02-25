@@ -4,25 +4,29 @@ import { Cache } from "../../Cache/Cache";
 
 import type { SegmentMap, SegmentTree } from "../../Segment";
 import type { TextSegment } from "../../SegmentTypes";
-import type { CallableDefScript, CallableInstance } from "../../Callable";
+import type { Include } from "../../Include";
+import type { CallableDefScript, CallableUsage } from "../../Callable";
 
 import { parseTextSegments } from "../../../parse/textSegments";
 import { parseGlobalSegments } from "../../../parse/globalSegments";
 import { parseIncludes } from "../../../parse/includes";
 import { parseCallableDefs } from "../../../parse/callableDefs";
-import { parseCallableInstances } from "../../../parse/callableInstances";
+import { parseCallableUsages } from "../../../parse/callableUsages";
 
 export class GscFile {
-	private readonly uri: vscode.Uri;
+	readonly uri: vscode.Uri;
 	private readonly cache: Cache<{
 		textSegments: SegmentMap<TextSegment>;
 		globalSegments: SegmentMap;
-		includedPaths: readonly string[];
+		includes: Readonly<{
+			byRange: SegmentMap<Include>;
+			paths: string[];
+		}>;
 		callableDefs: Readonly<{
 			byRange: SegmentMap<CallableDefScript>;
 			byName: ReadonlyMap<string, CallableDefScript>;
 		}>;
-		callableInstances: SegmentTree<CallableInstance>;
+		callableUsages: SegmentTree<CallableUsage>;
 	}>;
 
 	constructor(uri: vscode.Uri) {
@@ -51,8 +55,8 @@ export class GscFile {
 		});
 	}
 
-	getIncludedPaths() {
-		return this.cache.getAsync("includedPaths", async (token: vscode.CancellationToken) => {
+	getIncludes() {
+		return this.cache.getAsync("includes", async (token: vscode.CancellationToken) => {
 			const doc = await this.getDocument();
 			if (token.isCancellationRequested) return;
 			return parseIncludes(doc, await this.getGlobalSegments(), await this.getTextSegments());
@@ -67,30 +71,24 @@ export class GscFile {
 				doc,
 				await this.getGlobalSegments(),
 				await this.getTextSegments(),
+				this,
 			);
 
 			const byName = new Map<string, CallableDefScript>();
 			for (const { value: def } of defs) {
-				byName.set(def.ident.name.toLowerCase(), def);
+				byName.set(def.name.text.toLowerCase(), def);
 			}
 
-			return {
-				byRange: defs,
-				byName,
-			};
+			return { byRange: defs, byName };
 		});
 	}
 
-	getCallableInstances() {
-		return this.cache.getAsync("callableInstances", async (token: vscode.CancellationToken) => {
+	getCallableUsages() {
+		return this.cache.getAsync("callableUsages", async (token: vscode.CancellationToken) => {
 			const doc = await this.getDocument();
 			if (token.isCancellationRequested) return;
 
-			return parseCallableInstances(
-				doc,
-				await this.getGlobalSegments(),
-				await this.getTextSegments(),
-			);
+			return parseCallableUsages(doc, await this.getGlobalSegments(), await this.getTextSegments());
 		});
 	}
 

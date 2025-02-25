@@ -37,13 +37,13 @@ const provideSemanticTokens = async (
 
 	const defs = await file.getCallableDefs();
 	if (token.isCancellationRequested) return;
-	const instances = await file.getCallableInstances();
+	const usages = await file.getCallableInstances();
 	if (token.isCancellationRequested) return;
 
 	const defsIterable = range ? defs.byRange.getIn(range, true) : defs.byRange;
 	for (const { value: def } of defsIterable) {
-		const { ident, params, body } = def;
-		builder.push(ident.range.start.line, ident.range.start.character, ident.name.length, 0, 0b1);
+		const { name, params, body } = def;
+		builder.push(name.range.start.line, name.range.start.character, name.name.length, 0, 0b1);
 		for (const { range } of params) {
 			const length = document.offsetAt(range.end) - document.offsetAt(range.start);
 			builder.push(range.start.line, range.start.character, length, 2, 0b1);
@@ -54,13 +54,13 @@ const provideSemanticTokens = async (
 		}
 	}
 
-	const instancesIterable = range ? instances.byRange.getIn(range) : instances.byRange;
-	for (const { value: instance } of instancesIterable) {
-		const def = instance.def;
+	const usagesIterable = range ? usages.byRange.getIn(range) : usages.byRange;
+	for (const { value: usage } of usagesIterable) {
+		const def = usage.def;
 		if (!def) continue;
 		if (def.origin === "game") {
-			const start = instance.ident.range.start;
-			const length = instance.ident.name.length;
+			const start = usage.name.range.start;
+			const length = usage.name.text.length;
 			const type = def.receiver ? 1 : 0;
 			const modifiers = def.deprecated ? 0b110 : 0b010;
 			builder.push(start.line, start.character, length, type, modifiers);

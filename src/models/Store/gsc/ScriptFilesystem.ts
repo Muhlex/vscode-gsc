@@ -32,13 +32,17 @@ export class ScriptFilesystem {
 		this.disposables = [];
 	}
 
-	init() {
+	async init() {
+		const promises: Thenable<void>[] = [];
+
 		for (const [priority, rootUri] of this.uris.entries()) {
 			const pattern = new vscode.RelativePattern(rootUri, "**/*.{gsc,csc}");
 
-			vscode.workspace.findFiles(pattern).then((uris) => {
-				for (const uri of uris) this.onCreateFile(uri, rootUri, priority);
-			});
+			promises.push(
+				vscode.workspace.findFiles(pattern).then((uris) => {
+					for (const uri of uris) this.onCreateFile(uri, rootUri, priority);
+				}),
+			);
 
 			const watcher = vscode.workspace.createFileSystemWatcher(pattern);
 			this.disposables.push(watcher);
@@ -57,6 +61,8 @@ export class ScriptFilesystem {
 				watcher.onDidDelete((uri) => this.onDeleteFile(uri, rootUri, priority)),
 			);
 		}
+
+		await Promise.all(promises);
 	}
 
 	getScriptDirByPath(path: string | string[]) {
@@ -121,9 +127,9 @@ export class ScriptFilesystem {
 		}
 
 		const file = this.gscStore.ensureFile(uri);
-		this.gscStore.scriptsByFile.add(file, script);
 		this.scriptsByFile.set(file, priority, script);
 		this.filesByScript.set(script, priority, file);
+		this.gscStore.onFileAssignScript(file, script);
 	}
 
 	private onDeleteFile(uri: vscode.Uri, rootUri: vscode.Uri, priority: number) {
@@ -136,10 +142,10 @@ export class ScriptFilesystem {
 		const script = this.getScriptByPath(parsedPath);
 		if (!script) throw new Error(`File is not represented by a script: "${uri.path}".`);
 
-		if (file) this.gscStore.scriptsByFile.delete(file, script);
 		this.filesByScript.delete(script, priority);
+		if (file) this.gscStore.onFileUnassignScript(file, script);
 
-		if (script.file) return; // there is still a file representing this script
+		if (this.filesByScript.get(script)) return; // there is still a file representing this script
 
 		let dir = script.dir;
 		dir.scripts.delete(script.name);

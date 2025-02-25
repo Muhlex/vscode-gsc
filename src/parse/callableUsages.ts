@@ -2,7 +2,7 @@ import { Range, type TextDocument } from "vscode";
 import { getNextSubstring } from "../util";
 
 import type { TextSegment } from "../models/SegmentTypes";
-import type { CallableInstance } from "../models/Callable";
+import type { CallableUsage } from "../models/Callable";
 import {
 	SegmentBuilder,
 	SegmentBuilderLinear,
@@ -10,29 +10,37 @@ import {
 	type SegmentTree,
 } from "../models/Segment";
 
-export const parseCallableInstances = (
+export const parseCallableUsages = (
 	document: TextDocument,
 	globalSegments: SegmentMap,
 	textSegments: SegmentMap<TextSegment>,
-): SegmentTree<CallableInstance> => {
+): SegmentTree<CallableUsage> => {
 	const regExp =
 		/(?:\b(?<path>[\w\\]+)\s*::\s*)?(?:\b(?<call>[A-Za-z_][\w]*)\b\s*\(|(?<=::\s*)\b(?<reference>[A-Za-z_][\w]*)\b)/dg;
-	const builder = new SegmentBuilderLinear<CallableInstance>();
+	const builder = new SegmentBuilderLinear<CallableUsage>();
 
 	for (const range of globalSegments.inverted(document)) {
 		const bodyOffset = document.offsetAt(range.start);
 		const text = document.getText(range);
 
 		for (const match of text.matchAll(regExp)) {
-			const { path, call, reference } = match.groups!;
+			const { path: pathText, call, reference } = match.groups!;
 			const kind = call ? "call" : "reference";
-			const name = call || reference;
+			const nameText = call || reference;
 
-			const [identStartOffset, identEndOffset] = match.indices!.groups![kind];
-			const identStart = document.positionAt(bodyOffset + identStartOffset);
-			if (textSegments.hasAt(identStart)) continue;
-			const identEnd = document.positionAt(bodyOffset + identEndOffset);
-			const ident = { name, range: new Range(identStart, identEnd) };
+			const [nameStartOffset, nameEndOffset] = match.indices!.groups![kind];
+			const nameStart = document.positionAt(bodyOffset + nameStartOffset);
+			if (textSegments.hasAt(nameStart)) continue;
+			const nameEnd = document.positionAt(bodyOffset + nameEndOffset);
+			const name = { text: nameText, range: new Range(nameStart, nameEnd) };
+
+			let path = undefined;
+			if (pathText) {
+				const [pathStartOffset, pathEndOffset] = match.indices!.groups!.path;
+				const pathStart = document.positionAt(bodyOffset + pathStartOffset);
+				const pathEnd = document.positionAt(bodyOffset + pathEndOffset);
+				path = { text: pathText, range: new Range(pathStart, pathEnd) };
+			}
 
 			const range = new Range(
 				document.positionAt(bodyOffset + match.indices![0][0]),
@@ -40,11 +48,7 @@ export const parseCallableInstances = (
 			);
 
 			if (kind === "reference") {
-				builder.push(range, {
-					kind,
-					ident,
-					path: path || undefined,
-				});
+				builder.push(range, { kind, name, path });
 				continue;
 			}
 
@@ -114,8 +118,8 @@ export const parseCallableInstances = (
 
 			builder.push(range.with(undefined, document.positionAt(bodyOffset + closingIndex + 1)), {
 				kind,
-				ident,
-				path: path || undefined,
+				name,
+				path,
 				paramList: {
 					range: new Range(
 						document.positionAt(bodyOffset + startIndex - 1),

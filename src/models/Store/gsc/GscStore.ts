@@ -14,7 +14,7 @@ export class GscStore {
 
 	private readonly files: Map<vscode.Uri["path"], GscFile>;
 	private readonly filesystems: Map<string, ScriptFilesystem>;
-	readonly scriptsByFile: SetMap<GscFile, Script>;
+	private readonly scriptsByFile: SetMap<GscFile, Script>;
 
 	private readonly disposables: vscode.Disposable[] = [];
 
@@ -86,6 +86,7 @@ export class GscStore {
 			filesystem = new ScriptFilesystem(languageId, rootUris, this);
 			this.filesystems.set(key, filesystem);
 			this.disposables.push(filesystem);
+			filesystem.init(); // TODO: await this
 		}
 		return filesystem;
 	}
@@ -96,6 +97,14 @@ export class GscStore {
 		const rootUris = await engineSettings.rootUris.get(scope);
 
 		return JSON.stringify([languageId, rootUris.map((dir) => dir.toString(true))]);
+	}
+
+	onFileAssignScript(file: GscFile, script: Script) {
+		this.scriptsByFile.add(file, script);
+	}
+
+	onFileUnassignScript(file: GscFile, script: Script) {
+		this.scriptsByFile.delete(file, script);
 	}
 
 	dispose() {

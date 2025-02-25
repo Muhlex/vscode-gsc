@@ -1,20 +1,20 @@
 import type { FeaturesetsScope } from "../../Scope";
 import type { CallableDefGame, CallableDefsGameRaw } from "../../Callable";
 
-export class CallableDefsGame {
-	private readonly store: Map<string, CallableDefGame[]>;
+export class CallableDefsGameRepo {
+	private readonly variantsByName: Map<string, CallableDefGame[]>;
 
 	constructor() {
-		this.store = new Map();
+		this.variantsByName = new Map();
 	}
 
-	addDefs(callableDefsRaw: CallableDefsGameRaw) {
+	addRaw(callableDefsRaw: CallableDefsGameRaw) {
 		for (const name in callableDefsRaw) {
 			const variants = callableDefsRaw[name];
-			let variantsStore = this.store.get(name);
-			if (!variantsStore) {
-				variantsStore = [];
-				this.store.set(name, variantsStore);
+			let storedVariants = this.variantsByName.get(name);
+			if (!storedVariants) {
+				storedVariants = [];
+				this.variantsByName.set(name, storedVariants);
 			}
 			for (const variant of variants) {
 				const scopes = new Map<string, Set<string>>();
@@ -29,24 +29,24 @@ export class CallableDefsGame {
 
 				const def: CallableDefGame = {
 					...variant,
-					ident: { name },
+					name: { text: name },
 					origin: "game",
 					scopes,
 				};
-				variantsStore.push(def);
+				storedVariants.push(def);
 			}
 		}
 	}
 
 	createScoped(scope: FeaturesetsScope): ReadonlyMap<string, CallableDefGame> {
 		const result = new Map<string, CallableDefGame>();
-		for (const variants of this.store.values()) {
+		for (const variants of this.variantsByName.values()) {
 			for (const variant of variants) {
 				const matchingEngineScope = variant.scopes.get(scope.engine);
 				if (!matchingEngineScope) continue;
 				const isMatch = scope.featuresets.some((featureset) => matchingEngineScope.has(featureset));
 				if (!isMatch) continue;
-				result.set(variant.ident.name, variant);
+				result.set(variant.name.text, variant);
 			}
 		}
 		return result;

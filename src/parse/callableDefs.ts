@@ -4,6 +4,7 @@ import { escapeRegExp } from "../util";
 import type { CallableDefScript } from "../models/Callable";
 import type { TextSegment } from "../models/SegmentTypes";
 import { SegmentBuilder, type SegmentMap } from "../models/Segment";
+import type { GscFile } from "../models/Store";
 
 type DocComment = {
 	description?: string[];
@@ -69,6 +70,7 @@ export const parseCallableDefs = (
 	document: TextDocument,
 	globalSegments: SegmentMap,
 	textSegments: SegmentMap<TextSegment>,
+	file: GscFile,
 ): SegmentMap<CallableDefScript> => {
 	// No global flag as there is at most one definition per global segment:
 	const regExp = /\b([A-Za-z_][\w]*)\b\s*\(([^)]*?)\)\s*$/d;
@@ -85,10 +87,10 @@ export const parseCallableDefs = (
 		const position = document.positionAt(offset);
 		if (textSegments.hasAt(position)) continue;
 
-		const name = match[1];
-		const ident = {
-			name,
-			range: new Range(position, document.positionAt(offset + name.length)),
+		const nameText = match[1];
+		const name = {
+			text: nameText,
+			range: new Range(position, document.positionAt(offset + nameText.length)),
 		};
 
 		const params = (() => {
@@ -143,7 +145,7 @@ export const parseCallableDefs = (
 
 		const entry: CallableDefScript = {
 			origin: "script",
-			ident,
+			name,
 			params: params.map((param, i) => {
 				const name = doc?.paramRenames?.[i] ?? param.name;
 				return {
@@ -156,9 +158,10 @@ export const parseCallableDefs = (
 			example: doc?.example,
 			receiver: doc?.receiver,
 			body,
+			file,
 		};
 
-		builder.set(new Range(ident.range.start, body.range.end), entry);
+		builder.set(new Range(name.range.start, body.range.end), entry);
 	}
 
 	return builder.toMap();

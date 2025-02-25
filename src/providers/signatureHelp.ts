@@ -8,18 +8,18 @@ import { createParamsUsage } from "./shared";
 export const createSignatureHelpProvider = (stores: Stores): vscode.SignatureHelpProvider => ({
 	async provideSignatureHelp(document, position, token, _context) {
 		const file = stores.gsc.getFile(document);
-		const callableInstances = await file.getCallableInstances();
+		const usages = await file.getCallableInstances();
 		if (token.isCancellationRequested) return;
 
-		const instancesAtPos = callableInstances.byRange.getAt(position);
-		for (let i = instancesAtPos.length - 1; i >= 0; i--) {
-			const instance = instancesAtPos[i].value;
-			if (instance.kind !== "call") continue;
+		const usagesAtPos = usages.byRange.getAt(position);
+		for (let i = usagesAtPos.length - 1; i >= 0; i--) {
+			const usage = usagesAtPos[i].value;
+			if (usage.kind !== "call") continue;
 
-			let activeParameterIndex = instance.params.indexAt(position, true);
+			let activeParameterIndex = usage.params.indexAt(position, true);
 			if (activeParameterIndex === -1) continue; // not inside parameter list
 
-			const def = instance.def;
+			const def = usage.def;
 			if (!def?.params) return;
 
 			if (def.paramsRepeatable === "last" && activeParameterIndex >= def.params.length) {
@@ -46,7 +46,7 @@ const createSignatures = (def: CallableDef): vscode.SignatureInformation[] => {
 	}));
 	return [
 		{
-			label: `${def.ident.name}(${parameters.map(({ label }) => label).join(", ")})`,
+			label: `${def.name.text}(${parameters.map(({ label }) => label).join(", ")})`,
 			parameters,
 		},
 	];

@@ -2,5 +2,8 @@
 	"search.exclude": {
 		"dist/": true
 	},
-	"editor.defaultFormatter": "biomejs.biome"
+	"editor.defaultFormatter": "biomejs.biome",
+	"i18n-ally.localesPaths": [
+		"static/icons/language"
+	]
 }

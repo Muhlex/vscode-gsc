@@ -16,9 +16,9 @@ export const createParamsUsage = (def: CallableDef) => {
 };
 export const createUsage = (def: CallableDef) => {
 	const receiver = def.receiver ? `<${getVariableString(def.receiver)}> ` : "";
-	const ident = def.ident.name;
+	const name = def.name.text;
 	const params = createParamsUsage(def).join(", ");
-	return `${receiver}${ident}(${params})`;
+	return `${receiver}${name}(${params})`;
 };
 
 export const createDocumentation = (

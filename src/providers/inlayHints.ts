@@ -5,19 +5,19 @@ import type { Stores } from "../stores";
 export const createInlayHintsProvider = (stores: Stores): vscode.InlayHintsProvider => ({
 	async provideInlayHints(document, range, token) {
 		const result: vscode.InlayHint[] = [];
-		const instances = await stores.gsc.getFile(document).getCallableInstances();
+		const usages = await stores.gsc.getFile(document).getCallableInstances();
 		if (token.isCancellationRequested) return;
 
-		for (const { range, value: instance } of instances.byRange) {
-			const def = instance.def;
+		for (const { range, value: usage } of usages.byRange) {
+			const def = usage.def;
 			if (!def || !def.params) continue;
-			if (instance.kind !== "call") continue;
-			if (range.start.isAfter(instance.paramList.range.start)) continue;
-			if (range.end.isBefore(instance.paramList.range.start)) break;
+			if (usage.kind !== "call") continue;
+			if (range.start.isAfter(usage.paramList.range.start)) continue;
+			if (range.end.isBefore(usage.paramList.range.start)) break;
 
-			for (let i = 0; i < instance.params.length; i++) {
+			for (let i = 0; i < usage.params.length; i++) {
 				if (!def.params[i]) break;
-				const contentRange = instance.params.getByIndex(i)!.value.contentRange;
+				const contentRange = usage.params.getByIndex(i)!.value.contentRange;
 				if (!contentRange) continue;
 				result.push({
 					position: contentRange.start,

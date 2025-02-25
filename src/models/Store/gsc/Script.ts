@@ -3,10 +3,8 @@ import { Cache } from "../../Cache/Cache";
 import type { ScriptDir } from "./ScriptDir";
 import type { ScriptFilesystem } from "./ScriptFilesystem";
 
-import { SegmentBuilderLinear, type SegmentTree } from "../../Segment";
-import type { CallableDefScript, CallableInstance } from "../../Callable";
-
-type CallableInstanceDefined = { instance: CallableInstance; def?: CallableDefScript };
+import { SegmentBuilderLinear } from "../../Segment";
+import type { CallableDefScript, CallableUsage } from "../../Callable";
 
 export class Script {
 	readonly name: string;
@@ -14,12 +12,9 @@ export class Script {
 	readonly filesystem: ScriptFilesystem;
 
 	private readonly cache: Cache<{
-		includedScripts: ReadonlySet<Script>;
+		includedScriptsByPath: ReadonlyMap<string, Script>;
 		callableDefsScope: ReadonlyMap<string, CallableDefScript>;
-		callableInstancesDefined: Readonly<{
-			byRange: SegmentTree<CallableInstanceDefined>;
-			byOffset: ReadonlyMap<number, CallableInstanceDefined>;
-		}>;
+		callableDefsScriptByUsage: ReadonlyMap<CallableUsage, CallableDefScript>
 	}>;
 
 	constructor(name: string, dir: ScriptDir, filesystem: ScriptFilesystem) {
@@ -46,17 +41,17 @@ export class Script {
 		return file;
 	}
 
-	getIncludes() {
-		return this.cache.getAsync("includedScripts", async (token) => {
-			const includedPaths = await this.file?.getIncludedPaths();
-			if (!includedPaths || token.isCancellationRequested) return;
+	getIncludedScripts() {
+		return this.cache.getAsync("includedScriptsByPath", async (token) => {
+			const includes = await this.file.getIncludes();
+			if (token.isCancellationRequested) return;
 
-			const result = new Set<Script>();
-			for (const path of includedPaths) {
+			const result = new Map<string, Script>();
+			for (const path of includes.paths) {
 				this.filesystem.dependencies.add(this, path);
 				const script = this.filesystem.getScriptByPath(path);
 				if (!script) continue;
-				result.add(script);
+				result.set(path, script);
 			}
 			return result;
 		});
@@ -65,7 +60,7 @@ export class Script {
 	getCallableDefsScope() {
 		return this.cache.getAsync("callableDefsScope", async (token) => {
 			const defs = new Map<string, CallableDefScript>();
-			const includes = await this.getIncludes();
+			const includes = await this.getIncludedScripts();
 			if (token.isCancellationRequested) return;
 
 			const scripts = [...includes.values(), this];
@@ -80,40 +75,37 @@ export class Script {
 		});
 	}
 
-	getCallableInstancesDefined() {
-		return this.cache.getAsync("callableInstancesDefined", async (token) => {
-			const builder = new SegmentBuilderLinear<CallableInstanceDefined>();
-			const byOffset = new Map<number, CallableInstanceDefined>();
+	getCallableUsageDefs() {
+		return this.cache.getAsync("callableDefsScriptByUsage", async (token) => {
+			const result = new Map<CallableUsage, CallableDefScript>();
 
 			const file = this.file;
-			const document = await file.getDocument();
-			const instances = await file.getCallableInstances();
+			const usages = await file.getCallableUsages();
 
 			const defsScope = await this.getCallableDefsScope();
 			if (token.isCancellationRequested) return;
 
-			const getDef = async (instance: CallableInstance) => {
-				const identLc = instance.ident.name.toLowerCase();
-				const path = instance.path;
-				if (path === undefined) return defsScope.get(identLc);
+			const getDef = async (usage: CallableUsage) => {
+				const nameLc = usage.name.text.toLowerCase();
+				const path = usage.path?.text;
+				if (path === undefined) return defsScope.get(nameLc);
 
 				const file = this.filesystem.getScriptByPath(path)?.file;
 				if (!file) return undefined;
 				const defs = await file.getCallableDefs();
-				return defs?.byName.get(identLc);
+				return defs?.byName.get(nameLc);
 			};
 
-			for (const { value: instance, range } of instances) {
-				if (instance.path) this.filesystem.dependencies.add(this, instance.path);
-				const def = await getDef(instance);
+			for (const { value: usage } of usages) {
+				if (usage.path) this.filesystem.dependencies.add(this, usage.path.text);
+				const def = await getDef(usage);
 				if (token.isCancellationRequested) return;
+				if (!def) continue;
 
-				const instanceDefined: CallableInstanceDefined = { instance, def };
-				builder.push(range, instanceDefined);
-				byOffset.set(document.offsetAt(instance.ident.range.start), instanceDefined);
+				result.set(usage, def);
 			}
 
-			return { byRange: builder.toTree(), byOffset };
+			return result;
 		});
 	}
 

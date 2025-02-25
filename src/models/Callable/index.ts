@@ -1,2 +1,2 @@
 export * from "./Def";
-export * from "./Instance";
+export * from "./Usage";

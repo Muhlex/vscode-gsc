@@ -87,7 +87,8 @@ writePromises.push(copy(new URL("CHANGELOG.md", projectDir), new URL("CHANGELOG.
 writePromises.push(copy(new URL("LICENSE", projectDir), new URL("LICENSE", outDir)));
 writePromises.push(copy(new URL("static/", projectDir), new URL("static/", outDir)));
 
-writePromises.push(writeJSON(new URL("callables.json", outDir), callables));
+writePromises.push(writeJSON(new URL("keywords.json", outDataDir), keywords));
+writePromises.push(writeJSON(new URL("callables.json", outDataDir), callables));
 
 for (const engine of engines) {
 	const outEngineDir = new URL(`${engine.id}/`, outDataDir);

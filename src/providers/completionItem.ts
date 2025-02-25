@@ -28,40 +28,38 @@ export const createCompletionItemProvider = (
 
 		const getItems = async () => {
 			const intelliSense = settings.intelliSense;
+			const enableKeywords = settings.intelliSense.enable.keywords.get(document);
+			const enableCallablesGame = settings.intelliSense.enable.callablesGame.get(document);
+			const enableCallablesScript = settings.intelliSense.enable.callablesScript.get(document);
+			const conciseMode = settings.intelliSense.conciseMode.get(document);
 			const items: vscode.CompletionItem[] = [];
 
 			const createKeywords = () => {
-				if (intelliSense.enable.keywords.get(document)) {
-					for (const keyword of stores.static.keywords) {
-						items.push(createKeywordCompletionItem(keyword));
-					}
+				if (!enableKeywords) return;
+				for (const keyword of stores.static.getKeywords(document)) {
+					items.push(createKeywordCompletionItem(keyword));
 				}
 			};
 
 			const createCallablesGame = () => {
-				const enableCallablesGame = intelliSense.enable.callablesGame.value;
-				if (enableCallablesGame !== "off") {
-					for (const [, def] of stores.static.callables) {
-						if (def.deprecated && enableCallablesGame === "non-deprecated") continue;
-						items.push(
-							createCallableCompletionItem(def, document.languageId, {
-								concise: intelliSense.conciseMode.value,
-							}),
-						);
-					}
+				if (enableCallablesGame === "off") return;
+				for (const [, def] of stores.static.getCallableDefs(document)) {
+					if (def.deprecated && enableCallablesGame === "non-deprecated") continue;
+					items.push(
+						createCallableCompletionItem(def, document.languageId, { concise: conciseMode }),
+					);
 				}
 			};
 
 			const createCallablesScript = (defs: Iterable<CallableDefScript>) => {
-				if (intelliSense.enable.callablesScript.value) {
-					for (const def of defs) {
-						items.push(
-							createCallableCompletionItem(def, document.languageId, {
-								concise: intelliSense.conciseMode.value,
-								local: def.file === file,
-							}),
-						);
-					}
+				if (!enableCallablesScript) return;
+				for (const def of defs) {
+					items.push(
+						createCallableCompletionItem(def, document.languageId, {
+							concise: conciseMode,
+							local: def.file === file,
+						}),
+					);
 				}
 			};
 
@@ -163,7 +161,7 @@ const createCallableCompletionItem = (
 	const isGame = def.origin === "game";
 	return {
 		label: {
-			label: def.ident.name,
+			label: def.name.text,
 			description: options.local
 				? undefined
 				: isGame

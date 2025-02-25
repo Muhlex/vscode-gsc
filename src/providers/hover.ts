@@ -10,10 +10,10 @@ export const createHoverProvider = (stores: Stores, settings: Settings): vscode.
 		const wordRange = document.getWordRangeAtPosition(position, /[A-Za-z_][\w]*/);
 		if (!wordRange) return;
 
-		const instances = await stores.gsc.getFile(document).getCallableInstances();
+		const usages = await stores.gsc.getFile(document).getCallableInstances();
 		if (token.isCancellationRequested) return;
-		const instance = instances.byOffset.get(document.offsetAt(wordRange.start));
-		const def = instance?.def;
+		const usage = usages.byOffset.get(document.offsetAt(wordRange.start));
+		const def = usage?.def;
 		if (!def) return;
 
 		const concise = settings.intelliSense.conciseMode.value;
